@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>303 Creative Studio® — TEST v2.0 (Enhancements)</title>
+  <meta name="description" content="Test page for web enhancements v2.0">
+  <meta name="theme-color" content="#c9a97e">
+  <link rel="icon" type="image/png" href="/logo.png">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
+
+  <!-- Original styles -->
+  <link rel="stylesheet" href="/styles.css">
+
+  <!-- NEW: Enhancement styles -->
+  <link rel="stylesheet" href="/css/enhancements.css">
+
+  <noscript>
+    <style>
+      .r{opacity:1!important;transform:none!important}
+      .hero-line-inner{transform:none!important}
+      .rh{opacity:1!important;transform:none!important}
+    </style>
+  </noscript>
+
+  <style>
+    /* Test banner */
+    .test-banner {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #ff1744, #ff5722);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 0 0 12px 12px;
+      z-index: 2000;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    }
+
+    body {
+      padding-top: 50px;
+    }
+
+    .enhancement-info {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(13, 13, 16, 0.95);
+      color: #c9a97e;
+      padding: 16px 20px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-family: 'Barlow', sans-serif;
+      border: 1px solid rgba(201, 169, 126, 0.2);
+      max-width: 280px;
+      z-index: 1999;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .enhancement-info h4 {
+      margin: 0 0 8px 0;
+      color: #e8cfa0;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .enhancement-info ul {
+      margin: 0;
+      padding: 0 0 0 16px;
+      list-style: disc;
+    }
+
+    .enhancement-info li {
+      margin: 4px 0;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+<!-- TEST BANNER -->
+<div class="test-banner">
+  ⚠️ Página de Testing - Mejoras v2.0 Activas - NO PARA PRODUCCIÓN
+</div>
+
+<!-- INTRO WIPE -->
+<div id="intro-wipe" aria-hidden="true"><div id="intro-line"></div></div>
+
+<!-- CUSTOM CURSOR -->
+<div id="cursor-dot" aria-hidden="true"></div>
+<div id="cursor-ring" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="/"><img src="/logo-transparent.png" alt="303 Creative Studio" class="nav-logo"></a>
+  <ul class="nav-links">
+    <li><a href="#hero">Testing v2</a></li>
+    <li><a href="/index.html" style="color: #ff1744;">← Volver a v1</a></li>
+  </ul>
+  <a href="#cta" class="nav-cta">Probar Efectos</a>
+  <button class="lang-toggle" id="lang-toggle" onclick="alert('Testing mode')" aria-label="Language toggle">EN</button>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero" aria-label="Hero test">
+  <div class="hero-bg" style="background-image:url('/img/foto-9.jpg')"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-overlay-bottom"></div>
+
+  <!-- Depth layers (mouse parallax targets) -->
+  <div id="layer-deep" class="hero-layer" aria-hidden="true">303</div>
+  <div id="layer-mid" class="hero-layer" aria-hidden="true">
+    <div class="hero-grid-line" style="left:20%"></div>
+    <div class="hero-grid-line" style="left:40%"></div>
+    <div class="hero-grid-line" style="left:60%"></div>
+    <div class="hero-grid-line" style="left:80%"></div>
+    <div class="hero-vline"></div>
+    <div class="hero-scan"></div>
+  </div>
+
+  <!-- Tag + year -->
+  <div class="hero-tag">Testing v2.0 Enhancements</div>
+  <div class="hero-year">2026</div>
+
+  <!-- Hero exit wrapper (fades on scroll) -->
+  <div id="hero-exit">
+    <!-- Main headline -->
+    <div class="hero-content">
+      <h1 class="hero-headline">
+        <span class="hero-line"><span class="hero-line-inner">NUEVOS</span></span>
+        <span class="hero-line" id="line2"><span class="hero-line-inner"><em class="gold-italic">EFECTOS</em></span></span>
+        <span class="hero-line" id="line3"><span class="hero-line-inner">VISUALES</span></span>
+      </h1>
+    </div>
+
+    <!-- Bottom row -->
+    <div class="hero-bottom">
+      <div class="hero-bottom-left">
+        <p class="hero-sub">Prueba los nuevos efectos: glassmorphism, ripple effects, animaciones mejoradas, scroll progress bar y más.</p>
+        <div class="hero-btns">
+          <a href="#cta" class="btn-primary">Explorar Mejoras</a>
+          <a href="/index.html" class="btn-ghost">Volver a v1</a>
+        </div>
+      </div>
+      <div class="hero-bottom-right">
+        <div class="hero-stat">
+          <div class="hero-stat-num" data-target="5" data-suffix="">5</div>
+          <div class="hero-stat-label">Efectos nuevos</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num" data-target="2" data-suffix=".5">2.5</div>
+          <div class="hero-stat-label">Versión</div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /hero-exit -->
+</section>
+
+<!-- ENHANCEMENTS INFO SECTION -->
+<section class="section" style="background: linear-gradient(135deg, #1a1a2e 0%, #0d0d10 100%); padding: 80px 60px;">
+  <div class="section-inner" style="max-width: 1000px; margin: 0 auto;">
+    <h2 class="sec" style="text-align: center; margin-bottom: 60px;">
+      <span class="hero-line"><span class="hero-line-inner">Mejoras v2.0</span></span>
+    </h2>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+
+      <!-- Card 1 -->
+      <div class="about-card r">
+        <h3>🎨 Glassmorphism</h3>
+        <p>Backdrop blur mejorado en nav, cards y secciones. Efecto de cristal sofisticado que respeta performance.</p>
+        <div style="margin-top: 12px; font-size: 10px; color: rgba(245,244,239,0.4);">Hover en esta card para ver glow effect</div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="about-card r">
+        <h3>✨ Ripple Effects</h3>
+        <p>Efecto de onda al clickear botones. Haz click en cualquier botón para ver el efecto ripple en acción.</p>
+        <div style="margin-top: 12px; font-size: 10px; color: rgba(245,244,239,0.4);">Prueba clickeando buttons abajo</div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="about-card r">
+        <h3>📊 Scroll Progress</h3>
+        <p>Barra de progreso superior que indica el avance de lectura de la página. Observa la barra en la parte superior.</p>
+        <div style="margin-top: 12px; font-size: 10px; color: rgba(245,244,239,0.4);">Scrollea para ver progreso</div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="about-card r">
+        <h3>🌀 Animated Gradients</h3>
+        <p>Gradientes animados sutilmente en hero y secciones. Las transiciones de color son fluidas e hipnotizantes.</p>
+        <div style="margin-top: 12px; font-size: 10px; color: rgba(245,244,239,0.4);">Observa el hero en movimiento</div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="about-card r">
+        <h3>💫 Glow Effects</h3>
+        <p>Efecto de brillo en cards, buttons y elementos interactivos. Hover en cualquier card para ver el glow.</p>
+        <div style="margin-top: 12px; font-size: 10px; color: rgba(245,244,239,0.4);">Hover para activar</div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="about-card r">
+        <h3>🌊 Blur on Scroll</h3>
+        <p>Hero text desaparece con blur cuando scrolleas hacia abajo. Efecto elegante y profesional.</p>
+        <div style="margin-top: 12px; font-size: 10px; color: rgba(245,244,239,0.4);">Scrollea hacia arriba para ver efecto</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section id="cta" class="cta-final" style="background: linear-gradient(135deg, #0066cc, #004999); margin: 80px 40px; border-radius: 16px;">
+  <h2>¿Cómo se ven los cambios?</h2>
+  <p>Prueba todos los efectos en esta página. Usa:</p>
+  <div style="margin: 20px 0; font-size: 14px; line-height: 1.8;">
+    <p>✓ Scroll para ver blur, parallax y animated gradients</p>
+    <p>✓ Hover en cards para ver glow effects</p>
+    <p>✓ Click en botones para ver ripple effects</p>
+    <p>✓ Observa la barra de progreso arriba</p>
+    <p>✓ Navega por el sitio para sentir los efectos completos</p>
+  </div>
+  <p style="margin-top: 20px; opacity: 0.9; font-size: 13px;">Todos los cambios están en <code style="background: rgba(0,0,0,0.2); padding: 4px 8px; border-radius: 4px;">/css/enhancements.css</code> y <code style="background: rgba(0,0,0,0.2); padding: 4px 8px; border-radius: 4px;">/js/animations-v2.js</code></p>
+  <a href="/index.html" class="btn btn-primary" style="margin-top: 24px; display: inline-block; color: #004999;">Comparar con v1</a>
+</section>
+
+<!-- FOOTER -->
+<footer style="text-align: center; padding: 40px; background: #0a0a0a; border-top: 1px solid rgba(201,169,126,.1);">
+  <p style="color: rgba(245,244,239,0.6); font-size: 12px;">
+    🧪 Página de Testing - Enhancements v2.0<br>
+    <a href="/index.html" style="color: #c9a97e; text-decoration: underline;">← Volver a versión estable (v1)</a>
+  </p>
+</footer>
+
+<!-- INFO PANEL -->
+<div class="enhancement-info">
+  <h4>⚡ v2.0 Activa</h4>
+  <ul>
+    <li>Glassmorphism ✓</li>
+    <li>Ripple Effects ✓</li>
+    <li>Scroll Progress ✓</li>
+    <li>Blur on Scroll ✓</li>
+    <li>Animated Gradients ✓</li>
+    <li>Glow Effects ✓</li>
+  </ul>
+  <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(201,169,126,0.2);">
+    <div style="font-size: 10px; opacity: 0.6;">
+      v2.5 / Testing<br>
+      No para producción
+    </div>
+  </div>
+</div>
+
+<!-- ═════════════════════════════════════ -->
+<!-- SCRIPTS -->
+<!-- ═════════════════════════════════════ -->
+
+<!-- GSAP (required) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<!-- Lenis (smooth scroll) -->
+<script src="https://cdn.jsdelivr.net/gh/darkroomengineering/lenis@latest"></script>
+
+<!-- Lib modules (optional - inline en v2) -->
+<!-- <script src="/js/lib/ripple.js"></script>
+<script src="/js/lib/scroll-progress.js"></script>
+<script src="/js/lib/blur-effects.js"></script> -->
+
+<!-- NEW: Enhanced animations v2.5 (includes all enhancements) -->
+<script src="/js/animations-v2.js"></script>
+
+<!-- Language support (if needed) -->
+<script src="/js/lang.js"></script>
+
+</body>
+</html>
