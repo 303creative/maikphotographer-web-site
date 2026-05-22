@@ -1,0 +1,10 @@
+{
+  "name": "maikphotographer-web-site",
+  "version": "1.0.0",
+  "description": "Maikel Marshall — Photographer Miami",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  }
+}
