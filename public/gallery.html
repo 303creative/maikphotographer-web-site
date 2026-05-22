@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery — Maikel Marshall · Photographer</title>
+<meta name="description" content="Complete portfolio gallery of cinematic photography. Editorial, portrait, lifestyle work.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:          #0B0C0A;
+  --bg2:         #0E0F0D;
+  --bg3:         #141512;
+  --surface:     rgba(14,15,13,.88);
+  --gold:        #D8C18A;
+  --gold2:       #C7B68A;
+  --gold-dim:    rgba(216,193,138,.12);
+  --gold-glow:   rgba(216,193,138,.25);
+  --white:       #E6E3D8;
+  --muted:       #9B978B;
+  --muted2:      rgba(230,227,216,.38);
+  --border:      rgba(216,193,138,.12);
+  --border2:     rgba(216,193,138,.22);
+  --display:     'Jost', sans-serif;
+  --body:        'Inter', sans-serif;
+  --ease:        cubic-bezier(.16,1,.3,1);
+  --ease2:       cubic-bezier(.4,0,.2,1);
+  --r-card:      28px;
+  --r-btn:       999px;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box }
+html { font-size:16px; scroll-behavior:smooth; -webkit-font-smoothing:antialiased }
+body { font-family:var(--body); background:var(--bg); color:var(--white); overflow-x:hidden; line-height:1.6; cursor:none }
+img { max-width:100%; display:block }
+a { text-decoration:none; color:inherit }
+
+body::before { content:''; position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.04;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px }
+
+.cur-dot { position:fixed; top:0; left:0; width:6px; height:6px; background:var(--white); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%) }
+.cur-ring { position:fixed; top:0; left:0; width:32px; height:32px; border:1px solid rgba(216,193,138,.6); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:all .1s var(--ease2) }
+
+.site-header { position:fixed; top:0; left:0; width:100%; z-index:100;
+  padding:28px 7vw; display:flex; justify-content:space-between; align-items:center;
+  background:rgba(11,12,10,.0); backdrop-filter:blur(0px); border-bottom:1px solid transparent;
+  transition:all .5s var(--ease2) }
+.site-header.sticky { background:rgba(11,12,10,.92); backdrop-filter:blur(20px); border-bottom-color:var(--border); padding:18px 7vw }
+
+.logo { font-family:var(--display); font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); font-weight:500 }
+.header-nav { display:flex; align-items:center; gap:0 }
+.header-nav a { margin-left:32px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--white); opacity:.72; transition:opacity .3s; font-weight:400 }
+.header-nav a:hover { opacity:1 }
+
+.header-right { display:flex; align-items:center; gap:16px }
+.lang-btn { font-size:10px; letter-spacing:.2em; text-transform:uppercase; padding:7px 14px;
+  border:1px solid var(--border2); border-radius:var(--r-btn); color:var(--gold2);
+  background:transparent; cursor:pointer; transition:all .3s; font-family:var(--body) }
+.lang-btn:hover { background:var(--gold-dim) }
+
+.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; background:none; border:none }
+.hamburger span { width:22px; height:1px; background:var(--white); display:block; transition:all .3s }
+
+.mobile-nav { position:fixed; inset:0; z-index:90; background:rgba(11,12,10,.97);
+  backdrop-filter:blur(20px); display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:32px;
+  opacity:0; pointer-events:none; transition:opacity .4s }
+.mobile-nav.open { opacity:1; pointer-events:all }
+.mobile-nav a { font-family:var(--display); font-size:2rem; font-weight:400; letter-spacing:.1em; color:var(--white); transition:color .3s }
+.mobile-nav a:hover { color:var(--gold2) }
+
+.page-header { min-height:70vh; display:grid; place-items:center; text-align:center;
+  padding:120px 7vw 80px; position:relative; background:var(--bg) }
+.page-header h1 { font-family:var(--display); font-size:clamp(42px,5.5vw,72px);
+  font-weight:400; letter-spacing:.16em; line-height:1.12; margin-bottom:24px; color:var(--white) }
+.page-header p { font-size:14px; color:var(--muted); max-width:520px; margin:0 auto }
+
+.gallery-section { padding:100px 7vw; background:var(--bg) }
+.gallery-inner { max-width:1240px; margin:0 auto }
+.gallery-filters { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin-bottom:60px }
+.filter-btn { font-size:10px; letter-spacing:.16em; text-transform:uppercase;
+  padding:8px 18px; border:1px solid var(--border); border-radius:var(--r-btn);
+  color:var(--muted2); background:transparent; cursor:pointer; transition:all .3s }
+.filter-btn.active, .filter-btn:hover { border-color:var(--border2); color:var(--gold2); background:var(--gold-dim) }
+
+.gallery-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:3px; max-width:1240px; margin:0 auto }
+.gal-item { position:relative; overflow:hidden; cursor:pointer; aspect-ratio:1/1 }
+.gal-item img { width:100%; height:100%; object-fit:cover; transition:transform .9s var(--ease), filter .5s }
+.gal-item:hover img { transform:scale(1.06); filter:brightness(.65) }
+.gal-overlay { position:absolute; inset:0;
+  background:linear-gradient(to top,rgba(11,12,10,.9) 0%,transparent 55%);
+  opacity:0; transition:opacity .4s;
+  display:flex; flex-direction:column; justify-content:flex-end; padding:28px }
+.gal-item:hover .gal-overlay { opacity:1 }
+.gal-cat { font-size:9px; letter-spacing:.26em; text-transform:uppercase; color:var(--gold2); margin-bottom:6px }
+.gal-name { font-family:var(--display); font-size:1.5rem; font-weight:400; font-style:italic; color:var(--white) }
+
+.lightbox { position:fixed; inset:0; z-index:300; background:rgba(11,12,10,.97);
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; pointer-events:none; transition:opacity .4s }
+.lightbox.active { opacity:1; pointer-events:all }
+.lb-img { max-width:88vw; max-height:88vh; object-fit:contain; border-radius:8px }
+.lb-close { position:absolute; top:24px; right:36px; background:none; border:none;
+  font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); cursor:pointer; transition:color .3s }
+.lb-close:hover { color:var(--white) }
+.lb-nav { position:absolute; top:50%; transform:translateY(-50%);
+  background:none; border:1px solid var(--border); color:var(--muted);
+  width:46px; height:46px; border-radius:50%; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; font-size:1.1rem; transition:all .3s }
+.lb-nav:hover { border-color:var(--border2); color:var(--gold2) }
+.lb-prev { left:24px }
+.lb-next { right:24px }
+
+.site-footer { background:var(--bg); border-top:1px solid var(--border);
+  padding:48px 7vw; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px }
+.footer-brand { font-family:var(--display); font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); font-weight:400 }
+.footer-links { display:flex; gap:24px; flex-wrap:wrap }
+.footer-links a { font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); transition:color .3s }
+.footer-links a:hover { color:var(--gold2) }
+.footer-copy { font-size:11px; color:rgba(155,151,139,.5) }
+
+.wa-btn { position:fixed; bottom:32px; right:32px; z-index:200;
+  width:52px; height:52px; border-radius:50%; background:#25D366;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,.3); transition:all .3s }
+.wa-btn:hover { transform:scale(1.1); box-shadow:0 6px 30px rgba(37,211,102,.45) }
+.wa-btn svg { width:24px; height:24px; fill:#fff }
+
+@media(max-width:1024px) {
+  .gallery-grid { grid-template-columns:repeat(2,1fr) }
+}
+
+@media(max-width:768px) {
+  .header-nav { display:none }
+  .hamburger { display:flex }
+  .site-header { padding:20px 5vw }
+  .page-header { padding:100px 5vw 60px; min-height:50vh }
+  .page-header h1 { font-size:clamp(36px,10vw,52px); letter-spacing:.1em }
+  .gallery-section { padding:80px 5vw }
+  .gallery-grid { grid-template-columns:1fr; gap:1px }
+  .site-footer { flex-direction:column; text-align:center; padding:36px 5vw }
+  .footer-links { justify-content:center }
+}
+</style>
+</head>
+<body>
+
+<div class="cur-dot" id="curDot"></div>
+<div class="cur-ring" id="curRing"></div>
+
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html#about" onclick="closeMobileNav()" data-en="About" data-es="Sobre mí">About</a>
+  <a href="index.html#portfolio" onclick="closeMobileNav()" data-en="Portfolio" data-es="Portfolio">Portfolio</a>
+  <a href="gallery.html" onclick="closeMobileNav()" data-en="Gallery" data-es="Galería">Gallery</a>
+  <a href="index.html#services" onclick="closeMobileNav()" data-en="Services" data-es="Servicios">Services</a>
+  <a href="pricing.html" onclick="closeMobileNav()" data-en="Pricing" data-es="Precios">Pricing</a>
+  <a href="index.html#contact" onclick="closeMobileNav()" data-en="Contact" data-es="Contacto">Contact</a>
+</nav>
+
+<header class="site-header" id="siteHeader">
+  <a href="index.html" class="logo">MK — Studio</a>
+  <nav class="header-nav">
+    <a href="index.html#about" data-en="About" data-es="Sobre mí">About</a>
+    <a href="index.html#portfolio" data-en="Portfolio" data-es="Portfolio">Portfolio</a>
+    <a href="gallery.html" data-en="Gallery" data-es="Galería">Gallery</a>
+    <a href="index.html#services" data-en="Services" data-es="Servicios">Services</a>
+    <a href="pricing.html" data-en="Pricing" data-es="Precios">Pricing</a>
+    <a href="index.html#contact" data-en="Contact" data-es="Contacto">Contact</a>
+  </nav>
+  <div class="header-right">
+    <button class="lang-btn" id="langBtn" onclick="toggleLang()">ES</button>
+    <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<section class="page-header">
+  <div>
+    <h1 data-en="Complete Gallery" data-es="Galería Completa">Complete Gallery</h1>
+    <p data-en="Every moment, every session, every story. Explore the full catalog of my work across all categories." data-es="Cada momento, cada sesión, cada historia. Explora el catálogo completo de mi trabajo en todas las categorías.">Every moment, every session, every story. Explore the full catalog of my work across all categories.</p>
+  </div>
+</section>
+
+<section class="gallery-section">
+  <div class="gallery-inner">
+    <div class="gallery-filters">
+      <button class="filter-btn active" data-filter="all" onclick="filterGallery(this)" data-en="All" data-es="Todo">All</button>
+      <button class="filter-btn" data-filter="portrait" onclick="filterGallery(this)" data-en="Portrait" data-es="Retrato">Portrait</button>
+      <button class="filter-btn" data-filter="editorial" onclick="filterGallery(this)" data-en="Editorial" data-es="Editorial">Editorial</button>
+      <button class="filter-btn" data-filter="lifestyle" onclick="filterGallery(this)" data-en="Lifestyle" data-es="Lifestyle">Lifestyle</button>
+    </div>
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" onclick="closeLb()">✕ Close</button>
+  <button class="lb-nav lb-prev" onclick="navLb(-1)">‹</button>
+  <img class="lb-img" src="" alt="" id="lbImg">
+  <button class="lb-nav lb-next" onclick="navLb(1)">›</button>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-brand">MK — Maikel Marshall</div>
+  <nav class="footer-links">
+    <a href="index.html#about" data-en="About" data-es="Sobre mí">About</a>
+    <a href="index.html#portfolio" data-en="Portfolio" data-es="Portfolio">Portfolio</a>
+    <a href="gallery.html" data-en="Gallery" data-es="Galería">Gallery</a>
+    <a href="pricing.html" data-en="Pricing" data-es="Precios">Pricing</a>
+    <a href="blog.html" data-en="Blog" data-es="Blog">Blog</a>
+    <a href="https://www.instagram.com/maik_photographer/" target="_blank">Instagram</a>
+    <a href="https://wa.me/17863329815" target="_blank">WhatsApp</a>
+  </nav>
+  <div class="footer-copy">© 2026 Maikel Marshall · Miami, FL</div>
+</footer>
+
+<a href="https://wa.me/17863329815?text=Hi%20Maikel!%20I%20found%20your%20gallery%20and%20would%20love%20to%20book%20a%20session." class="wa-btn" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+const dot=document.getElementById('curDot'),ring=document.getElementById('curRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
+(function animRing(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)})();
+
+window.addEventListener('scroll',()=>document.getElementById('siteHeader').classList.toggle('sticky',scrollY>60));
+
+let navOpen=false;
+function toggleMobileNav(){navOpen=!navOpen;document.getElementById('mobileNav').classList.toggle('open',navOpen);document.body.style.overflow=navOpen?'hidden':''}
+function closeMobileNav(){navOpen=false;document.getElementById('mobileNav').classList.remove('open');document.body.style.overflow=''}
+
+// Gallery data
+const photos = [
+  {src:'img/toda la galeria/DSC01763_0000_Tono_saturación-1.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/DSC01763_0006_DSC01831.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/DSC01763_0007_DSC01835.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/DSC01763_0008_1.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/DSC01763_0001_DSC01790.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/DSC01763_0002_DSC01791.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/DSC01763_0002_DSC01791_1.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/DSC01763_0004_DSC01805.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/DSC01763_0004_DSC01805_1.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/DSC01763_0003_DSC01794.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/DSC01763_0003_DSC01794_1.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/DSC01763_0004_DSC01806.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/DSC01763_0004_DSC01806_1.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/DSC01763_0008.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/49ac4b8a-bd72-4836-b01d-631994a74a3f.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/ac41519d-4f62-4d6e-a568-ddb0a144aba0.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/2fcefe94-b154-4b88-9f6b-cee08fbdafd4.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/54842636-e52d-4556-a0b7-b87328675253.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/07d1529f-9339-469b-a628-faba60abaefe.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/6f1d4671-4390-430f-9fc9-9981a083de74.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/e5524697-a4ba-4b5a-a259-f10ac8bfa082.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/94d87035-a093-4f35-ba76-93c117602b75.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/4d9b139f-3fa4-4f54-8eff-fb4f326d5ca5.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/f52268c6-159d-4bca-8da5-3b3140afb96a.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/c052e16f-02a5-4545-b6ba-e6b91a2b3a4a.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/c850f347-ea70-453a-9ee4-be52f35028c0.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/a4c8f285-6391-4cfe-93b5-8a8da8298118.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/9f9ece98-fa4a-4c6b-8b97-57040be62c94.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/a1adce51-2d8a-4d3b-8123-9db19847b032.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/ae27742a-5bc1-4418-b853-d2592dc62a25.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/0e7f58e9-1cc5-4efb-9bee-7fbe1c73b7a1.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/fb271c42-20a0-4c7a-8239-09ce6df4561d.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/55b9606e-078e-4ec3-86dd-c6aae449d6dc.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/28bd9338-5205-4619-8a08-6a4e83a510b6.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/8a0f30b5-1cb7-47f6-93d3-6c5c40005591.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/5b7b9e82-36c4-44c5-bb61-10685eb81a65.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/a4c8f5e8-6780-4d0e-bde2-ebadd7a03f98.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/298bc3f1-c201-41d1-be74-11f78b234699.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/79a7b298-ace2-49ba-9e9e-1c567c8aa331.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/f6dfdde8-52c9-4178-b17c-6a52496809a4.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/ffb79d5b-915e-43ce-b7cf-37cdfb40407b.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/e6acea08-7947-4587-85a9-9aa5f405568f.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/9b2b1a15-837f-4ded-b0c3-a1461415098f.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/52c39845-b7f5-4d1d-880c-30ebee31b9f4.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/64e3dde7-2967-4cae-8e72-53203a5d1398.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/ec5a1a57-ff41-4967-b987-b954b0940edb.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/f7a0181f-c8f1-43b1-86c3-88d05c79d07f.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/69b33119-e802-4570-a68f-c60396c40d8a.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/be32ef62-df84-43b4-8277-7e84b7f65f35.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/97bbeb58-5744-43ae-a2d3-3a02f30cd7da.jpg',cat:'lifestyle'},
+];
+
+let lbIdx=0;
+function renderGallery(){
+  const grid=document.getElementById('galleryGrid');
+  grid.innerHTML='';
+  photos.forEach((p,i)=>{
+    const item=document.createElement('div');
+    item.className='gal-item';
+    item.dataset.cat=p.cat;
+    item.innerHTML=`<img src="${p.src}" alt="${p.cat}" loading="lazy"><div class="gal-overlay"><div class="gal-cat">${p.cat.charAt(0).toUpperCase()+p.cat.slice(1)}</div></div>`;
+    item.onclick=()=>{lbIdx=i;openLb(p.src)};
+    grid.appendChild(item);
+  });
+}
+renderGallery();
+
+function filterGallery(btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const f=btn.dataset.filter;
+  document.querySelectorAll('.gal-item').forEach(item=>item.style.display=(f==='all'||item.dataset.cat===f)?'':'none');
+}
+
+function openLb(src){document.getElementById('lbImg').src=src;document.getElementById('lightbox').classList.add('active');document.body.style.overflow='hidden'}
+function closeLb(){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow=''}
+function navLb(d){
+  let visiblePhotos=photos.filter((_,i)=>{const item=document.querySelectorAll('.gal-item')[i];return item.style.display!=='none'});
+  lbIdx=(lbIdx+d+visiblePhotos.length)%visiblePhotos.length;
+  openLb(visiblePhotos[lbIdx].src);
+}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target===this)closeLb()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb();if(e.key==='ArrowLeft')navLb(-1);if(e.key==='ArrowRight')navLb(1)});
+
+let lang='en';
+function toggleLang(){
+  lang=lang==='en'?'es':'en';
+  document.getElementById('langBtn').textContent=lang==='en'?'ES':'EN';
+  document.querySelectorAll('[data-en]').forEach(el=>el.textContent=lang==='en'?el.dataset.en:el.dataset.es);
+}
+</script>
+</body>
+</html>
