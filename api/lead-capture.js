@@ -96,7 +96,7 @@ export default async function handler(req, res) {
 
     // Enviar confirmación al cliente
     await sendEmailWithFallback(
-      '303creativemarketing@gmail.com',
+      email,
       emailContent.subject,
       emailContent.html
     );
