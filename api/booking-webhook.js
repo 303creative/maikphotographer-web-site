@@ -83,7 +83,7 @@ export default async function handler(req, res) {
     `;
 
     await resend.emails.send({
-      from: 'Maikel Marshall <maikel@maikphotographer.com>',
+      from: 'Maikel Marshall <onboarding@resend.dev>',
       to: email,
       subject: emailSubject,
       html: emailHTML
@@ -91,8 +91,8 @@ export default async function handler(req, res) {
 
     // 3. Notificación a Maikel
     await resend.emails.send({
-      from: 'Sistema <maikel@maikphotographer.com>',
-      to: 'maikelmarshall07@gmail.com',
+      from: 'Sistema <onboarding@resend.dev>',
+      to: '303creativemarketing@gmail.com',
       subject: `📅 BOOKING CONFIRMADO: ${name}`,
       html: `
         <div style="font-family: monospace; padding: 20px; background: #0a0a0a; color: #0f0;">

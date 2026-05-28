@@ -15,8 +15,8 @@ export default async function handler(req, res) {
       to,
       subject,
       html,
-      from = 'Maikel Marshall <maikel@maikphotographer.com>',
-      replyTo = 'maikelmarshall07@gmail.com'
+      from = 'Maikel Marshall <onboarding@resend.dev>',
+      replyTo = '303creativemarketing@gmail.com'
     } = req.body;
 
     if (!to || !subject || !html) {

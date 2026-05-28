@@ -893,26 +893,38 @@ Cal('inline',{elementOrSelector:'#cal-embed',calLink:'the303-marketing-kmfxzs/30
 async function submitForm(e){
   e.preventDefault();
   const btn=document.getElementById('fBtn');
-  btn.disabled=true;btn.textContent=lang==='en'?'Sending...':'Enviando...';
+  const formContent=document.getElementById('formContent');
+  const formSuccess=document.getElementById('formSuccess');
+  btn.disabled=true;
+  btn.textContent=lang==='en'?'Sending...':'Enviando...';
   const n=document.getElementById('fn').value;
   const p=document.getElementById('fp').value;
   const em=document.getElementById('fe').value;
   const t=document.getElementById('ft').value;
   const m=document.getElementById('fm').value;
   try{
-    const res=await fetch('/api/lead-capture',{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({name:n,phone:p,email:em,sessionType:t,message:m,lang})});
-    if(!res.ok)throw new Error();
-    document.getElementById('formContent').style.display='none';
-    document.getElementById('formSuccess').style.display='block';
+    const payload={name:n,phone:p,email:em,sessionType:t,message:m,lang};
+    console.log('Enviando payload:',payload);
+    const res=await fetch('/api/lead-capture',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(payload)
+    });
+    const resData=await res.json();
+    console.log('Respuesta:',resData);
+    if(!res.ok)throw new Error(resData.error||'Request failed');
+    formContent.style.display='none';
+    formSuccess.style.display='block';
+    console.log('✅ Lead enviado exitosamente');
     setTimeout(()=>{
       window.open(`https://wa.me/17863329815?text=Hi!%20I%20just%20submitted%20a%20booking%20request.%20Name:%20${encodeURIComponent(n)}%20|%20Service:%20${encodeURIComponent(t)}`,'_blank');
     },1600);
-  }catch(e){
-    console.error('Form error:',e);
+  }catch(err){
+    console.error('❌ Form error:',err);
+    btn.disabled=false;
+    btn.textContent=lang==='en'?'Send Request →':'Enviar Solicitud →';
+    alert(lang==='en'?'Error sending request. Sending via WhatsApp...':'Error al enviar. Usando WhatsApp...');
     window.open(`https://wa.me/17863329815?text=Hi%20Maikel!%20I%27m%20${encodeURIComponent(n)}%20and%20I%27d%20like%20to%20book%20a%20${encodeURIComponent(t||'session')}.%20${encodeURIComponent(m)}`,'_blank');
-    document.getElementById('formContent').style.display='none';
-    document.getElementById('formSuccess').style.display='block';
   }
 }
 </script>

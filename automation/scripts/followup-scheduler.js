@@ -106,7 +106,7 @@ async function sendFollowupEmail(lead, template) {
     `;
 
     await resend.emails.send({
-      from: 'Maikel Marshall <maikel@maikphotographer.com>',
+      from: 'Maikel Marshall <onboarding@resend.dev>',
       to: email,
       subject: emailTemplate.subject,
       html

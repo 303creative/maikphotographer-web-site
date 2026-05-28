@@ -68,16 +68,16 @@ export default async function handler(req, res) {
     };
 
     await resend.emails.send({
-      from: 'Maikel Marshall <maikel@maikphotographer.com>',
-      to: email,
+      from: 'Maikel Marshall <onboarding@resend.dev>',
+      to: '303creativemarketing@gmail.com',
       subject: emailContent.subject,
       html: emailContent.html
     });
 
     // 3. Notificación interna a Maikel
     await resend.emails.send({
-      from: 'Sistema <maikel@maikphotographer.com>',
-      to: 'maikelmarshall07@gmail.com',
+      from: 'Sistema <onboarding@resend.dev>',
+      to: '303creativemarketing@gmail.com',
       subject: `🔥 NUEVO LEAD: ${name} — ${sessionType}`,
       html: `
         <div style="font-family: monospace; padding: 20px; background: #0a0a0a; color: #0f0;">

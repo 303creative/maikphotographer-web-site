@@ -14,8 +14,8 @@ async function testEmail() {
     }
 
     const response = await resend.emails.send({
-      from: 'Maikel Marshall <maikel@maikphotographer.com>',
-      to: 'maikelmarshall07@gmail.com',
+      from: 'Maikel Marshall <onboarding@resend.dev>',
+      to: '303creativemarketing@gmail.com',
       subject: '🔥 SISTEMA DE AUTOMATIZACIÓN LISTO',
       html: `
         <div style="font-family: 'Helvetica Neue', sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #fff; padding: 40px;">
