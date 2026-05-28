@@ -12,7 +12,8 @@
     "test-email": "node automation/scripts/test-email.js",
     "search-leads": "node automation/scripts/lead-scraper.js",
     "followup": "node automation/scripts/followup-scheduler.js",
-    "marketing": "node automation/scripts/marketing-system.js"
+    "marketing": "node automation/scripts/marketing-system.js",
+    "muapi-generate": "node automation/scripts/muapi-content-generator.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.20.0",
