@@ -67,33 +67,61 @@ export default async function handler(req, res) {
       `
     };
 
-    await resend.emails.send({
-      from: 'Maikel Marshall <onboarding@resend.dev>',
-      to: '303creativemarketing@gmail.com',
-      subject: emailContent.subject,
-      html: emailContent.html
-    });
+    // Enviar emails con fallback: primero Resend, luego Gmail
+    const sendEmailWithFallback = async (to, subject, html) => {
+      try {
+        await resend.emails.send({
+          from: 'Maikel Marshall <onboarding@resend.dev>',
+          to: to,
+          subject: subject,
+          html: html
+        });
+        console.log('[LEAD] Email sent via Resend:', { to, subject, timestamp: new Date().toISOString() });
+      } catch (resendErr) {
+        console.warn('[LEAD] Resend failed, trying Gmail:', resendErr.message);
+        try {
+          const baseUrl = process.env.VERCEL_URL ? 'https://' + process.env.VERCEL_URL : 'http://localhost:3000';
+          await fetch(`${baseUrl}/api/send-email-gmail`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ to, subject, html })
+          });
+          console.log('[LEAD] Email sent via Gmail:', { to, subject, timestamp: new Date().toISOString() });
+        } catch (gmailErr) {
+          console.error('[LEAD] Both services failed:', { resendErr: resendErr.message, gmailErr: gmailErr.message });
+          throw new Error('Email service unavailable');
+        }
+      }
+    };
+
+    // Enviar confirmación al cliente
+    await sendEmailWithFallback(
+      '303creativemarketing@gmail.com',
+      emailContent.subject,
+      emailContent.html
+    );
 
     // 3. Notificación interna a Maikel
-    await resend.emails.send({
-      from: 'Sistema <onboarding@resend.dev>',
-      to: '303creativemarketing@gmail.com',
-      subject: `🔥 NUEVO LEAD: ${name} — ${sessionType}`,
-      html: `
-        <div style="font-family: monospace; padding: 20px; background: #0a0a0a; color: #0f0;">
-          <h2 style="color: #fff;">NUEVO LEAD RECIBIDO</h2>
-          <table style="width: 100%; border-collapse: collapse;">
-            <tr><td style="padding: 8px; color: #888;">Nombre:</td><td style="color: #0f0;">${name}</td></tr>
-            <tr><td style="padding: 8px; color: #888;">Email:</td><td style="color: #0f0;">${email}</td></tr>
-            <tr><td style="padding: 8px; color: #888;">Teléfono:</td><td style="color: #0f0;">${phone}</td></tr>
-            <tr><td style="padding: 8px; color: #888;">Servicio:</td><td style="color: #0f0;">${sessionType}</td></tr>
-            <tr><td style="padding: 8px; color: #888;">Mensaje:</td><td style="color: #0f0;">${message || '—'}</td></tr>
-            <tr><td style="padding: 8px; color: #888;">Notion ID:</td><td style="color: #555; font-size: 12px;">${notionEntry.id}</td></tr>
-          </table>
-          <a href="https://wa.me/${phone?.replace(/\D/g, '')}" style="display: inline-block; background: #25D366; color: #fff; padding: 12px 24px; text-decoration: none; margin-top: 20px; font-family: sans-serif; border-radius: 4px;">WhatsApp al cliente →</a>
-        </div>
-      `
-    });
+    const notificationHtml = `
+      <div style="font-family: monospace; padding: 20px; background: #0a0a0a; color: #0f0;">
+        <h2 style="color: #fff;">NUEVO LEAD RECIBIDO</h2>
+        <table style="width: 100%; border-collapse: collapse;">
+          <tr><td style="padding: 8px; color: #888;">Nombre:</td><td style="color: #0f0;">${name}</td></tr>
+          <tr><td style="padding: 8px; color: #888;">Email:</td><td style="color: #0f0;">${email}</td></tr>
+          <tr><td style="padding: 8px; color: #888;">Teléfono:</td><td style="color: #0f0;">${phone}</td></tr>
+          <tr><td style="padding: 8px; color: #888;">Servicio:</td><td style="color: #0f0;">${sessionType}</td></tr>
+          <tr><td style="padding: 8px; color: #888;">Mensaje:</td><td style="color: #0f0;">${message || '—'}</td></tr>
+          <tr><td style="padding: 8px; color: #888;">Notion ID:</td><td style="color: #555; font-size: 12px;">${notionEntry.id}</td></tr>
+        </table>
+        <a href="https://wa.me/${phone?.replace(/\D/g, '')}" style="display: inline-block; background: #25D366; color: #fff; padding: 12px 24px; text-decoration: none; margin-top: 20px; font-family: sans-serif; border-radius: 4px;">WhatsApp →</a>
+      </div>
+    `;
+
+    await sendEmailWithFallback(
+      '303creativemarketing@gmail.com',
+      `🔥 NUEVO LEAD: ${name} — ${sessionType}`,
+      notificationHtml
+    );
 
     // 4. Disparar webhook de n8n para flujo de seguimiento
     if (process.env.N8N_WEBHOOK_URL_LEADS) {
@@ -101,8 +129,10 @@ export default async function handler(req, res) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, phone, sessionType, message, notionId: notionEntry.id, lang })
-      }).catch(err => console.log('n8n webhook error (non-critical):', err.message));
+      }).catch(err => console.log('[LEAD] n8n webhook error (non-critical):', err.message));
     }
+
+    console.log('[LEAD] Lead captured successfully:', { name, sessionType, notionId: notionEntry.id, timestamp: new Date().toISOString() });
 
     return res.status(200).json({
       success: true,
@@ -111,7 +141,7 @@ export default async function handler(req, res) {
     });
 
   } catch (error) {
-    console.error('Lead capture error:', error);
+    console.error('[LEAD] Error:', error);
     return res.status(500).json({ error: 'Internal server error', details: error.message });
   }
 }
