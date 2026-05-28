@@ -8,6 +8,20 @@
 <meta property="og:title" content="Maikel Marshall — Photographer · Miami">
 <meta property="og:description" content="Cinematic portrait & editorial photographer. Miami, FL.">
 <meta property="og:image" content="/img/mejores%20fotos/d2b49be8-f77b-4d97-8016-a60525b7c770.jpg">
+<meta property="og:url" content="https://maikphotographer-web-site.vercel.app">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Maikel Marshall — Photographer · Miami">
+<meta name="twitter:description" content="Cinematic portrait & editorial photographer. Miami, FL.">
+<meta name="twitter:image" content="/img/mejores%20fotos/d2b49be8-f77b-4d97-8016-a60525b7c770.jpg">
+<!-- Google Analytics - Replace with your GA ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'GA_MEASUREMENT_ID');
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -889,29 +903,60 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb();if(e.key==
 Cal('init',{origin:'https://cal.com'});
 Cal('inline',{elementOrSelector:'#cal-embed',calLink:'the303-marketing-kmfxzs/30min',layout:'month_view'});
 
+// ── FORM RATE LIMITING ──
+let lastFormSubmit=0;
+const formRateLimit=3000;
+
+// ── FORM VALIDATION ──
+function validateForm(n,p,em,t){
+  if(!n||n.trim().length<2)return{valid:false,msg:lang==='en'?'Name must be at least 2 characters':'El nombre debe tener al menos 2 caracteres'};
+  if(!p||!/^\+?[\d\s\-()]+$/.test(p))return{valid:false,msg:lang==='en'?'Invalid phone number':'Teléfono inválido'};
+  if(!em||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em))return{valid:false,msg:lang==='en'?'Invalid email address':'Email inválido'};
+  if(!t)return{valid:false,msg:lang==='en'?'Please select a session type':'Selecciona tipo de sesión'};
+  return{valid:true};
+}
+
 // ── FORM ──
 async function submitForm(e){
   e.preventDefault();
+  const now=Date.now();
+  if(now-lastFormSubmit<formRateLimit){
+    alert(lang==='en'?'Please wait before submitting again':'Por favor espera antes de enviar de nuevo');
+    return;
+  }
+  lastFormSubmit=now;
+
   const btn=document.getElementById('fBtn');
   const formContent=document.getElementById('formContent');
   const formSuccess=document.getElementById('formSuccess');
   btn.disabled=true;
   btn.textContent=lang==='en'?'Sending...':'Enviando...';
-  const n=document.getElementById('fn').value;
-  const p=document.getElementById('fp').value;
-  const em=document.getElementById('fe').value;
+
+  const n=document.getElementById('fn').value.trim();
+  const p=document.getElementById('fp').value.trim();
+  const em=document.getElementById('fe').value.trim();
   const t=document.getElementById('ft').value;
-  const m=document.getElementById('fm').value;
+  const m=document.getElementById('fm').value.trim();
+
+  const validation=validateForm(n,p,em,t);
+  if(!validation.valid){
+    console.warn('❌ Validation failed:',validation.msg);
+    btn.disabled=false;
+    btn.textContent=lang==='en'?'Send Request →':'Enviar Solicitud →';
+    alert(validation.msg);
+    return;
+  }
+
   try{
     const payload={name:n,phone:p,email:em,sessionType:t,message:m,lang};
-    console.log('Enviando payload:',payload);
+    console.log('[FORM] Enviando payload:',payload);
     const res=await fetch('/api/lead-capture',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify(payload)
     });
     const resData=await res.json();
-    console.log('Respuesta:',resData);
+    console.log('[FORM] Respuesta del servidor:',resData);
     if(!res.ok)throw new Error(resData.error||'Request failed');
     formContent.style.display='none';
     formSuccess.style.display='block';
@@ -920,10 +965,11 @@ async function submitForm(e){
       window.open(`https://wa.me/17863329815?text=Hi!%20I%20just%20submitted%20a%20booking%20request.%20Name:%20${encodeURIComponent(n)}%20|%20Service:%20${encodeURIComponent(t)}`,'_blank');
     },1600);
   }catch(err){
-    console.error('❌ Form error:',err);
+    console.error('❌ Form error:',err.message);
     btn.disabled=false;
     btn.textContent=lang==='en'?'Send Request →':'Enviar Solicitud →';
-    alert(lang==='en'?'Error sending request. Sending via WhatsApp...':'Error al enviar. Usando WhatsApp...');
+    const errorMsg=lang==='en'?'Error sending request. Sending via WhatsApp...':'Error al enviar. Usando WhatsApp...';
+    alert(errorMsg);
     window.open(`https://wa.me/17863329815?text=Hi%20Maikel!%20I%27m%20${encodeURIComponent(n)}%20and%20I%27d%20like%20to%20book%20a%20${encodeURIComponent(t||'session')}.%20${encodeURIComponent(m)}`,'_blank');
   }
 }

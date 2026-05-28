@@ -3,6 +3,27 @@ import nodemailer from 'nodemailer';
 
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
+// Rate limiting in-memory store (resets on redeploy, acceptable for serverless)
+const requestCounts = new Map();
+const RATE_LIMIT_WINDOW = 3600000; // 1 hour
+const RATE_LIMIT_MAX = 5; // Max 5 requests per IP per hour
+
+function getRateLimitKey(ip) {
+  return `${ip}-${Math.floor(Date.now() / RATE_LIMIT_WINDOW)}`;
+}
+
+function checkRateLimit(ip) {
+  const key = getRateLimitKey(ip);
+  const count = requestCounts.get(key) || 0;
+
+  if (count >= RATE_LIMIT_MAX) {
+    return { allowed: false, retryAfter: 3600 };
+  }
+
+  requestCounts.set(key, count + 1);
+  return { allowed: true };
+}
+
 const gmailTransporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -20,10 +41,33 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   try {
+    // Rate limiting
+    const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress || 'unknown';
+    const rateLimitCheck = checkRateLimit(clientIp);
+
+    if (!rateLimitCheck.allowed) {
+      console.warn('[RATE-LIMIT] Request blocked from IP:', clientIp);
+      return res.status(429).json({
+        error: 'Too many requests',
+        retryAfter: rateLimitCheck.retryAfter,
+        message: 'Maximum 5 requests per hour per IP'
+      });
+    }
+
     const { name, phone, email, sessionType, message, lang = 'es' } = req.body;
 
-    if (!name || !phone || !email || !sessionType) {
-      return res.status(400).json({ error: 'Missing required fields' });
+    // Enhanced validation
+    if (!name || name.trim().length < 2) {
+      return res.status(400).json({ error: 'Name must be at least 2 characters' });
+    }
+    if (!phone || !/^\+?[\d\s\-()]+$/.test(phone)) {
+      return res.status(400).json({ error: 'Invalid phone number' });
+    }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return res.status(400).json({ error: 'Invalid email address' });
+    }
+    if (!sessionType) {
+      return res.status(400).json({ error: 'Session type is required' });
     }
 
     // 1. Guardar en Notion CRM
