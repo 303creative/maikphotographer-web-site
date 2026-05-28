@@ -67,7 +67,7 @@ export default async function handler(req, res) {
       `
     };
 
-    // Enviar emails con fallback: primero Gmail, luego Resend
+    // Enviar emails via Gmail SMTP (most reliable, no restrictions)
     const sendEmailWithFallback = async (to, subject, html) => {
       try {
         const baseUrl = process.env.VERCEL_URL ? 'https://' + process.env.VERCEL_URL : 'http://localhost:3000';
@@ -76,21 +76,10 @@ export default async function handler(req, res) {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ to, subject, html })
         });
-        console.log('[LEAD] Email sent via Gmail:', { to, subject, timestamp: new Date().toISOString() });
-      } catch (gmailErr) {
-        console.warn('[LEAD] Gmail failed, trying Resend:', gmailErr.message);
-        try {
-          await resend.emails.send({
-            from: 'Maikel Marshall <onboarding@resend.dev>',
-            to: to,
-            subject: subject,
-            html: html
-          });
-          console.log('[LEAD] Email sent via Resend:', { to, subject, timestamp: new Date().toISOString() });
-        } catch (resendErr) {
-          console.error('[LEAD] Both services failed:', { gmailErr: gmailErr.message, resendErr: resendErr.message });
-          throw new Error('Email service unavailable');
-        }
+        console.log('[LEAD] Email sent via Gmail SMTP:', { to, subject, timestamp: new Date().toISOString() });
+      } catch (error) {
+        console.error('[LEAD] Email failed:', { to, error: error.message });
+        throw new Error('Email service unavailable');
       }
     };
 
