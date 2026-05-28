@@ -1,0 +1,242 @@
+{
+  "name": "05 — Auto Content Publishing",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": "daily",
+        "hour": 9,
+        "minute": 0
+      },
+      "id": "trigger_scheduler",
+      "name": "Trigger: Daily 9am",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "databaseId": "{{ $env.NOTION_MARKETING_DB_ID }}",
+        "options": {
+          "filter": {
+            "property": "Listo para Publicar",
+            "checkbox": {
+              "equals": true
+            }
+          }
+        }
+      },
+      "id": "query_notion",
+      "name": "Query Notion: Posts Ready",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "fieldName": "results"
+      },
+      "id": "loop_posts",
+      "name": "Loop: Each Post",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 1,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://graph.instagram.com/v18.0/me/media",
+        "method": "POST",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "instagramGraphApi",
+        "headers": {},
+        "options": {
+          "body": {
+            "media_type": "CAROUSEL",
+            "children": ["{{ $node['Get Image URL'].json.body.image_url }}"],
+            "caption": "{{ $node['query_notion'].json.body.results[0].properties['Caption EN'].rich_text[0].text.content }}\n\n{{ $node['query_notion'].json.body.results[0].properties['Hashtags'].rich_text[0].text.content }}",
+            "access_token": "{{ $env.INSTAGRAM_ACCESS_TOKEN }}"
+          }
+        }
+      },
+      "id": "publish_instagram",
+      "name": "Publish: Instagram",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [850, 200]
+    },
+    {
+      "parameters": {
+        "url": "https://upload.tiktok.com/v1/post/upload/",
+        "method": "POST",
+        "authentication": "none",
+        "headers": {
+          "Authorization": "Bearer {{ $env.TIKTOK_ACCESS_TOKEN }}"
+        },
+        "options": {
+          "body": {
+            "video": "{{ $node['Get Image URL'].json.body.image_url }}",
+            "description": "{{ $node['query_notion'].json.body.results[0].properties['Caption EN'].rich_text[0].text.content }}\n\n{{ $node['query_notion'].json.body.results[0].properties['Hashtags'].rich_text[0].text.content }}",
+            "privacy_level": "PUBLIC"
+          }
+        }
+      },
+      "id": "publish_tiktok",
+      "name": "Publish: TikTok",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [850, 350]
+    },
+    {
+      "parameters": {
+        "delayType": "duration",
+        "duration": 2
+      },
+      "id": "anti_ban_delay",
+      "name": "Anti-Ban: Wait 2s",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [650, 450]
+    },
+    {
+      "parameters": {
+        "databaseId": "{{ $env.NOTION_MARKETING_DB_ID }}",
+        "operation": "update",
+        "pageId": "{{ $node['query_notion'].json.body.results[0].id }}",
+        "properties": {
+          "Estado": {
+            "select": {
+              "name": "Publicado"
+            }
+          },
+          "Fecha Publicacion": {
+            "date": {
+              "start": "{{ now.toISOString() }}"
+            }
+          }
+        }
+      },
+      "id": "mark_published",
+      "name": "Mark: Published in Notion",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2,
+      "position": [1050, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://hooks.slack.com/services/{{ $env.SLACK_WEBHOOK }}",
+        "method": "POST",
+        "options": {
+          "body": {
+            "text": "✅ Content published to Instagram & TikTok",
+            "blocks": [
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "*📱 Content Published*\n*Title:* {{ $node['query_notion'].json.body.results[0].properties['Titulo'].title[0].text.content }}\n*Platform:* {{ $node['query_notion'].json.body.results[0].properties['Plataforma'].select.name }}"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "id": "notify_slack",
+      "name": "Notify: Slack",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1050, 450]
+    }
+  ],
+  "connections": {
+    "trigger_scheduler": {
+      "main": [
+        [
+          {
+            "node": "query_notion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "query_notion": {
+      "main": [
+        [
+          {
+            "node": "loop_posts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "loop_posts": {
+      "main": [
+        [
+          {
+            "node": "anti_ban_delay",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "anti_ban_delay": {
+      "main": [
+        [
+          {
+            "node": "publish_instagram",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "publish_tiktok",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "publish_instagram": {
+      "main": [
+        [
+          {
+            "node": "mark_published",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "publish_tiktok": {
+      "main": [
+        [
+          {
+            "node": "mark_published",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mark_published": {
+      "main": [
+        [
+          {
+            "node": "notify_slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executeData": {
+      "prependNode": "",
+      "appendNode": ""
+    }
+  },
+  "staticData": null,
+  "tags": ["automation", "content", "instagram", "tiktok"]
+}
