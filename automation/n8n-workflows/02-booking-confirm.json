@@ -1,0 +1,131 @@
+{
+  "name": "02 - Booking Confirmation & Reminders",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "booking"
+      },
+      "id": "webhook",
+      "name": "Cal.com Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [100, 200]
+    },
+    {
+      "parameters": {
+        "url": "=https://maikphotographer-web-site.vercel.app/api/booking-webhook",
+        "method": "POST",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "data",
+              "value": "={{ $json.body }}"
+            }
+          ]
+        }
+      },
+      "id": "call-api",
+      "name": "Process Booking",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [300, 200]
+    },
+    {
+      "parameters": {
+        "waitTill": "=tomorrow 09:00"
+      },
+      "id": "wait-reminder",
+      "name": "Wait 24h Before Session",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [500, 200]
+    },
+    {
+      "parameters": {
+        "url": "=https://maikphotographer-web-site.vercel.app/api/send-email",
+        "method": "POST",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "to",
+              "value": "={{ $json.body.email }}"
+            },
+            {
+              "name": "subject",
+              "value": "Reminder: Your session is tomorrow!"
+            },
+            {
+              "name": "html",
+              "value": "<div style='padding: 20px; background: #0a0a0a; color: white;'><h2>Your session is tomorrow!</h2><p>Looking forward to creating amazing content with you.</p></div>"
+            }
+          ]
+        }
+      },
+      "id": "send-reminder",
+      "name": "Send 24h Reminder Email",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [700, 200]
+    },
+    {
+      "parameters": {
+        "respondWithData": true
+      },
+      "id": "respond",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [300, 350]
+    }
+  ],
+  "connections": {
+    "Cal.com Webhook": {
+      "main": [
+        [
+          {
+            "node": "Process Booking",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Booking": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Wait 24h Before Session",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 24h Before Session": {
+      "main": [
+        [
+          {
+            "node": "Send 24h Reminder Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "1",
+  "meta": {
+    "instanceId": "uuid",
+    "templatesDb": null
+  },
+  "pinData": {}
+}

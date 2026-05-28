@@ -1,0 +1,98 @@
+{
+  "name": "01 - Lead Capture & Auto-Reply",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "lead-capture"
+      },
+      "id": "abc",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [100, 200]
+    },
+    {
+      "parameters": {
+        "url": "=https://maikphotographer-web-site.vercel.app/api/lead-capture",
+        "method": "POST",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "name",
+              "value": "={{ $json.body.name }}"
+            },
+            {
+              "name": "phone",
+              "value": "={{ $json.body.phone }}"
+            },
+            {
+              "name": "email",
+              "value": "={{ $json.body.email }}"
+            },
+            {
+              "name": "sessionType",
+              "value": "={{ $json.body.sessionType }}"
+            },
+            {
+              "name": "message",
+              "value": "={{ $json.body.message }}"
+            },
+            {
+              "name": "lang",
+              "value": "={{ $json.body.lang || 'es' }}"
+            }
+          ]
+        }
+      },
+      "id": "def",
+      "name": "Call Lead Capture API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [300, 200]
+    },
+    {
+      "parameters": {
+        "respondWithData": true
+      },
+      "id": "ghi",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [500, 200]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Call Lead Capture API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call Lead Capture API": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "1",
+  "meta": {
+    "instanceId": "uuid",
+    "templatesDb": null,
+    "pointersForwardingEnabled": null
+  },
+  "pinData": {}
+}

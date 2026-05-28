@@ -1,10 +1,25 @@
 {
-  "name": "maikphotographer-web-site",
+  "name": "maik-photographer-agency",
   "version": "1.0.0",
-  "description": "Maikel Marshall — Photographer Miami",
+  "description": "Sistema automatizado de agencia fotográfica - Miami",
   "private": true,
   "type": "module",
   "engines": {
     "node": ">=18"
+  },
+  "scripts": {
+    "setup-notion": "node automation/scripts/notion-setup.js",
+    "test-email": "node automation/scripts/test-email.js",
+    "search-leads": "node automation/scripts/lead-scraper.js",
+    "followup": "node automation/scripts/followup-scheduler.js",
+    "marketing": "node automation/scripts/marketing-system.js"
+  },
+  "dependencies": {
+    "@notionhq/client": "^2.2.15",
+    "resend": "^3.2.0",
+    "node-cron": "^3.0.3",
+    "axios": "^1.6.0",
+    "dotenv": "^16.3.1",
+    "@anthropic-ai/sdk": "^0.20.0"
   }
 }

@@ -1,0 +1,133 @@
+{
+  "name": "03 - Follow-up Email Sequence",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "recurrenceType": "hours",
+              "triggerAtHour": 0,
+              "triggerAtMinute": 0
+            }
+          ]
+        }
+      },
+      "id": "schedule",
+      "name": "Schedule (every hour)",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [100, 200]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "=https://api.notion.com/v1/databases/{{ env.NOTION_LEADS_DB_ID }}/query",
+        "authentication": "genericCredentialType",
+        "genericCredentialType": {
+          "authentication": "httpHeaderAuth",
+          "generic": {
+            "headers": {
+              "Authorization": "Bearer {{ env.NOTION_API_KEY }}",
+              "Notion-Version": "2022-06-28"
+            }
+          }
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "filter",
+              "value": "{\"and\":[{\"property\":\"Seguimiento\",\"checkbox\":{\"equals\":false}},{\"property\":\"Estado\",\"select\":{\"does_not_equal\":\"Completado\"}}]}"
+            }
+          ]
+        }
+      },
+      "id": "query-leads",
+      "name": "Query Leads Without Follow-up",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [300, 200]
+    },
+    {
+      "parameters": {
+        "loopOver": "results"
+      },
+      "id": "loop",
+      "name": "Loop Through Leads",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [500, 200]
+    },
+    {
+      "parameters": {
+        "url": "=https://maikphotographer-web-site.vercel.app/api/send-email",
+        "method": "POST",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "to",
+              "value": "={{ $json.result.properties.Email.email }}"
+            },
+            {
+              "name": "subject",
+              "value": "{{ $json.result.properties.Idioma.select.name == 'Español' ? '¿Confirmamos tu sesión?' : 'Let\\'s confirm your session!' }}"
+            },
+            {
+              "name": "html",
+              "value": "<div style='padding: 40px; background: #0a0a0a; color: white; font-family: sans-serif;'><h2>Follow-up Email</h2><p>{{ $json.result.properties.Idioma.select.name == 'Español' ? 'Hola! Quería confirmar tu disponibilidad para la sesión.' : 'Hey! I wanted to confirm your availability for the session.' }}</p></div>"
+            }
+          ]
+        }
+      },
+      "id": "send-email",
+      "name": "Send Follow-up Email",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [700, 200]
+    }
+  ],
+  "connections": {
+    "Schedule (every hour)": {
+      "main": [
+        [
+          {
+            "node": "Query Leads Without Follow-up",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Query Leads Without Follow-up": {
+      "main": [
+        [
+          {
+            "node": "Loop Through Leads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Through Leads": {
+      "main": [
+        [
+          {
+            "node": "Send Follow-up Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "1",
+  "meta": {
+    "instanceId": "uuid"
+  },
+  "pinData": {}
+}

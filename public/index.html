@@ -780,6 +780,39 @@ body::before{
   </div>
 </section>
 
+<!-- ══ BOOKING / CAL.COM ══ -->
+<section class="booking" id="booking" style="padding: 80px 7vw; background: radial-gradient(circle at 18% 12%, rgba(216,193,138,.08), transparent 30%), var(--bg);">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: 60px;">
+      <p style="font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold2); margin-bottom: 16px; display: block;" data-en="Booking" data-es="Reserva">Booking</p>
+      <h2 style="font-family: var(--display); font-size: clamp(32px, 5vw, 56px); font-weight: 300; margin-bottom: 16px;" data-en="Schedule a Session" data-es="Agenda tu Sesión">Schedule a Session</h2>
+      <p style="color: var(--muted); font-size: 14px; max-width: 500px; margin: 0 auto;" data-en="Pick your date and time. I'll be ready to create something amazing." data-es="Elige tu fecha y hora. Estaré listo para crear algo increíble.">Pick your date and time. I'll be ready to create something amazing.</p>
+    </div>
+    <div id="cal-embed" style="border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--surface); min-height: 700px;"></div>
+  </div>
+</section>
+
+<!-- ══ SCHEMA.ORG JSON-LD ══ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Maikel Marshall Photography",
+  "description": "Cinematic portrait and editorial photographer in Miami, FL",
+  "url": "https://maikphotographer-web-site.vercel.app",
+  "telephone": "+17863329815",
+  "email": "maikel@maikphotographer.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Miami",
+    "addressRegion": "FL",
+    "addressCountry": "US"
+  },
+  "priceRange": "$$$",
+  "serviceArea": ["Miami", "Brickell", "Wynwood", "Coral Gables", "Miami Beach", "Downtown Miami"]
+}
+</script>
+
 <!-- ══ FOOTER ══ -->
 <footer class="site-footer">
   <div class="footer-brand">MK — Maikel Marshall</div>
@@ -851,6 +884,11 @@ function navLb(d){lbIdx=(lbIdx+d+lbImgs.length)%lbImgs.length;document.getElemen
 document.getElementById('lightbox').addEventListener('click',function(e){if(e.target===this)closeLb()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb();if(e.key==='ArrowLeft')navLb(-1);if(e.key==='ArrowRight')navLb(1)});
 
+// ── CAL.COM EMBED ──
+(function(C,A,L){let p=function(a,ar){a.q.push(ar)};let d=C.document;C.Cal=C.Cal||function(){let cal=C.Cal;let ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement('script')).src=A;cal.loaded=true}if(ar[0]===L){const api=function(){p(api,arguments)};const namespace=ar[1];api.q=api.q||[];if(typeof namespace==='string'){cal.ns[namespace]=cal.ns[namespace]||api;p(cal.ns[namespace],ar);p(cal,['initNamespace',namespace])}else p(cal,ar);return}p(cal,ar)}})(window,'https://app.cal.com/embed/embed.js','init');
+Cal('init',{origin:'https://cal.com'});
+Cal('inline',{elementOrSelector:'#cal-embed',calLink:'the303-marketing-kmfxzs/30min',layout:'month_view'});
+
 // ── FORM ──
 async function submitForm(e){
   e.preventDefault();
@@ -862,15 +900,16 @@ async function submitForm(e){
   const t=document.getElementById('ft').value;
   const m=document.getElementById('fm').value;
   try{
-    const res=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({name:n,phone:p,email:em,type:t,msg:m})});
+    const res=await fetch('/api/lead-capture',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({name:n,phone:p,email:em,sessionType:t,message:m,lang})});
     if(!res.ok)throw new Error();
     document.getElementById('formContent').style.display='none';
     document.getElementById('formSuccess').style.display='block';
     setTimeout(()=>{
       window.open(`https://wa.me/17863329815?text=Hi!%20I%20just%20submitted%20a%20booking%20request.%20Name:%20${encodeURIComponent(n)}%20|%20Service:%20${encodeURIComponent(t)}`,'_blank');
     },1600);
-  }catch{
+  }catch(e){
+    console.error('Form error:',e);
     window.open(`https://wa.me/17863329815?text=Hi%20Maikel!%20I%27m%20${encodeURIComponent(n)}%20and%20I%27d%20like%20to%20book%20a%20${encodeURIComponent(t||'session')}.%20${encodeURIComponent(m)}`,'_blank');
     document.getElementById('formContent').style.display='none';
     document.getElementById('formSuccess').style.display='block';
