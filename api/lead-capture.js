@@ -1,8 +1,15 @@
 import { Client } from '@notionhq/client';
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
-const resend = new Resend(process.env.RESEND_API_KEY);
+
+const gmailTransporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_APP_PASSWORD
+  }
+});
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -67,14 +74,14 @@ export default async function handler(req, res) {
       `
     };
 
-    // Enviar emails via Gmail SMTP (most reliable, no restrictions)
-    const sendEmailWithFallback = async (to, subject, html) => {
+    // Enviar email via Gmail SMTP (nodemailer)
+    const sendEmailViaGmail = async (to, subject, html) => {
       try {
-        const baseUrl = process.env.VERCEL_URL ? 'https://' + process.env.VERCEL_URL : 'http://localhost:3000';
-        await fetch(`${baseUrl}/api/send-email-gmail`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ to, subject, html })
+        await gmailTransporter.sendMail({
+          from: process.env.GMAIL_USER,
+          to: to,
+          subject: subject,
+          html: html
         });
         console.log('[LEAD] Email sent via Gmail SMTP:', { to, subject, timestamp: new Date().toISOString() });
       } catch (error) {
@@ -84,7 +91,7 @@ export default async function handler(req, res) {
     };
 
     // Enviar confirmación al cliente
-    await sendEmailWithFallback(
+    await sendEmailViaGmail(
       email,
       emailContent.subject,
       emailContent.html
@@ -106,7 +113,7 @@ export default async function handler(req, res) {
       </div>
     `;
 
-    await sendEmailWithFallback(
+    await sendEmailViaGmail(
       '303creativemarketing@gmail.com',
       `🔥 NUEVO LEAD: ${name} — ${sessionType}`,
       notificationHtml
