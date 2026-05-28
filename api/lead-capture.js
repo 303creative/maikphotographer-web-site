@@ -76,26 +76,30 @@ export default async function handler(req, res) {
 
     // Enviar email via Gmail SMTP (nodemailer)
     const sendEmailViaGmail = async (to, subject, html) => {
+      console.log('[EMAIL-DEBUG] Iniciando envío:', { to, subject, from: process.env.GMAIL_USER });
       try {
-        await gmailTransporter.sendMail({
+        const result = await gmailTransporter.sendMail({
           from: process.env.GMAIL_USER,
           to: to,
           subject: subject,
           html: html
         });
-        console.log('[LEAD] Email sent via Gmail SMTP:', { to, subject, timestamp: new Date().toISOString() });
+        console.log('[EMAIL-CLIENT] Email enviado exitosamente:', { to, messageId: result.messageId, timestamp: new Date().toISOString() });
+        console.log('[EMAIL-DEBUG] Respuesta completa:', result);
       } catch (error) {
-        console.error('[LEAD] Email failed:', { to, error: error.message });
+        console.error('[EMAIL-CLIENT] Error enviando email:', { to, error: error.message, errorCode: error.code, errorFull: error });
         throw new Error('Email service unavailable');
       }
     };
 
     // Enviar confirmación al cliente
+    console.log('[EMAIL-CLIENT] INICIANDO envío de confirmación al cliente:', { clientEmail: email, subject: emailContent.subject });
     await sendEmailViaGmail(
       email,
       emailContent.subject,
       emailContent.html
     );
+    console.log('[EMAIL-CLIENT] Confirmación al cliente COMPLETADA');
 
     // 3. Notificación interna a Maikel
     const notificationHtml = `
@@ -113,11 +117,14 @@ export default async function handler(req, res) {
       </div>
     `;
 
+    // Enviar notificación interna a Maikel
+    console.log('[EMAIL-CLIENT] INICIANDO envío de notificación interna a: 303creativemarketing@gmail.com');
     await sendEmailViaGmail(
       '303creativemarketing@gmail.com',
       `🔥 NUEVO LEAD: ${name} — ${sessionType}`,
       notificationHtml
     );
+    console.log('[EMAIL-CLIENT] Notificación interna COMPLETADA');
 
     // 4. Disparar webhook de n8n para flujo de seguimiento
     if (process.env.N8N_WEBHOOK_URL_LEADS) {
