@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -7,7 +8,10 @@ import nodemailer from 'nodemailer';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const client = new Anthropic();
-const notion = new Client({ auth: process.env.NOTION_API_KEY });
+const notion = new Client({
+  auth: process.env.NOTION_API_KEY,
+  notionVersion: '2022-06-28'
+});
 
 // Gmail transporter
 const gmailTransporter = nodemailer.createTransport({
@@ -117,16 +121,11 @@ async function savePhotoContentToNotion(photoData) {
     const page = await notion.pages.create({
       parent: { database_id: process.env.NOTION_MARKETING_DB_ID },
       properties: {
-        'Titulo': { title: [{ text: { content: `Local: ${photoData.title}` } }] },
-        'Tipo': { select: { name: 'Local Upload' } },
+        'Campaña': { title: [{ text: { content: `Local: ${photoData.title}` } }] },
         'Plataforma': { select: { name: photoData.platform || 'Instagram' } },
         'Estado': { select: { name: 'Generado' } },
-        'Imagen URL': { url: `file:///${photoData.photoPath.replace(/\\/g, '/')}` },
-        'Caption EN': { rich_text: [{ text: { content: photoData.captionEN } }] },
-        'Caption ES': { rich_text: [{ text: { content: photoData.captionES } }] },
-        'Hashtags': { rich_text: [{ text: { content: photoData.hashtags.join(' ') } }] },
-        'Fecha Creacion': { date: { start: new Date().toISOString() } },
-        'Listo para Publicar': { checkbox: false }
+        'Fecha Inicio': { date: { start: new Date().toISOString().split('T')[0] } },
+        'Notas': { rich_text: [{ text: { content: `File: ${photoData.photoPath}\n\nEN: ${photoData.captionEN}\n\nES: ${photoData.captionES}\n\nHashtags: ${photoData.hashtags.join(' ')}` } }] }
       }
     });
 

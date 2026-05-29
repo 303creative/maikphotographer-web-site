@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import Anthropic from '@anthropic-ai/sdk';
 import axios from 'axios';
 import { Client } from '@notionhq/client';
@@ -8,7 +9,10 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const client = new Anthropic();
-const notion = new Client({ auth: process.env.NOTION_API_KEY });
+const notion = new Client({
+  auth: process.env.NOTION_API_KEY,
+  notionVersion: '2022-06-28'
+});
 
 const MUAPI_API_KEY = process.env.MUAPI_API_KEY;
 const MUAPI_BASE_URL = 'https://api.muapi.ai/v1';
@@ -116,16 +120,11 @@ async function saveToNotion(contentData) {
     const page = await notion.pages.create({
       parent: { database_id: process.env.NOTION_MARKETING_DB_ID },
       properties: {
-        'Titulo': { title: [{ text: { content: contentData.title } }] },
-        'Tipo': { select: { name: contentData.type } },
+        'Campaña': { title: [{ text: { content: contentData.title } }] },
         'Plataforma': { select: { name: contentData.platform } },
         'Estado': { select: { name: 'Generado' } },
-        'Imagen URL': { url: contentData.imageUrl || '' },
-        'Caption EN': { rich_text: [{ text: { content: contentData.captionEN } }] },
-        'Caption ES': { rich_text: [{ text: { content: contentData.captionES } }] },
-        'Hashtags': { rich_text: [{ text: { content: contentData.hashtags.join(' ') } }] },
-        'Fecha Creacion': { date: { start: new Date().toISOString() } },
-        'Listo para Publicar': { checkbox: false }
+        'Fecha Inicio': { date: { start: new Date().toISOString().split('T')[0] } },
+        'Notas': { rich_text: [{ text: { content: `Type: ${contentData.type}\n\nImage: ${contentData.imageUrl}\n\nEN: ${contentData.captionEN}\n\nES: ${contentData.captionES}\n\nHashtags: ${contentData.hashtags.join(' ')}` } }] }
       }
     });
 

@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import Anthropic from '@anthropic-ai/sdk';
 import { Client } from '@notionhq/client';
 import fs from 'fs';
@@ -6,7 +7,10 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const client = new Anthropic();
-const notion = new Client({ auth: process.env.NOTION_API_KEY });
+const notion = new Client({
+  auth: process.env.NOTION_API_KEY,
+  notionVersion: '2022-06-28'
+});
 
 // Optimal posting times by platform and audience
 const OPTIMAL_TIMES = {
@@ -115,13 +119,11 @@ async function saveToNotion(weekContent) {
       await notion.pages.create({
         parent: { database_id: process.env.NOTION_MARKETING_DB_ID },
         properties: {
-          'Titulo': { title: [{ text: { content: `${dayContent.day} - ${dayContent.type}` } }] },
-          'Tipo': { select: { name: dayContent.type } },
-          'Plataforma': { select: { name: dayContent.platform } },
+          'Campaña': { title: [{ text: { content: `${dayContent.day} - ${dayContent.type}` } }] },
+          'Plataforma': { select: { name: dayContent.platform.charAt(0).toUpperCase() + dayContent.platform.slice(1) } },
           'Estado': { select: { name: dayContent.status } },
-          'Fecha Creacion': { date: { start: dayContent.date } },
-          'Hora Publicacion': { rich_text: [{ text: { content: dayContent.optimalTime } }] },
-          'Listo para Publicar': { checkbox: false }
+          'Fecha Inicio': { date: { start: dayContent.date } },
+          'Notas': { rich_text: [{ text: { content: `Optimal time: ${dayContent.optimalTime}\nType: ${dayContent.type}\n\n${dayContent.content.substring(0, 200)}...` } }] }
         }
       });
       console.log(`   ✅ ${dayContent.day} saved to Notion`);
