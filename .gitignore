@@ -35,3 +35,9 @@ credentials.json
 **/credentials.json
 **/secrets.*
 config.local.json
+google-drive-credentials.json
+**/google-drive-credentials.json
+
+# Temporary files
+temp-photos/
+**/temp-photos/
