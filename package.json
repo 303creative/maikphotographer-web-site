@@ -10,8 +10,8 @@
   "scripts": {
     "setup-notion": "node automation/scripts/notion-setup.js",
     "test-email": "node automation/scripts/test-email.js",
-    "search-leads": "node automation/scripts/lead-scraper.js",
-    "followup": "node automation/scripts/followup-scheduler.js",
+    "search-leads": "node automation/scripts/search-leads.js",
+    "followup": "node automation/scripts/followup-sequence.js",
     "marketing": "node automation/scripts/marketing-system.js",
     "muapi-generate": "node automation/scripts/muapi-content-generator.js",
     "weekly-plan": "node automation/scripts/marketing-weekly-planner.js",

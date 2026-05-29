@@ -1,0 +1,141 @@
+{
+  "name": "06 - Google Drive Folder Creator",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "uuid1",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "list",
+        "space": "drive",
+        "folderId": "",
+        "query": "name='the303photography' and mimeType='application/vnd.google-apps.folder'",
+        "fields": [
+          "id",
+          "name"
+        ],
+        "searchResultsLimit": 1
+      },
+      "id": "uuid2",
+      "name": "Get Folder ID",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [450, 300],
+      "credentials": {
+        "googleDriveOAuth2": "Google Drive"
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "createFolder",
+        "parentId": "={{ $('Get Folder ID').results[0].id }}",
+        "name": "FOTOS-GENERADAS"
+      },
+      "id": "uuid3",
+      "name": "Create FOTOS-GENERADAS",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [650, 200],
+      "credentials": {
+        "googleDriveOAuth2": "Google Drive"
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "list",
+        "folderId": "={{ $('Get Folder ID').results[0].id }}",
+        "query": "(mimeType='image/jpeg' OR mimeType='image/png')",
+        "fields": [
+          "id",
+          "name",
+          "size",
+          "mimeType"
+        ],
+        "searchResultsLimit": 100
+      },
+      "id": "uuid4",
+      "name": "List Photos",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [650, 400],
+      "credentials": {
+        "googleDriveOAuth2": "Google Drive"
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "to": "303creativemarketing@gmail.com",
+        "subject": "✅ Workflow 06 - Google Drive Folder Created Successfully",
+        "messageBody": "Hi Maikel,\n\n✅ WORKFLOW 06 COMPLETED\n\nFolder Created:\n• Name: FOTOS-GENERADAS\n• Parent: the303photography\n• Created: {{ new Date().toISOString() }}\n\nPhotos Found:\n• Total: {{ $('List Photos').itemCount }}\n• In folder: the303photography\n\nNext Steps:\n1. Verify folder in Google Drive\n2. Run: npm run process-google-drive\n3. Files will be organized automatically\n\nBest regards,\nAutomation System"
+      },
+      "id": "uuid5",
+      "name": "Send Email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2,
+      "position": [850, 300],
+      "credentials": {
+        "gmail": "Gmail"
+      }
+    }
+  ],
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Get Folder ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Folder ID": {
+      "main": [
+        [
+          {
+            "node": "Create FOTOS-GENERADAS",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "List Photos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create FOTOS-GENERADAS": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "List Photos": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

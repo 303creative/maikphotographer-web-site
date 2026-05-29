@@ -400,7 +400,15 @@ body::before{
 #formSuccess{display:none;text-align:center;padding:60px 20px}
 #formSuccess .suc-icon{font-size:2.2rem;margin-bottom:16px}
 #formSuccess h3{font-family:var(--display);font-size:1.9rem;font-weight:400;font-style:italic;color:var(--gold);margin-bottom:10px}
-#formSuccess p{font-size:13px;color:var(--muted)}
+#formSuccess p{font-size:13px;color:var(--muted);line-height:1.8}
+#formSuccess .suc-main{margin:20px 0 28px;font-size:14px}
+#formSuccess .suc-actions{display:flex;gap:12px;justify-content:center;margin:28px 0 20px;flex-wrap:wrap}
+.suc-btn{display:inline-block;padding:12px 24px;border-radius:var(--r-btn);font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;transition:all .35s;text-decoration:none;border:none;cursor:pointer}
+.suc-btn-primary{background:var(--gold);color:#111}
+.suc-btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 36px var(--gold-glow)}
+.suc-btn-secondary{background:transparent;border:1px solid var(--border2);color:var(--gold2)}
+.suc-btn-secondary:hover{background:var(--gold-dim)}
+#formSuccess .suc-note{font-size:11px;color:var(--muted);margin-top:16px;opacity:.8}
 
 /* ─── FOOTER ─── */
 .site-footer{
@@ -749,6 +757,16 @@ body::before{
         </div>
       </div>
       <div class="contact-right">
+        <div class="contact-badges" style="display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; justify-content: center;">
+          <div style="background: rgba(216,193,138,.12); border: 1px solid rgba(216,193,138,.22); border-radius: 999px; padding: 8px 16px; font-size: 12px; color: var(--white); display: flex; align-items: center; gap: 6px;">
+            <span style="color: var(--gold);">✅</span>
+            <span data-en="Available this week in Miami" data-es="Disponible esta semana en Miami">Available this week in Miami</span>
+          </div>
+          <div style="background: rgba(216,193,138,.12); border: 1px solid rgba(216,193,138,.22); border-radius: 999px; padding: 8px 16px; font-size: 12px; color: var(--white); display: flex; align-items: center; gap: 6px;">
+            <span style="color: var(--gold);">📸</span>
+            <span data-en="+50 Miami sessions | ⭐ 5.0 rating" data-es="+50 sesiones en Miami | ⭐ 5.0 calificación">+50 Miami sessions | ⭐ 5.0 rating</span>
+          </div>
+        </div>
         <div id="formContent">
           <h3 class="form-title" data-en="Book a Session" data-es="Reservar una Sesión">Book a Session</h3>
           <form onsubmit="submitForm(event)">
@@ -785,9 +803,14 @@ body::before{
           </form>
         </div>
         <div id="formSuccess">
-          <div class="suc-icon">✦</div>
-          <h3 data-en="Request sent!" data-es="¡Solicitud enviada!">Request sent!</h3>
-          <p data-en="I'll reach out via WhatsApp within 24 hours. Talk soon." data-es="Te contactaré por WhatsApp en menos de 24 horas.">I'll reach out via WhatsApp within 24 hours. Talk soon.</p>
+          <div class="suc-icon">✅</div>
+          <h3 data-en="¡Received! / Recibido!" data-es="¡Recibido!">¡Received! / Recibido!</h3>
+          <p class="suc-main" data-en="I'll contact you via WhatsApp in less than 2 hours. While you wait, check out my work:" data-es="Te contactaré por WhatsApp en menos de 2 horas. Mientras esperas, mira mi trabajo:">I'll contact you via WhatsApp in less than 2 hours. While you wait, check out my work:</p>
+          <div class="suc-actions">
+            <a href="https://www.instagram.com/maik_photographer/" target="_blank" rel="noopener" class="suc-btn suc-btn-primary">📷 Ver Instagram</a>
+            <a href="https://cal.com/the303-marketing-kmfxzs/30min" target="_blank" rel="noopener" class="suc-btn suc-btn-secondary">📅 Agendar Directamente</a>
+          </div>
+          <p class="suc-note" data-en="Your request has been saved and you'll receive a confirmation shortly." data-es="Tu solicitud ha sido guardada y recibirás confirmación pronto.">Your request has been saved and you'll receive a confirmation shortly.</p>
         </div>
       </div>
     </div>
