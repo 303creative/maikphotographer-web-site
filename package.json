@@ -17,7 +17,8 @@
     "weekly-plan": "node automation/scripts/marketing-weekly-planner.js",
     "process-photos": "node automation/scripts/process-local-photos.js",
     "process-google-drive": "node automation/scripts/process-google-drive-photos.js",
-    "test-google-drive": "node automation/scripts/test-google-drive.js"
+    "test-google-drive": "node automation/scripts/test-google-drive.js",
+    "daily-ops": "node automation/scripts/daily-operations.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.20.0",
