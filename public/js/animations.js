@@ -20,11 +20,11 @@ function initLenisScroll() {
   }
 
   const lenis = new Lenis({
-    duration: 0.7, // Scroll más rápido (era 1.2)
+    duration: 0.35, // Scroll muy rápido (era 1.2, luego 0.7)
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smooth: true,
     smoothTouch: false,
-    wheelMultiplier: 1
+    wheelMultiplier: 1.2
   });
 
   function raf(time) {
@@ -112,22 +112,49 @@ function initTextReveals() {
     }
   });
 
-  // About section PUSH UP from behind hero (reveal effect)
-  // The entire about-card comes up from below with parallax
-  gsap.fromTo('.about-card', {
-    yPercent: 80, // Comienza 80% abajo
-    opacity: 0
+  // EFECTO DESEADO: About sale de DETRÁS del hero
+  // Hero sube y desaparece, About queda visible debajo
+
+  // 1. Hero se eleva y desaparece más rápido
+  gsap.to('.hero', {
+    yPercent: -120, // Se va hacia arriba rápido
+    opacity: 0,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.hero',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: true, // Sincronizado con scroll
+      markers: false
+    }
+  });
+
+  // 2. About aparece lentamente de detrás (parallax invertido)
+  gsap.fromTo('.about', {
+    yPercent: 30 // Inicia un poco abajo
   }, {
-    yPercent: 0, // Sube hasta su posición
-    opacity: 1,
-    duration: 1.2,
-    ease: 'power2.out',
+    yPercent: 0, // Sube hasta posición normal
+    ease: 'none',
     scrollTrigger: {
       trigger: '.about',
-      start: 'top 100%', // Se activa cuando llega el about
-      end: 'top 50%',
-      scrub: 1, // Suave parallax con scroll
+      start: 'top bottom',
+      end: 'top center',
+      scrub: true,
       markers: false
+    }
+  });
+
+  // 3. About card fade in cuando sale de detrás
+  gsap.fromTo('.about-card', {
+    opacity: 0.3
+  }, {
+    opacity: 1,
+    ease: 'power1.out',
+    scrollTrigger: {
+      trigger: '.about',
+      start: 'top 80%',
+      end: 'top 40%',
+      scrub: true
     }
   });
 
