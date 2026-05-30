@@ -112,53 +112,21 @@ function initTextReveals() {
     }
   });
 
-  // EFECTO DESEADO: About sale de DETRÁS del hero
-  // Hero sube y desaparece, About queda visible debajo
-
-  // 1. Hero se eleva y desaparece más rápido
-  gsap.to('.hero', {
-    yPercent: -120, // Se va hacia arriba rápido
-    opacity: 0,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '.hero',
-      start: 'top top',
-      end: 'bottom top',
-      scrub: true, // Sincronizado con scroll
-      markers: false
-    }
-  });
-
-  // 2. About aparece lentamente de detrás (parallax invertido)
-  gsap.fromTo('.about', {
-    yPercent: 30 // Inicia un poco abajo
-  }, {
-    yPercent: 0, // Sube hasta posición normal
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '.about',
-      start: 'top bottom',
-      end: 'top center',
-      scrub: true,
-      markers: false
-    }
-  });
-
-  // 3. About card fade in cuando sale de detrás
+  // About aparece de debajo con efecto moderno y simple
   gsap.fromTo('.about-card', {
-    opacity: 0.3
+    y: 60, // Inicia 60px abajo
+    opacity: 0
   }, {
+    y: 0, // Sube a posición normal
     opacity: 1,
-    ease: 'power1.out',
+    duration: 0.8,
+    ease: 'power2.out',
     scrollTrigger: {
       trigger: '.about',
-      start: 'top 80%',
-      end: 'top 40%',
-      scrub: true
+      start: 'top 90%',
+      toggleActions: 'play none none reverse'
     }
   });
-
-  // About bio es parte del reveal principal, sin animación adicional
 
   console.log('✅ Text reveal animations initialized');
 }
