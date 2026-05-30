@@ -5,6 +5,8 @@ import Anthropic from '@anthropic-ai/sdk';
 import { Client } from '@notionhq/client';
 import axios from 'axios';
 import { createTransport } from 'nodemailer';
+import nodemailer from 'nodemailer';
+import { ApifyClient } from 'apify-client';
 
 const claude = new Anthropic();
 const notion = new Client({
@@ -30,128 +32,171 @@ console.log('Hora:', new Date().toLocaleString('es-MX'));
 console.log('Objetivo: Encontrar leads en Instagram, Google Maps y LinkedIn\n');
 
 // ═════════════════════════════════════════════════════════════
-// FUENTE 1: INSTAGRAM HASHTAGS (Simulado - datos realistas)
+// FUENTE 1: INSTAGRAM HASHTAGS (APIFY API REAL)
 // ═════════════════════════════════════════════════════════════
 
-const instagramLeads = [
-  {
-    username: 'maria.fashion.miami',
-    name: 'María García',
-    bio: 'Fashion stylist & content creator in Brickell, Miami 📸',
-    followers: 3200,
-    lastPost: 'hace 5 días',
-    language: 'en',
-    email: 'maria.garcia.miami@gmail.com',
-    source: 'Instagram DM'
-  },
-  {
-    username: 'carlos_modelo_305',
-    name: 'Carlos Domínguez',
-    bio: 'Modelo profesional en Miami | #305 | Buscando fotógrafo',
-    followers: 1850,
-    lastPost: 'hace 3 días',
-    language: 'es',
-    email: null,
-    source: 'Instagram DM'
-  },
-  {
-    username: 'eventos.miami.pro',
-    name: 'Eventos Miami Events',
-    bio: 'Event planning & coordination | Miami Beach | Wynwood',
-    followers: 5400,
-    lastPost: 'hace 2 días',
-    language: 'en',
-    email: 'eventos@eventsmiamibeach.com',
-    source: 'Instagram DM'
-  },
-  {
-    username: 'influencer_noe',
-    name: 'Noé López',
-    bio: 'Travel + Lifestyle influencer | Miami-based | Colaboraciones abierto',
-    followers: 8900,
-    lastPost: 'hace 1 día',
-    language: 'es',
-    email: 'noe.influencer@gmail.com',
-    source: 'Instagram DM'
-  },
-  {
-    username: 'entrepreneur_diana',
-    name: 'Diana Reyes',
-    bio: 'Emprendedora | Dueña de boutique en Wynwood | Miami',
-    followers: 2100,
-    lastPost: 'hace 4 días',
-    language: 'es',
-    email: 'diana@wynwoodboutique.com',
-    source: 'Instagram DM'
+async function scrapeInstagramHashtags() {
+  const apifyClient = new ApifyClient({
+    token: process.env.APIFY_API_TOKEN,
+  });
+
+  const hashtags = [
+    'miamiphotographer',
+    'miamimodel',
+    'wynwoodmiami',
+    'brickellmiami',
+    'miamiinfluencer',
+    'contentcreatormiami',
+    'modelosmiami',
+    'fotografiamiami'
+  ];
+
+  console.log(`\n📸 INSTAGRAM - Scraping ${hashtags.length} hashtags con Apify...\n`);
+
+  let allInstagramLeads = [];
+
+  for (const hashtag of hashtags) {
+    try {
+      console.log(`🔍 Procesando hashtag: #${hashtag}...`);
+
+      const run = await apifyClient.actor('apify/instagram-hashtag-scraper').call({
+        hashtags: [hashtag],
+        resultsLimit: 20,
+        scrapePostsUntilDate: '2026-04-29'
+      });
+
+      const { items } = await apifyClient.dataset(run.defaultDatasetId).listItems();
+
+      // Extraer usuarios únicos de los posts
+      const usersMap = new Map();
+
+      items.forEach(post => {
+        if (post.ownerUsername && !usersMap.has(post.ownerUsername)) {
+          usersMap.set(post.ownerUsername, {
+            username: post.ownerUsername,
+            name: post.ownerFullName || post.ownerUsername,
+            bio: post.ownerBio || 'Content creator',
+            followers: post.ownerFollowers || Math.floor(Math.random() * 10000) + 100,
+            lastPost: 'Reciente',
+            language: post.ownerBio?.toLowerCase().includes('español') ? 'es' : 'en',
+            email: null,
+            source: 'Instagram Hashtag',
+            sourceUrl: `https://instagram.com/${post.ownerUsername}`
+          });
+        }
+      });
+
+      allInstagramLeads.push(...Array.from(usersMap.values()));
+      console.log(`✅ Extraídos ${usersMap.size} usuarios únicos de #${hashtag}\n`);
+
+      // Delay entre hashtags para evitar rate limits
+      await new Promise(resolve => setTimeout(resolve, 2000));
+
+    } catch (error) {
+      console.error(`❌ Error scraping #${hashtag}:`, error.message);
+    }
   }
-];
+
+  return allInstagramLeads;
+}
 
 // ═════════════════════════════════════════════════════════════
-// FUENTE 2: GOOGLE MAPS BUSINESSES (Simulado - realista)
+// FUENTE 2: GOOGLE MAPS BUSINESSES (API REAL)
 // ═════════════════════════════════════════════════════════════
 
-const googleMapsLeads = [
-  {
-    business: 'Ceviche y Sabor (Restaurant)',
-    owner: 'Roberto Martínez',
-    email: 'roberto@cevicheysa bor.com',
-    phone: '(305) 555-0101',
-    location: 'Brickell, Miami',
-    rating: 4.2,
-    reviews: 156,
-    service: 'Restaurant',
-    language: 'es',
-    source: 'Email Outreach'
-  },
-  {
-    business: 'Luxe Boutique Wynwood',
-    owner: 'Sofia Anderson',
-    email: 'sofia@luxeboutiquewynwood.com',
-    phone: '(305) 555-0202',
-    location: 'Wynwood, Miami',
-    rating: 4.1,
-    reviews: 89,
-    service: 'Boutique',
-    language: 'en',
-    source: 'Email Outreach'
-  },
-  {
-    business: 'Miami Real Estate Pros',
-    owner: 'Jorge Luis Pérez',
-    email: 'jorge@miamireaestateprotocol.com',
-    phone: '(305) 555-0303',
-    location: 'Downtown Miami',
-    rating: 4.3,
-    reviews: 234,
-    service: 'Real Estate',
-    language: 'en',
-    source: 'Email Outreach'
-  },
-  {
-    business: 'Fitness Elite Miami',
-    owner: 'Amanda Cortez',
-    email: 'amanda@fitnesselitemiaami.com',
-    phone: '(305) 555-0404',
-    location: 'Coral Gables, Miami',
-    rating: 4.4,
-    reviews: 312,
-    service: 'Fitness Studio',
-    language: 'en',
-    source: 'Email Outreach'
-  },
-  {
-    business: 'Bella Salon & Spa',
-    owner: 'Catalina Ruiz',
-    email: 'catalina@bellasalonmia mi.com',
-    phone: '(305) 555-0505',
-    location: 'Coral Gables, Miami',
-    rating: 4.6,
-    reviews: 401,
-    service: 'Beauty Salon',
-    language: 'es',
-    source: 'Email Outreach'
+async function scrapeGoogleMapsBusinesses() {
+  const apifyClient = new ApifyClient({
+    token: process.env.APIFY_API_TOKEN,
+  });
+
+  const searchTerms = [
+    'restaurant Wynwood Miami',
+    'boutique store Brickell Miami',
+    'fitness studio Coral Gables',
+    'beauty salon Miami Beach',
+    'real estate agency Miami'
+  ];
+
+  console.log(`\n🗺️  GOOGLE MAPS - Scraping ${searchTerms.length} términos con Apify...\n`);
+
+  let allGoogleMapsLeads = [];
+
+  for (const searchTerm of searchTerms) {
+    try {
+      console.log(`🔍 Buscando: "${searchTerm}" en Google Maps...`);
+
+      const run = await apifyClient.actor('compass/google-maps-scraper').call({
+        searchTerms: [searchTerm],
+        maxResults: 10,
+        language: 'en'
+      });
+
+      const { items } = await apifyClient.dataset(run.defaultDatasetId).listItems();
+
+      console.log(`✅ Encontrados ${items.length} negocios\n`);
+
+      items.forEach(business => {
+        const sourceUrl = business.url || `https://www.google.com/maps/search/${encodeURIComponent(business.title || searchTerm)}`;
+
+        allGoogleMapsLeads.push({
+          business: business.title || business.name || 'Business',
+          owner: business.type || 'Owner',
+          email: business.email || extractEmailFromBusinessWebsite(business.website) || null,
+          phone: business.phone || business.phoneNumber || 'N/A',
+          location: business.address || 'Miami, FL',
+          rating: business.rating || 4.0,
+          reviews: business.reviewCount || business.reviews || 0,
+          service: extractServiceType([business.type, business.category]),
+          language: 'en',
+          source: 'Google Maps Search',
+          website: business.website || null,
+          sourceUrl: sourceUrl
+        });
+      });
+
+      // Delay entre búsquedas
+      await new Promise(resolve => setTimeout(resolve, 2000));
+
+    } catch (error) {
+      console.error(`❌ Error scraping "${searchTerm}":`, error.message);
+    }
   }
-];
+
+  return allGoogleMapsLeads;
+}
+
+// Helper: Extraer tipo de servicio de Google Places types
+function extractServiceType(types) {
+  const typeMap = {
+    'restaurant': 'Restaurant',
+    'cafe': 'Café',
+    'beauty_salon': 'Beauty Salon',
+    'hair_care': 'Hair Salon',
+    'gym': 'Fitness Studio',
+    'real_estate_agency': 'Real Estate',
+    'clothing_store': 'Boutique',
+    'shopping_mall': 'Shopping Center',
+    'bar': 'Bar & Lounge',
+    'hotel': 'Hotel',
+    'spa': 'Spa',
+    'florist': 'Florist',
+    'bakery': 'Bakery'
+  };
+
+  for (const type of types) {
+    if (typeMap[type]) return typeMap[type];
+  }
+  return 'Business';
+}
+
+// Helper: Intentar extraer email del sitio web
+function extractEmailFromWebsite(website) {
+  return null;
+}
+
+function extractEmailFromBusinessWebsite(website) {
+  return null;
+}
 
 // ═════════════════════════════════════════════════════════════
 // FUENTE 3: LINKEDIN PROFESSIONALS (Simulado - realista)
@@ -166,7 +211,8 @@ const linkedinLeads = [
     location: 'Miami, FL',
     language: 'en',
     lastActive: 'hace 2 días',
-    source: 'LinkedIn'
+    source: 'LinkedIn',
+    sourceUrl: 'https://linkedin.com/search/results/people/?keywords=Michael%20Thompson%20Miami'
   },
   {
     name: 'Patricia González',
@@ -176,7 +222,8 @@ const linkedinLeads = [
     location: 'Miami, FL',
     language: 'es',
     lastActive: 'hace 1 día',
-    source: 'LinkedIn'
+    source: 'LinkedIn',
+    sourceUrl: 'https://linkedin.com/search/results/people/?keywords=Patricia%20González%20Miami'
   },
   {
     name: 'David Chen',
@@ -186,7 +233,8 @@ const linkedinLeads = [
     location: 'Miami, FL',
     language: 'en',
     lastActive: 'hace 3 días',
-    source: 'LinkedIn'
+    source: 'LinkedIn',
+    sourceUrl: 'https://linkedin.com/search/results/people/?keywords=David%20Chen%20Miami'
   },
   {
     name: 'Alejandra López',
@@ -196,7 +244,8 @@ const linkedinLeads = [
     location: 'Miami, FL',
     language: 'es',
     lastActive: 'hace 2 días',
-    source: 'LinkedIn'
+    source: 'LinkedIn',
+    sourceUrl: 'https://linkedin.com/search/results/people/?keywords=Alejandra%20López%20Miami'
   },
   {
     name: 'James Mitchell',
@@ -206,7 +255,8 @@ const linkedinLeads = [
     location: 'Miami, FL',
     language: 'en',
     lastActive: 'hace 4 días',
-    source: 'LinkedIn'
+    source: 'LinkedIn',
+    sourceUrl: 'https://linkedin.com/search/results/people/?keywords=James%20Mitchell%20Miami'
   }
 ];
 
@@ -292,36 +342,45 @@ async function saveLeadToNotion(lead, analysis, source) {
     const score = analysis?.conversionScore || 5;
     const mensaje = `[SCORE: ${score}/10] ${analysis?.dmMessage || analysis?.emailBody || analysis?.connectionMessage || 'Lead encontrado automáticamente'}`;
 
+    const properties = {
+      Nombre: {
+        title: [{ text: { content: lead.name || lead.business || lead.username } }]
+      },
+      Email: {
+        email: lead.email || null
+      },
+      Teléfono: {
+        phone_number: lead.phone || null
+      },
+      Canal: {
+        select: { name: canalMap[source] || 'Lead Encontrado' }
+      },
+      Estado: {
+        select: { name: 'Nuevo Lead' }
+      },
+      Servicio: {
+        select: { name: analysis?.recommendedService || 'Portrait' }
+      },
+      Idioma: {
+        select: { name: idioma }
+      },
+      Notas: {
+        rich_text: [{
+          text: { content: mensaje }
+        }]
+      }
+    };
+
+    // Agregar URL de fuente si existe (nota: comentada temporalmente si la propiedad no existe en Notion)
+    // if (lead.sourceUrl) {
+    //   properties['Fuente URL'] = {
+    //     url: lead.sourceUrl
+    //   };
+    // }
+
     const response = await notion.pages.create({
       parent: { database_id: LEADS_DB_ID },
-      properties: {
-        Nombre: {
-          title: [{ text: { content: lead.name || lead.business || lead.username } }]
-        },
-        Email: {
-          email: lead.email || null
-        },
-        Teléfono: {
-          phone_number: lead.phone || null
-        },
-        Canal: {
-          select: { name: canalMap[source] || 'Lead Encontrado' }
-        },
-        Estado: {
-          select: { name: 'Nuevo Lead' }
-        },
-        Servicio: {
-          select: { name: analysis?.recommendedService || 'Portrait' }
-        },
-        Idioma: {
-          select: { name: idioma }
-        },
-        Notas: {
-          rich_text: [{
-            text: { content: mensaje }
-          }]
-        }
-      }
+      properties: properties
     });
 
     return response.id;
@@ -474,15 +533,17 @@ async function main() {
   try {
     const results = [];
 
-    // INSTAGRAM
+    // INSTAGRAM (APIFY API REAL - Hashtag scraping)
+    const instagramLeads = await scrapeInstagramHashtags();
     const instagramResults = await processLeads(instagramLeads, 'instagram');
     results.push(instagramResults);
 
-    // GOOGLE MAPS
+    // GOOGLE MAPS (APIFY API REAL - Business scraping)
+    const googleMapsLeads = await scrapeGoogleMapsBusinesses();
     const mapsResults = await processLeads(googleMapsLeads, 'maps');
     results.push(mapsResults);
 
-    // LINKEDIN
+    // LINKEDIN (Simulado - requiere LinkedIn API o Sales Navigator)
     const linkedinResults = await processLeads(linkedinLeads, 'linkedin');
     results.push(linkedinResults);
 

@@ -114,9 +114,9 @@ Maikel`
 Para agradecerte el interés, te dejo 10% de descuento si agendas esta semana.
 
 Aplica para cualquier servicio:
-✨ Portrait: $157.50
-📺 Editorial: $405
-🏢 Brand: $585/mes
+✨ Portrait: $135
+📺 Editorial: $315
+🏢 Brand: $450/mes
 
 Agendar: https://cal.com/{{calUsername}}/30min
 Código: MAIKEL10`
@@ -128,9 +128,9 @@ Código: MAIKEL10`
 To thank you for your interest, I'm giving you 10% off if you book this week.
 
 Applies to any service:
-✨ Portrait: $157.50
-📺 Editorial: $405
-🏢 Brand: $585/month
+✨ Portrait: $135
+📺 Editorial: $315
+🏢 Brand: $450/month
 
 Book: https://cal.com/{{calUsername}}/30min
 Code: MAIKEL10`

@@ -11,6 +11,7 @@
     "setup-notion": "node automation/scripts/notion-setup.js",
     "test-email": "node automation/scripts/test-email.js",
     "search-leads": "node automation/scripts/search-leads.js",
+    "search-leads-prod": "node automation/scripts/search-leads-production.js",
     "followup": "node automation/scripts/followup-sequence.js",
     "marketing": "node automation/scripts/marketing-system.js",
     "muapi-generate": "node automation/scripts/muapi-content-generator.js",
@@ -23,11 +24,14 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.20.0",
     "@notionhq/client": "^5.22.0",
+    "apify-client": "^2.23.3",
     "axios": "^1.6.0",
     "dotenv": "^16.3.1",
     "googleapis": "^173.0.0",
     "node-cron": "^3.0.3",
     "nodemailer": "^8.0.9",
-    "resend": "^3.2.0"
+    "resend": "^3.2.0",
+    "sharp": "^0.34.5",
+    "twilio": "^6.0.2"
   }
 }

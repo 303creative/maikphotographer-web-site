@@ -54,7 +54,7 @@ export default async function handler(req, res) {
       });
     }
 
-    const { name, phone, email, sessionType, message, lang = 'es' } = req.body;
+    const { name, phone, email, sessionType, message, lang = 'es', source = 'web-form', sourceUrl } = req.body;
 
     // Enhanced validation
     if (!name || name.trim().length < 2) {
@@ -71,20 +71,27 @@ export default async function handler(req, res) {
     }
 
     // 1. Guardar en Notion CRM
+    const notionProperties = {
+      'Nombre': { title: [{ text: { content: name } }] },
+      'Email': { email: email },
+      'Teléfono': { phone_number: phone },
+      'Servicio': { select: { name: sessionType || 'Por definir' } },
+      'Mensaje': { rich_text: [{ text: { content: message || '' } }] },
+      'Estado': { select: { name: 'Nuevo Lead' } },
+      'Canal': { select: { name: 'Web Form' } },
+      'Idioma': { select: { name: lang === 'es' ? 'Español' : 'English' } },
+      'Fecha': { date: { start: new Date().toISOString() } },
+      'Seguimiento': { checkbox: false }
+    };
+
+    // Agregar URL de fuente si existe
+    if (sourceUrl) {
+      notionProperties['Fuente URL'] = { url: sourceUrl };
+    }
+
     const notionEntry = await notion.pages.create({
       parent: { database_id: process.env.NOTION_LEADS_DB_ID },
-      properties: {
-        'Nombre': { title: [{ text: { content: name } }] },
-        'Email': { email: email },
-        'Teléfono': { phone_number: phone },
-        'Servicio': { select: { name: sessionType || 'Por definir' } },
-        'Mensaje': { rich_text: [{ text: { content: message || '' } }] },
-        'Estado': { select: { name: 'Nuevo Lead' } },
-        'Canal': { select: { name: 'Web Form' } },
-        'Idioma': { select: { name: lang === 'es' ? 'Español' : 'English' } },
-        'Fecha': { date: { start: new Date().toISOString() } },
-        'Seguimiento': { checkbox: false }
-      }
+      properties: notionProperties
     });
 
     // 2. Email de confirmación al cliente (bilingüe)

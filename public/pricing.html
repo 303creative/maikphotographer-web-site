@@ -84,7 +84,7 @@ body::before { content:''; position:fixed; inset:0; z-index:1; pointer-events:no
 .section-title { font-family:var(--display); font-size:clamp(32px,4vw,52px);
   font-weight:400; letter-spacing:.14em; line-height:1.1; margin-bottom:60px; text-align:center }
 
-.pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; margin-bottom:80px }
+.pricing-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:32px; margin-bottom:80px }
 .price-card { border-radius:var(--r-card); padding:48px 36px; position:relative; overflow:hidden;
   background:var(--surface); border:1px solid var(--border); transition:all .4s var(--ease) }
 .price-card:hover { border-color:var(--border2); transform:translateY(-4px); box-shadow:0 24px 60px rgba(0,0,0,.4) }
@@ -154,7 +154,7 @@ body::before { content:''; position:fixed; inset:0; z-index:1; pointer-events:no
   <a href="index.html#about" onclick="closeMobileNav()" data-en="About" data-es="Sobre mí">About</a>
   <a href="index.html#portfolio" onclick="closeMobileNav()" data-en="Portfolio" data-es="Portfolio">Portfolio</a>
   <a href="gallery.html" onclick="closeMobileNav()" data-en="Gallery" data-es="Galería">Gallery</a>
-  <a href="index.html#services" onclick="closeMobileNav()" data-en="Services" data-es="Servicios">Services</a>
+  <a href="sessions.html" onclick="closeMobileNav()" data-en="Book Session" data-es="Reservar Sesión">Book Session</a>
   <a href="pricing.html" onclick="closeMobileNav()" data-en="Pricing" data-es="Precios">Pricing</a>
   <a href="index.html#contact" onclick="closeMobileNav()" data-en="Contact" data-es="Contacto">Contact</a>
 </nav>
@@ -165,7 +165,7 @@ body::before { content:''; position:fixed; inset:0; z-index:1; pointer-events:no
     <a href="index.html#about" data-en="About" data-es="Sobre mí">About</a>
     <a href="index.html#portfolio" data-en="Portfolio" data-es="Portfolio">Portfolio</a>
     <a href="gallery.html" data-en="Gallery" data-es="Galería">Gallery</a>
-    <a href="index.html#services" data-en="Services" data-es="Servicios">Services</a>
+    <a href="sessions.html" data-en="Book Session" data-es="Reservar Sesión">Book Session</a>
     <a href="pricing.html" data-en="Pricing" data-es="Precios">Pricing</a>
     <a href="index.html#contact" data-en="Contact" data-es="Contacto">Contact</a>
   </nav>
@@ -180,7 +180,7 @@ body::before { content:''; position:fixed; inset:0; z-index:1; pointer-events:no
 <section class="page-header">
   <div>
     <h1 data-en="Pricing & Packages" data-es="Precios y Paquetes">Pricing & Packages</h1>
-    <p data-en="Transparent pricing for all session types. Book your session or let's discuss custom packages for your project." data-es="Precios transparentes para todos los tipos de sesiones. Reserva tu sesión o discutamos paquetes personalizados para tu proyecto.">Transparent pricing for all session types. Book your session or let's discuss custom packages for your project.</p>
+    <p data-en="Photography, creative direction, and brand strategy services. Transparent pricing for all project types. Book your session or discuss custom packages." data-es="Servicios de fotografía, dirección creativa y estrategia de marca. Precios transparentes para todos los tipos de proyectos. Reserva tu sesión o discute paquetes personalizados.">Photography, creative direction, and brand strategy services. Transparent pricing for all project types. Book your session or discuss custom packages.</p>
   </div>
 </section>
 
@@ -199,7 +199,7 @@ body::before { content:''; position:fixed; inset:0; z-index:1; pointer-events:no
           <li data-en="Print-ready files" data-es="Archivos para impresión">Print-ready files</li>
           <li data-en="Unlimited locations" data-es="Locaciones ilimitadas">Unlimited locations</li>
         </ul>
-        <a href="index.html#contact" class="price-cta" data-en="Book Session" data-es="Reservar">Book Session</a>
+        <a href="sessions.html" class="price-cta" data-en="Book Session" data-es="Reservar">Book Session</a>
       </div>
 
       <div class="price-card">
@@ -214,7 +214,7 @@ body::before { content:''; position:fixed; inset:0; z-index:1; pointer-events:no
           <li data-en="BTS video included" data-es="Video BTS incluido">BTS video included</li>
           <li data-en="Multiple setups" data-es="Múltiples configuraciones">Multiple setups</li>
         </ul>
-        <a href="index.html#contact" class="price-cta" data-en="Inquire Now" data-es="Consultar">Inquire Now</a>
+        <a href="sessions.html" class="price-cta" data-en="Inquire Now" data-es="Consultar">Inquire Now</a>
       </div>
 
       <div class="price-card">
@@ -229,7 +229,22 @@ body::before { content:''; position:fixed; inset:0; z-index:1; pointer-events:no
           <li data-en="Priority scheduling" data-es="Programación prioritaria">Priority scheduling</li>
           <li data-en="Unlimited revisions" data-es="Revisiones ilimitadas">Unlimited revisions</li>
         </ul>
-        <a href="index.html#contact" class="price-cta" data-en="Subscribe" data-es="Suscribirse">Subscribe</a>
+        <a href="sessions.html" class="price-cta" data-en="Subscribe" data-es="Suscribirse">Subscribe</a>
+      </div>
+
+      <div class="price-card">
+        <div class="price-num">04</div>
+        <div class="price-name" data-en="Brand Strategy" data-es="Estrategia de Marca">Brand Strategy</div>
+        <p class="price-desc" data-en="Creative direction, brand identity design, visual storytelling strategy, and marketing consultation." data-es="Dirección creativa, diseño de identidad de marca, estrategia de narrativa visual y consultoría de marketing.">Complete brand strategy & creative direction.</p>
+        <div class="price-num" style="font-size:2.2rem;margin-bottom:28px;color:var(--gold)">$750+</div>
+        <ul class="price-features">
+          <li data-en="Brand identity design" data-es="Diseño de identidad de marca">Brand identity design</li>
+          <li data-en="Visual strategy session" data-es="Sesión de estrategia visual">Visual strategy session</li>
+          <li data-en="Creative direction" data-es="Dirección creativa">Creative direction</li>
+          <li data-en="Content roadmap" data-es="Roadmap de contenido">Content roadmap</li>
+          <li data-en="Graphic + photo assets" data-es="Activos gráficos + foto">Graphic + photo assets</li>
+        </ul>
+        <a href="index.html#contact" class="price-cta" data-en="Inquire Now" data-es="Consultar">Inquire Now</a>
       </div>
     </div>
   </div>
