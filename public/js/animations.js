@@ -20,7 +20,7 @@ function initLenisScroll() {
   }
 
   const lenis = new Lenis({
-    duration: 1.2,
+    duration: 0.7, // Scroll más rápido (era 1.2)
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smooth: true,
     smoothTouch: false,
@@ -112,54 +112,26 @@ function initTextReveals() {
     }
   });
 
-  // About content appears
-  gsap.fromTo('.about-content', {
-    x: -40,
+  // About section PUSH UP from behind hero (reveal effect)
+  // The entire about-card comes up from below with parallax
+  gsap.fromTo('.about-card', {
+    yPercent: 80, // Comienza 80% abajo
     opacity: 0
   }, {
-    x: 0,
+    yPercent: 0, // Sube hasta su posición
     opacity: 1,
-    duration: 0.8,
+    duration: 1.2,
     ease: 'power2.out',
     scrollTrigger: {
-      trigger: '.about-card',
-      start: 'top 75%',
-      toggleActions: 'play none none none'
+      trigger: '.about',
+      start: 'top 100%', // Se activa cuando llega el about
+      end: 'top 50%',
+      scrub: 1, // Suave parallax con scroll
+      markers: false
     }
   });
 
-  // About image appears from right
-  gsap.fromTo('.about-img-col', {
-    x: 40,
-    opacity: 0
-  }, {
-    x: 0,
-    opacity: 1,
-    duration: 0.8,
-    ease: 'power2.out',
-    scrollTrigger: {
-      trigger: '.about-card',
-      start: 'top 75%',
-      toggleActions: 'play none none none'
-    }
-  });
-
-  // About bio text appears with delay
-  gsap.fromTo('.about-bio', {
-    y: 20,
-    opacity: 0
-  }, {
-    y: 0,
-    opacity: 1,
-    duration: 0.6,
-    ease: 'power2.out',
-    delay: 0.2,
-    scrollTrigger: {
-      trigger: '.about-card',
-      start: 'top 75%',
-      toggleActions: 'play none none none'
-    }
-  });
+  // About bio es parte del reveal principal, sin animación adicional
 
   console.log('✅ Text reveal animations initialized');
 }
