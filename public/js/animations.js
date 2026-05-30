@@ -298,30 +298,30 @@ function initCustomCursor() {
 // ═══════════════════════════════════════════════════════════════
 
 function initSplitTextReveals() {
-  // Hero title letters appear one by one
+  // DESACTIVADO: Split text was breaking HTML with nested tags
+  // The hero title already has proper structure with <span> and <em> tags
+  // Animating the entire title with fade-in instead
   const heroTitle = document.querySelector('.hero-title');
   if (heroTitle) {
-    const text = heroTitle.innerHTML;
-    heroTitle.innerHTML = text
-      .split('')
-      .map((char) => `<span style="display:inline-block;opacity:0">${char}</span>`)
-      .join('');
-
-    const spans = heroTitle.querySelectorAll('span');
-    gsap.to(spans, {
+    // Simple fade-in para el título completo
+    gsap.fromTo(heroTitle, {
+      opacity: 0,
+      y: 20
+    }, {
       opacity: 1,
-      duration: 0.05,
-      stagger: 0.05,
-      ease: 'power1.out',
+      y: 0,
+      duration: 0.8,
+      ease: 'power2.out',
+      delay: 0.2,
       scrollTrigger: {
         trigger: '.hero',
-        start: 'top 50%',
+        start: 'top 60%',
         once: true
       }
     });
   }
 
-  console.log('✅ Split text reveals initialized');
+  console.log('✅ Hero title fade-in initialized');
 }
 
 // ═══════════════════════════════════════════════════════════════
