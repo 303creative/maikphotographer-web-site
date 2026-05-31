@@ -1,0 +1,20 @@
+
+📊 REPORTE DE SEGUIMIENTO AUTOMÁTICO
+
+🎯 MÉTRICAS:
+  • Total de campañas: 0
+  • Esperando respuesta: 0
+  • Abiertos: 0
+  • Click en enlaces: 0
+  • Respondieron: 0
+  • Conversiones: 0
+  • Follow-ups totales enviados: 0
+  • Tasa de conversión: NaN%
+
+✅ CONVERSIONES:
+  • Ninguna aún (esto es normal - el sistema está recién empezado)
+
+🔄 SIGUIENTE PASO:
+  El sistema está monitoreando todas las respuestas.
+  Cuando lleguen respuestas, se enviarán follow-ups automáticos.
+  
