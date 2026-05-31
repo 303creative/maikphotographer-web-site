@@ -13,8 +13,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-import { createTransport, createTestAccount } from 'nodemailer';
-import { ImapSimple } from 'imap-simple';
+import { createTransport } from 'nodemailer';
 import fs from 'fs';
 import path from 'path';
 import { getUniversalEmailTemplate } from '../email-templates/universal-template-v3.js';
@@ -84,18 +83,15 @@ function saveCampaignTracker(tracker) {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// 2. DETECTAR RESPUESTAS
+// 2. REGISTRAR EMAILS PARA SEGUIMIENTO
 // ═══════════════════════════════════════════════════════════════
 
-async function detectResponses(campaignResults) {
-  console.log('📥 Detectando respuestas...\n');
+async function registerCampaignForTracking(campaignResults) {
+  console.log('📥 Registrando emails para seguimiento automático...\n');
 
   const tracker = loadCampaignTracker();
   const sentEmails = campaignResults.results.filter(r => r.status === 'sent');
-  const responses = [];
 
-  // En un entorno real, aquí verificarías el correo (IMAP)
-  // Por ahora, marcamos como "awaiting response"
   for (const email of sentEmails) {
     tracker.campaigns.push({
       email: email.email,
@@ -110,7 +106,7 @@ async function detectResponses(campaignResults) {
 
   saveCampaignTracker(tracker);
 
-  console.log(`✅ Rastreando ${sentEmails.length} emails\n`);
+  console.log(`✅ ${sentEmails.length} emails registrados para seguimiento\n`);
   return tracker;
 }
 
