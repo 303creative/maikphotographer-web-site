@@ -24,7 +24,9 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/design-system.css">
+<link rel="stylesheet" href="/css/components.css">
 
 <!-- 🎬 PREMIUM ANIMATIONS CDN -->
 <!-- GSAP Core + ScrollTrigger -->
@@ -534,7 +536,7 @@ body::before{
   </nav>
   <div class="header-right">
     <button class="lang-btn" id="langBtn" onclick="toggleLang()">ES</button>
-    <a href="#contact" class="btn-header" data-en="Book a Session" data-es="Reservar">Book a Session</a>
+    <a href="#contact" class="btn btn-ghost" data-en="Book a Session" data-es="Reservar">Book a Session</a>
     <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -555,8 +557,8 @@ body::before{
         Cinematic portraits and editorial photography for models, creators and brands. Based in Miami. Available worldwide.
       </p>
       <div class="hero-btns">
-        <a href="#portfolio" class="btn-primary" data-en="View Portfolio" data-es="Ver Portfolio">View Portfolio</a>
-        <a href="#contact" class="btn-outline" data-en="Book a Session" data-es="Reservar Sesión">Book a Session</a>
+        <a href="#portfolio" class="btn btn-primary" data-en="View Portfolio" data-es="Ver Portfolio">View Portfolio</a>
+        <a href="#contact" class="btn btn-ghost" data-en="Book a Session" data-es="Reservar Sesión">Book a Session</a>
       </div>
     </div>
     <div class="hero-visual">
@@ -587,7 +589,7 @@ body::before{
       </div>
     </div>
     <div class="about-content">
-      <span class="section-eyebrow" data-en="About" data-es="Sobre mí">About</span>
+      <span class="section-eyebrow bracket-label" data-en="About" data-es="Sobre mí">About</span>
       <h2 class="section-title">
         <span data-en="I don't just" data-es="No solo">I don't just</span><br>
         <em data-en="take photos." data-es="tomo fotos.">take photos.</em><br>
@@ -629,7 +631,7 @@ body::before{
 <section class="portfolio" id="portfolio">
   <div class="portfolio-header">
     <div>
-      <span class="section-eyebrow" data-en="Selected Work" data-es="Trabajo Seleccionado">Selected Work</span>
+      <span class="section-eyebrow bracket-label" data-en="Selected Work" data-es="Trabajo Seleccionado">Selected Work</span>
       <h2 class="section-title" data-en="Portfolio" data-es="Portfolio">Portfolio</h2>
     </div>
     <div class="portfolio-filters">
@@ -696,7 +698,7 @@ body::before{
 <!-- ══ SERVICES ══ -->
 <section class="services" id="services">
   <div class="services-inner">
-    <span class="section-eyebrow" data-en="What I Offer" data-es="Lo que ofrezco">What I Offer</span>
+    <span class="section-eyebrow bracket-label" data-en="What I Offer" data-es="Lo que ofrezco">What I Offer</span>
     <h2 class="section-title">
       <span data-en="Sessions &" data-es="Sesiones &">Sessions &</span>
       <em data-en=" Services" data-es=" Servicios"> Services</em>
@@ -745,7 +747,7 @@ body::before{
 <!-- ══ CONTACT ══ -->
 <section class="contact" id="contact">
   <div class="contact-inner">
-    <span class="section-eyebrow" data-en="Get In Touch" data-es="Contáctame">Get In Touch</span>
+    <span class="section-eyebrow bracket-label" data-en="Get In Touch" data-es="Contáctame">Get In Touch</span>
     <h2 class="section-title" style="margin-bottom:48px">
       <span data-en="Let's create" data-es="Creemos">Let's create</span>
       <em data-en=" something." data-es=" algo."> something.</em>
@@ -812,7 +814,7 @@ body::before{
               <label class="form-label" data-en="Tell me about your project" data-es="Cuéntame sobre tu proyecto">Tell me about your project</label>
               <textarea class="form-textarea" id="fm" rows="4" placeholder="Date, location, vibe, references..."></textarea>
             </div>
-            <button type="submit" class="form-submit" id="fBtn" data-en="Send Request →" data-es="Enviar Solicitud →">Send Request →</button>
+            <button type="submit" class="btn btn-primary form-submit" id="fBtn" data-en="Send Request →" data-es="Enviar Solicitud →">Send Request →</button>
             <p class="form-note" data-en="I'll reply via WhatsApp within 24h." data-es="Responderé por WhatsApp en menos de 24h.">I'll reply via WhatsApp within 24h.</p>
           </form>
         </div>

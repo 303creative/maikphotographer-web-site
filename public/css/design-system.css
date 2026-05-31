@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap');
+
+:root {
+  /* Fondos */
+  --color-bg:           #0C0C0C;
+  --color-bg-secondary: #1A1A1A;
+  --color-bg-card:      #111111;
+  --color-bg-elevated:  #222222;
+
+  /* Acento naranja cinematográfico */
+  --color-accent:       #FF5722;
+  --color-accent-hover: #E64A19;
+  --color-accent-muted: rgba(255, 87, 34, 0.12);
+
+  /* Texto */
+  --color-text:           #FFFFFF;
+  --color-text-secondary: #888888;
+  --color-text-tertiary:  #555555;
+
+  /* Bordes */
+  --color-border:        rgba(255,255,255,0.08);
+  --color-border-hover:  rgba(255,255,255,0.16);
+  --color-border-accent: rgba(255, 87, 34, 0.4);
+
+  /* Overlays */
+  --color-overlay:      rgba(0, 0, 0, 0.65);
+  --color-overlay-card: rgba(0, 0, 0, 0.85);
+
+  /* Familias tipográficas */
+  --font-heading: 'Bebas Neue', sans-serif;
+  --font-body:    'Inter', sans-serif;
+  --font-accent:  'JetBrains Mono', monospace;
+
+  /* Tamaños responsivos */
+  --text-hero:  clamp(64px, 12vw, 140px);
+  --text-h1:    clamp(40px, 7vw, 80px);
+  --text-h2:    clamp(28px, 4vw, 52px);
+  --text-h3:    clamp(18px, 3vw, 28px);
+  --text-body:  16px;
+  --text-small: 13px;
+  --text-label: 11px;
+  --text-tag:   10px;
+
+  /* Pesos */
+  --weight-light:   300;
+  --weight-regular: 400;
+  --weight-medium:  500;
+
+  /* Tracking */
+  --tracking-tight:   -0.02em;
+  --tracking-normal:   0em;
+  --tracking-wide:     0.08em;
+  --tracking-widest:   0.25em;
+
+  /* Leading */
+  --leading-tight:  1.05;
+  --leading-normal: 1.55;
+  --leading-loose:  1.8;
+
+  /* Espaciado */
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md:  16px;
+  --space-lg:  32px;
+  --space-xl:  64px;
+  --space-2xl: 96px;
+  --space-3xl: 128px;
+  --section-padding:   clamp(60px, 10vw, 120px);
+  --container-max:     1280px;
+  --container-padding: clamp(20px, 5vw, 80px);
+
+  /* Bordes */
+  --border-thin:   0.5px solid var(--color-border);
+  --border-normal: 1px solid var(--color-border);
+  --border-accent: 1px solid var(--color-border-accent);
+  --border-thick:  2px solid rgba(255,255,255,0.25);
+
+  /* Radios */
+  --radius-none: 0px;
+  --radius-sm:   2px;
+  --radius-md:   4px;
+  --radius-lg:   8px;
+  --radius-full: 9999px;
+
+  /* Gradientes */
+  --gradient-hero:    linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.9) 100%);
+  --gradient-overlay: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 60%);
+  --gradient-accent:  linear-gradient(135deg, #FF5722 0%, #E64A19 100%);
+  --gradient-dark:    linear-gradient(180deg, #111111 0%, #0C0C0C 100%);
+
+  /* Sombras */
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.4);
+  --shadow-md: 0 8px 32px rgba(0,0,0,0.6);
+  --shadow-lg: 0 24px 64px rgba(0,0,0,0.8);
+
+  /* Blur */
+  --blur-sm: blur(8px);
+  --blur-md: blur(20px);
+  --blur-lg: blur(40px);
+
+  /* Motion */
+  --duration-fast:   150ms;
+  --duration-normal: 300ms;
+  --duration-slow:   600ms;
+  --duration-slower: 1000ms;
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.87, 0, 0.13, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Reset base */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Grain overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Headings con Bebas Neue */
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  letter-spacing: var(--tracking-wide);
+  line-height: var(--leading-tight);
+  color: var(--color-text);
+}
+h1 { font-size: var(--text-h1); }
+h2 { font-size: var(--text-h2); }
+h3 { font-size: var(--text-h3); }
+
+/* Labels con JetBrains Mono */
+.label, label, .tag-text {
+  font-family: var(--font-accent);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+/* Bracket labels */
+.bracket-label {
+  font-family: var(--font-accent);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-text-tertiary);
+}
+.bracket-label::before { content: '[ '; }
+.bracket-label::after  { content: ' ]'; }
+
+/* Links */
+a {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color var(--duration-normal) var(--ease-out);
+}
+a:hover { color: var(--color-accent); }
+
+/* Selection */
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-border-hover); border-radius: 2px; }
