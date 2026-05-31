@@ -37,20 +37,13 @@ async function executeFullCampaign() {
   console.log('═══════════════════════════════════════════\n');
 
   try {
-    // 1. Ejecutar búsqueda de leads
-    console.log('⏳ Etapa 1: Buscando leads...\n');
+    // 1. Ejecutar búsqueda de leads y generar mensajes
+    console.log('⏳ Etapa 1: Buscando leads y generando mensajes de WhatsApp...\n');
     await execPromise('node automation/scripts/master-campaign-system.js');
 
-    // 2. Esperar 5 segundos antes de seguimiento
-    await new Promise(r => setTimeout(r, 5000));
+    console.log('\n✅ CAMPAÑA DE WHATSAPP LISTA\n');
 
-    // 3. Ejecutar seguimiento automático
-    console.log('\n⏳ Etapa 2: Activando seguimiento automático...\n');
-    await execPromise('node automation/scripts/followup-tracker.js');
-
-    console.log('\n✅ CAMPAÑA COMPLETADA EXITOSAMENTE\n');
-
-    // 4. Enviar notificación final
+    // 2. Enviar notificación final
     await sendCampaignNotification();
 
   } catch (error) {
@@ -61,7 +54,7 @@ async function executeFullCampaign() {
       from: process.env.BUSINESS_EMAIL,
       to: USER_EMAIL,
       subject: '❌ Error en Campaña de Marketing - The303',
-      text: `Hubo un error ejecutando la campaña:\n\n${error.message}`
+      text: `Hubo un error ejecutando la campaña:\n\n${error.message}\n\nIntenta nuevamente o verifica los logs.`
     });
 
     process.exit(1);
