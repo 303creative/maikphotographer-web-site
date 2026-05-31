@@ -52,5 +52,65 @@
         "failCount": 6
       }
     }
+  },
+  {
+    "campaign_id": "CAMP_1780191012684",
+    "timestamp": "2026-05-31T01:30:12.684Z",
+    "results": {
+      "results": [
+        {
+          "name": "Halcón Global Cargo",
+          "email": "contacto@halcnglobalcargo.com",
+          "status": "failed",
+          "reason": "Bio/Website vacía",
+          "businessType": "restaurant",
+          "timestamp": "2026-05-31T01:30:00.637Z"
+        },
+        {
+          "name": "KANNINFOTECHMIAMI",
+          "email": "contacto@kanninfotechmiami.com",
+          "status": "failed",
+          "reason": "Bio/Website vacía",
+          "businessType": "restaurant",
+          "timestamp": "2026-05-31T01:30:02.645Z"
+        },
+        {
+          "name": "The KQN Advantage | Business Readiness & Contracts",
+          "email": "contacto@thekqnadvantagebusin.com",
+          "status": "failed",
+          "reason": "Bio/Website vacía",
+          "businessType": "restaurant",
+          "timestamp": "2026-05-31T01:30:04.646Z"
+        },
+        {
+          "name": "LataMiami",
+          "email": "contacto@latamiami.com",
+          "status": "failed",
+          "reason": "Bio/Website vacía",
+          "businessType": "restaurant",
+          "timestamp": "2026-05-31T01:30:06.649Z"
+        },
+        {
+          "name": "KM Technologies & Computers Solutions",
+          "email": "contacto@kmtechnologiescomput.com",
+          "status": "failed",
+          "reason": "Bio/Website vacía",
+          "businessType": "restaurant",
+          "timestamp": "2026-05-31T01:30:08.661Z"
+        },
+        {
+          "name": "Distribuidora Dica Store LLC",
+          "email": "contacto@distribuidoradicasto.com",
+          "status": "failed",
+          "reason": "Bio/Website vacía",
+          "businessType": "restaurant",
+          "timestamp": "2026-05-31T01:30:10.677Z"
+        }
+      ],
+      "stats": {
+        "sentCount": 0,
+        "failCount": 6
+      }
+    }
   }
 ]

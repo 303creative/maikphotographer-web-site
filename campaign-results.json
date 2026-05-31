@@ -1,6 +1,6 @@
 {
   "campaign": {
-    "timestamp": "2026-05-31T01:26:02.441Z",
+    "timestamp": "2026-05-31T01:30:12.680Z",
     "total": 6,
     "sent": 0,
     "failed": 6,
@@ -9,45 +9,51 @@
   "details": [
     {
       "name": "Halcón Global Cargo",
+      "email": "contacto@halcnglobalcargo.com",
       "status": "failed",
-      "reason": "Email inválido",
+      "reason": "Bio/Website vacía",
       "businessType": "restaurant",
-      "timestamp": "2026-05-31T01:25:50.433Z"
+      "timestamp": "2026-05-31T01:30:00.637Z"
     },
     {
       "name": "KANNINFOTECHMIAMI",
+      "email": "contacto@kanninfotechmiami.com",
       "status": "failed",
-      "reason": "Email inválido",
+      "reason": "Bio/Website vacía",
       "businessType": "restaurant",
-      "timestamp": "2026-05-31T01:25:52.435Z"
+      "timestamp": "2026-05-31T01:30:02.645Z"
     },
     {
       "name": "The KQN Advantage | Business Readiness & Contracts",
+      "email": "contacto@thekqnadvantagebusin.com",
       "status": "failed",
-      "reason": "Email inválido",
+      "reason": "Bio/Website vacía",
       "businessType": "restaurant",
-      "timestamp": "2026-05-31T01:25:54.437Z"
+      "timestamp": "2026-05-31T01:30:04.646Z"
     },
     {
       "name": "LataMiami",
+      "email": "contacto@latamiami.com",
       "status": "failed",
-      "reason": "Email inválido",
+      "reason": "Bio/Website vacía",
       "businessType": "restaurant",
-      "timestamp": "2026-05-31T01:25:56.437Z"
+      "timestamp": "2026-05-31T01:30:06.649Z"
     },
     {
       "name": "KM Technologies & Computers Solutions",
+      "email": "contacto@kmtechnologiescomput.com",
       "status": "failed",
-      "reason": "Email inválido",
+      "reason": "Bio/Website vacía",
       "businessType": "restaurant",
-      "timestamp": "2026-05-31T01:25:58.439Z"
+      "timestamp": "2026-05-31T01:30:08.661Z"
     },
     {
       "name": "Distribuidora Dica Store LLC",
+      "email": "contacto@distribuidoradicasto.com",
       "status": "failed",
-      "reason": "Email inválido",
+      "reason": "Bio/Website vacía",
       "businessType": "restaurant",
-      "timestamp": "2026-05-31T01:26:00.441Z"
+      "timestamp": "2026-05-31T01:30:10.677Z"
     }
   ]
 }

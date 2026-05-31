@@ -216,8 +216,8 @@ function validateLead(lead) {
   if (!lead.name || lead.name.trim().length < 2) errors.push('Nombre inválido');
   if (!lead.email || !lead.email.includes('@')) errors.push('Email inválido');
 
-  const bioOrWebsite = lead.bio || lead.website || '';
-  if (bioOrWebsite.trim().length < 2) errors.push('Bio/Website vacía');
+  // Bio/Website es OPCIONAL si el email es válido
+  // (Google Maps no siempre proporciona bio)
 
   return {
     isValid: errors.length === 0,
