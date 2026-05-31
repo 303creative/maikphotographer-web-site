@@ -22,15 +22,18 @@
     "daily-ops": "node automation/scripts/daily-operations.js"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.20.0",
+    "@anthropic-ai/sdk": "^0.20.9",
     "@notionhq/client": "^5.22.0",
     "apify-client": "^2.23.3",
-    "axios": "^1.6.0",
-    "dotenv": "^16.3.1",
+    "axios": "^1.16.1",
+    "dotenv": "^16.6.1",
     "googleapis": "^173.0.0",
+    "imap-simple": "^5.1.0",
+    "mailparser": "^3.9.9",
     "node-cron": "^3.0.3",
-    "nodemailer": "^8.0.9",
-    "resend": "^3.2.0",
+    "node-imap": "^0.9.6",
+    "nodemailer": "^8.0.10",
+    "resend": "^3.5.0",
     "sharp": "^0.34.5",
     "twilio": "^6.0.2"
   }
