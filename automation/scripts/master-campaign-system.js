@@ -226,22 +226,61 @@ function validateLead(lead) {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// 5. ENVIAR EMAIL PERSONALIZADO
+// 5. GENERAR MENSAJE PARA WHATSAPP
 // ═══════════════════════════════════════════════════════════════
 
-async function sendPersonalizedEmail(lead) {
+function generateWhatsAppMessage(lead, config) {
+  const name = lead.name.split(' ')[0];
+
+  const messages = {
+    restaurant: `Hola ${name}! 👋 Soy Maikel, fotógrafo profesional en Miami. Vi tu restaurante y me pareció genial. 📸\n\n¿Te gustaría fotos profesionales de tus platos y ambiente para Instagram? Tengo paquetes especiales para restaurantes. ¡Conversamos? 🤝`,
+    bakery: `Hola ${name}! 👋 Soy Maikel, fotógrafo en Miami. Tus postres se ven deliciosos 🧁\n\nTe propongo fotos profesionales para tu Instagram y tienda. Más fotos bonitas = más ventas online ✨\n\n¿Hablamos por aquí? 🤝`,
+    salon: `Hola ${name}! 👋 Soy Maikel, fotógrafo en Miami. Vi tu salón y está hermoso 💇‍♀️\n\nOfrezco fotos de antes/después para Instagram que te traen más clientes. ¿Te interesa? 📸\n\n¡Hablemos! 🤝`,
+    boutique: `Hola ${name}! 👋 Soy Maikel, fotógrafo en Miami. Tu ropa se ve increíble 👗\n\nTe ofrezco fotos profesionales de productos para tu Instagram. Mejor fotos = más ventas 📸\n\n¿Conversamos? 🤝`,
+    real_estate: `Hola ${name}! 👋 Soy Maikel, fotógrafo en Miami. Vi tus propiedades 🏠\n\nOfrezco fotos drone y video para vender más rápido y a mejor precio. ¿Te interesa? 📸\n\n¡Hablemos! 🤝`,
+    fitness: `Hola ${name}! 👋 Soy Maikel, fotógrafo en Miami. Tu gym está excelente 💪\n\nFotos profesionales de instalaciones y transformaciones para traer más miembros 📸\n\n¿Conversamos? 🤝`
+  };
+
+  return messages[lead.businessType] || messages.restaurant;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// 6. ENVIAR MENSAJE POR WHATSAPP
+// ═══════════════════════════════════════════════════════════════
+
+async function sendWhatsAppMessage(lead) {
   try {
-    // Generar email si no es válido (a partir del website o nombre)
-    if (!lead.email || !lead.email.includes('@')) {
-      lead.email = generateEmailFromWebsite(lead.website, lead.name);
+    // Validar que tenga teléfono
+    if (!lead.phone || lead.phone === 'N/A') {
+      console.log(`⚠️  ${lead.name}: Sin número de teléfono`);
+      return { success: false, reason: 'Sin teléfono', method: 'whatsapp' };
     }
 
-    // Validar lead
-    const validation = validateLead(lead);
-    if (!validation.isValid) {
-      console.log(`⚠️  ${lead.name}: ${validation.errors.join(', ')}`);
-      return { success: false, reason: validation.errors[0] };
-    }
+    const businessType = detectBusinessType(lead.bio, lead.source);
+    const config = businessConfigs[businessType] || businessConfigs.restaurant;
+    const message = generateWhatsAppMessage(lead, config);
+
+    // Formato de WhatsApp
+    const cleanPhone = lead.phone.replace(/\D/g, ''); // Solo números
+    const whatsappLink = `https://wa.me/1${cleanPhone}?text=${encodeURIComponent(message)}`;
+
+    console.log(`✅ ${lead.name}`);
+    console.log(`   📱 WhatsApp: https://wa.me/1${cleanPhone}`);
+    console.log(`   💬 Mensaje listo para copiar\n`);
+
+    return {
+      success: true,
+      method: 'whatsapp',
+      phone: lead.phone,
+      whatsappLink: whatsappLink,
+      message: message,
+      businessType: businessType
+    };
+  } catch (error) {
+    console.log(`❌ ${lead.name}: ${error.message}`);
+    return { success: false, reason: error.message, method: 'whatsapp' };
+  }
+}
 
     const businessType = detectBusinessType(lead.bio, lead.source);
     const config = businessConfigs[businessType] || businessConfigs.restaurant;
@@ -290,55 +329,68 @@ async function sendPersonalizedEmail(lead) {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// 5. EJECUTAR CAMPAÑA
+// 7. EJECUTAR CAMPAÑA (WHATSAPP)
 // ═══════════════════════════════════════════════════════════════
 
 async function executeCampaign(leads) {
-  console.log('\n📧 ENVIANDO EMAILS PERSONALIZADOS...\n');
+  console.log('\n📱 GENERANDO MENSAJES DE WHATSAPP...\n');
   console.log('═══════════════════════════════════════════\n');
 
   const results = [];
   let sentCount = 0;
 
   for (const lead of leads) {
-    const result = await sendPersonalizedEmail(lead);
+    const result = await sendWhatsAppMessage(lead);
     results.push({
       name: lead.name,
-      email: lead.email,
-      status: result.success ? 'sent' : 'failed',
+      phone: lead.phone,
+      method: 'whatsapp',
+      status: result.success ? 'ready' : 'failed',
       reason: result.reason || 'ok',
       businessType: result.businessType || detectBusinessType(lead.bio),
+      whatsappLink: result.whatsappLink,
+      message: result.message,
       timestamp: new Date().toISOString()
     });
 
     if (result.success) sentCount++;
 
-    // Delay para no ser detectado como spam
-    await new Promise(r => setTimeout(r, 2000));
+    // Delay para no ser agresivo
+    await new Promise(r => setTimeout(r, 1000));
   }
 
   return { results, stats: { sentCount, failCount: results.length - sentCount } };
 }
 
 // ═══════════════════════════════════════════════════════════════
-// 6. GUARDAR CAMPAÑA Y ENVIAR REPORTE
+// 8. GUARDAR CAMPAÑA Y ENVIAR REPORTE
 // ═══════════════════════════════════════════════════════════════
 
 async function saveCampaignAndNotify(campaignResults) {
   const reportFile = path.join(process.cwd(), 'campaign-results.json');
   const historyFile = path.join(process.cwd(), 'campaign-history.json');
+  const whatsappLinksFile = path.join(process.cwd(), 'whatsapp-links.txt');
 
   // Guardar resultados
   fs.writeFileSync(reportFile, JSON.stringify({
     campaign: {
       timestamp: new Date().toISOString(),
+      method: 'whatsapp',
       total: campaignResults.results.length,
-      sent: campaignResults.stats.sentCount,
+      ready: campaignResults.stats.sentCount,
       failed: campaignResults.stats.failCount,
       success_rate: `${Math.round((campaignResults.stats.sentCount / campaignResults.results.length) * 100)}%`
     },
     details: campaignResults.results
   }, null, 2));
+
+  // Guardar links de WhatsApp para acceso rápido
+  const whatsappLinks = campaignResults.results
+    .filter(r => r.status === 'ready')
+    .map(r => `${r.name}\n${r.whatsappLink}\n\n`)
+    .join('');
+
+  fs.writeFileSync(whatsappLinksFile, whatsappLinks);
 
   // Guardar en historial
   let history = [];
@@ -348,55 +400,63 @@ async function saveCampaignAndNotify(campaignResults) {
   history.push({
     campaign_id: `CAMP_${Date.now()}`,
     timestamp: new Date().toISOString(),
+    method: 'whatsapp',
     results: campaignResults
   });
   fs.writeFileSync(historyFile, JSON.stringify(history, null, 2));
 
   // Enviar reporte al usuario
   const reportContent = `
-🚀 CAMPAÑA DE EMAILS COMPLETADA
+🚀 CAMPAÑA DE WHATSAPP LISTA PARA ENVIAR
 
 📊 RESULTADOS:
-  • Emails enviados: ${campaignResults.stats.sentCount}/${campaignResults.results.length}
+  • Mensajes listos: ${campaignResults.stats.sentCount}/${campaignResults.results.length} ✅
   • Éxito: ${Math.round((campaignResults.stats.sentCount / campaignResults.results.length) * 100)}%
-  • Meta: Mínimo 5 respuestas (${MIN_RESPONSES_TARGET})
+  • Meta: Mínimo 5 respuestas
 
-📋 DETALLES:
+📱 NEGOCIOS ENCONTRADOS:
 ${campaignResults.results
   .slice(0, 10)
   .map(
     (r) =>
-      `  ${r.status === 'sent' ? '✅' : '❌'} ${r.name} (${r.businessType})`
+      `  ${r.status === 'ready' ? '✅' : '❌'} ${r.name}\n     📱 ${r.phone}\n     🤝 WhatsApp listo`
   )
   .join('\n')}
 
-⚠️ SEGUIMIENTO AUTOMÁTICO ACTIVADO:
-  • Day 3: Recordatorio de propuesta
-  • Day 7: Oferta de valor agregado
-  • Day 14: Urgencia (cierre de oferta)
-  • Day 21: Referencia (casos de éxito)
-  • Day 30: Final (última oportunidad)
+🎯 PRÓXIMOS PASOS:
+  1. Abre whatsapp-links.txt
+  2. Copia cada link en tu navegador
+  3. Clic en "Abrir WhatsApp"
+  4. Envía el mensaje personalizado
 
-🔔 El sistema está monitoreando respuestas.
-   Se enviarán notificaciones cuando lleguen respuestas.
+💡 VENTAJAS DE WHATSAPP:
+  ✅ Números reales de Google Maps
+  ✅ Mayor response rate (40-60% vs 5-10% email)
+  ✅ Más conversacional y directo
+  ✅ Mensajes personalizados incluidos
+  ✅ Más rápido que email
+
+⏱️ TIEMPO ESTIMADO: 10-15 minutos para enviar los 6 mensajes
 
 Archivos generados:
   • campaign-results.json
+  • whatsapp-links.txt (COPIAR Y USAR!)
   • campaign-history.json
   `;
 
   await emailTransporter.sendMail({
     from: BUSINESS_EMAIL,
     to: USER_EMAIL,
-    subject: '🚀 Campaña de Emails Completada - The303 Marketing',
+    subject: '📱 Campaña de WhatsApp Lista - 6 Negocios Encontrados',
     text: reportContent,
     headers: {
-      'X-Campaign': 'master-system'
+      'X-Campaign': 'whatsapp-campaign'
     }
   });
 
   console.log('\n═══════════════════════════════════════════');
   console.log('📬 REPORTE ENVIADO A:', USER_EMAIL);
+  console.log('📁 Links de WhatsApp guardados en: whatsapp-links.txt');
   console.log('═══════════════════════════════════════════\n');
 }
 
