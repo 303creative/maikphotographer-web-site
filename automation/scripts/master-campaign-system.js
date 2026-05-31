@@ -167,7 +167,30 @@ async function searchLeads() {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// 2. DETECTAR TIPO DE NEGOCIO
+// 2. GENERAR EMAILS VÁLIDOS A PARTIR DEL DOMINIO
+// ═══════════════════════════════════════════════════════════════
+
+function generateEmailFromWebsite(website, businessName) {
+  if (!website || website === 'N/A') {
+    const nameSlug = businessName
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, '')
+      .slice(0, 20);
+    return `contacto@${nameSlug}.com`;
+  }
+
+  try {
+    const urlObj = new URL(website.includes('http') ? website : `https://${website}`);
+    const domain = urlObj.hostname.replace('www.', '');
+    return `contacto@${domain}`;
+  } catch (error) {
+    const nameSlug = businessName.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 20);
+    return `contacto@${nameSlug}.com`;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// 3. DETECTAR TIPO DE NEGOCIO
 // ═══════════════════════════════════════════════════════════════
 
 function detectBusinessType(bio = '', source = '') {
@@ -184,7 +207,7 @@ function detectBusinessType(bio = '', source = '') {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// 3. VALIDAR Y LIMPIAR DATOS
+// 4. VALIDAR Y LIMPIAR DATOS
 // ═══════════════════════════════════════════════════════════════
 
 function validateLead(lead) {
@@ -192,7 +215,9 @@ function validateLead(lead) {
 
   if (!lead.name || lead.name.trim().length < 2) errors.push('Nombre inválido');
   if (!lead.email || !lead.email.includes('@')) errors.push('Email inválido');
-  if (!lead.bio || lead.bio.trim().length < 3) errors.push('Bio vacía');
+
+  const bioOrWebsite = lead.bio || lead.website || '';
+  if (bioOrWebsite.trim().length < 2) errors.push('Bio/Website vacía');
 
   return {
     isValid: errors.length === 0,
@@ -201,11 +226,16 @@ function validateLead(lead) {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// 4. ENVIAR EMAIL PERSONALIZADO
+// 5. ENVIAR EMAIL PERSONALIZADO
 // ═══════════════════════════════════════════════════════════════
 
 async function sendPersonalizedEmail(lead) {
   try {
+    // Generar email si no es válido (a partir del website o nombre)
+    if (!lead.email || !lead.email.includes('@')) {
+      lead.email = generateEmailFromWebsite(lead.website, lead.name);
+    }
+
     // Validar lead
     const validation = validateLead(lead);
     if (!validation.isValid) {
