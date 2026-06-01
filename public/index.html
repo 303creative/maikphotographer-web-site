@@ -524,7 +524,12 @@ body::before{
 
 <!-- HEADER -->
 <header class="site-header" id="siteHeader">
-  <div class="logo">MK — Studio</div>
+  <div class="logo" style="height: 32px; width: 80px;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 718.27 459.47" style="height: 100%; width: 100%;">
+      <path fill="#FF5722" d="M0,459.47V136.3C0,96.23,12.15,63.5,36.46,38.1,60.76,12.7,92.29,0,131.04,0c45.98,0,81.34,21.13,106.08,63.39,15.11-22.77,31.31-39.03,48.61-48.77,17.3-9.74,38.64-14.62,64.04-14.62,40.29,0,71.16,12.7,92.62,38.1,21.46,25.4,32.19,61.96,32.19,109.69v311.68h-133.34V167.83c0-14.45-1.15-24.03-3.45-28.74-2.3-4.71-6.95-7.06-13.96-7.06-13.14,0-19.71,11.17-19.71,33.5v293.94h-133.34V167.83c0-14.23-1.2-23.76-3.61-28.57-2.41-4.82-7.12-7.23-14.12-7.23-13.14,0-19.71,11.93-19.71,35.8v291.64H0Z"/>
+      <polygon fill="#FF5722" points="685 109.37 616.58 236.84 718.27 459.47 563.49 459.47 476 230.87 539.56 109.37 685 109.37"/>
+    </svg>
+  </div>
   <nav class="header-nav">
     <a href="#about" data-en="About" data-es="Sobre mí">About</a>
     <a href="#portfolio" data-en="Portfolio" data-es="Portfolio">Portfolio</a>
@@ -544,8 +549,25 @@ body::before{
 </header>
 
 <!-- ══ HERO ══ -->
-<section class="hero" id="hero">
-  <div class="hero-card">
+<section class="hero" id="hero" style="background-image: linear-gradient(rgba(12,12,12,0.5), rgba(12,12,12,0.5)), url('/public/assets/backgrounds/31_fondo_ia1_oscuro_principal.jpg'); background-size: cover; background-position: center;">
+  <!-- Hero Video Background -->
+  <div class="hero-video-bg" style="position: absolute; inset: 0; z-index: 0; overflow: hidden;">
+    <video autoplay muted loop playsinline preload="none" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.4;">
+      <source src="/public/assets/videos/40_hero_camara_loop.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <!-- Light Leak Overlay -->
+  <div class="hero-light-leak" style="position: absolute; inset: 0; background-image: url('/public/assets/overlays/24_overlay_ligth_leak.png'); background-size: cover; mix-blend-mode: screen; opacity: 0.2; z-index: 1; pointer-events: none;"></div>
+
+  <!-- Light Particles -->
+  <div class="hero-particles" style="position: absolute; inset: 0; z-index: 1; pointer-events: none;">
+    <video autoplay muted loop playsinline preload="none" style="width: 100%; height: 100%; object-fit: cover; mix-blend-mode: screen; opacity: 0.15;">
+      <source src="/public/assets/videos/41_hero_loop_partículas_de_luz.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="hero-card" style="position: relative; z-index: 3;">
     <div class="hero-content">
       <span class="hero-eyebrow" data-en="Miami · Photographer · Director" data-es="Miami · Fotógrafo · Director">Miami · Photographer · Director</span>
       <h1 class="hero-title">
@@ -643,39 +665,39 @@ body::before{
   </div>
   <div class="portfolio-grid" id="portfolioGrid">
     <div class="port-item fade-in" data-cat="editorial" onclick="openLb(0)">
-      <img src="img/mejores fotos/d2b49be8-f77b-4d97-8016-a60525b7c770.jpg" alt="Editorial couple Miami" loading="lazy">
+      <img src="/public/assets/portfolio/39_portafolio_1.jpg" alt="Editorial couple Miami" loading="lazy">
       <div class="port-overlay"><div class="port-cat" data-en="Editorial" data-es="Editorial">Editorial</div><div class="port-name" data-en="Warm light" data-es="Luz cálida">Warm light</div></div>
     </div>
     <div class="port-item fade-in" data-cat="portrait" onclick="openLb(1)">
-      <img src="img/mejores fotos/c6ea7574-bc41-4beb-87f0-62f5327810b8.jpg" alt="Portrait Miami" loading="lazy">
+      <img src="/public/assets/portfolio/39_portafolio_2.jpg" alt="Portrait Miami" loading="lazy">
       <div class="port-overlay"><div class="port-cat" data-en="Portrait" data-es="Retrato">Portrait</div><div class="port-name" data-en="Golden circle" data-es="Círculo dorado">Golden circle</div></div>
     </div>
     <div class="port-item fade-in" data-cat="lifestyle" onclick="openLb(2)">
-      <img src="img/mejores fotos/5816f957-12b0-4fad-b4d1-5410a0277dbf.jpg" alt="Lifestyle editorial Miami" loading="lazy">
+      <img src="/public/assets/portfolio/39_portafolio_3.jpg" alt="Lifestyle editorial Miami" loading="lazy">
       <div class="port-overlay"><div class="port-cat" data-en="Lifestyle" data-es="Lifestyle">Lifestyle</div><div class="port-name" data-en="Red hour" data-es="Hora roja">Red hour</div></div>
     </div>
     <div class="port-item fade-in" data-cat="editorial" onclick="openLb(3)">
-      <img src="img/mejores fotos/a0dffcc9-8c2e-471e-86ee-d98e913cf977.jpg" alt="Drama couple editorial" loading="lazy">
+      <img src="/public/assets/portfolio/39_portafolio_4.jpg" alt="Drama couple editorial" loading="lazy">
       <div class="port-overlay"><div class="port-cat" data-en="Editorial" data-es="Editorial">Editorial</div><div class="port-name" data-en="Deep focus" data-es="Foco profundo">Deep focus</div></div>
     </div>
     <div class="port-item fade-in" data-cat="portrait" onclick="openLb(4)">
-      <img src="img/mejores fotos/0b1baa3f-485f-42bf-bc36-8cdc7aac3a39.jpg" alt="Portrait serene" loading="lazy">
+      <img src="/public/assets/portfolio/39_portafolio_5.jpg" alt="Portrait serene" loading="lazy">
       <div class="port-overlay"><div class="port-cat" data-en="Portrait" data-es="Retrato">Portrait</div><div class="port-name" data-en="Soft silence" data-es="Silencio suave">Soft silence</div></div>
     </div>
     <div class="port-item fade-in" data-cat="lifestyle" onclick="openLb(5)">
-      <img src="img/mejores fotos/6e8a27e5-c05b-4681-8d8e-88f8bc236c4b.jpg" alt="Lifestyle couple outdoors" loading="lazy">
+      <img src="/public/assets/portfolio/39_portafolio_6.jpg" alt="Lifestyle couple outdoors" loading="lazy">
       <div class="port-overlay"><div class="port-cat" data-en="Lifestyle" data-es="Lifestyle">Lifestyle</div><div class="port-name" data-en="Urban raw" data-es="Urbano crudo">Urban raw</div></div>
     </div>
     <div class="port-item fade-in" data-cat="portrait" onclick="openLb(6)">
-      <img src="img/mejores fotos/4adfc9d3-1084-468c-b3eb-3f434f5918a0.jpg" alt="Portrait natural" loading="lazy">
+      <img src="/public/assets/portfolio/39_portafolio_7.jpg" alt="Portrait natural" loading="lazy">
       <div class="port-overlay"><div class="port-cat" data-en="Portrait" data-es="Retrato">Portrait</div><div class="port-name" data-en="Moody" data-es="Atmosférico">Moody</div></div>
     </div>
     <div class="port-item fade-in" data-cat="lifestyle" onclick="openLb(7)">
-      <img src="img/mejores fotos/17af40e3-f910-4f2e-a5aa-dacdea5bd18d.jpg" alt="Lifestyle vibes" loading="lazy">
+      <img src="/public/assets/portfolio/39_portafolio_8.jpg" alt="Lifestyle vibes" loading="lazy">
       <div class="port-overlay"><div class="port-cat" data-en="Lifestyle" data-es="Lifestyle">Lifestyle</div><div class="port-name" data-en="Golden hour" data-es="Hora dorada">Golden hour</div></div>
     </div>
     <div class="port-item fade-in" data-cat="editorial" onclick="openLb(8)">
-      <img src="img/mejores fotos/0ffe3c16-2db0-411a-81a1-be3a58df2661.jpg" alt="Editorial mood" loading="lazy">
+      <img src="/public/assets/portfolio/39_portafolio_9.jpg" alt="Editorial mood" loading="lazy">
       <div class="port-overlay"><div class="port-cat" data-en="Editorial" data-es="Editorial">Editorial</div><div class="port-name" data-en="Cinematic" data-es="Cinemático">Cinematic</div></div>
     </div>
   </div>
@@ -929,7 +951,7 @@ function filterPortfolio(btn){
 }
 
 // ── LIGHTBOX ──
-const lbImgs=['img/mejores fotos/d2b49be8-f77b-4d97-8016-a60525b7c770.jpg','img/mejores fotos/c6ea7574-bc41-4beb-87f0-62f5327810b8.jpg','img/mejores fotos/5816f957-12b0-4fad-b4d1-5410a0277dbf.jpg','img/mejores fotos/a0dffcc9-8c2e-471e-86ee-d98e913cf977.jpg','img/mejores fotos/0b1baa3f-485f-42bf-bc36-8cdc7aac3a39.jpg','img/mejores fotos/6e8a27e5-c05b-4681-8d8e-88f8bc236c4b.jpg','img/mejores fotos/4adfc9d3-1084-468c-b3eb-3f434f5918a0.jpg','img/mejores fotos/17af40e3-f910-4f2e-a5aa-dacdea5bd18d.jpg','img/mejores fotos/0ffe3c16-2db0-411a-81a1-be3a58df2661.jpg'];
+const lbImgs=['/public/assets/portfolio/39_portafolio_1.jpg','/public/assets/portfolio/39_portafolio_2.jpg','/public/assets/portfolio/39_portafolio_3.jpg','/public/assets/portfolio/39_portafolio_4.jpg','/public/assets/portfolio/39_portafolio_5.jpg','/public/assets/portfolio/39_portafolio_6.jpg','/public/assets/portfolio/39_portafolio_7.jpg','/public/assets/portfolio/39_portafolio_8.jpg','/public/assets/portfolio/39_portafolio_9.jpg'];
 let lbIdx=0;
 function openLb(i){lbIdx=i;document.getElementById('lbImg').src=lbImgs[i];document.getElementById('lightbox').classList.add('active');document.body.style.overflow='hidden'}
 function closeLb(){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow=''}

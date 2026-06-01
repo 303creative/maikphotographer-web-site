@@ -298,3 +298,50 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 }
 
 console.log('🎬 All premium animations loaded');
+
+// ═══════════════════════════════════════════════════════════════
+// EMIL KOWALSKI PRINCIPLES — Button Press Feedback
+// ═══════════════════════════════════════════════════════════════
+
+document.querySelectorAll('button, .btn').forEach(btn => {
+  btn.addEventListener('mousedown', () => {
+    gsap.to(btn, { scale: 0.97, duration: 0.1, ease: 'power2.out' });
+  });
+  btn.addEventListener('mouseup', () => {
+    gsap.to(btn, { scale: 1, duration: 0.15, ease: 'back.out(2)' });
+  });
+  btn.addEventListener('mouseleave', () => {
+    gsap.to(btn, { scale: 1, duration: 0.15, ease: 'back.out(2)' });
+  });
+});
+
+// ═══════════════════════════════════════════════════════════════
+// Video Scroll Scrubbing — Scroll-driven playback
+// ═══════════════════════════════════════════════════════════════
+
+const scrollVid = document.querySelector('.scroll-video-sticky video');
+if (scrollVid && scrollVid.duration) {
+  gsap.to(scrollVid, {
+    currentTime: scrollVid.duration,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.scroll-video-section',
+      start: 'top top',
+      end: 'bottom bottom',
+      scrub: 0.5,
+      markers: false
+    }
+  });
+  console.log('✅ Video scroll scrubbing initialized');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// Hero Light Effects Fade In
+// ═══════════════════════════════════════════════════════════════
+
+gsap.fromTo('.hero-light-leak',
+  { opacity: 0 },
+  { opacity: 0.2, duration: 2.5, delay: 0.8, ease: 'power2.out' }
+);
+
+console.log('✅ Hero light effects initialized');
