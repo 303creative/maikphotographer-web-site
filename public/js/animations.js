@@ -468,7 +468,28 @@ document.querySelectorAll('.btn-primary, .btn').forEach(btn => {
 console.log('🎬 Premium mejoras Awwwards implementadas');
 
 // ═══════════════════════════════════════════════════════════════
-// 11. TESTIMONIAL CAROUSEL (P1 CRÍTICO)
+// 11. FADE-IN-UP ANIMATIONS (P2)
+// ═══════════════════════════════════════════════════════════════
+
+const fadeInUpElements = document.querySelectorAll('.fade-in-up');
+
+const fadeInUpObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.animation = 'fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards';
+      fadeInUpObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+fadeInUpElements.forEach(el => {
+  fadeInUpObserver.observe(el);
+});
+
+console.log('✅ Fade-in-up animations initialized (+20% visual polish)');
+
+// ═══════════════════════════════════════════════════════════════
+// 12. TESTIMONIAL CAROUSEL (P1 CRÍTICO)
 // ═══════════════════════════════════════════════════════════════
 
 const carousel = document.querySelector('[data-carousel]');

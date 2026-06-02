@@ -328,6 +328,22 @@ em {
   }
 }
 
+/* ── MARQUEE SECTION ── */
+.marquee-section {
+  padding: var(--section-padding) var(--container-padding);
+  background: var(--color-bg);
+}
+
+.marquee-title {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  font-family: var(--font-accent);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
 /* ── REDUCE MOTION ── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

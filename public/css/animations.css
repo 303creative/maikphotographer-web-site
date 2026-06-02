@@ -1,0 +1,89 @@
+/* ── FADE-IN-UP ANIMATIONS ── */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 0;
+}
+
+.fade-in-up[data-stagger="1"] { animation-delay: 0.1s; }
+.fade-in-up[data-stagger="2"] { animation-delay: 0.2s; }
+.fade-in-up[data-stagger="3"] { animation-delay: 0.3s; }
+.fade-in-up[data-stagger="4"] { animation-delay: 0.4s; }
+.fade-in-up[data-stagger="5"] { animation-delay: 0.5s; }
+
+/* ── MARQUEE INFINITE SCROLL ── */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  overflow: hidden;
+  width: 100%;
+}
+
+.marquee-inner {
+  display: flex;
+  gap: 12px;
+  animation: marquee 30s linear infinite;
+}
+
+@media (max-width: 768px) {
+  .marquee-inner {
+    animation: marquee 10s linear infinite;
+    gap: 8px;
+  }
+}
+
+.marquee-item {
+  height: 280px;
+  min-width: calc(50% / 8);
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .marquee-item {
+    height: 500px;
+  }
+}
+
+.marquee:hover .marquee-inner {
+  animation-play-state: paused;
+}
+
+/* ── REDUCE MOTION ── */
+@media (prefers-reduced-motion: reduce) {
+  @keyframes fadeInUp {
+    0%, 100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes marquee {
+    0%, 100% {
+      transform: none;
+    }
+  }
+
+  .marquee-inner {
+    animation: none !important;
+  }
+}
