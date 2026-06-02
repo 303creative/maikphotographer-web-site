@@ -8,28 +8,33 @@
 // 1. SMOOTH SCROLL WITH LENIS
 // ═══════════════════════════════════════════════════════════════
 
-if (typeof Lenis !== 'undefined') {
-  const lenis = new Lenis({
-    duration: 1.2,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    smooth: true,
-    smoothTouch: false,
-    wheelMultiplier: 1
-  });
+// Lenis smooth scroll (optional - disable if causing issues)
+if (typeof Lenis !== 'undefined' && window.location.hostname !== 'localhost') {
+  try {
+    const lenis = new Lenis({
+      duration: 1,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smooth: true,
+      smoothTouch: false,
+      wheelMultiplier: 1,
+      lerp: 0.1
+    });
 
-  function raf(time) {
-    lenis.raf(time);
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
     requestAnimationFrame(raf);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+    gsap.ticker.lagSmoothing(0);
+
+    console.log('✅ Smooth scroll initialized');
+  } catch (e) {
+    console.warn('Lenis initialization failed, using native scroll');
   }
-  requestAnimationFrame(raf);
-
-  lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add((time) => {
-    lenis.raf(time * 1000);
-  });
-  gsap.ticker.lagSmoothing(0);
-
-  console.log('✅ Smooth scroll initialized');
 }
 
 // ═══════════════════════════════════════════════════════════════
