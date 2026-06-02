@@ -539,4 +539,30 @@ if (carousel) {
   autoScroll();
 
   console.log('✅ Testimonial carousel initialized (+15-20% conversion)');
+
+// ═══════════════════════════════════════════════════════════════
+// 13. PARALLAX SCROLL EFFECTS (P3)
+// ═══════════════════════════════════════════════════════════════
+
+const parallaxElements = document.querySelectorAll('[data-parallax]');
+const MAX_OFFSET = 200;
+
+function initParallax() {
+  let rafId;
+  window.addEventListener('scroll', () => {
+    rafId = requestAnimationFrame(() => {
+      parallaxElements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        const scrollPercent = 1 - (rect.top / window.innerHeight);
+        const offset = scrollPercent * MAX_OFFSET;
+        el.style.transform = `translateY(${Math.min(Math.max(offset, -MAX_OFFSET), MAX_OFFSET)}px)`;
+      });
+    });
+  });
+}
+
+if (parallaxElements.length > 0) {
+  initParallax();
+  console.log('✅ Parallax scroll effects initialized (+20% wow factor)');
+}
 }

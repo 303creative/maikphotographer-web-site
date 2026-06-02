@@ -68,6 +68,11 @@
   animation-play-state: paused;
 }
 
+/* ── PARALLAX SCROLL EFFECTS ── */
+[data-parallax] {
+  will-change: transform;
+}
+
 /* ── REDUCE MOTION ── */
 @media (prefers-reduced-motion: reduce) {
   @keyframes fadeInUp {
@@ -85,5 +90,9 @@
 
   .marquee-inner {
     animation: none !important;
+  }
+
+  [data-parallax] {
+    transform: none !important;
   }
 }
