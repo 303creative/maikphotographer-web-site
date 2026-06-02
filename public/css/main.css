@@ -490,6 +490,16 @@ em {
   gap: 80px;
   align-items: start;
 }
+.about-image {
+  position: relative;
+}
+.about-photo {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
 .about-desc {
   color: var(--text-2);
   line-height: 1.7;
@@ -671,6 +681,73 @@ em {
   text-decoration: none;
 }
 .port-more:hover { color: var(--accent); }
+
+/* ═══════════════════════════════════ MARKETING ═══════════════════════════════════ */
+.marketing {
+  padding: var(--section-pad) 0;
+  background: var(--bg);
+}
+.marketing h2 { margin-bottom: 48px; }
+
+.marketing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.mkt-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  cursor: pointer;
+  group: true;
+}
+.mkt-img-wrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+}
+.mkt-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 300ms var(--ease-smooth);
+}
+.mkt-card:hover .mkt-img-wrap img {
+  transform: scale(1.05);
+}
+.mkt-info {
+  padding: 24px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-top: none;
+  transition: all 200ms var(--ease-smooth);
+}
+.mkt-card:hover .mkt-info {
+  background: var(--bg-3);
+  border-color: var(--border-h);
+}
+.mkt-info h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+.mkt-info p {
+  font-size: 13px;
+  color: var(--text-2);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+.mkt-tag {
+  font-family: var(--font-m);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding: 4px 8px;
+  background: rgba(255,87,34,0.1);
+  border-radius: 6px;
+  display: inline-block;
+}
 
 /* ═══════════════════════════════════ SERVICIOS ═══════════════════════════════════ */
 .services {
@@ -958,6 +1035,10 @@ footer {
   .port-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .marketing-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* ═══════════════════════════════════ MÓVIL ═══════════════════════════════════ */
@@ -1011,6 +1092,14 @@ footer {
     gap: 8px;
   }
   .port-item { aspect-ratio: 4 / 3; }
+
+  .marketing-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .mkt-img-wrap {
+    aspect-ratio: 16 / 9;
+  }
 
   .svc-grid { grid-template-columns: 1fr; }
   .svc-card { padding: 28px 20px; }
