@@ -19,7 +19,10 @@
     "process-photos": "node automation/scripts/process-local-photos.js",
     "process-google-drive": "node automation/scripts/process-google-drive-photos.js",
     "test-google-drive": "node automation/scripts/test-google-drive.js",
-    "daily-ops": "node automation/scripts/daily-operations.js"
+    "daily-ops": "node automation/scripts/daily-operations.js",
+    "qa": "node scripts/qa-check.js",
+    "verify": "node scripts/verify-production.js",
+    "company": "cat .claude/COMPANY.md"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.20.9",
