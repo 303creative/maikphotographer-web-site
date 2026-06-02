@@ -345,3 +345,124 @@ gsap.fromTo('.hero-light-leak',
 );
 
 console.log('✅ Hero light effects initialized');
+
+// ═══════════════════════════════════════════════════════════════
+// MEJORA 1: PRELOADER CINEMATOGRÁFICO
+// ═══════════════════════════════════════════════════════════════
+
+window.addEventListener('load', () => {
+  const preloader = document.getElementById('preloader');
+  if (preloader) {
+    setTimeout(() => {
+      gsap.to(preloader, {
+        opacity: 0,
+        duration: 0.6,
+        ease: 'power2.inOut',
+        onComplete: () => {
+          preloader.style.display = 'none';
+        }
+      });
+    }, 1800);
+  }
+});
+
+// ═══════════════════════════════════════════════════════════════
+// MEJORA 2: EASINGS EMIL KOWALSKI PREMIUM
+// ═══════════════════════════════════════════════════════════════
+
+const EASINGS = {
+  in: 'cubic-bezier(0.16, 1, 0.3, 1)',
+  out: 'cubic-bezier(0.87, 0, 0.13, 1)',
+  spring: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+  smooth: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+};
+
+// ═══════════════════════════════════════════════════════════════
+// MEJORA 3: IMAGE REVEAL CURTAIN
+// ═══════════════════════════════════════════════════════════════
+
+gsap.utils.toArray('.port-item').forEach((item, i) => {
+  const img = item.querySelector('img');
+  if (!img) return;
+  
+  const wrap = img.parentElement;
+  wrap.style.position = 'relative';
+  wrap.style.overflow = 'hidden';
+  
+  const mask = document.createElement('div');
+  mask.style.cssText = `
+    position: absolute; inset: 0;
+    background: #0C0C0C;
+    transform-origin: left center;
+    z-index: 10; pointer-events: none;
+  `;
+  wrap.appendChild(mask);
+  
+  gsap.to(mask, {
+    scaleX: 0,
+    duration: 1.2,
+    ease: 'power4.inOut',
+    scrollTrigger: {
+      trigger: item,
+      start: 'top 80%',
+      once: true
+    }
+  });
+});
+
+// ═══════════════════════════════════════════════════════════════
+// MEJORA 4: HERO TITLE PREMIUM CON SPLIT TYPE
+// ═══════════════════════════════════════════════════════════════
+
+if (typeof SplitType !== 'undefined') {
+  const heroTitle = document.querySelector('.hero-title');
+  if (heroTitle) {
+    const split = new SplitType(heroTitle, { types: 'chars' });
+    gsap.fromTo(split.chars,
+      { 
+        y: 80, 
+        opacity: 0,
+        rotateX: -90,
+        transformOrigin: '0% 50% -50px'
+      },
+      {
+        y: 0,
+        opacity: 1,
+        rotateX: 0,
+        duration: 1,
+        stagger: 0.015,
+        ease: 'power4.out',
+        delay: 2.5
+      }
+    );
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// MEJORA 5: MAGNETIC BUTTONS
+// ═══════════════════════════════════════════════════════════════
+
+document.querySelectorAll('.btn-primary, .btn').forEach(btn => {
+  btn.addEventListener('mousemove', (e) => {
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    gsap.to(btn, {
+      x: x * 0.2,
+      y: y * 0.2,
+      duration: 0.4,
+      ease: 'power2.out'
+    });
+  });
+  
+  btn.addEventListener('mouseleave', () => {
+    gsap.to(btn, {
+      x: 0,
+      y: 0,
+      duration: 0.5,
+      ease: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
+    });
+  });
+});
+
+console.log('🎬 Premium mejoras Awwwards implementadas');
