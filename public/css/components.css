@@ -16,11 +16,32 @@
   background: var(--color-accent);
   color: #fff;
   border: none;
+  box-shadow:
+    0 1px 2px 0 rgba(5,26,36,0.1),
+    0 4px 4px 0 rgba(5,26,36,0.09),
+    0 9px 6px 0 rgba(5,26,36,0.05),
+    0 17px 7px 0 rgba(5,26,36,0.01),
+    0 26px 7px 0 rgba(5,26,36,0),
+    inset 0 2px 8px 0 rgba(255,255,255,0.5);
 }
 .btn-primary:hover {
   background: var(--color-accent-hover);
-  transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(255,87,34,0.3);
+  transform: translateY(-2px);
+  box-shadow:
+    0 1px 2px 0 rgba(5,26,36,0.12),
+    0 4px 6px 0 rgba(5,26,36,0.12),
+    0 10px 8px 0 rgba(5,26,36,0.08),
+    0 20px 10px 0 rgba(5,26,36,0.04),
+    0 30px 10px 0 rgba(5,26,36,0.01),
+    inset 0 2px 8px 0 rgba(255,255,255,0.6);
+}
+.btn-primary:active {
+  transform: translateY(0px);
+  box-shadow:
+    0 1px 2px 0 rgba(5,26,36,0.1),
+    0 4px 4px 0 rgba(5,26,36,0.09),
+    0 9px 6px 0 rgba(5,26,36,0.05),
+    inset 0 2px 8px 0 rgba(255,255,255,0.5);
 }
 .btn-ghost {
   background: transparent;
@@ -165,6 +186,146 @@ em {
   text-transform: uppercase;
   color: var(--color-text-tertiary);
   margin-top: var(--space-sm);
+}
+
+/* ── TESTIMONIAL CAROUSEL ── */
+.testimonials {
+  position: relative;
+  padding: var(--section-padding) var(--container-padding);
+}
+
+.testimonials h2 {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+  font-size: var(--text-h2);
+}
+
+.carousel-viewport {
+  overflow: hidden;
+  width: 100%;
+  margin-bottom: var(--space-xl);
+}
+
+.carousel-inner {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.carousel-inner > * {
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.testimonial-card {
+  background: var(--color-bg-card);
+  border: var(--border-thin);
+  border-radius: 32px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.testimonial-quote {
+  width: 24px;
+  height: 24px;
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.testimonial-text {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin: 0;
+  font-weight: 400;
+}
+
+.testimonial-author {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-top: 16px;
+}
+
+.testimonial-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.testimonial-name {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.testimonial-role {
+  font-family: var(--font-accent);
+  font-size: 11px;
+  letter-spacing: var(--tracking-widest);
+  color: var(--color-text-secondary);
+  margin: 4px 0 0 0;
+  text-transform: uppercase;
+}
+
+/* Carousel navigation buttons */
+.carousel-prev,
+.carousel-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border-hover);
+  background: transparent;
+  color: var(--color-text);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--duration-normal) var(--ease-out);
+  z-index: 10;
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background: var(--color-accent-muted);
+}
+
+.carousel-prev {
+  left: -70px;
+}
+
+.carousel-next {
+  right: -70px;
+}
+
+@media (max-width: 1024px) {
+  .carousel-prev {
+    left: 16px;
+  }
+  .carousel-next {
+    right: 16px;
+  }
 }
 
 /* ── REDUCE MOTION ── */

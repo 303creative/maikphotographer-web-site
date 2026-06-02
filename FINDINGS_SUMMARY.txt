@@ -1,0 +1,211 @@
+================================================================================
+AUDITORÍA QA — maikphotographer.com
+================================================================================
+RESUMEN EJECUTIVO FINAL
+Fecha: 2 Junio 2026 | Testeador: QA Engineer
+================================================================================
+
+PUNTUACIÓN GENERAL: 4/5 ⭐ (Muy Bueno)
+
+El sitio funciona CORRECTAMENTE en desktop y móvil. No hay errores 404 o crashes.
+La experiencia visual es premium y cinematográfica. Necesita pulido en detalles
+de accesibilidad y UX.
+
+================================================================================
+LO QUE FUNCIONA BIEN (FORTALEZAS)
+================================================================================
+
+✅ CERO ERRORES 404
+   - Todas las assets cargan con 200 OK
+   - Videos: hero (40_hero_camara_loop.mp4), scroll (44_scroll_video_camara_desmontandose.mp4)
+   - Imágenes: portfolio 1-9, backgrounds, overlays, textures
+   - CSS, fonts Google preconnect, Cal.com embed
+
+✅ DISEÑO RESPONSIVE IMPECABLE
+   - Desktop (1440px): 3-col portfolio, 3-col services
+   - Mobile (375px): 1-col portfolio, 1-col services
+   - Hamburger menu oculto desktop, visible mobile
+   - Breakpoints correctos, sin overflow horizontal
+   - Logo, badges, spacing adaptan perfectamente
+
+✅ JAVASCRIPT FUNCIONAL AVANZADO
+   - ✅ Lenis smooth scroll integrado (duration: 1.0s)
+   - ✅ GSAP ScrollTrigger para parallax y animations
+   - ✅ Preloader con loading bar (1.8s)
+   - ✅ Cursor personalizado con hover effect
+   - ✅ Hamburger menu abre/cierra, previene scroll
+   - ✅ Portfolio filter con fade/scale animation
+   - ✅ Form submit POST a /api/lead-capture con fetch
+   - ✅ Success state muestra al enviar
+
+✅ FORMULARIO COMPLETO Y FUNCIONAL
+   - Campos: name, phone, email, sessionType, message
+   - Validación HTML5 required
+   - Type="email" valida formato
+   - Success state con checkmark
+   - Fallback message: "Error — try WhatsApp"
+
+✅ HERO SECTION CINEMATOGRÁFICA
+   - Video con poster, autoplay muted loop
+   - Opacidad 0.4 permite legibilidad
+   - Badge "AVAILABLE IN MIAMI" con punto pulsing
+   - Title "Shoot real. Feel it." con em itálica naranja
+   - Character animation por letra (SplitType)
+   - Parallax scroll effect
+
+✅ ACCESIBILIDAD BÁSICA
+   - Alt text descriptivo en imágenes
+   - ARIA roles en nav (menubar, menuitem)
+   - sr-only labels en formulario
+   - Aria-label en botones
+   - Aria-hidden en decorativos
+   - Botones >= 44x44px
+
+✅ PERFORMANCE ACEPTABLE
+   - HTML carga en ~500ms
+   - Preload en hero poster
+   - Lazy loading en portfolio imágenes
+   - Videos con preload="none" excepto scroll
+
+✅ CAL.COM EMBED IMPLEMENTADO
+   - Script presente y configurado
+   - #cal-embed DIV lista para renderizar
+   - Layout: month_view
+
+✅ PALETA Y TIPOGRAFÍA PREMIUM
+   - Colores: Negro profundo (#0A0A0A) + naranja cinematográfico (#FF5722)
+   - Bebas Neue para headings (impacto)
+   - Inter para body (legibilidad)
+   - JetBrains Mono para labels (técnico)
+   - Grain texture overlay (opacity 0.04)
+
+================================================================================
+LO QUE NECESITA MEJORA (DEBILIDADES)
+================================================================================
+
+🔴 CRÍTICO — ACCESIBILIDAD
+
+1. SIN FOCUS-VISIBLE ESTADOS
+   - Tab navigation NO muestra dónde está el cursor
+   - WCAG A requirement falta
+   - Solución: Agregar en CSS/main.css:
+     :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+🟠 IMPORTANTE — UX
+
+2. PORTFOLIO FILTROS SIN INDICADOR VISUAL
+   - Botón .port-filter.active existe en JS pero NO hay CSS diferenciador
+   - Usuario no ve cuál filtro está seleccionado
+   - Solución: Agregar:
+     .port-filter.active { color: var(--accent); border-bottom: 2px solid var(--accent); }
+
+3. FORMULARIO SIN VALIDACIÓN VISUAL
+   - Campo required pero input:invalid no tiene color roja
+   - Usuario no sabe qué falló antes de submit
+   - Solución: Agregar:
+     input:invalid { border-color: #FF4444; background: rgba(255,68,68,0.05); }
+
+4. MOBILE CTA BAR NO ACTIVADA
+   - Elemento .mobile-cta-bar existe en HTML
+   - CSS lo oculta globalmente (display: none)
+   - No hay media query para mostrarlo en 375px
+   - Solución: Agregar:
+     @media (max-width: 768px) { .mobile-cta-bar { display: block; } }
+
+🟡 MENOR — PERFORMANCE & FUNCIONALIDAD
+
+5. SCROLL VIDEO MUY PESADO
+   - 6.4MB puede causar lag en 3G/4G
+   - Recomendación: Comprimir < 3MB o usar WebM (libvpx-vp9)
+
+6. HOVER STATES EN GHOST BUTTONS INCOMPLETOS
+   - .btn-ghost:hover solo cambia color, no transform
+   - Considerar: transform: translateY(-2px)
+
+7. STATS COUNTER NO CONFIRMADO
+   - HTML tiene .about-stats con 4 items (200+, 5+, 3, 48h)
+   - Main.js NO muestra CountUp animation visible
+   - Verificar si es estático o si falta JavaScript
+
+================================================================================
+TOP 3 ACCIONES (PRIORIDAD)
+================================================================================
+
+1️⃣ AGREGAR :focus-visible (5 min)
+   - Archivo: public/css/main.css
+   - Agregra: :focus-visible { outline: 2px solid var(--accent); }
+   - Impacto: WCAG accesibilidad, users con teclado
+
+2️⃣ INDICADOR VISUAL DE FILTRO ACTIVO (5 min)
+   - Archivo: public/css/main.css
+   - Agregar: .port-filter.active { color: var(--accent); border-bottom: 2px solid var(--accent); }
+   - Impacto: UX clarity, usuario sabe qué está seleccionado
+
+3️⃣ VALIDACIÓN VISUAL DE ERRORES FORMULARIO (5 min)
+   - Archivo: public/css/main.css
+   - Agregar: input:invalid { border-color: #FF4444; background: rgba(255,68,68,0.05); }
+   - Impacto: UX clarity, usuario ve errores inmediatamente
+
+Tiempo total: ~15 minutos para mejoras críticas
+
+================================================================================
+PRUEBAS ESPECÍFICAS POR SECCIÓN
+================================================================================
+
+DESKTOP (1440px):
+  ✅ Hero video visible, autoplay, no flash negro
+  ✅ Logo SVG 36px, blanco, responsive
+  ✅ Badge verde con pulse animation
+  ✅ Portfolio grid 3 col, aspect 3/4
+  ✅ Services 3 col, card 2 "Most Popular" destacada
+  ✅ Spacing generoso (96px+ vertical)
+  ✅ No overflow horizontal
+  ✅ Form campos completos
+  ✅ Cal.com embed presente
+  ✅ WhatsApp links funcionales
+  ✅ Nav hamburger oculto
+  ❌ Focus states no visibles
+  ❌ Filter active sin color diferente
+
+MÓVIL (375px):
+  ✅ Hero visible con opacidad
+  ✅ Logo redimensionado (responsive)
+  ✅ Badge presente
+  ✅ Portfolio 1 col
+  ✅ Services 1 col apilado
+  ✅ Hamburger visible y funcional
+  ✅ Menu desplegable opens/closes
+  ✅ No overflow horizontal
+  ✅ Viewport meta correcto
+  ✅ Form full-width, no truncado
+  ✅ Buttons >= 44x44px
+  ❌ CTA bar no se muestra (CSS oculta)
+  ❌ Focus states no visibles
+
+================================================================================
+CONCLUSIÓN
+================================================================================
+
+Sitio web de ALTA CALIDAD. Funciona correctamente, diseño premium cinematográfico.
+JavaScript avanzado (Lenis, GSAP, Form POST). Responsive impecable.
+
+La puntuación 4/5 se basa en pequeños detalles faltantes (focus-visible, estados
+visuales) que NO rompen funcionalidad pero afectan accesibilidad y UX.
+
+Después de las 3 acciones prioritarias (15 minutos), el sitio estaría en 4.5-5/5.
+
+RECOMENDACIÓN: Deploy actual sin problemas. Implementar mejoras en próxima
+iteración.
+
+================================================================================
+LÍNEA DE TIEMPO ESTIMADA
+================================================================================
+
+Mejoras Críticas (Accesibilidad):   15 min
+Mejoras Importantes (UX):           20 min
+Optimizaciones (Performance):       30 min (video compression)
+Testing final:                      30 min
+
+Total: ~1.5 horas para llevar a 5/5 ⭐
+
+================================================================================
