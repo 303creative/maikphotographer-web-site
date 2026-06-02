@@ -80,14 +80,16 @@ gsap.registerPlugin(ScrollTrigger);
   }, { passive: true });
 })();
 
-/* ─── LENIS SMOOTH SCROLL ─── */
+/* ─── LENIS SMOOTH SCROLL (Apple-like fluidity) ─── */
 let lenis;
 (function() {
   if (typeof Lenis === 'undefined') return;
   lenis = new Lenis({
-    duration: 1.4,
-    easing: t => Math.min(1, 1.001 - Math.pow(2, -10*t)),
-    smoothTouch: false
+    duration: 0.8,
+    easing: t => t < 0.5 ? 2*t*t : -1+(4-2*t)*t,
+    smoothTouch: true,
+    wheelMultiplier: 1.2,
+    touchMultiplier: 2
   });
   gsap.ticker.add(time => lenis.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
