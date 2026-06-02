@@ -3,50 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Maikel Marshall — Photographer · Miami</title>
-  <meta name="description" content="Miami-based cinematic photographer. Portrait, editorial, fashion and lifestyle.">
+  <title>Maikel Marshall — Miami Photographer | Portrait & Editorial</title>
+  <meta name="description" content="Miami-based cinematic photographer specializing in portrait, editorial, fashion and lifestyle. 48h delivery. Book your session today.">
+  <meta name="keywords" content="photographer Miami, portrait photography Miami, editorial photographer Miami, lifestyle photography Miami, fotógrafo Miami">
   <meta property="og:title" content="Maikel Marshall — Photographer · Miami">
   <meta property="og:description" content="Cinematic portrait & editorial photographer. Miami, FL.">
-  <meta property="og:url" content="https://www.maikphotographer.com">
+  <meta property="og:url" content="https://maikphotographer.com">
+  <meta property="og:image" content="/assets/portfolio/39_portafolio_1.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
 
+  <link rel="preload" as="image" href="/assets/backgrounds/31_fondo_ia1_oscuro_principal.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/css/design-system.css">
-  <link rel="stylesheet" href="/css/components.css">
-  <link rel="stylesheet" href="/css/animations.css">
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js" defer></script>
-  <script src="https://unpkg.com/split-type@0.3.4/umd/index.min.js" defer></script>
+  <link rel="stylesheet" href="/css/main.css">
 </head>
 
 <body>
 
+<!-- MOBILE CTA BAR -->
+<a href="#contact" class="mobile-cta-bar" aria-label="Book a session">
+  Book a Session →
+</a>
+
 <!-- PRELOADER -->
-<div id="preloader" style="position:fixed;inset:0;background:#0C0C0C;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px">
-  <div style="height:60px;width:auto;opacity:0;animation:logoIn 0.8s ease forwards 0.2s">
-    <svg viewBox="0 0 100 100" width="60" height="60" style="fill:#FF5722">
-      <circle cx="50" cy="50" r="45" stroke="#FF5722" stroke-width="2" fill="none"/>
-      <text x="50" y="58" text-anchor="middle" font-family="Bebas Neue" font-size="32" fill="#FF5722">MK</text>
-    </svg>
+<div id="preloader" aria-hidden="true">
+  <div class="pre-content">
+    <div class="pre-logo">MK</div>
+    <div class="pre-bar">
+      <div class="pre-fill"></div>
+    </div>
   </div>
-  <div style="width:120px;height:1px;background:rgba(255,255,255,0.1);position:relative;overflow:hidden">
-    <div style="position:absolute;left:-100%;top:0;width:100%;height:100%;background:#FF5722;animation:barFill 1.2s ease forwards 0.4s"></div>
-  </div>
-  <style>
-    @keyframes logoIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes barFill { to { left: 100%; } }
-  </style>
 </div>
 
+<!-- CURSOR PERSONALIZADO -->
+<div class="cursor" aria-hidden="true"></div>
+<div class="cursor-follower" aria-hidden="true"></div>
+
 <!-- NAV -->
-<nav class="site-header">
-  <div class="logo">
-    <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 718.27 459.47">
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <a href="#hero" class="nav-logo" aria-label="Maikel Marshall home">
+    <svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 718.27 459.47">
   <defs>
     <style>
       .cls-1 {
@@ -61,19 +60,38 @@
     </g>
   </g>
 </svg>
+  </a>
+  <div class="nav-links" role="menubar">
+    <a href="#about" class="nav-link" role="menuitem">About</a>
+    <a href="#portfolio" class="nav-link" role="menuitem">Portfolio</a>
+    <a href="#services" class="nav-link" role="menuitem">Services</a>
+    <a href="#contact" class="nav-link" role="menuitem">Contact</a>
   </div>
-  <div class="header-nav">
-    <a href="#about">About</a>
-    <a href="#portfolio">Portfolio</a>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
-  </div>
+  <a href="#contact" class="btn btn-primary btn-sm nav-cta">
+    Book Session
+  </a>
+  <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div id="nav-mobile" class="nav-mobile" aria-hidden="true">
+  <a href="#about" class="nav-mobile-link">About</a>
+  <a href="#portfolio" class="nav-mobile-link">Portfolio</a>
+  <a href="#services" class="nav-mobile-link">Services</a>
+  <a href="#contact" class="nav-mobile-link">Contact</a>
+  <a href="#contact" class="btn btn-primary" style="margin-top:24px;width:100%;text-align:center">
+    Book a Session →
+  </a>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-video-bg" aria-hidden="true">
-    <video autoplay muted loop playsinline preload="none">
+    <video autoplay muted loop playsinline preload="none" poster="/assets/backgrounds/31_fondo_ia1_oscuro_principal.jpg">
       <source src="/assets/videos/40_hero_camara_loop.mp4" type="video/mp4">
     </video>
   </div>
@@ -84,127 +102,319 @@
     </video>
   </div>
 
-  <div class="hero-light-leak" style="background-image:url('/assets/overlays/24_overlay_ligth_leak.png');" aria-hidden="true"></div>
+  <div class="hero-leak" aria-hidden="true"></div>
 
   <div class="hero-content">
-    <div class="hero-badge">
-      <span class="badge-dot"></span>
+    <div class="hero-badge" role="status">
+      <span class="badge-dot" aria-hidden="true"></span>
       <span>AVAILABLE IN MIAMI</span>
     </div>
-    <h1 class="hero-title">Shoot <em>real.</em><br>Feel it.</h1>
-    <p class="hero-sub">Cinematic portraits and editorial photography for models, creators and brands. Based in Miami. Available worldwide.</p>
+
+    <h1 class="hero-title">
+      Shoot <em>real.</em><br>Feel it.
+    </h1>
+
+    <p class="hero-sub">
+      Cinematic portraits and editorial photography
+      for models, creators and brands.
+      Based in Miami, FL.
+    </p>
+
     <div class="hero-ctas">
-      <a href="#contact" class="btn btn-primary">Book a Session</a>
-      <a href="#portfolio" class="btn btn-ghost">View Portfolio</a>
+      <a href="#contact" class="btn btn-primary btn-large">
+        Book a Session
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </a>
+      <a href="#portfolio" class="btn btn-ghost btn-large">
+        View Portfolio
+      </a>
+    </div>
+
+    <div class="hero-proof">
+      <span>📸 50+ Miami sessions</span>
+      <span>⭐ 5.0 rating</span>
+      <span>48h delivery</span>
     </div>
   </div>
 </section>
 
-<!-- SCROLL VIDEO -->
-<section class="scroll-video-section">
-  <div class="scroll-video-sticky">
-    <video id="scroll-video-camara" muted playsinline preload="auto">
-      <source src="/assets/videos/44_scroll_video_ camara_desmontandose.mp4" type="video/mp4">
+<!-- SCROLL VIDEO 3D -->
+<section class="scroll-vid-section" aria-label="Camera reveal">
+  <div class="scroll-vid-sticky">
+    <video id="scroll-cam" muted playsinline preload="auto" aria-label="Camera disassembly animation">
+      <source src="/assets/videos/44_scroll_video_camara_desmontandose.mp4" type="video/mp4">
     </video>
-    <p class="scroll-label">[ EVERY FRAME TELLS A STORY ]</p>
+    <p class="scroll-vid-label" aria-hidden="true">
+      [ EVERY FRAME TELLS A STORY ]
+    </p>
   </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about" class="about">
-  <h2>I don't just <em>take photos.</em> I direct.</h2>
-  <p>Cuban-born cinematic photographer, creative director & brand strategist based in Miami, FL. Founder of the303 Creative. 5+ years blending visual storytelling with strategic marketing—specialized in portrait, editorial, lifestyle and real estate with a distinctive filmic aesthetic.</p>
-  <div class="about-firma">
-    <img src="/assets/overlays/28_firma_maikel.png" alt="Signature" loading="lazy">
-  </div>
-  <div class="about-stats">
-    <div><div class="astat-val">200+</div><div class="astat-lbl">Sessions delivered</div></div>
-    <div><div class="astat-val">3</div><div class="astat-lbl">Countries worked</div></div>
-    <div><div class="astat-val">48h</div><div class="astat-lbl">Delivery time</div></div>
+  <div class="container">
+    <div class="about-inner">
+      <div class="about-text">
+        <p class="label-tag">[ ABOUT ]</p>
+        <h2>I don't just<br><em>take photos.</em><br>I direct.</h2>
+        <p class="about-desc">
+          Cuban-born cinematic photographer based in Miami, FL.
+          Founder of the303 Creative. 5+ years blending visual
+          storytelling with strategic marketing — specialized in
+          portrait, editorial, lifestyle and real estate with a
+          distinctive filmic aesthetic.
+        </p>
+        <p class="about-desc">
+          Industrial engineer background drives operational
+          efficiency. Graphic design, UX and brand identity
+          expertise. Direct complete productions from concept
+          to delivery.
+        </p>
+        <div class="about-tags">
+          <span>Creative Direction</span>
+          <span>Portrait</span>
+          <span>Fashion</span>
+          <span>Editorial</span>
+          <span>Real Estate</span>
+          <span>Sony A7 III</span>
+        </div>
+        <div class="about-firma">
+          <img src="/assets/overlays/28_firma_maikel.png" alt="Maikel Marshall signature" loading="lazy">
+        </div>
+        <a href="#contact" class="btn btn-ghost">
+          Work With Me →
+        </a>
+      </div>
+
+      <div class="about-stats">
+        <div class="stat">
+          <span class="stat-num" data-count="200">0</span>
+          <span class="stat-suffix">+</span>
+          <p>Sessions delivered</p>
+        </div>
+        <div class="stat">
+          <span class="stat-num" data-count="5">0</span>
+          <span class="stat-suffix">+</span>
+          <p>Years shooting</p>
+        </div>
+        <div class="stat">
+          <span class="stat-num" data-count="3">0</span>
+          <span class="stat-suffix"></span>
+          <p>Countries worked</p>
+        </div>
+        <div class="stat">
+          <span class="stat-num" data-count="48">0</span>
+          <span class="stat-suffix">h</span>
+          <p>Delivery time</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- PORTFOLIO -->
 <section id="portfolio" class="portfolio">
-  <h2>Portfolio</h2>
-  <div class="portfolio-grid">
-    <div class="port-item fade-in" data-category="editorial">
-      <img src="/assets/portfolio/39_portafolio_1.jpg" alt="Portfolio" loading="lazy">
-      <img class="port-watermark" src="/assets/overlays/29_watermark_mk.png" alt="" loading="lazy">
-      <div class="port-caption"><span>Editorial</span><span>Moment 1</span></div>
+  <div class="container">
+    <p class="label-tag">[ SELECTED WORK ]</p>
+    <h2>Portfolio</h2>
+
+    <div class="port-filters" role="tablist">
+      <button class="port-filter active" data-filter="all" role="tab">All</button>
+      <button class="port-filter" data-filter="portrait" role="tab">Portrait</button>
+      <button class="port-filter" data-filter="editorial" role="tab">Editorial</button>
+      <button class="port-filter" data-filter="lifestyle" role="tab">Lifestyle</button>
     </div>
-    <div class="port-item fade-in" data-category="editorial">
-      <img src="/assets/portfolio/39_portafolio_2.jpg" alt="Portfolio" loading="lazy">
-      <img class="port-watermark" src="/assets/overlays/29_watermark_mk.png" alt="" loading="lazy">
-      <div class="port-caption"><span>Editorial</span><span>Moment 2</span></div>
+
+    <div class="port-grid">
+      <div class="port-item" data-cat="editorial">
+        <img class="port-photo" src="/assets/portfolio/39_portafolio_1.jpg" alt="Editorial portrait session Miami" loading="lazy">
+        <img class="port-wm" src="/assets/overlays/29_watermark_mk.png" alt="" loading="lazy" aria-hidden="true">
+        <div class="port-reveal" aria-hidden="true"></div>
+        <div class="port-info" aria-hidden="true">
+          <span>Editorial</span><span>Warm light</span>
+        </div>
+      </div>
+
+      <div class="port-item" data-cat="portrait">
+        <img class="port-photo" src="/assets/portfolio/39_portafolio_2.jpg" alt="Portrait photography Miami" loading="lazy">
+        <img class="port-wm" src="/assets/overlays/29_watermark_mk.png" alt="" loading="lazy" aria-hidden="true">
+        <div class="port-reveal" aria-hidden="true"></div>
+        <div class="port-info" aria-hidden="true">
+          <span>Portrait</span><span>Golden circle</span>
+        </div>
+      </div>
+
+      <div class="port-item" data-cat="lifestyle">
+        <img class="port-photo" src="/assets/portfolio/39_portafolio_3.jpg" alt="Lifestyle photography Miami" loading="lazy">
+        <img class="port-wm" src="/assets/overlays/29_watermark_mk.png" alt="" loading="lazy" aria-hidden="true">
+        <div class="port-reveal" aria-hidden="true"></div>
+        <div class="port-info" aria-hidden="true">
+          <span>Lifestyle</span><span>Red hour</span>
+        </div>
+      </div>
+
+      <div class="port-item" data-cat="editorial">
+        <img class="port-photo" src="/assets/portfolio/39_portafolio_4.jpg" alt="Fashion editorial photography Miami" loading="lazy">
+        <img class="port-wm" src="/assets/overlays/29_watermark_mk.png" alt="" loading="lazy" aria-hidden="true">
+        <div class="port-reveal" aria-hidden="true"></div>
+        <div class="port-info" aria-hidden="true">
+          <span>Editorial</span><span>Deep focus</span>
+        </div>
+      </div>
+
+      <div class="port-item" data-cat="portrait">
+        <img class="port-photo" src="/assets/portfolio/39_portafolio_5.jpg" alt="Portrait session Miami photographer" loading="lazy">
+        <img class="port-wm" src="/assets/overlays/29_watermark_mk.png" alt="" loading="lazy" aria-hidden="true">
+        <div class="port-reveal" aria-hidden="true"></div>
+        <div class="port-info" aria-hidden="true">
+          <span>Portrait</span><span>Soft silence</span>
+        </div>
+      </div>
+
+      <div class="port-item" data-cat="lifestyle">
+        <img class="port-photo" src="/assets/portfolio/39_portafolio_6.jpg" alt="Lifestyle editorial Miami" loading="lazy">
+        <img class="port-wm" src="/assets/overlays/29_watermark_mk.png" alt="" loading="lazy" aria-hidden="true">
+        <div class="port-reveal" aria-hidden="true"></div>
+        <div class="port-info" aria-hidden="true">
+          <span>Lifestyle</span><span>Urban raw</span>
+        </div>
+      </div>
+
+      <div class="port-item" data-cat="portrait">
+        <img class="port-photo" src="/assets/portfolio/39_portafolio_7.jpg" alt="Portrait photography natural light Miami" loading="lazy">
+        <img class="port-wm" src="/assets/overlays/29_watermark_mk.png" alt="" loading="lazy" aria-hidden="true">
+        <div class="port-reveal" aria-hidden="true"></div>
+        <div class="port-info" aria-hidden="true">
+          <span>Portrait</span><span>Moody</span>
+        </div>
+      </div>
+
+      <div class="port-item" data-cat="lifestyle">
+        <img class="port-photo" src="/assets/portfolio/39_portafolio_8.jpg" alt="Golden hour lifestyle photography Miami" loading="lazy">
+        <img class="port-wm" src="/assets/overlays/29_watermark_mk.png" alt="" loading="lazy" aria-hidden="true">
+        <div class="port-reveal" aria-hidden="true"></div>
+        <div class="port-info" aria-hidden="true">
+          <span>Lifestyle</span><span>Golden hour</span>
+        </div>
+      </div>
+
+      <div class="port-item" data-cat="editorial">
+        <img class="port-photo" src="/assets/portfolio/39_portafolio_9.jpg" alt="Cinematic editorial photography Miami" loading="lazy">
+        <img class="port-wm" src="/assets/overlays/29_watermark_mk.png" alt="" loading="lazy" aria-hidden="true">
+        <div class="port-reveal" aria-hidden="true"></div>
+        <div class="port-info" aria-hidden="true">
+          <span>Editorial</span><span>Cinematic</span>
+        </div>
+      </div>
     </div>
-    <div class="port-item fade-in" data-category="editorial">
-      <img src="/assets/portfolio/39_portafolio_3.jpg" alt="Portfolio" loading="lazy">
-      <img class="port-watermark" src="/assets/overlays/29_watermark_mk.png" alt="" loading="lazy">
-      <div class="port-caption"><span>Editorial</span><span>Moment 3</span></div>
-    </div>
-    <div class="port-item fade-in" data-category="editorial">
-      <img src="/assets/portfolio/39_portafolio_4.jpg" alt="Portfolio" loading="lazy">
-      <img class="port-watermark" src="/assets/overlays/29_watermark_mk.png" alt="" loading="lazy">
-      <div class="port-caption"><span>Editorial</span><span>Moment 4</span></div>
-    </div>
-    <div class="port-item fade-in" data-category="editorial">
-      <img src="/assets/portfolio/39_portafolio_5.jpg" alt="Portfolio" loading="lazy">
-      <img class="port-watermark" src="/assets/overlays/29_watermark_mk.png" alt="" loading="lazy">
-      <div class="port-caption"><span>Editorial</span><span>Moment 5</span></div>
-    </div>
-    <div class="port-item fade-in" data-category="editorial">
-      <img src="/assets/portfolio/39_portafolio_6.jpg" alt="Portfolio" loading="lazy">
-      <img class="port-watermark" src="/assets/overlays/29_watermark_mk.png" alt="" loading="lazy">
-      <div class="port-caption"><span>Editorial</span><span>Moment 6</span></div>
-    </div>
-    <div class="port-item fade-in" data-category="editorial">
-      <img src="/assets/portfolio/39_portafolio_7.jpg" alt="Portfolio" loading="lazy">
-      <img class="port-watermark" src="/assets/overlays/29_watermark_mk.png" alt="" loading="lazy">
-      <div class="port-caption"><span>Editorial</span><span>Moment 7</span></div>
-    </div>
-    <div class="port-item fade-in" data-category="editorial">
-      <img src="/assets/portfolio/39_portafolio_8.jpg" alt="Portfolio" loading="lazy">
-      <img class="port-watermark" src="/assets/overlays/29_watermark_mk.png" alt="" loading="lazy">
-      <div class="port-caption"><span>Editorial</span><span>Moment 8</span></div>
-    </div>
-    <div class="port-item fade-in" data-category="editorial">
-      <img src="/assets/portfolio/39_portafolio_9.jpg" alt="Portfolio" loading="lazy">
-      <img class="port-watermark" src="/assets/overlays/29_watermark_mk.png" alt="" loading="lazy">
-      <div class="port-caption"><span>Editorial</span><span>Moment 9</span></div>
-    </div>
+
+    <a href="https://www.instagram.com/maik_photographer/" class="port-more" target="_blank" rel="noopener">
+      See full portfolio on Instagram →
+    </a>
   </div>
 </section>
 
-<!-- SERVICES -->
+<!-- SERVICIOS -->
 <section id="services" class="services">
-  <h2>Sessions & Services</h2>
-  <div class="services-grid">
-    <div class="svc-card">
-      <h3>Portrait Session</h3>
-      <p>Individual or couples portrait session. 1–2 hours, one or two Miami locations. Edited gallery delivered in 48 hours.</p>
-      <div class="svc-price">$150 <small>/ from</small></div>
-    </div>
-    <div class="svc-card">
-      <h3>Editorial / Fashion</h3>
-      <p>Full editorial production for models, creators and brands. Concept, art direction, location scouting, full team.</p>
-      <div class="svc-price">$350 <small>/ from</small></div>
-    </div>
-    <div class="svc-card">
-      <h3>Brand Content</h3>
-      <p>Monthly content package for brands. Social media visuals, product photography, lifestyle content.</p>
-      <div class="svc-price">$500 <small>/ month</small></div>
+  <div class="container">
+    <p class="label-tag">[ WHAT I OFFER ]</p>
+    <h2>Sessions & <em>Services</em></h2>
+
+    <div class="svc-grid">
+      <div class="svc-card">
+        <span class="svc-num" aria-hidden="true">01</span>
+        <h3>Portrait Session</h3>
+        <p>Individual or couples portrait session in Miami. One or two locations. Edited gallery delivered within 48 hours.</p>
+        <ul>
+          <li>1–2 hours on location</li>
+          <li>20+ edited photos</li>
+          <li>Online gallery in 48h</li>
+          <li>Print-ready files</li>
+        </ul>
+        <div class="svc-price">
+          $150 <small>/ starting from</small>
+        </div>
+        <a href="#contact" class="btn btn-primary">
+          Book Portrait →
+        </a>
+      </div>
+
+      <div class="svc-card svc-featured">
+        <span class="svc-badge">Most Popular</span>
+        <span class="svc-num" aria-hidden="true">02</span>
+        <h3>Editorial / Fashion</h3>
+        <p>Full editorial production for models, creators and brands. Concept, art direction, location scouting and full team coordination.</p>
+        <ul>
+          <li>Full day production</li>
+          <li>Art direction included</li>
+          <li>40+ edited photos</li>
+          <li>BTS video included</li>
+        </ul>
+        <div class="svc-price">
+          $350 <small>/ starting from</small>
+        </div>
+        <a href="#contact" class="btn btn-primary">
+          Book Editorial →
+        </a>
+      </div>
+
+      <div class="svc-card">
+        <span class="svc-num" aria-hidden="true">03</span>
+        <h3>Brand Content</h3>
+        <p>Monthly content package for brands and businesses. Social media visuals, product photography and Instagram-ready delivery.</p>
+        <ul>
+          <li>2 shoots per month</li>
+          <li>60+ edited photos</li>
+          <li>IG-ready content</li>
+          <li>Priority scheduling</li>
+        </ul>
+        <div class="svc-price">
+          $500 <small>/ month</small>
+        </div>
+        <a href="#contact" class="btn btn-primary">
+          Book Brand →
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- CTA MID -->
+<section class="cta-mid">
+  <div class="container" style="text-align:center">
+    <p class="label-tag">[ LIMITED SPOTS ]</p>
+    <h2>Ready to shoot?</h2>
+    <p style="color:#888;margin-bottom:32px">
+      Only 5 sessions available per week in Miami.
+    </p>
+    <div class="hero-ctas" style="justify-content:center">
+      <a href="#contact" class="btn btn-primary btn-large">
+        Book a Session →
+      </a>
+      <a href="https://wa.me/17863329815" class="btn btn-ghost btn-large" target="_blank">
+        💬 WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
 <section id="contact" class="contact">
-  <h2>Let's create <em>something.</em></h2>
-  <div class="contact-ways">
-    <a href="https://wa.me/17863329815" class="contact-icon">
-      <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 711.91 713.82">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="contact-left">
+        <p class="label-tag">[ GET IN TOUCH ]</p>
+        <h2>Let's create<br><em>something.</em></h2>
+        <p style="color:#888;margin-bottom:40px">
+          Ready to book or discuss a project?
+          I respond within 24 hours via WhatsApp.
+        </p>
+
+        <div class="contact-ways">
+          <a href="https://wa.me/17863329815" class="cway" target="_blank">
+            <svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 711.91 713.82">
   <defs>
     <style>
       .cls-1 {
@@ -219,11 +429,13 @@
     </g>
   </g>
 </svg>
-      <span>WhatsApp</span>
-    </a>
-    <a href="mailto:maikelmarshall07@gmail.com" class="contact-icon">
-      <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 634.84 459.71">
+            <div class="cway-info">
+              <span class="cway-label">WhatsApp</span>
+              <span class="cway-value">+1 (786) 332-9815</span>
+            </div>
+          </a>
+          <a href="mailto:maikelmarshall07@gmail.com" class="cway">
+            <svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 634.84 459.71">
   <defs>
     <style>
       .cls-1 {
@@ -235,11 +447,13 @@
     <path class="cls-1" d="M577.7,0H57.14C25.61,0,0,25.61,0,57.14v345.44c0,31.52,25.61,57.14,57.14,57.14h520.57c31.52,0,57.14-25.61,57.14-57.14V57.14C634.84,25.61,609.23,0,577.7,0ZM390.86,229.85l217.05-190.46c3.06,5.25,4.93,11.27,4.93,17.73v345.44c0,6.46-1.86,12.48-4.93,17.73l-217.05-190.45ZM577.7,21.88c4.93,0,9.52.99,13.79,2.85l-252.4,221.43c-12.37,10.84-30.98,10.84-43.34,0L43.34,24.73c4.27-1.86,8.87-2.85,13.79-2.85h520.57ZM26.81,420.3c-3.06-5.25-4.93-11.27-4.93-17.73V57.13c0-6.46,1.86-12.48,4.93-17.73l217.05,190.46L26.81,420.3ZM57.13,437.82c-4.93,0-9.63-.99-13.79-2.85l217.16-190.56,20.8,18.28c10.29,8.98,23.2,13.46,36.12,13.46s25.83-4.49,36.12-13.46l20.8-18.28,217.16,190.56c-4.27,1.86-8.87,2.85-13.79,2.85H57.13Z"/>
   </g>
 </svg>
-      <span>Email</span>
-    </a>
-    <a href="https://www.instagram.com/maik_photographer/" class="contact-icon">
-      <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 752.56 752.56">
+            <div class="cway-info">
+              <span class="cway-label">Email</span>
+              <span class="cway-value">maikelmarshall07@gmail.com</span>
+            </div>
+          </a>
+          <a href="https://www.instagram.com/maik_photographer/" class="cway" target="_blank">
+            <svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 752.56 752.56">
   <defs>
     <style>
       .cls-1 {
@@ -251,23 +465,83 @@
     <path class="cls-1" d="M639.67,0H112.88C50.64,0,0,50.64,0,112.88v526.79c0,62.24,50.64,112.88,112.88,112.88h526.79c62.24,0,112.88-50.64,112.88-112.88V112.88C752.56,50.64,701.91,0,639.67,0ZM727.48,639.68c0,48.41-39.38,87.8-87.8,87.8H112.88c-48.41,0-87.8-39.38-87.8-87.8V112.89c0-48.41,39.38-87.8,87.8-87.8h526.79c48.41,0,87.8,39.38,87.8,87.8v526.79ZM376.28,150.51c-124.49,0-225.77,101.28-225.77,225.77s101.28,225.77,225.77,225.77,225.77-101.28,225.77-225.77-101.28-225.77-225.77-225.77ZM376.28,576.97c-110.66,0-200.68-90.03-200.68-200.68s90.03-200.68,200.68-200.68,200.68,90.03,200.68,200.68-90.03,200.68-200.68,200.68ZM639.67,137.97c0,13.83-11.26,25.09-25.09,25.09s-25.09-11.26-25.09-25.09,11.26-25.09,25.09-25.09,25.09,11.26,25.09,25.09Z"/>
   </g>
 </svg>
-      <span>Instagram</span>
-    </a>
+            <div class="cway-info">
+              <span class="cway-label">Instagram</span>
+              <span class="cway-value">@maik_photographer</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-right">
+        <form id="contact-form" class="contact-form" novalidate>
+          <div class="form-row">
+            <label for="f-name" class="sr-only">Name</label>
+            <input id="f-name" type="text" name="name" placeholder="Name" required autocomplete="name">
+          </div>
+          <div class="form-row">
+            <label for="f-phone" class="sr-only">Phone</label>
+            <input id="f-phone" type="tel" name="phone" placeholder="WhatsApp / Phone" required autocomplete="tel">
+          </div>
+          <div class="form-row">
+            <label for="f-email" class="sr-only">Email</label>
+            <input id="f-email" type="email" name="email" placeholder="Email" required autocomplete="email">
+          </div>
+          <div class="form-row">
+            <label for="f-type" class="sr-only">Session type</label>
+            <select id="f-type" name="sessionType" required>
+              <option value="">Session Type</option>
+              <option value="portrait">Portrait — from $150</option>
+              <option value="editorial">Editorial / Fashion — from $350</option>
+              <option value="brand">Brand Content — from $500/mo</option>
+              <option value="other">Other / Custom</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="f-msg" class="sr-only">Message</label>
+            <textarea id="f-msg" name="message" rows="4" placeholder="Tell me about your project"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">
+            Send Request →
+          </button>
+          <p class="form-note">
+            I'll reply via WhatsApp within 24h.
+          </p>
+        </form>
+
+        <div id="form-success" class="form-success" style="display:none" role="alert">
+          <div class="success-icon">✅</div>
+          <h3>Received! / Recibido!</h3>
+          <p>I'll contact you via WhatsApp in less than 2 hours.</p>
+          <div class="success-actions">
+            <a href="https://www.instagram.com/maik_photographer/" target="_blank" class="btn btn-ghost">
+              Ver Instagram
+            </a>
+            <a href="https://cal.com/the303-marketing-kmfxzs/30min" target="_blank" class="btn btn-primary">
+              Book Directly
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <form onsubmit="return false;">
-    <input type="text" placeholder="Your name" required>
-    <input type="email" placeholder="Your email" required>
-    <textarea placeholder="Tell me about your project"></textarea>
-    <button type="submit" class="btn btn-primary">Book a Session</button>
-  </form>
-  <div id="cal-embed"></div>
+</section>
+
+<!-- BOOKING CAL.COM -->
+<section id="booking" class="booking">
+  <div class="container">
+    <p class="label-tag">[ SCHEDULE ]</p>
+    <h2>Book a Session</h2>
+    <div id="cal-embed"></div>
+  </div>
 </section>
 
 <!-- FOOTER -->
-<footer class="site-footer">
-  <div class="footer-logo">
-    <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1861.63 238.65">
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1861.63 238.65">
   <defs>
     <style>
       .cls-1 {
@@ -281,15 +555,47 @@
     <text class="cls-1" transform="translate(0 187.8)"><tspan x="0" y="0">Maikel Marshall </tspan></text>
   </g>
 </svg>
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="#about">About</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+        <a href="https://www.instagram.com/maik_photographer/" target="_blank">Instagram</a>
+        <a href="https://wa.me/17863329815" target="_blank">WhatsApp</a>
+      </nav>
+      <p class="footer-copy">
+        © 2026 Maikel Marshall · Miami, FL
+      </p>
+    </div>
   </div>
-  <nav class="footer-links">
-    <a href="#about">About</a>
-    <a href="#portfolio">Portfolio</a>
-    <a href="#services">Services</a>
-    <a href="https://www.instagram.com/maik_photographer/">Instagram</a>
-  </nav>
-  <p>© 2026 Maikel Marshall · Miami, FL</p>
 </footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/17863329815?text=Hi%20Maikel!%20I%20found%20your%20portfolio%20and%20would%20love%20to%20book%20a%20session." class="wa-float" target="_blank" rel="noopener" aria-label="Contact via WhatsApp">
+  <svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 711.91 713.82">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="Capa_1-2" data-name="Capa 1">
+    <g>
+      <path class="cls-1" d="M485.44,366.94c-17.21-17.21-44.9-17.21-62.11,0l-25.79,26.76,13.36,13.36-13.36-13.36c-51.59-22.92-78.35-69.77-87.91-88.88l25.79-25.79c17.21-17.21,17.21-44.9,0-62.11l-47.78-47.78c-8.59-8.59-19.11-12.43-30.57-12.43s-22.92,4.78-30.57,12.43l-19.11,19.11c-15.3,16.24-25.79,36.32-26.76,58.31-2.87,37.25,1.9,110.87,66.89,181.56l13.36,14.33c65.92,68.79,135.68,82.2,179.66,82.2,5.75,0,11.46,0,16.24-.97,21.99-1.9,43-11.46,59.24-26.76l19.11-19.11c8.59-8.59,12.43-19.11,12.43-30.57s-4.78-22.92-12.43-30.57l-49.68-49.72ZM506.46,450.06l-19.11,19.11c-9.56,9.56-21.99,15.3-34.42,16.24-34.42,2.87-102.24-2.87-165.33-69.77l-13.36-13.36c-54.46-60.21-59.24-121.35-56.36-151.92.97-12.43,6.68-24.86,16.24-34.42l19.11-19.11c.97-.97,2.87-1.9,3.81-1.9s2.87,0,3.81,1.9l47.78,47.78c1.9,1.9,1.9,5.75,0,7.65l-25.79,25.79c-11.46,11.46-14.33,29.64-7.65,43.97,14.33,28.67,45.88,80.25,107.02,107.02,14.33,6.68,31.54,2.87,43-7.65l26.76-26.76c1.9-1.9,5.75-1.9,7.65,0l47.78,47.78c.97.97,1.9,2.87,1.9,3.81.04.97-.9,1.94-2.84,3.84h0Z"/>
+      <path class="cls-1" d="M359.32.01C264.73.01,176.78,36.33,109.89,103.22-4.78,217.89-26.77,392.77,55.43,532.26L0,713.82l172-62.11c138.56,86.97,321.09,66.89,436.69-49.68,66.89-66.89,103.21-154.79,103.21-249.43s-36.32-182.54-103.21-249.43C541.84,36.28,453.9,0,359.31,0h0ZM581.98,575.26c-106.09,106.09-272.34,122.32-396.57,39.19l-7.65-5.75-118.47,43,38.22-125.2-4.78-7.65C14.38,393.66,32.52,234.08,136.7,129.94c59.24-59.24,138.56-91.75,222.66-91.75s163.42,32.47,222.66,91.75c59.24,59.24,91.75,138.56,91.75,222.66-.07,84.1-32.55,163.42-91.79,222.66h0Z"/>
+    </g>
+  </g>
+</svg>
+</a>
+
+<!-- SCRIPTS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="https://unpkg.com/split-type@0.3.4/umd/index.min.js"></script>
+<script src="/js/main.js"></script>
 
 <!-- CAL.COM -->
 <script>
@@ -298,6 +604,5 @@ Cal('init',{origin:'https://cal.com'});
 Cal('inline',{elementOrSelector:'#cal-embed',calLink:'the303-marketing-kmfxzs/30min',layout:'month_view'});
 </script>
 
-<script src="/js/animations.js" defer></script>
 </body>
 </html>
