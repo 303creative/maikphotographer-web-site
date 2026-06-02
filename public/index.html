@@ -32,6 +32,30 @@
   <link rel="stylesheet" href="/css/components.css">
   <link rel="stylesheet" href="/css/animations.css">
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Maikel Marshall Photography",
+    "image": "https://www.maikphotographer.com/public/assets/backgrounds/31_fondo_ia1_oscuro_principal.jpg",
+    "description": "Cinematic photographer specializing in portrait, editorial, fashion and lifestyle photography",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Miami",
+      "addressRegion": "FL",
+      "addressCountry": "US"
+    },
+    "telephone": "+1-786-332-9815",
+    "email": "maikelmarshall07@gmail.com",
+    "url": "https://www.maikphotographer.com",
+    "sameAs": [
+      "https://www.instagram.com/maik_photographer/"
+    ],
+    "priceRange": "$150-$500",
+    "knowsAbout": ["Portrait Photography", "Editorial Photography", "Fashion Photography", "Lifestyle Photography"]
+  }
+  </script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js" defer></script>
@@ -510,10 +534,11 @@
 </section>
 
 <!-- FOOTER -->
-<footer class="site-footer">
+<footer class="site-footer" role="contentinfo">
   <div class="footer-logo">
-    <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1861.63 238.65">
+    <a href="#hero" aria-label="Maikel Marshall - Back to top">
+      <?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1861.63 238.65" aria-hidden="true">
   <defs>
     <style>
       .cls-1 {
@@ -527,14 +552,15 @@
     <text class="cls-1" transform="translate(0 187.8)"><tspan x="0" y="0">Maikel Marshall </tspan></text>
   </g>
 </svg>
+    </a>
   </div>
-  <nav class="footer-links">
+  <nav class="footer-links" role="navigation" aria-label="Footer navigation">
     <a href="#about">About</a>
     <a href="#portfolio">Portfolio</a>
     <a href="#services">Services</a>
-    <a href="https://www.instagram.com/maik_photographer/">Instagram</a>
+    <a href="https://www.instagram.com/maik_photographer/" target="_blank" rel="noopener noreferrer">Instagram</a>
   </nav>
-  <p>© 2026 Maikel Marshall · Miami, FL</p>
+  <p><small>© 2026 Maikel Marshall · Miami, FL · All rights reserved</small></p>
 </footer>
 
 <!-- CAL.COM -->
