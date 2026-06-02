@@ -126,7 +126,7 @@ body::after {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: url('/public/assets/textures/22_grain_texture.png');
+  background-image: url('/assets/textures/22_grain_texture.png');
   background-repeat: repeat;
   background-size: 512px 512px;
   opacity: 0.035;
