@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /.well-known/
+Disallow: /automation/
+
+Sitemap: https://www.maikphotographer.com/sitemap.xml
+
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /public/assets/

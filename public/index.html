@@ -3,15 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0C0C0C">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>Maikel Marshall — Photographer · Miami</title>
-  <meta name="description" content="Miami-based cinematic photographer. Portrait, editorial, fashion and lifestyle.">
+  <meta name="description" content="Miami-based cinematic photographer specializing in portrait, editorial, fashion and lifestyle photography. 5+ years experience, 200+ sessions delivered.">
+  <meta name="keywords" content="photographer Miami, portrait photography, editorial photography, fashion photography, lifestyle photography, cinematic photography">
+  <meta name="author" content="Maikel Marshall">
+  <meta name="copyright" content="2026 Maikel Marshall">
   <meta property="og:title" content="Maikel Marshall — Photographer · Miami">
-  <meta property="og:description" content="Cinematic portrait & editorial photographer. Miami, FL.">
+  <meta property="og:description" content="Cinematic portrait & editorial photographer. Miami, FL. 5+ years experience, 200+ sessions.">
   <meta property="og:url" content="https://www.maikphotographer.com">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Maikel Marshall — Photographer">
+  <meta name="twitter:description" content="Cinematic portrait & editorial photographer based in Miami, FL.">
+  <link rel="canonical" href="https://www.maikphotographer.com">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="/css/design-system.css">
+  <link rel="preload" as="style" href="/css/components.css">
+  <link rel="preload" as="style" href="/css/animations.css">
 
   <link rel="stylesheet" href="/css/design-system.css">
   <link rel="stylesheet" href="/css/components.css">
@@ -26,10 +41,11 @@
 <body>
 
 <!-- NAV -->
-<nav class="site-header">
+<nav class="site-header" role="navigation" aria-label="Primary navigation">
   <div class="logo">
-    <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 718.27 459.47">
+    <a href="#hero" aria-label="Maikel Marshall - Home">
+      <?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 718.27 459.47" aria-hidden="true">
   <defs>
     <style>
       .cls-1 {
@@ -44,6 +60,7 @@
     </g>
   </g>
 </svg>
+    </a>
   </div>
   <div class="header-nav">
     <a href="#about">About</a>
@@ -431,7 +448,7 @@
 <section id="contact" class="contact">
   <h2>Let's create <em>something.</em></h2>
   <div class="contact-ways">
-    <a href="https://wa.me/17863329815" class="contact-icon">
+    <a href="https://wa.me/17863329815" class="contact-icon" aria-label="Contact via WhatsApp" target="_blank" rel="noopener noreferrer">
       <?xml version="1.0" encoding="UTF-8"?>
 <svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 711.91 713.82">
   <defs>
@@ -450,7 +467,7 @@
 </svg>
       <span>WhatsApp</span>
     </a>
-    <a href="mailto:maikelmarshall07@gmail.com" class="contact-icon">
+    <a href="mailto:maikelmarshall07@gmail.com" class="contact-icon" aria-label="Contact via Email">
       <?xml version="1.0" encoding="UTF-8"?>
 <svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 634.84 459.71">
   <defs>
@@ -466,7 +483,7 @@
 </svg>
       <span>Email</span>
     </a>
-    <a href="https://www.instagram.com/maik_photographer/" class="contact-icon">
+    <a href="https://www.instagram.com/maik_photographer/" class="contact-icon" aria-label="Follow on Instagram" target="_blank" rel="noopener noreferrer">
       <?xml version="1.0" encoding="UTF-8"?>
 <svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 752.56 752.56">
   <defs>
@@ -527,6 +544,7 @@ Cal('init',{origin:'https://cal.com'});
 Cal('inline',{elementOrSelector:'#cal-embed',calLink:'the303-marketing-kmfxzs/30min',layout:'month_view'});
 </script>
 
+<script src="/js/web-vitals.js" defer></script>
 <script src="/js/animations.js" defer></script>
 </body>
 </html>
