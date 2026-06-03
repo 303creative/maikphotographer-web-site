@@ -1,0 +1,232 @@
+/* ══════════════════════════════════════════════════════════════════════════════ */
+/* CALENDAR DARK THEME — Cal.com embed styled for dark aesthetic                 */
+/* Override white/bright colors to match maikphotographer dark design             */
+/* ══════════════════════════════════════════════════════════════════════════════ */
+
+#cal-embed {
+  margin-top: 40px;
+  padding: 0;
+}
+
+/* ── CALENDAR CONTAINER ── */
+#cal-embed > div,
+#cal-embed iframe {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* ── OVERRIDE CAL.COM STYLES VIA CSS VARIABLES ── */
+#cal-embed {
+  --cal-bg-dark: #111111;
+  --cal-bg-light: #1a1a1a;
+  --cal-border: rgba(255, 255, 255, 0.1);
+  --cal-text: #ffffff;
+  --cal-text-secondary: #888888;
+  --cal-accent: #FF5722;
+  --cal-hover: rgba(255, 87, 34, 0.1);
+}
+
+/* ── GLOBAL COLOR OVERRIDE (for embedded content) ── */
+#cal-embed * {
+  color: var(--cal-text) !important;
+  border-color: var(--cal-border) !important;
+}
+
+#cal-embed input,
+#cal-embed textarea,
+#cal-embed select {
+  background-color: var(--cal-bg-light) !important;
+  border: 1px solid var(--cal-border) !important;
+  color: var(--cal-text) !important;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 14px;
+  transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#cal-embed input::placeholder,
+#cal-embed textarea::placeholder {
+  color: var(--cal-text-secondary) !important;
+}
+
+#cal-embed input:focus,
+#cal-embed textarea:focus,
+#cal-embed select:focus {
+  outline: none;
+  border-color: var(--cal-accent) !important;
+  background-color: rgba(255, 87, 34, 0.05) !important;
+  box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.1);
+}
+
+#cal-embed button,
+#cal-embed [role="button"] {
+  background-color: var(--cal-accent) !important;
+  color: #ffffff !important;
+  border: 1px solid var(--cal-accent) !important;
+  border-radius: 6px;
+  padding: 10px 24px;
+  font-weight: 600;
+  transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+#cal-embed button:hover,
+#cal-embed [role="button"]:hover {
+  background-color: #E64A19 !important;
+  border-color: #E64A19 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 87, 34, 0.3);
+}
+
+/* ── CALENDAR GRID ── */
+#cal-embed [role="presentation"],
+#cal-embed table {
+  background: var(--cal-bg-dark) !important;
+  border: 1px solid var(--cal-border) !important;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+#cal-embed td,
+#cal-embed th {
+  border-color: var(--cal-border) !important;
+  color: var(--cal-text) !important;
+  padding: 12px 8px;
+}
+
+#cal-embed th {
+  background: var(--cal-bg-light) !important;
+  color: var(--cal-accent) !important;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+/* ── CALENDAR DAYS ── */
+#cal-embed [data-dayselectable="true"],
+#cal-embed button[aria-label*="day"],
+#cal-embed [role="gridcell"] {
+  background: var(--cal-bg-dark) !important;
+  color: var(--cal-text) !important;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: all 150ms ease-out;
+}
+
+#cal-embed [data-dayselectable="true"]:hover,
+#cal-embed button[aria-label*="day"]:hover,
+#cal-embed [role="gridcell"]:hover {
+  background: var(--cal-hover) !important;
+  border-color: var(--cal-accent) !important;
+  color: var(--cal-accent) !important;
+}
+
+/* ── SELECTED/TODAY ── */
+#cal-embed [data-dayselectable="true"][data-selected="true"],
+#cal-embed [aria-current="date"],
+#cal-embed .selected {
+  background: var(--cal-accent) !important;
+  color: #ffffff !important;
+  border-color: var(--cal-accent) !important;
+  font-weight: 600;
+}
+
+/* ── DISABLED DAYS ── */
+#cal-embed [data-dayselectable="false"],
+#cal-embed [disabled] {
+  color: var(--cal-text-secondary) !important;
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ── HEADERS & TITLES ── */
+#cal-embed h1,
+#cal-embed h2,
+#cal-embed h3,
+#cal-embed h4,
+#cal-embed h5,
+#cal-embed h6 {
+  color: var(--cal-text) !important;
+  font-weight: 600;
+}
+
+/* ── LABELS ── */
+#cal-embed label {
+  color: var(--cal-text) !important;
+  font-weight: 500;
+  font-size: 14px;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* ── MONTH/YEAR NAVIGATION ── */
+#cal-embed [aria-label*="month"],
+#cal-embed [aria-label*="year"],
+#cal-embed .month-navigation {
+  background: var(--cal-bg-light) !important;
+  border: 1px solid var(--cal-border) !important;
+  border-radius: 6px;
+  padding: 12px 16px;
+  color: var(--cal-text) !important;
+}
+
+/* ── SCROLLBAR (for timezone, etc) ── */
+#cal-embed ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+#cal-embed ::-webkit-scrollbar-track {
+  background: var(--cal-bg-dark);
+}
+
+#cal-embed ::-webkit-scrollbar-thumb {
+  background: var(--cal-border);
+  border-radius: 4px;
+}
+
+#cal-embed ::-webkit-scrollbar-thumb:hover {
+  background: var(--cal-accent);
+}
+
+/* ── POPOVER/MODAL (if used) ── */
+#cal-embed [role="dialog"],
+#cal-embed .popover,
+#cal-embed .modal {
+  background: var(--cal-bg-dark) !important;
+  border: 1px solid var(--cal-border) !important;
+  border-radius: 8px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.8);
+}
+
+/* ── TIME PICKER (if used) ── */
+#cal-embed [role="listbox"],
+#cal-embed [role="option"],
+#cal-embed .time-select {
+  background: var(--cal-bg-light) !important;
+  color: var(--cal-text) !important;
+  border: 1px solid var(--cal-border) !important;
+}
+
+#cal-embed [role="option"][aria-selected="true"] {
+  background: var(--cal-accent) !important;
+  color: #ffffff !important;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  #cal-embed {
+    margin-top: 24px;
+    padding: 0 16px;
+  }
+
+  #cal-embed input,
+  #cal-embed textarea,
+  #cal-embed select {
+    font-size: 16px; /* Prevent auto-zoom on iOS */
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════ */
