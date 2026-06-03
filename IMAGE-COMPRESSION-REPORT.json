@@ -1,0 +1,632 @@
+{
+  "totals": {
+    "before": 44110767,
+    "after": 12197062,
+    "webp": 8799482
+  },
+  "files": [
+    {
+      "file": "img/toda la galeria/07d1529f-9339-469b-a628-faba60abaefe.jpg",
+      "before": 313198,
+      "after": 286278,
+      "action": "jpg q=72",
+      "webp": 282720
+    },
+    {
+      "file": "img/toda la galeria/0e7f58e9-1cc5-4efb-9bee-7fbe1c73b7a1.jpg",
+      "before": 133751,
+      "after": 109358,
+      "action": "jpg q=82",
+      "webp": 64148
+    },
+    {
+      "file": "img/toda la galeria/28bd9338-5205-4619-8a08-6a4e83a510b6.jpg",
+      "before": 175551,
+      "after": 156928,
+      "action": "jpg q=82",
+      "webp": 104560
+    },
+    {
+      "file": "img/toda la galeria/298bc3f1-c201-41d1-be74-11f78b234699.jpg",
+      "before": 183664,
+      "after": 126805,
+      "action": "jpg q=82",
+      "webp": 114458
+    },
+    {
+      "file": "img/toda la galeria/2fcefe94-b154-4b88-9f6b-cee08fbdafd4.jpg",
+      "before": 113472,
+      "after": 113472,
+      "action": "kept-original",
+      "webp": 80444
+    },
+    {
+      "file": "img/toda la galeria/49ac4b8a-bd72-4836-b01d-631994a74a3f.jpg",
+      "before": 161846,
+      "after": 161846,
+      "action": "kept-original",
+      "webp": 120462
+    },
+    {
+      "file": "img/toda la galeria/4d9b139f-3fa4-4f54-8eff-fb4f326d5ca5.jpg",
+      "before": 324687,
+      "after": 295021,
+      "action": "jpg q=72",
+      "webp": 321742
+    },
+    {
+      "file": "img/toda la galeria/52c39845-b7f5-4d1d-880c-30ebee31b9f4.jpg",
+      "before": 233899,
+      "after": 100629,
+      "action": "jpg q=82",
+      "webp": 68248
+    },
+    {
+      "file": "img/toda la galeria/54842636-e52d-4556-a0b7-b87328675253.jpg",
+      "before": 207754,
+      "after": 207754,
+      "action": "kept-original",
+      "webp": 145910
+    },
+    {
+      "file": "img/toda la galeria/55b9606e-078e-4ec3-86dd-c6aae449d6dc.jpg",
+      "before": 218665,
+      "after": 218665,
+      "action": "kept-original",
+      "webp": 136318
+    },
+    {
+      "file": "img/toda la galeria/5b7b9e82-36c4-44c5-bb61-10685eb81a65.jpg",
+      "before": 98498,
+      "after": 67756,
+      "action": "jpg q=82",
+      "webp": 44966
+    },
+    {
+      "file": "img/toda la galeria/64e3dde7-2967-4cae-8e72-53203a5d1398.jpg",
+      "before": 94732,
+      "after": 28772,
+      "action": "jpg q=82",
+      "webp": 11876
+    },
+    {
+      "file": "img/toda la galeria/69b33119-e802-4570-a68f-c60396c40d8a.jpg",
+      "before": 220345,
+      "after": 220345,
+      "action": "kept-original",
+      "webp": 142056
+    },
+    {
+      "file": "img/toda la galeria/6f1d4671-4390-430f-9fc9-9981a083de74.jpg",
+      "before": 315323,
+      "after": 289393,
+      "action": "jpg q=72",
+      "webp": 277168
+    },
+    {
+      "file": "img/toda la galeria/79a7b298-ace2-49ba-9e9e-1c567c8aa331.jpg",
+      "before": 159427,
+      "after": 158935,
+      "action": "jpg q=82",
+      "webp": 82232
+    },
+    {
+      "file": "img/toda la galeria/8a0f30b5-1cb7-47f6-93d3-6c5c40005591.jpg",
+      "before": 169354,
+      "after": 150364,
+      "action": "jpg q=82",
+      "webp": 99890
+    },
+    {
+      "file": "img/toda la galeria/94d87035-a093-4f35-ba76-93c117602b75.jpg",
+      "before": 207420,
+      "after": 207420,
+      "action": "kept-original",
+      "webp": 160394
+    },
+    {
+      "file": "img/toda la galeria/97bbeb58-5744-43ae-a2d3-3a02f30cd7da.jpg",
+      "before": 143357,
+      "after": 141915,
+      "action": "jpg q=82",
+      "webp": 78178
+    },
+    {
+      "file": "img/toda la galeria/9b2b1a15-837f-4ded-b0c3-a1461415098f.jpg",
+      "before": 270724,
+      "after": 270724,
+      "action": "kept-original",
+      "webp": 231694
+    },
+    {
+      "file": "img/toda la galeria/9f9ece98-fa4a-4c6b-8b97-57040be62c94.jpg",
+      "before": 206090,
+      "after": 206090,
+      "action": "kept-original",
+      "webp": 120510
+    },
+    {
+      "file": "img/toda la galeria/a1adce51-2d8a-4d3b-8123-9db19847b032.jpg",
+      "before": 110214,
+      "after": 93449,
+      "action": "jpg q=82",
+      "webp": 52320
+    },
+    {
+      "file": "img/toda la galeria/a4c8f285-6391-4cfe-93b5-8a8da8298118.jpg",
+      "before": 205342,
+      "after": 205342,
+      "action": "kept-original",
+      "webp": 121582
+    },
+    {
+      "file": "img/toda la galeria/a4c8f5e8-6780-4d0e-bde2-ebadd7a03f98.jpg",
+      "before": 128341,
+      "after": 90206,
+      "action": "jpg q=82",
+      "webp": 62836
+    },
+    {
+      "file": "img/toda la galeria/ac41519d-4f62-4d6e-a568-ddb0a144aba0.jpg",
+      "before": 148479,
+      "after": 148479,
+      "action": "kept-original",
+      "webp": 108696
+    },
+    {
+      "file": "img/toda la galeria/ae27742a-5bc1-4418-b853-d2592dc62a25.jpg",
+      "before": 167568,
+      "after": 151105,
+      "action": "jpg q=82",
+      "webp": 96016
+    },
+    {
+      "file": "img/toda la galeria/be32ef62-df84-43b4-8277-7e84b7f65f35.jpg",
+      "before": 209541,
+      "after": 209541,
+      "action": "kept-original",
+      "webp": 152794
+    },
+    {
+      "file": "img/toda la galeria/c052e16f-02a5-4545-b6ba-e6b91a2b3a4a.jpg",
+      "before": 236139,
+      "after": 236139,
+      "action": "kept-original",
+      "webp": 152422
+    },
+    {
+      "file": "img/toda la galeria/c850f347-ea70-453a-9ee4-be52f35028c0.jpg",
+      "before": 173951,
+      "after": 173951,
+      "action": "kept-original",
+      "webp": 93132
+    },
+    {
+      "file": "img/toda la galeria/DSC01763_0000_Tono_saturación-1.jpg",
+      "before": 1331792,
+      "after": 188336,
+      "action": "jpg q=82 w=1600",
+      "webp": 111154
+    },
+    {
+      "file": "img/toda la galeria/DSC01763_0001_DSC01790.jpg",
+      "before": 1917890,
+      "after": 194446,
+      "action": "jpg q=82 w=1600",
+      "webp": 111826
+    },
+    {
+      "file": "img/toda la galeria/DSC01763_0002_DSC01791.jpg",
+      "before": 1553093,
+      "after": 175832,
+      "action": "jpg q=82 w=1600",
+      "webp": 90780
+    },
+    {
+      "file": "img/toda la galeria/DSC01763_0002_DSC01791_1.jpg",
+      "before": 1197356,
+      "after": 118735,
+      "action": "jpg q=82 w=1600",
+      "webp": 64302
+    },
+    {
+      "file": "img/toda la galeria/DSC01763_0003_DSC01794.jpg",
+      "before": 1468296,
+      "after": 150612,
+      "action": "jpg q=82 w=1600",
+      "webp": 72166
+    },
+    {
+      "file": "img/toda la galeria/DSC01763_0003_DSC01794_1.jpg",
+      "before": 1207791,
+      "after": 115948,
+      "action": "jpg q=82 w=1600",
+      "webp": 57740
+    },
+    {
+      "file": "img/toda la galeria/DSC01763_0004_DSC01805.jpg",
+      "before": 1574887,
+      "after": 162203,
+      "action": "jpg q=82 w=1600",
+      "webp": 95610
+    },
+    {
+      "file": "img/toda la galeria/DSC01763_0004_DSC01805_1.jpg",
+      "before": 1178496,
+      "after": 104854,
+      "action": "jpg q=82 w=1600",
+      "webp": 63058
+    },
+    {
+      "file": "img/toda la galeria/DSC01763_0004_DSC01806.jpg",
+      "before": 1633399,
+      "after": 176127,
+      "action": "jpg q=82 w=1600",
+      "webp": 95756
+    },
+    {
+      "file": "img/toda la galeria/DSC01763_0004_DSC01806_1.jpg",
+      "before": 1352874,
+      "after": 109378,
+      "action": "jpg q=82 w=1600",
+      "webp": 62794
+    },
+    {
+      "file": "img/toda la galeria/DSC01763_0006_DSC01831.jpg",
+      "before": 1588959,
+      "after": 126280,
+      "action": "jpg q=82 w=1600",
+      "webp": 68978
+    },
+    {
+      "file": "img/toda la galeria/DSC01763_0007_DSC01835.jpg",
+      "before": 1600534,
+      "after": 133769,
+      "action": "jpg q=82 w=1600",
+      "webp": 77690
+    },
+    {
+      "file": "img/toda la galeria/DSC01763_0008.jpg",
+      "before": 1451819,
+      "after": 191402,
+      "action": "jpg q=82 w=1600",
+      "webp": 106502
+    },
+    {
+      "file": "img/toda la galeria/DSC01763_0008_1.jpg",
+      "before": 1182209,
+      "after": 133916,
+      "action": "jpg q=82 w=1600",
+      "webp": 81104
+    },
+    {
+      "file": "img/toda la galeria/e5524697-a4ba-4b5a-a259-f10ac8bfa082.jpg",
+      "before": 239573,
+      "after": 239573,
+      "action": "kept-original",
+      "webp": 191892
+    },
+    {
+      "file": "img/toda la galeria/e6acea08-7947-4587-85a9-9aa5f405568f.jpg",
+      "before": 82669,
+      "after": 78193,
+      "action": "jpg q=82",
+      "webp": 45134
+    },
+    {
+      "file": "img/toda la galeria/ec5a1a57-ff41-4967-b987-b954b0940edb.jpg",
+      "before": 122363,
+      "after": 41341,
+      "action": "jpg q=82",
+      "webp": 25196
+    },
+    {
+      "file": "img/toda la galeria/f52268c6-159d-4bca-8da5-3b3140afb96a.jpg",
+      "before": 221743,
+      "after": 221743,
+      "action": "kept-original",
+      "webp": 178660
+    },
+    {
+      "file": "img/toda la galeria/f6dfdde8-52c9-4178-b17c-6a52496809a4.jpg",
+      "before": 121179,
+      "after": 121179,
+      "action": "kept-original",
+      "webp": 72660
+    },
+    {
+      "file": "img/toda la galeria/f7a0181f-c8f1-43b1-86c3-88d05c79d07f.jpg",
+      "before": 142945,
+      "after": 52106,
+      "action": "jpg q=82",
+      "webp": 24792
+    },
+    {
+      "file": "img/toda la galeria/fb271c42-20a0-4c7a-8239-09ce6df4561d.jpg",
+      "before": 316751,
+      "after": 299684,
+      "action": "jpg q=78",
+      "webp": 230248
+    },
+    {
+      "file": "img/toda la galeria/ffb79d5b-915e-43ce-b7cf-37cdfb40407b.jpg",
+      "before": 128126,
+      "after": 126368,
+      "action": "jpg q=82",
+      "webp": 72660
+    },
+    {
+      "file": "assets/portfolio/39_portafolio_1.jpg",
+      "before": 576908,
+      "after": 98644,
+      "action": "jpg q=82",
+      "webp": 72428
+    },
+    {
+      "file": "assets/portfolio/39_portafolio_2.jpg",
+      "before": 517686,
+      "after": 82827,
+      "action": "jpg q=82",
+      "webp": 57998
+    },
+    {
+      "file": "assets/portfolio/39_portafolio_3.jpg",
+      "before": 649188,
+      "after": 117347,
+      "action": "jpg q=82",
+      "webp": 100322
+    },
+    {
+      "file": "assets/portfolio/39_portafolio_4.jpg",
+      "before": 657772,
+      "after": 117966,
+      "action": "jpg q=82",
+      "webp": 80420
+    },
+    {
+      "file": "assets/portfolio/39_portafolio_5.jpg",
+      "before": 556246,
+      "after": 104940,
+      "action": "jpg q=82",
+      "webp": 69840
+    },
+    {
+      "file": "assets/portfolio/39_portafolio_6.jpg",
+      "before": 620673,
+      "after": 108002,
+      "action": "jpg q=82",
+      "webp": 71016
+    },
+    {
+      "file": "assets/portfolio/39_portafolio_7.jpg",
+      "before": 398466,
+      "after": 51478,
+      "action": "jpg q=82",
+      "webp": 33992
+    },
+    {
+      "file": "assets/portfolio/39_portafolio_8.jpg",
+      "before": 497494,
+      "after": 67386,
+      "action": "jpg q=82",
+      "webp": 44146
+    },
+    {
+      "file": "assets/portfolio/39_portafolio_9.jpg",
+      "before": 422881,
+      "after": 52736,
+      "action": "jpg q=82",
+      "webp": 34490
+    },
+    {
+      "file": "assets/backgrounds/26_fondo_hero.jpg",
+      "before": 25429,
+      "after": 6444,
+      "action": "jpg q=80",
+      "webp": 3776
+    },
+    {
+      "file": "assets/backgrounds/27_fondo_hero_naranja.jpg",
+      "before": 42024,
+      "after": 7336,
+      "action": "jpg q=80",
+      "webp": 4460
+    },
+    {
+      "file": "assets/backgrounds/31_fondo_ia1_oscuro_principal.jpg",
+      "before": 518147,
+      "after": 59041,
+      "action": "jpg q=80",
+      "webp": 30846
+    },
+    {
+      "file": "assets/backgrounds/31_fondo_ia2_oscuro.jpg",
+      "before": 71563,
+      "after": 71563,
+      "action": "kept-original",
+      "webp": 36986
+    },
+    {
+      "file": "assets/backgrounds/31_fondo_ia3_oscuro.jpg",
+      "before": 154623,
+      "after": 154623,
+      "action": "kept-original",
+      "webp": 112184
+    },
+    {
+      "file": "assets/backgrounds/32_fondo_ia_naranja_cinematografico.jpg",
+      "before": 783449,
+      "after": 46941,
+      "action": "jpg q=80",
+      "webp": 25078
+    },
+    {
+      "file": "assets/backgrounds/33_textura_metal_oscura.jpg",
+      "before": 119309,
+      "after": 116054,
+      "action": "jpg q=80",
+      "webp": 56716
+    },
+    {
+      "file": "assets/backgrounds/34_fondo_about_bokeh_oscuro.jpg",
+      "before": 744424,
+      "after": 31174,
+      "action": "jpg q=80",
+      "webp": 14994
+    },
+    {
+      "file": "assets/backgrounds/36_foto_camara.jpg",
+      "before": 445285,
+      "after": 65270,
+      "action": "jpg q=80 w=1920",
+      "webp": 45106
+    },
+    {
+      "file": "assets/backgrounds/36_foto_camara_1.jpg",
+      "before": 720229,
+      "after": 71988,
+      "action": "jpg q=80",
+      "webp": 50874
+    },
+    {
+      "file": "assets/backgrounds/37_foto_hero_horizontal_1.jpg",
+      "before": 807915,
+      "after": 160821,
+      "action": "jpg q=80",
+      "webp": 102336
+    },
+    {
+      "file": "assets/backgrounds/37_foto_hero_horizontal_2.jpg",
+      "before": 429043,
+      "after": 45954,
+      "action": "jpg q=80",
+      "webp": 27504
+    },
+    {
+      "file": "assets/backgrounds/37_foto_hero_horizontal_3.jpg",
+      "before": 621415,
+      "after": 102939,
+      "action": "jpg q=80",
+      "webp": 55786
+    },
+    {
+      "file": "assets/backgrounds/38_miami_bg.jpg",
+      "before": 861632,
+      "after": 170873,
+      "action": "jpg q=80 w=1920",
+      "webp": 109966
+    },
+    {
+      "file": "assets/overlays/23_overlay_degradado.png",
+      "before": 10848,
+      "after": 10848,
+      "action": "kept-original",
+      "webp": 3908
+    },
+    {
+      "file": "assets/overlays/24_overlay_ligth_leak.png",
+      "before": 51470,
+      "after": 37339,
+      "action": "png palette",
+      "webp": 30880
+    },
+    {
+      "file": "assets/overlays/25_vignette.png",
+      "before": 17953,
+      "after": 7641,
+      "action": "png palette",
+      "webp": 8322
+    },
+    {
+      "file": "assets/overlays/28_firma_maikel.png",
+      "before": 88236,
+      "after": 20687,
+      "action": "png palette",
+      "webp": 39950
+    },
+    {
+      "file": "assets/overlays/29_watermark_mk.png",
+      "before": 17776,
+      "after": 8043,
+      "action": "png palette",
+      "webp": 11252
+    },
+    {
+      "file": "assets/textures/22_grain_texture.png",
+      "before": 350229,
+      "after": 4163,
+      "action": "png palette",
+      "webp": 106692
+    },
+    {
+      "file": "assets/textures/30_textura_papel.png",
+      "before": 3532609,
+      "after": 264569,
+      "action": "png palette",
+      "webp": 293752
+    },
+    {
+      "file": "img/mejores fotos/0b1baa3f-485f-42bf-bc36-8cdc7aac3a39.jpg",
+      "before": 190138,
+      "after": 190138,
+      "action": "kept-original",
+      "webp": 138858
+    },
+    {
+      "file": "img/mejores fotos/0ffe3c16-2db0-411a-81a1-be3a58df2661.jpg",
+      "before": 119475,
+      "after": 118471,
+      "action": "jpg q=82",
+      "webp": 68890
+    },
+    {
+      "file": "img/mejores fotos/17af40e3-f910-4f2e-a5aa-dacdea5bd18d.jpg",
+      "before": 287924,
+      "after": 280224,
+      "action": "jpg q=78",
+      "webp": 319086
+    },
+    {
+      "file": "img/mejores fotos/4adfc9d3-1084-468c-b3eb-3f434f5918a0.jpg",
+      "before": 285733,
+      "after": 283386,
+      "action": "jpg q=78",
+      "webp": 244382
+    },
+    {
+      "file": "img/mejores fotos/5816f957-12b0-4fad-b4d1-5410a0277dbf.jpg",
+      "before": 246470,
+      "after": 246470,
+      "action": "kept-original",
+      "webp": 219932
+    },
+    {
+      "file": "img/mejores fotos/6e8a27e5-c05b-4681-8d8e-88f8bc236c4b.jpg",
+      "before": 175561,
+      "after": 175561,
+      "action": "kept-original",
+      "webp": 124426
+    },
+    {
+      "file": "img/mejores fotos/a0dffcc9-8c2e-471e-86ee-d98e913cf977.jpg",
+      "before": 168559,
+      "after": 168559,
+      "action": "kept-original",
+      "webp": 127982
+    },
+    {
+      "file": "img/mejores fotos/c6ea7574-bc41-4beb-87f0-62f5327810b8.jpg",
+      "before": 201747,
+      "after": 201747,
+      "action": "kept-original",
+      "webp": 163056
+    },
+    {
+      "file": "img/mejores fotos/d2b49be8-f77b-4d97-8016-a60525b7c770.jpg",
+      "before": 178162,
+      "after": 178162,
+      "action": "kept-original",
+      "webp": 128376
+    }
+  ]
+}
