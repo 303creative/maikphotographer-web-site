@@ -1,0 +1,306 @@
+/* ══════════════════════════════════════════════════════════════════════════════ */
+/* SERVICES CARDS — Premium card design with hierarchy and visual distinction     */
+/* Reference: Apple.com · Leica Camera · Premium SaaS pricing tables              */
+/* ══════════════════════════════════════════════════════════════════════════════ */
+
+/* ── SERVICES SECTION ── */
+.services {
+  padding: var(--sp-section);
+  background: var(--color-bg);
+}
+
+.services > h2 {
+  font-size: clamp(1.75rem, 5vw, 2.8rem);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--sp-heading-gap);
+  text-align: center;
+}
+
+/* ── SERVICES GRID ── */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--sp-card-gap);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+}
+
+/* ── SERVICE CARD BASE ── */
+.svc-card {
+  position: relative;
+  padding: clamp(32px, 6vw, 48px);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, box-shadow;
+}
+
+.svc-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--color-border-hover);
+  box-shadow: 0 24px 48px -16px rgba(0, 0, 0, 0.6),
+              0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+/* ── FEATURED CARD (Most Popular) ── */
+.svc-card.featured {
+  position: relative;
+  border-color: var(--color-accent-muted);
+  background: linear-gradient(135deg,
+    rgba(255, 87, 34, 0.03) 0%,
+    rgba(255, 87, 34, 0.01) 100%);
+  transform: scale(1.02);
+}
+
+.svc-card.featured:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 24px 64px -16px rgba(255, 87, 34, 0.3),
+              0 0 0 1px rgba(255, 87, 34, 0.4);
+  transform: scale(1.02) translateY(-8px);
+}
+
+/* ── BADGE ── */
+.svc-badge {
+  position: absolute;
+  top: -12px;
+  right: 24px;
+  display: inline-block;
+  padding: 6px 14px;
+  background: linear-gradient(135deg, var(--color-accent), #E64A19);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  box-shadow: 0 4px 16px rgba(255, 87, 34, 0.3);
+}
+
+/* ── SERVICE NUMBER ── */
+.svc-number {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 700;
+  color: var(--color-accent);
+  line-height: 1;
+  margin-bottom: 16px;
+  opacity: 0.9;
+}
+
+/* ── SERVICE TITLE ── */
+.svc-card h3 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.3rem, 3vw, 1.6rem);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.2;
+  margin: 0 0 12px 0;
+}
+
+/* ── SERVICE DESCRIPTION ── */
+.svc-desc {
+  font-size: clamp(0.95rem, 2vw, 1rem);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin: 0 0 24px 0;
+  flex-grow: 0;
+}
+
+/* ── FEATURES LIST ── */
+.svc-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-grow: 1;
+}
+
+.svc-features li {
+  font-size: clamp(0.9rem, 1.8vw, 0.95rem);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  padding-left: 24px;
+  position: relative;
+}
+
+.svc-features li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-weight: 700;
+  font-size: 1.1em;
+}
+
+/* ── FOOTER (Price + CTA) ── */
+.svc-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border);
+  margin-top: auto;
+}
+
+/* ── PRICE ── */
+.svc-price {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.svc-price {
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 4vw, 2.2rem);
+  font-weight: 700;
+  color: var(--color-accent);
+  line-height: 1;
+}
+
+.svc-price span {
+  font-family: var(--font-accent);
+  font-size: clamp(0.75rem, 1.5vw, 0.85rem);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+}
+
+/* ── CTA BUTTON ── */
+.svc-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(11px, 2vw, 14px) clamp(20px, 4vw, 28px);
+  background: var(--color-accent);
+  color: #ffffff;
+  border: 1px solid var(--color-accent);
+  border-radius: 6px;
+  font-size: clamp(0.9rem, 1.8vw, 0.95rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  min-height: 44px;
+  gap: 6px;
+}
+
+.svc-cta:hover {
+  background: #E64A19;
+  border-color: #E64A19;
+  transform: translateX(2px);
+  box-shadow: 0 8px 24px rgba(255, 87, 34, 0.3);
+}
+
+.svc-cta:active {
+  transform: scale(0.97);
+}
+
+/* ── RESPONSIVE ── */
+
+@media (max-width: 1024px) {
+  .svc-card.featured {
+    transform: scale(1);
+  }
+
+  .svc-card.featured:hover {
+    transform: translateY(-8px);
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .services {
+    padding: var(--sp-section-tight);
+  }
+
+  .services > h2 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin-bottom: clamp(24px, 4vw, 32px);
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .svc-card {
+    padding: clamp(24px, 5vw, 32px);
+  }
+
+  .svc-badge {
+    right: 16px;
+  }
+
+  .svc-footer {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .svc-cta {
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .services {
+    padding: var(--sp-section-tight);
+  }
+
+  .services > h2 {
+    font-size: clamp(1.25rem, 3.5vw, 1.5rem);
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .svc-card {
+    padding: 20px;
+  }
+
+  .svc-number {
+    margin-bottom: 12px;
+  }
+
+  .svc-features {
+    margin: 0 0 20px 0;
+    gap: 8px;
+  }
+
+  .svc-features li {
+    font-size: 0.9rem;
+    padding-left: 20px;
+  }
+
+  .svc-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .svc-cta {
+    width: 100%;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════ */
