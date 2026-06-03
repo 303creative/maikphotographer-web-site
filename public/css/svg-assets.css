@@ -1,0 +1,239 @@
+/* ══════════════════════════════════════════════════════════════════════════════ */
+/* SVG ASSETS — Proper sizing and container styling for SVG icons/logos            */
+/* ══════════════════════════════════════════════════════════════════════════════ */
+
+/* ── LOGO CONTAINER ── */
+.logo,
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.logo svg,
+.logo-container svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ── LOGO SIZES ── */
+.logo-main {
+  width: clamp(40px, 8vw, 60px);
+  height: clamp(40px, 8vw, 60px);
+}
+
+.logo-horizontal {
+  width: clamp(120px, 15vw, 180px);
+  height: auto;
+  min-height: 40px;
+}
+
+.logo-small {
+  width: 32px;
+  height: 32px;
+}
+
+/* ── ICON CONTAINER ── */
+.icon,
+.icon-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+.icon svg,
+.icon-container svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  fill: currentColor;
+}
+
+/* ── ICON SIZES ── */
+.icon-sm {
+  width: 16px;
+  height: 16px;
+}
+
+.icon-md {
+  width: 24px;
+  height: 24px;
+}
+
+.icon-lg {
+  width: 32px;
+  height: 32px;
+}
+
+.icon-xl {
+  width: 48px;
+  height: 48px;
+}
+
+/* ── BADGE CONTAINER ── */
+.badge-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+}
+
+.badge-container .icon {
+  width: 6px;
+  height: 6px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* ── SEPARATOR CONTAINER ── */
+.separator,
+.separator-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: clamp(20px, 4vw, 40px) 0;
+  flex-shrink: 0;
+}
+
+.separator svg,
+.separator-container svg {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+
+.separator-bracket {
+  width: clamp(40px, 8vw, 80px);
+  height: auto;
+}
+
+.separator-arrow {
+  width: clamp(60px, 10vw, 100px);
+  height: auto;
+}
+
+/* ── NAVIGATION LOGO ── */
+nav .logo {
+  width: clamp(35px, 6vw, 50px);
+  height: clamp(35px, 6vw, 50px);
+}
+
+/* ── FOOTER LOGO ── */
+footer .logo {
+  width: clamp(100px, 12vw, 150px);
+  height: auto;
+  min-height: 30px;
+}
+
+/* ── CONTACT ICONS ── */
+.contact-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+}
+
+.contact-icon svg {
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
+}
+
+/* ── RESPONSIVE ADJUSTMENTS ── */
+
+@media (max-width: 768px) {
+  .logo-main {
+    width: clamp(35px, 6vw, 45px);
+    height: clamp(35px, 6vw, 45px);
+  }
+
+  .logo-horizontal {
+    width: clamp(100px, 12vw, 140px);
+  }
+
+  .separator {
+    margin: clamp(16px, 3vw, 28px) 0;
+  }
+
+  nav .logo {
+    width: clamp(30px, 5vw, 40px);
+    height: clamp(30px, 5vw, 40px);
+  }
+
+  footer .logo {
+    width: clamp(80px, 10vw, 120px);
+  }
+}
+
+@media (max-width: 640px) {
+  .logo-main {
+    width: 32px;
+    height: 32px;
+  }
+
+  .logo-horizontal {
+    width: clamp(80px, 10vw, 120px);
+  }
+
+  .separator {
+    margin: clamp(12px, 2vw, 20px) 0;
+  }
+
+  nav .logo {
+    width: 28px;
+    height: 28px;
+  }
+
+  footer .logo {
+    width: clamp(70px, 8vw, 100px);
+  }
+
+  .contact-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .contact-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* ── COLOR OVERRIDES ── */
+
+/* Para iconos que necesitan color específico */
+.icon-accent svg {
+  fill: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.icon-white svg {
+  fill: #ffffff;
+  color: #ffffff;
+}
+
+.icon-secondary svg {
+  fill: var(--color-text-secondary);
+  color: var(--color-text-secondary);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════ */
