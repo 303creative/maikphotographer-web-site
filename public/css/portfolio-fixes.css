@@ -217,4 +217,40 @@ img[loading="lazy"].loaded {
   pointer-events: none;
 }
 
+/* ── MARQUEE RESPONSIVE ── */
+.marquee {
+  overflow: hidden;
+  width: 100%;
+}
+
+.marquee-inner {
+  display: flex;
+  gap: 1rem;
+  animation: marquee 30s linear infinite;
+  width: fit-content;
+}
+
+.marquee-item {
+  flex: 0 0 clamp(120px, 20vw, 300px);
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+  .marquee-item {
+    flex: 0 0 clamp(100px, 25vw, 200px);
+  }
+
+  .marquee-inner {
+    gap: 0.5rem;
+    animation: marquee 20s linear infinite;
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 /* ══════════════════════════════════════════════════════════════════════════ */

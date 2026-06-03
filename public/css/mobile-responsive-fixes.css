@@ -1,0 +1,397 @@
+/* ══════════════════════════════════════════════════════════════════════════════ */
+/* MOBILE RESPONSIVE FIXES - Auditoría completa                                  */
+/* Arregla: iconos gigantes, menú ilegible, hero oversized, alt text, decorativos*/
+/* ══════════════════════════════════════════════════════════════════════════════ */
+
+/* ── CONTACTOS: REDUCIR SVGs GIGANTES ── */
+.contact-ways {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 3rem 0;
+  flex-wrap: wrap;
+}
+
+.contact-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  text-decoration: none;
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-thin);
+  border-radius: 8px;
+  transition: all var(--duration-normal) var(--ease-out);
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.contact-icon:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+}
+
+.contact-icon svg {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.contact-icon span {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* ── NAVEGACIÓN: MEJORAR CONTRASTE Y TAMAÑO ── */
+.site-header {
+  backdrop-filter: blur(8px);
+  background: rgba(12, 12, 12, 0.95);
+  border-bottom: 1px solid var(--border-thin);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-nav {
+  display: none;
+}
+
+.header-nav a {
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  transition: color var(--duration-normal) var(--ease-out);
+}
+
+.header-nav a:hover {
+  color: var(--color-accent);
+}
+
+/* Mostrar menú en desktop */
+@media (min-width: 1024px) {
+  .header-nav {
+    display: flex;
+    gap: 2.5rem;
+  }
+}
+
+/* ── HERO: REDUCIR TAMAÑO EN MÓVIL ── */
+.hero {
+  min-height: 80vh;
+  height: auto;
+}
+
+.hero-content {
+  padding: 4rem 1.5rem;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  line-height: 1.1;
+  margin: 1.5rem 0;
+}
+
+.hero-sub {
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  color: var(--color-text-2);
+  max-width: 600px;
+  margin: 1.5rem auto;
+}
+
+.hero-ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+/* ── PORTFOLIO: MEJORAR ALT TEXT ── */
+.portfolio-item img[alt],
+.gallery-item img[alt],
+.marquee-item[alt],
+.port-item img[alt] {
+  /* Alt text es crucial para SEO y accesibilidad */
+  /* Ver: cada imagen tiene alt descriptivo en el HTML */
+}
+
+/* ── FORMULARIO DE CONTACTO ── */
+.contact form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.contact input,
+.contact textarea {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--border-thin);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.contact input::placeholder,
+.contact textarea::placeholder {
+  color: var(--color-text-3);
+}
+
+.contact input:focus,
+.contact textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.1);
+}
+
+.contact textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.contact .btn {
+  width: 100%;
+  min-height: 44px;
+  font-size: 1rem;
+}
+
+/* ── MEDIA QUERIES: RESPONSIVE COMPLETO ── */
+
+@media (max-width: 1024px) {
+  .hero {
+    min-height: 70vh;
+  }
+
+  .hero-content {
+    padding: 3rem 1.5rem;
+  }
+
+  .contact-ways {
+    gap: 1.5rem;
+  }
+
+  .contact-icon span {
+    font-size: 0.9rem;
+  }
+
+  .contact-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Hero más compacto en tablet */
+  .hero {
+    min-height: 60vh;
+  }
+
+  .hero-content {
+    padding: 2.5rem 1.25rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 7vw, 3.5rem);
+    margin: 1.25rem 0;
+  }
+
+  .hero-sub {
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    margin: 1rem auto;
+  }
+
+  .hero-ctas {
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .hero-ctas .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  /* Contactos más compactos */
+  .contact-ways {
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .contact-icon {
+    padding: 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .contact-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .contact-icon span {
+    font-size: 0.85rem;
+  }
+
+  /* Stack formulario */
+  .contact form {
+    padding: 0 1rem;
+    gap: 0.75rem;
+  }
+
+  .contact input,
+  .contact textarea {
+    padding: 0.75rem 0.875rem;
+    font-size: 16px; /* Prevenir auto-zoom en móvil */
+  }
+
+  /* Ocultar elementos decorativos grandes en tablet */
+  .hero-video-bg {
+    opacity: 0.15;
+  }
+
+  .hero-particles {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  /* Hero ultra-compacto */
+  .hero {
+    min-height: 50vh;
+  }
+
+  .hero-content {
+    padding: 2rem 1rem;
+  }
+
+  .hero-title {
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
+    margin: 1rem 0;
+  }
+
+  .hero-sub {
+    font-size: 0.9rem;
+    margin: 0.75rem auto;
+    max-width: 100%;
+  }
+
+  .hero-badge {
+    font-size: 0.75rem;
+    gap: 0.375rem;
+  }
+
+  .hero-ctas {
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .hero-ctas .btn {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  /* Contactos en columna */
+  .contact-ways {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .contact-icon {
+    width: 100%;
+    justify-content: center;
+    padding: 0.75rem 1rem;
+  }
+
+  .contact-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .contact-icon span {
+    display: block;
+    font-size: 0.85rem;
+  }
+
+  /* Formulario más compacto */
+  .contact form {
+    padding: 0;
+    gap: 0.625rem;
+  }
+
+  .contact input,
+  .contact textarea {
+    padding: 0.625rem 0.75rem;
+    font-size: 16px;
+  }
+
+  .contact {
+    padding: 2rem 1rem;
+  }
+
+  .contact h2 {
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+  }
+
+  /* Ocultar videos de fondo en móvil */
+  .hero-video-bg {
+    opacity: 0;
+    display: none;
+  }
+
+  .hero-light-leak {
+    opacity: 0.05;
+  }
+
+  /* Reducir gap en grids */
+  .portfolio-grid,
+  .portfolio-gallery,
+  .services-grid {
+    gap: 0.75rem !important;
+  }
+
+  /* Heading sizes */
+  .portfolio > h2,
+  .services > h2,
+  .testimonials > h2,
+  .about > h2,
+  .contact > h2 {
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+  }
+}
+
+/* ── ACCESIBILIDAD: FOCUS VISIBLE ── */
+.btn:focus-visible,
+.contact-icon:focus-visible,
+.header-nav a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ── TESTIMONIOS: MOSTRAR SOLO 5 PRIMEROS (3 únicos + 2 del segundo set) ── */
+.testimonial-card:nth-child(n+6) {
+  display: none;
+}
+
+/* ── PREFERS-REDUCED-MOTION ── */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .hero-video-bg video,
+  .hero-particles video {
+    display: none;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════ */
