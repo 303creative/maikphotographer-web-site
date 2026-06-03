@@ -246,8 +246,8 @@
   }
 
   .hero-video-bg video {
-    opacity: 0;
-    display: none;
+    opacity: 0.08;
+    display: block;
   }
 
   .hero-light-leak {
