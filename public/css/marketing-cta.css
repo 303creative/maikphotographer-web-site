@@ -1,0 +1,122 @@
+/* ══════════════════════════════════════════════════════════════════════════════ */
+/* MARKETING CTA SECTION — Premium call-to-action for marketing services page      */
+/* ══════════════════════════════════════════════════════════════════════════════ */
+
+.marketing-cta-section {
+  padding: clamp(80px, 15vw, 120px) clamp(20px, 5vw, 60px);
+  background: linear-gradient(135deg,
+    rgba(255, 87, 34, 0.08) 0%,
+    rgba(255, 87, 34, 0.02) 100%);
+  border: 1px solid rgba(255, 87, 34, 0.2);
+  border-radius: 12px;
+  margin: clamp(60px, 10vw, 100px) auto;
+  max-width: 900px;
+  text-align: center;
+}
+
+.marketing-cta-container h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 6vw, 3.2rem);
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0 0 16px 0;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.marketing-cta-container p {
+  font-size: clamp(1rem, 2vw, 1.05rem);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin: 0 0 32px 0;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: clamp(14px, 2vw, 18px) clamp(28px, 5vw, 48px);
+  background: #FF5722;
+  color: #FFFFFF;
+  border: 1px solid #FF5722;
+  border-radius: 6px;
+  font-size: clamp(0.95rem, 1.8vw, 1rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: all 260ms cubic-bezier(0.16, 1, 0.3, 1);
+  min-height: 44px;
+}
+
+.cta-button:hover {
+  background: #E64A19;
+  border-color: #E64A19;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(255, 87, 34, 0.3);
+}
+
+.cta-button:active {
+  transform: scale(0.97);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .marketing-cta-section {
+    padding: clamp(60px, 8vw, 80px) clamp(16px, 4vw, 32px);
+    margin: clamp(40px, 8vw, 60px) auto;
+  }
+
+  .marketing-cta-container h2 {
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    margin-bottom: 12px;
+  }
+
+  .marketing-cta-container p {
+    font-size: clamp(0.95rem, 1.8vw, 1rem);
+    margin-bottom: 24px;
+  }
+
+  .cta-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .marketing-cta-section {
+    padding: clamp(40px, 6vw, 60px) 16px;
+    margin: clamp(30px, 6vw, 50px) auto;
+  }
+
+  .marketing-cta-container h2 {
+    font-size: clamp(1.25rem, 4.5vw, 1.8rem);
+    margin-bottom: 8px;
+  }
+
+  .marketing-cta-container p {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+  }
+
+  .cta-button {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .cta-button {
+    transition: none;
+  }
+
+  .cta-button:hover {
+    transform: none;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════ */
