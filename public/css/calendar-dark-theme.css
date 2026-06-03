@@ -6,6 +6,9 @@
 #cal-embed {
   margin-top: 40px;
   padding: 0;
+  border: 1px solid #000000 !important;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 /* ── CALENDAR CONTAINER ── */
@@ -13,6 +16,12 @@
 #cal-embed iframe {
   background: transparent !important;
   border: none !important;
+}
+
+/* Remove any white borders/outlines */
+#cal-embed * {
+  outline: none !important;
+  border-color: #000000 !important;
 }
 
 /* ── OVERRIDE CAL.COM STYLES VIA CSS VARIABLES ── */
