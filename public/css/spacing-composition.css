@@ -1,0 +1,314 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   SPACING & COMPOSITION — maikphotographer.com
+   Mobile-first. Normalizes section padding, grid gaps, vertical rhythm,
+   and horizontal alignment across hero, marquee, about, portfolio,
+   services, testimonials, contact, footer.
+
+   Load AFTER all base stylesheets so these tokens override drift.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Section padding (top/bottom) — CLAUDE.md spec: 60–120px ── */
+  --sp-section:        clamp(60px, 10vw, 120px);
+  --sp-section-tight:  clamp(48px, 8vw, 96px);
+  --sp-section-wide:   clamp(72px, 12vw, 144px);
+
+  /* ── Horizontal container padding ── */
+  --sp-gutter:         clamp(20px, 5vw, 80px);
+  --sp-container-max:  1280px;
+
+  /* ── Grid gaps — proportional across breakpoints ── */
+  --sp-grid-gap:       12px;   /* mobile base */
+  --sp-card-gap:       16px;   /* card/list spacing on mobile */
+
+  /* ── Vertical rhythm tokens ── */
+  --sp-stack-xs:       8px;
+  --sp-stack-sm:       12px;
+  --sp-stack-md:       20px;
+  --sp-stack-lg:       32px;
+  --sp-stack-xl:       48px;
+  --sp-stack-2xl:      64px;
+
+  /* ── Heading → content space ── */
+  --sp-heading-gap:    clamp(24px, 4vw, 48px);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --sp-grid-gap: 16px;
+    --sp-card-gap: 20px;
+  }
+}
+@media (min-width: 1024px) {
+  :root {
+    --sp-grid-gap: 24px;
+    --sp-card-gap: 28px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   GLOBAL CONTAINER — consistent horizontal alignment everywhere
+   ═══════════════════════════════════════════════════════════════════════ */
+.container {
+  max-width: var(--sp-container-max);
+  margin-inline: auto;
+  padding-inline: var(--sp-gutter);
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SECTION PADDING — uniform top/bottom rhythm
+   ═══════════════════════════════════════════════════════════════════════ */
+.about,
+.portfolio,
+.marketing,
+.services,
+.cta-mid,
+.contact,
+.booking,
+.marquee-section,
+.testimonials {
+  padding-block: var(--sp-section);
+  padding-inline: 0;
+}
+
+/* Tight variant for transitional sections (CTA, marquee) */
+.cta-mid,
+.marquee-section {
+  padding-block: var(--sp-section-tight);
+}
+
+/* Hero needs nav clearance on top; balanced bottom */
+.hero {
+  padding-block: calc(var(--nav-h, 68px) + clamp(32px, 6vw, 64px))
+                 clamp(64px, 10vw, 120px);
+  padding-inline: var(--sp-gutter);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HEADING → CONTENT SPACING — coherent across sections
+   ═══════════════════════════════════════════════════════════════════════ */
+.portfolio > .container > h2,
+.marketing > .container > h2,
+.services > .container > h2,
+.booking > .container > h2,
+.testimonials > .container > h2,
+.contact > .container > h2,
+.about > .container h2 {
+  margin-bottom: var(--sp-heading-gap);
+}
+
+.portfolio h2,
+.marketing h2,
+.services h2,
+.booking h2,
+.testimonials h2 {
+  margin-bottom: var(--sp-heading-gap);
+}
+
+/* Section label/kicker → heading */
+.section-label,
+.label-tag {
+  display: block;
+  margin-bottom: var(--sp-stack-sm);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HERO — vertical rhythm
+   ═══════════════════════════════════════════════════════════════════════ */
+.hero-badge   { margin-bottom: var(--sp-stack-md); }
+.hero-title   { margin-bottom: var(--sp-stack-md); }
+.hero-sub     { margin-bottom: var(--sp-stack-lg); }
+.hero-ctas    {
+  gap: var(--sp-stack-sm);
+  margin-bottom: var(--sp-stack-lg);
+}
+.hero-proof   { gap: var(--sp-stack-md); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PORTFOLIO GRID
+   ═══════════════════════════════════════════════════════════════════════ */
+.port-grid {
+  gap: var(--sp-grid-gap);
+}
+.port-filters {
+  gap: var(--sp-stack-sm);
+  margin-bottom: var(--sp-stack-lg);
+}
+.port-more {
+  margin-top: var(--sp-stack-xl);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MARKETING / NETFLIX CARDS
+   ═══════════════════════════════════════════════════════════════════════ */
+.marketing-grid {
+  gap: var(--sp-grid-gap);
+}
+.mkt-info {
+  padding: var(--sp-stack-lg) clamp(20px, 3vw, 28px);
+}
+.mkt-info h3 { margin-bottom: var(--sp-stack-xs); }
+.mkt-info p  { margin-bottom: var(--sp-stack-sm); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SERVICES — fix the 2px gap (looks broken) and balance card padding
+   ═══════════════════════════════════════════════════════════════════════ */
+.svc-grid {
+  gap: var(--sp-grid-gap);
+}
+.svc-card {
+  padding: clamp(28px, 4vw, 48px) clamp(24px, 3vw, 40px);
+}
+.svc-num    { margin-bottom: var(--sp-stack-md); }
+.svc-card h3 { margin-bottom: var(--sp-stack-sm); }
+.svc-card p  { margin-bottom: var(--sp-stack-md); }
+.svc-card ul { margin-bottom: var(--sp-stack-lg); }
+.svc-price   { margin-bottom: 0; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ABOUT — balance two-column grid; tighten stat block
+   ═══════════════════════════════════════════════════════════════════════ */
+.about-inner {
+  gap: clamp(40px, 6vw, 80px);
+  align-items: center;
+}
+.about-tags  { margin: var(--sp-stack-md) 0 var(--sp-stack-lg); gap: var(--sp-stack-xs); }
+.about-firma { margin-bottom: var(--sp-stack-lg); }
+.about-desc  { margin-bottom: var(--sp-stack-md); }
+.about-stats {
+  gap: clamp(24px, 4vw, 48px);
+  padding-top: var(--sp-stack-xl);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TESTIMONIALS / CAROUSEL
+   ═══════════════════════════════════════════════════════════════════════ */
+.testimonials h2 { margin-bottom: var(--sp-heading-gap); }
+.carousel-viewport { margin-bottom: var(--sp-stack-lg); }
+.carousel-inner    { gap: var(--sp-grid-gap); }
+.testimonial-card  {
+  padding: clamp(24px, 3vw, 40px);
+  gap: var(--sp-stack-md);
+}
+.testimonial-author { margin-top: var(--sp-stack-sm); gap: var(--sp-stack-sm); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MARQUEE
+   ═══════════════════════════════════════════════════════════════════════ */
+.marquee-title { margin-bottom: var(--sp-stack-lg); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONTACT — two-column rhythm + form vertical spacing
+   ═══════════════════════════════════════════════════════════════════════ */
+.contact-inner {
+  gap: clamp(40px, 6vw, 80px);
+  align-items: start;
+}
+.contact-ways  { gap: var(--sp-stack-sm); margin-top: var(--sp-stack-lg); }
+.cway          { padding: var(--sp-stack-md) clamp(16px, 2vw, 20px); gap: var(--sp-stack-md); }
+.form-row      { margin-bottom: var(--sp-stack-sm); }
+.form-row:last-of-type { margin-bottom: var(--sp-stack-md); }
+.form-note     { margin-top: var(--sp-stack-sm); }
+.success-actions { gap: var(--sp-stack-sm); margin-top: var(--sp-stack-md); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CTA MID — centered, breathing
+   ═══════════════════════════════════════════════════════════════════════ */
+.cta-mid           { text-align: center; }
+.cta-mid h2        { margin-bottom: var(--sp-stack-md); }
+.cta-mid .hero-ctas {
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FOOTER — even rhythm
+   ═══════════════════════════════════════════════════════════════════════ */
+footer {
+  padding-block: var(--sp-stack-xl);
+}
+.footer-inner { gap: var(--sp-stack-md); }
+.footer-links { gap: var(--sp-stack-md); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LINE-HEIGHT — readable across sizes
+   Bebas Neue: tight (display). Inter body: 1.6. Small UI/labels: 1.4.
+   ═══════════════════════════════════════════════════════════════════════ */
+h1, h2, h3, h4 { line-height: 1.02; }
+.hero-sub,
+.about-desc,
+.svc-card p,
+.mkt-info p,
+.testimonial-text { line-height: 1.6; }
+.label-tag,
+.section-label,
+.cway-label,
+.nav-link,
+.port-filter,
+.form-note { line-height: 1.4; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TABLET (>=768px) — 2-column grids, proportional gaps
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (min-width: 768px) {
+  .port-grid       { grid-template-columns: repeat(2, 1fr); }
+  .marketing-grid  { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   DESKTOP (>=1024px) — 3-column grids, full padding
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (min-width: 1024px) {
+  .port-grid       { grid-template-columns: repeat(3, 1fr); }
+  .marketing-grid  { grid-template-columns: repeat(3, 1fr); }
+  .svc-grid        { grid-template-columns: repeat(3, 1fr); }
+  .about-inner     { grid-template-columns: 1fr 1fr; }
+  .contact-inner   { grid-template-columns: 1fr 1fr; }
+  .about-stats     { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   WIDE (>=1280px) — slightly wider section breathing
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (min-width: 1280px) {
+  .about, .contact { padding-block: var(--sp-section-wide); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MOBILE OVERRIDES (<768px) — tightest rhythm, single column
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+  .port-grid,
+  .marketing-grid,
+  .svc-grid {
+    grid-template-columns: 1fr;
+    gap: var(--sp-grid-gap);
+  }
+
+  .about-inner,
+  .contact-inner {
+    grid-template-columns: 1fr;
+    gap: var(--sp-stack-xl);
+  }
+
+  .about-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--sp-stack-lg);
+    padding-top: var(--sp-stack-lg);
+  }
+
+  .hero-ctas {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero-ctas .btn { width: 100%; justify-content: center; }
+  .hero-proof    { justify-content: center; }
+
+  .footer-inner  {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--sp-stack-md);
+  }
+  .footer-links  { justify-content: center; }
+}

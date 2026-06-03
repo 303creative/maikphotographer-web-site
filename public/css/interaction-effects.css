@@ -1,0 +1,631 @@
+/* ══════════════════════════════════════════════════════════════════════════════ */
+/* INTERACTION EFFECTS — Cinematic micro-interactions                             */
+/* Reference: Apple.com · Leica Camera                                            */
+/* Motion: Emil Kowalski principles — cubic-bezier(0.16, 1, 0.3, 1)               */
+/* ══════════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --fx-ease:        cubic-bezier(0.16, 1, 0.3, 1);
+  --fx-ease-soft:   cubic-bezier(0.22, 1, 0.36, 1);
+  --fx-ease-press:  cubic-bezier(0.4, 0, 0.2, 1);
+  --fx-dur-fast:    180ms;
+  --fx-dur-normal:  260ms;
+  --fx-dur-slow:    420ms;
+  --fx-dur-reveal:  600ms;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════ */
+/* 1. PORTFOLIO ITEMS — Cinematic zoom + caption reveal                          */
+/* ══════════════════════════════════════════════════════════════════════════════ */
+
+.portfolio-item,
+.gallery-item,
+.port-item {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  isolation: isolate;
+  transform: translateZ(0);
+  transition:
+    transform var(--fx-dur-normal) var(--fx-ease),
+    box-shadow var(--fx-dur-normal) var(--fx-ease);
+}
+
+.portfolio-item:hover,
+.gallery-item:hover,
+.port-item:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 24px 48px -16px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.portfolio-item img,
+.gallery-item img,
+.port-item img {
+  transition:
+    transform var(--fx-dur-slow) var(--fx-ease-soft),
+    filter var(--fx-dur-normal) var(--fx-ease);
+  will-change: transform;
+}
+
+.portfolio-item:hover img,
+.gallery-item:hover img,
+.port-item:hover img {
+  transform: scale(1.06);
+  filter: brightness(1.05) contrast(1.03);
+}
+
+.portfolio-item::before,
+.gallery-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 87, 34, 0) 0%,
+    rgba(255, 87, 34, 0) 60%,
+    rgba(255, 87, 34, 0.08) 100%
+  );
+  opacity: 0;
+  z-index: 9;
+  pointer-events: none;
+  transition: opacity var(--fx-dur-normal) var(--fx-ease);
+}
+
+.portfolio-item:hover::before,
+.gallery-item:hover::before {
+  opacity: 1;
+}
+
+.portfolio-item::after,
+.gallery-item::after {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.4) 40%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  transition: opacity var(--fx-dur-normal) var(--fx-ease);
+}
+
+.portfolio-caption,
+.gallery-caption {
+  transform: translateY(8px);
+  transition:
+    transform var(--fx-dur-slow) var(--fx-ease),
+    opacity var(--fx-dur-normal) var(--fx-ease);
+  transition-delay: 60ms;
+}
+
+.portfolio-item:hover .portfolio-caption,
+.gallery-item:hover .gallery-caption {
+  transform: translateY(0);
+}
+
+.portfolio-caption::after,
+.gallery-caption::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 1px;
+  margin-top: 8px;
+  background: var(--color-accent, #FF5722);
+  transition: width var(--fx-dur-slow) var(--fx-ease);
+  transition-delay: 120ms;
+}
+
+.portfolio-item:hover .portfolio-caption::after,
+.gallery-item:hover .gallery-caption::after {
+  width: 48px;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════ */
+/* 2. BUTTONS — Smooth press + glow                                              */
+/* ══════════════════════════════════════════════════════════════════════════════ */
+
+.btn,
+button.btn,
+a.btn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    transform var(--fx-dur-normal) var(--fx-ease),
+    background-color var(--fx-dur-fast) var(--fx-ease),
+    border-color var(--fx-dur-fast) var(--fx-ease),
+    box-shadow var(--fx-dur-normal) var(--fx-ease),
+    color var(--fx-dur-fast) var(--fx-ease);
+  will-change: transform;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0) 50%
+  );
+  opacity: 0;
+  z-index: -1;
+  transition: opacity var(--fx-dur-normal) var(--fx-ease);
+  pointer-events: none;
+}
+
+.btn:hover::before {
+  opacity: 1;
+}
+
+.btn:active {
+  transform: scale(0.97);
+  transition-duration: 100ms;
+  transition-timing-function: var(--fx-ease-press);
+}
+
+.btn-primary {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.1) inset,
+    0 0 0 0 rgba(255, 87, 34, 0);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.1) inset,
+    0 12px 32px -8px rgba(255, 87, 34, 0.5),
+    0 0 0 1px rgba(255, 87, 34, 0.4);
+}
+
+.btn-primary:active {
+  transform: scale(0.97) translateY(0);
+  box-shadow:
+    0 0 0 rgba(255, 87, 34, 0) inset,
+    0 4px 12px -4px rgba(255, 87, 34, 0.4);
+}
+
+.btn-ghost {
+  position: relative;
+}
+
+.btn-ghost::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  opacity: 0;
+  transition: opacity var(--fx-dur-normal) var(--fx-ease);
+  pointer-events: none;
+}
+
+.btn-ghost:hover::after {
+  opacity: 1;
+}
+
+.btn-ghost:hover {
+  transform: translateY(-1px);
+}
+
+/* Arrow / icon micro-shift on hover for any CTA with arrow */
+.btn .arrow,
+.btn svg,
+.btn .icon {
+  transition: transform var(--fx-dur-normal) var(--fx-ease);
+  will-change: transform;
+}
+
+.btn:hover .arrow,
+.btn:hover svg.arrow,
+.btn:hover .icon {
+  transform: translateX(4px);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════ */
+/* 3. SERVICE CARDS — Border glow + lift                                         */
+/* ══════════════════════════════════════════════════════════════════════════════ */
+
+.service-card {
+  position: relative;
+  isolation: isolate;
+  transition:
+    transform var(--fx-dur-normal) var(--fx-ease),
+    border-color var(--fx-dur-normal) var(--fx-ease),
+    box-shadow var(--fx-dur-normal) var(--fx-ease),
+    background-color var(--fx-dur-normal) var(--fx-ease);
+  will-change: transform;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 87, 34, 0.6) 0%,
+    rgba(255, 87, 34, 0) 50%,
+    rgba(255, 87, 34, 0.3) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity var(--fx-dur-normal) var(--fx-ease);
+  pointer-events: none;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  background-color: rgba(255, 255, 255, 0.02);
+  box-shadow:
+    0 24px 48px -20px rgba(0, 0, 0, 0.8),
+    0 12px 24px -12px rgba(255, 87, 34, 0.18);
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+.service-card .price,
+.service-card .service-price {
+  transition: color var(--fx-dur-normal) var(--fx-ease);
+}
+
+.service-card:hover .price,
+.service-card:hover .service-price {
+  color: var(--color-accent, #FF5722);
+}
+
+.service-card.featured::before {
+  opacity: 0.6;
+}
+
+.service-card.featured:hover::before {
+  opacity: 1;
+}
+
+/* List items inside cards: slight stagger on hover */
+.service-card ul li,
+.service-card .includes li {
+  transition: transform var(--fx-dur-normal) var(--fx-ease);
+}
+
+.service-card:hover ul li,
+.service-card:hover .includes li {
+  transform: translateX(2px);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════ */
+/* 4. TESTIMONIAL CARDS — Subtle elevation                                       */
+/* ══════════════════════════════════════════════════════════════════════════════ */
+
+.testimonial-card {
+  position: relative;
+  transition:
+    transform var(--fx-dur-normal) var(--fx-ease),
+    border-color var(--fx-dur-normal) var(--fx-ease),
+    box-shadow var(--fx-dur-normal) var(--fx-ease),
+    background-color var(--fx-dur-normal) var(--fx-ease);
+  will-change: transform;
+}
+
+.testimonial-card::after {
+  content: '';
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 28px;
+  height: 28px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 87, 34, 0.4) 0%,
+    rgba(255, 87, 34, 0) 70%
+  );
+  opacity: 0;
+  filter: blur(8px);
+  transition: opacity var(--fx-dur-slow) var(--fx-ease);
+  pointer-events: none;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.16);
+  background-color: rgba(255, 255, 255, 0.03);
+  box-shadow:
+    0 16px 32px -16px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.testimonial-card:hover::after {
+  opacity: 1;
+}
+
+.testimonial-card .quote,
+.testimonial-card blockquote {
+  transition: color var(--fx-dur-normal) var(--fx-ease);
+}
+
+.testimonial-card:hover .quote,
+.testimonial-card:hover blockquote {
+  color: #FFFFFF;
+}
+
+.testimonial-card .author,
+.testimonial-card cite {
+  transition: color var(--fx-dur-normal) var(--fx-ease);
+}
+
+.testimonial-card:hover .author,
+.testimonial-card:hover cite {
+  color: var(--color-accent, #FF5722);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════ */
+/* 5. NAV LINKS — Underline reveal (Apple-style)                                 */
+/* ══════════════════════════════════════════════════════════════════════════════ */
+
+.header-nav a,
+.site-header nav a {
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.header-nav a::after,
+.site-header nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--color-accent, #FF5722);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform var(--fx-dur-normal) var(--fx-ease);
+}
+
+.header-nav a:hover::after,
+.site-header nav a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════ */
+/* 6. CONTACT ICONS — Lift + tint                                                */
+/* ══════════════════════════════════════════════════════════════════════════════ */
+
+.contact-icon {
+  position: relative;
+  isolation: isolate;
+}
+
+.contact-icon svg {
+  transition:
+    transform var(--fx-dur-normal) var(--fx-ease),
+    color var(--fx-dur-normal) var(--fx-ease);
+}
+
+.contact-icon:hover svg {
+  transform: scale(1.08);
+}
+
+.contact-icon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  opacity: 0;
+  z-index: -1;
+  transition: opacity var(--fx-dur-normal) var(--fx-ease);
+}
+
+.contact-icon:hover::before {
+  opacity: 1;
+}
+
+.contact-icon:active {
+  transform: translateY(-1px) scale(0.98);
+  transition-duration: 100ms;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════ */
+/* 7. FORM INPUTS — Cinematic focus                                              */
+/* ══════════════════════════════════════════════════════════════════════════════ */
+
+.contact input,
+.contact textarea,
+.contact select,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+  transition:
+    border-color var(--fx-dur-normal) var(--fx-ease),
+    background-color var(--fx-dur-normal) var(--fx-ease),
+    box-shadow var(--fx-dur-slow) var(--fx-ease),
+    transform var(--fx-dur-normal) var(--fx-ease);
+}
+
+.contact input:hover,
+.contact textarea:hover,
+.contact select:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.contact input:focus,
+.contact textarea:focus,
+.contact select:focus {
+  box-shadow:
+    0 0 0 3px rgba(255, 87, 34, 0.12),
+    0 8px 24px -12px rgba(255, 87, 34, 0.3);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════ */
+/* 8. IMAGES — Reveal on enter (works with IntersectionObserver `.visible`)      */
+/* ══════════════════════════════════════════════════════════════════════════════ */
+
+.fx-reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity var(--fx-dur-reveal) var(--fx-ease),
+    transform var(--fx-dur-reveal) var(--fx-ease);
+  will-change: opacity, transform;
+}
+
+.fx-reveal.visible,
+.fx-reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════ */
+/* 9. LINKS — Subtle accent on hover                                             */
+/* ══════════════════════════════════════════════════════════════════════════════ */
+
+a:not(.btn):not(.contact-icon):not(.header-nav a):not(.site-header nav a) {
+  transition: color var(--fx-dur-fast) var(--fx-ease);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════ */
+/* 10. MARQUEE — Pause on hover for a closer look                                */
+/* ══════════════════════════════════════════════════════════════════════════════ */
+
+.marquee:hover .marquee-inner {
+  animation-play-state: paused;
+}
+
+.marquee-item {
+  transition:
+    transform var(--fx-dur-normal) var(--fx-ease),
+    filter var(--fx-dur-normal) var(--fx-ease);
+}
+
+.marquee-item:hover {
+  transform: scale(1.04);
+  filter: brightness(1.1);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════ */
+/* 11. FOCUS-VISIBLE — Consistent, premium focus ring                            */
+/* ══════════════════════════════════════════════════════════════════════════════ */
+
+*:focus {
+  outline: none;
+}
+
+.btn:focus-visible,
+.portfolio-item:focus-visible,
+.gallery-item:focus-visible,
+.service-card:focus-visible,
+.testimonial-card:focus-visible,
+.contact-icon:focus-visible,
+.header-nav a:focus-visible {
+  outline: 2px solid var(--color-accent, #FF5722);
+  outline-offset: 3px;
+  transition: outline-offset var(--fx-dur-fast) var(--fx-ease);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════ */
+/* 12. TOUCH DEVICES — Disable hover transforms                                  */
+/* ══════════════════════════════════════════════════════════════════════════════ */
+
+@media (hover: none) {
+  .portfolio-item:hover,
+  .gallery-item:hover,
+  .port-item:hover,
+  .service-card:hover,
+  .testimonial-card:hover,
+  .btn:hover,
+  .contact-icon:hover {
+    transform: none;
+  }
+
+  .portfolio-item:hover img,
+  .gallery-item:hover img,
+  .port-item:hover img {
+    transform: none;
+    filter: none;
+  }
+
+  .portfolio-item::after,
+  .gallery-item::after {
+    opacity: 0.6;
+  }
+
+  .portfolio-caption,
+  .gallery-caption {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════ */
+/* 13. PREFERS-REDUCED-MOTION — Honor user preference                            */
+/* ══════════════════════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-item,
+  .gallery-item,
+  .port-item,
+  .portfolio-item img,
+  .gallery-item img,
+  .port-item img,
+  .service-card,
+  .testimonial-card,
+  .btn,
+  .contact-icon,
+  .marquee-item,
+  .fx-reveal {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+
+  .portfolio-item:hover,
+  .gallery-item:hover,
+  .service-card:hover,
+  .testimonial-card:hover,
+  .btn:hover,
+  .btn-primary:hover,
+  .contact-icon:hover {
+    transform: none !important;
+  }
+
+  .portfolio-item:hover img,
+  .gallery-item:hover img,
+  .marquee-item:hover {
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .fx-reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .marquee-inner {
+    animation: none !important;
+  }
+
+  .badge-dot {
+    animation: none !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════ */
