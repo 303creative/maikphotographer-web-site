@@ -526,9 +526,10 @@ em {
   margin-bottom: 32px;
 }
 .about-firma img {
-  height: 50px; width: auto;
-  opacity: 0.6;
-  filter: brightness(0) invert(1);
+  height: 50px;
+  width: auto;
+  opacity: 0.85;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
 }
 .about-stats {
   display: grid;
