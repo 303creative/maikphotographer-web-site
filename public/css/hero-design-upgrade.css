@@ -11,6 +11,10 @@
   justify-content: center;
   overflow: hidden;
   padding: clamp(12px, 3vw, 24px);
+  background-image: url('/assets/backgrounds/37_foto_hero_horizontal_2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 .hero-video-bg {
@@ -341,10 +345,22 @@ html.anim-ready .line-in span {
   }
 }
 
+@media (max-width: 1024px) {
+  .hero {
+    background-attachment: scroll;
+  }
+}
+
 @media (max-width: 768px) {
   .hero {
     min-height: 80vh;
     padding: 8px;
+    background-attachment: scroll;
+  }
+
+  /* Hide video on mobile, show fallback photo */
+  .hero-video-bg {
+    display: none !important;
   }
 
   .hero-video-bg video {
@@ -352,7 +368,7 @@ html.anim-ready .line-in span {
   }
 
   .hero-video-bg video.ready {
-    opacity: 0.25 !important;
+    opacity: 0 !important;
   }
 
   .hero-content {
