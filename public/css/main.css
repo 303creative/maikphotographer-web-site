@@ -492,6 +492,7 @@ em {
 }
 .about-image {
   position: relative;
+  z-index: 10;
 }
 .about-photo {
   width: 100%;
@@ -500,6 +501,9 @@ em {
   object-fit: contain;
   background: transparent;
   mix-blend-mode: normal;
+  position: relative;
+  z-index: 10;
+  filter: contrast(1.05) brightness(1);
 }
 .about-desc {
   color: var(--text-2);
