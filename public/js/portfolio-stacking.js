@@ -1,49 +1,59 @@
-/* Portfolio Scroll-Triggered Appearance Effect */
+/* Portfolio Carousel Effect - Scroll-based photo rotation */
 document.addEventListener('DOMContentLoaded', function() {
+  const portfolioSection = document.querySelector('#portfolio');
   const items = document.querySelectorAll('.port-item');
 
   if (!items.length) return;
 
-  let raf = null;
   const itemsArray = Array.from(items);
-  const itemsPerGroup = 3;
-  const totalGroups = Math.ceil(itemsArray.length / itemsPerGroup);
+  const totalItems = itemsArray.length;
+  const visibleItems = 3;
 
   const apply = () => {
-    raf = null;
+    // Get portfolio section position
+    const sectionRect = portfolioSection.getBoundingClientRect();
+    const sectionTop = sectionRect.top;
+    const sectionHeight = sectionRect.height;
+    const windowHeight = window.innerHeight;
+
+    // Calculate scroll progress through section (0 to 1)
+    const scrollProgress = Math.max(0, Math.min(1,
+      (windowHeight / 2 - sectionTop) / sectionHeight
+    ));
+
+    // Calculate which group of 3 we should show
+    // Total groups = (totalItems - visibleItems + 1)
+    const maxIndex = totalItems - visibleItems;
+    const currentIndex = Math.round(scrollProgress * maxIndex);
 
     itemsArray.forEach((item, i) => {
-      const rect = item.getBoundingClientRect();
-      const viewportCenter = window.innerHeight / 2;
-      const distanceFromCenter = rect.top - viewportCenter;
+      // Check if item is in the visible range
+      const isVisible = i >= currentIndex && i < currentIndex + visibleItems;
 
-      // Range: -viewportCenter (fully above) to +viewportCenter (fully below)
-      // We want items visible when in viewport
-      const normalizedDistance = Math.max(-1, Math.min(1, distanceFromCenter / (window.innerHeight / 2)));
+      if (isVisible) {
+        // Calculate position within visible group (0, 1, or 2)
+        const positionInGroup = i - currentIndex;
 
-      // Calculate opacity:
-      // 1 when at center (normalizedDistance = 0)
-      // 0 when off screen (normalizedDistance = ±1)
-      const opacity = 1 - Math.abs(normalizedDistance);
-
-      // Calculate scale: grows as it approaches center
-      const scale = 0.8 + (1 - Math.abs(normalizedDistance)) * 0.2;
-
-      item.style.opacity = opacity.toFixed(3);
-      item.style.transform = `scale(${scale.toFixed(3)})`;
+        // Fade in
+        item.style.opacity = '1';
+        item.style.transform = 'scale(1) translateX(0)';
+      } else {
+        // Fade out
+        item.style.opacity = '0';
+        item.style.transform = 'scale(0.95)';
+      }
     });
   };
 
   const onScroll = () => {
-    if (!raf) raf = requestAnimationFrame(apply);
+    requestAnimationFrame(apply);
   };
 
   window.addEventListener('scroll', onScroll, { passive: true });
-  apply();
+  apply(); // Initial state
 
-  // Cleanup on unload
+  // Cleanup
   window.addEventListener('unload', () => {
     window.removeEventListener('scroll', onScroll);
-    if (raf) cancelAnimationFrame(raf);
   });
 });
