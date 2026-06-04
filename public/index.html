@@ -179,36 +179,42 @@
 <!-- PORTFOLIO -->
 <section id="portfolio" class="portfolio">
   <h2>Portfolio</h2>
+  <div class="portfolio-filters" style="display: flex; gap: 12px; justify-content: center; margin-bottom: 48px; flex-wrap: wrap;">
+    <button class="filter-btn active" data-filter="all" style="padding: 8px 16px; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.05); color: #FFFFFF; border-radius: 4px; cursor: pointer; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; transition: all 300ms ease;">All</button>
+    <button class="filter-btn" data-filter="portrait" style="padding: 8px 16px; border: 1px solid rgba(255,255,255,0.3); background: transparent; color: #FFFFFF; border-radius: 4px; cursor: pointer; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; transition: all 300ms ease;">Portrait</button>
+    <button class="filter-btn" data-filter="editorial" style="padding: 8px 16px; border: 1px solid rgba(255,255,255,0.3); background: transparent; color: #FFFFFF; border-radius: 4px; cursor: pointer; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; transition: all 300ms ease;">Editorial</button>
+    <button class="filter-btn" data-filter="lifestyle" style="padding: 8px 16px; border: 1px solid rgba(255,255,255,0.3); background: transparent; color: #FFFFFF; border-radius: 4px; cursor: pointer; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; transition: all 300ms ease;">Lifestyle</button>
+  </div>
   <div class="portfolio-grid">
     <div class="port-item fade-in" data-category="editorial" data-parallax>
       <img src="/assets/portfolio/39_portafolio_1.jpg" alt="Warm lighting editorial portrait - cinematic photography by Maikel Marshall" loading="lazy">
       <img class="port-watermark" src="/assets/overlays/29_watermark_mk.png" alt="" aria-hidden="true" loading="lazy">
       <div class="port-caption"><span>Editorial</span><span>Warm light</span></div>
     </div>
-    <div class="port-item fade-in" data-category="editorial" data-parallax>
+    <div class="port-item fade-in" data-category="portrait" data-parallax>
       <img src="/assets/portfolio/39_portafolio_2.jpg" alt="Golden circle portrait - fashion photography Miami" loading="lazy">
       <img class="port-watermark" src="/assets/overlays/29_watermark_mk.png" alt="" aria-hidden="true" loading="lazy">
-      <div class="port-caption"><span>Editorial</span><span>Golden circle</span></div>
+      <div class="port-caption"><span>Portrait</span><span>Golden circle</span></div>
     </div>
-    <div class="port-item fade-in" data-category="editorial" data-parallax>
+    <div class="port-item fade-in" data-category="lifestyle" data-parallax>
       <img src="/assets/portfolio/39_portafolio_3.jpg" alt="Red hour lifestyle photography - sunset session" loading="lazy">
       <img class="port-watermark" src="/assets/overlays/29_watermark_mk.png" alt="" aria-hidden="true" loading="lazy">
-      <div class="port-caption"><span>Editorial</span><span>Red hour</span></div>
+      <div class="port-caption"><span>Lifestyle</span><span>Red hour</span></div>
     </div>
-    <div class="port-item fade-in" data-category="editorial" data-parallax>
+    <div class="port-item fade-in" data-category="portrait" data-parallax>
       <img src="/assets/portfolio/39_portafolio_4.jpg" alt="Deep focus editorial photography - professional headshots" loading="lazy">
       <img class="port-watermark" src="/assets/overlays/29_watermark_mk.png" alt="" aria-hidden="true" loading="lazy">
-      <div class="port-caption"><span>Editorial</span><span>Deep focus</span></div>
+      <div class="port-caption"><span>Portrait</span><span>Deep focus</span></div>
     </div>
-    <div class="port-item fade-in" data-category="editorial" data-parallax>
+    <div class="port-item fade-in" data-category="portrait" data-parallax>
       <img src="/assets/portfolio/39_portafolio_5.jpg" alt="Soft silence portrait session - intimate photography" loading="lazy">
       <img class="port-watermark" src="/assets/overlays/29_watermark_mk.png" alt="" aria-hidden="true" loading="lazy">
-      <div class="port-caption"><span>Editorial</span><span>Soft silence</span></div>
+      <div class="port-caption"><span>Portrait</span><span>Soft silence</span></div>
     </div>
-    <div class="port-item fade-in" data-category="editorial" data-parallax>
+    <div class="port-item fade-in" data-category="lifestyle" data-parallax>
       <img src="/assets/portfolio/39_portafolio_6.jpg" alt="Urban raw lifestyle content - brand photography" loading="lazy">
       <img class="port-watermark" src="/assets/overlays/29_watermark_mk.png" alt="" aria-hidden="true" loading="lazy">
-      <div class="port-caption"><span>Editorial</span><span>Urban raw</span></div>
+      <div class="port-caption"><span>Lifestyle</span><span>Urban raw</span></div>
     </div>
     <div class="port-item fade-in" data-category="editorial" data-parallax>
       <img src="/assets/portfolio/39_portafolio_7.jpg" alt="Moody portrait photography - cinematic style" loading="lazy">
@@ -525,6 +531,11 @@
 <!-- CONTACT -->
 <section id="contact" class="contact">
   <h2>Let's create <em>something.</em></h2>
+  <p style="text-align: center; margin-bottom: 40px; color: rgba(255,255,255,0.7); font-size: 14px;">
+    📍 Based in <strong>Miami, FL</strong> • Available worldwide
+    <br>
+    📧 <strong>maikelmarshall07@gmail.com</strong>
+  </p>
   <div class="contact-ways">
     <a href="https://wa.me/17863329815" class="contact-icon" aria-label="Contact via WhatsApp" target="_blank" rel="noopener noreferrer">
       <?xml version="1.0" encoding="UTF-8"?>
@@ -579,10 +590,9 @@
     </a>
   </div>
   <form onsubmit="return false;">
-    <input type="text" placeholder="Your name" required>
-    <input type="email" placeholder="Your email" required>
-    <textarea placeholder="Tell me about your project"></textarea>
-    <button type="submit" class="btn btn-primary">Book a Session</button>
+    <input type="email" placeholder="your@email.com" required>
+    <textarea placeholder="Tell me about your project" required></textarea>
+    <button type="submit" class="btn btn-primary">Send Message</button>
   </form>
   <div id="cal-embed"></div>
 </section>
@@ -627,5 +637,6 @@ Cal('inline',{elementOrSelector:'#cal-embed',calLink:'the303-marketing-kmfxzs/30
 <script src="/js/web-vitals.js" defer></script>
 <script src="/js/animations.js" defer></script>
 <script src="/js/hero-design-upgrade.js" defer></script>
+<script src="/js/portfolio-filter.js" defer></script>
 </body>
 </html>
