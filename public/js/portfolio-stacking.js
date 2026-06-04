@@ -1,4 +1,4 @@
-/* Portfolio Carousel Effect - Groups of 3 appear/disappear together */
+/* Portfolio Carousel Effect - Smooth fade between groups of 3 */
 document.addEventListener('DOMContentLoaded', function() {
   const portfolioSection = document.querySelector('#portfolio');
   const items = document.querySelectorAll('.port-item');
@@ -22,23 +22,33 @@ document.addEventListener('DOMContentLoaded', function() {
       (windowHeight / 2 - sectionTop) / sectionHeight
     ));
 
-    // Calculate which group we're in (0, 1, 2, etc.)
-    const currentGroup = Math.floor(scrollProgress * totalGroups);
-    const groupStartIndex = currentGroup * groupSize;
+    // Calculate position within all groups
+    // Multiply by totalGroups to get float value showing which group we're approaching
+    const groupPosition = scrollProgress * totalGroups;
+    const currentGroup = Math.floor(groupPosition);
+    const groupTransition = groupPosition - currentGroup; // 0 to 1 within current group
 
     itemsArray.forEach((item, i) => {
-      // Check if item is in the current visible group
-      const isVisible = i >= groupStartIndex && i < groupStartIndex + groupSize;
+      const itemGroup = Math.floor(i / groupSize);
+      let opacity = 0;
+      let scale = 0.95;
 
-      if (isVisible) {
-        // Fade in - fully visible
-        item.style.opacity = '1';
-        item.style.transform = 'scale(1)';
-      } else {
-        // Fade out - hidden
-        item.style.opacity = '0';
-        item.style.transform = 'scale(0.95)';
+      // If item is in current group
+      if (itemGroup === currentGroup) {
+        // Fade out as we progress to next group
+        opacity = 1 - groupTransition;
+        scale = 1 - (groupTransition * 0.05); // Slight scale down as it fades
       }
+      // If item is in next group
+      else if (itemGroup === currentGroup + 1) {
+        // Fade in as we progress
+        opacity = groupTransition;
+        scale = 0.95 + (groupTransition * 0.05); // Slight scale up as it fades in
+      }
+
+      // Apply with easing
+      item.style.opacity = Math.max(0, opacity).toFixed(3);
+      item.style.transform = `scale(${scale.toFixed(3)})`;
     });
   };
 
