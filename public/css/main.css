@@ -867,33 +867,35 @@ em {
 .contact-ways {
   display: flex !important;
   flex-direction: row !important;
-  gap: 48px !important;
-  margin-top: 32px !important;
+  gap: 100px !important;
+  margin-top: 48px !important;
   flex-wrap: wrap !important;
   justify-content: center !important;
   align-items: center !important;
+  padding: 40px 20px !important;
 }
 .contact-icon,
 .cway {
   display: flex !important;
   align-items: center !important;
-  gap: 16px !important;
-  padding: 20px 32px !important;
+  justify-content: center !important;
+  gap: 20px !important;
+  padding: 28px 48px !important;
   border: 1px solid var(--border) !important;
   border-radius: 8px !important;
   text-decoration: none !important;
   transition: all 300ms ease !important;
-  min-width: 180px !important;
+  min-width: 220px !important;
   white-space: nowrap !important;
   flex-shrink: 0 !important;
 }
 .cway:hover { border-color: var(--accent); }
 .cway svg,
 .contact-icon svg {
-  width: 28px !important;
-  height: 28px !important;
+  width: 32px !important;
+  height: 32px !important;
   flex-shrink: 0 !important;
-  min-width: 28px !important;
+  min-width: 32px !important;
 }
 .contact-icon span {
   font-family: var(--font-b);
