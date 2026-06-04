@@ -95,14 +95,16 @@
   max-width: 1400px !important;
   margin: 0 auto !important;
   width: 100% !important;
+  box-sizing: border-box !important;
 }
 
-/* Left column wrapper (badge, title, subtitle) */
-.hero-badge,
-.hero-title,
-.hero-sub {
-  flex: 0 1 auto !important;
-  max-width: 500px !important;
+/* Left column (badge, title, subtitle) */
+.hero-left {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 560px;
 }
 
 /* Right column (buttons) */
@@ -115,6 +117,8 @@
   width: auto !important;
   flex-wrap: nowrap !important;
   min-width: 0 !important;
+  margin-bottom: 0 !important;
+  justify-content: flex-end !important;
 }
 
 /* ── BADGE ── */
@@ -235,6 +239,12 @@ html.anim-ready .line-in span {
   transform: translateY(30px);
   animation: revealUp 800ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
   animation-delay: 620ms;
+}
+
+/* Override hero-optimization: botones NO full-width en desktop */
+.hero-ctas .btn {
+  width: fit-content !important;
+  min-width: 160px;
 }
 
 /* Cream button style (primary) */
@@ -375,30 +385,30 @@ html.anim-ready .line-in span {
 
   .hero-content {
     padding: clamp(30px, 5vw, 60px);
-    flex-direction: column;
+    flex-direction: column !important;
     align-items: center;
     text-align: center;
   }
 
-  .hero-badge,
-  .hero-title,
-  .hero-sub {
+  .hero-left {
     max-width: 100%;
+    align-items: center;
     text-align: center;
   }
 
   .hero-ctas {
-    flex-direction: column;
-    width: 100%;
-    align-items: stretch;
+    flex-direction: column !important;
+    width: 100% !important;
+    align-items: stretch !important;
     margin-top: clamp(20px, 4vw, 40px);
   }
 
+  .hero-ctas .btn,
   .btn-primary,
   .btn-ghost {
-    width: 100%;
-    max-width: 100%;
-    justify-content: center;
+    width: 100% !important;
+    max-width: 100% !important;
+    justify-content: center !important;
   }
 }
 
