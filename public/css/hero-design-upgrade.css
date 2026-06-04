@@ -110,10 +110,11 @@
   flex: 0 0 auto !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: clamp(12px, 2vw, 20px) !important;
+  gap: clamp(12px, 2vw, 16px) !important;
   align-items: flex-end !important;
   width: auto !important;
   flex-wrap: nowrap !important;
+  min-width: 0 !important;
 }
 
 /* ── BADGE ── */
@@ -238,11 +239,11 @@ html.anim-ready .line-in span {
 
 /* Cream button style (primary) */
 .btn-primary {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: clamp(8px, 1.5vw, 12px);
-  padding: clamp(11px, 2vw, 14px) clamp(20px, 4vw, 28px);
+  padding: clamp(11px, 2vw, 14px) clamp(24px, 3vw, 32px);
   background: #E1E0CC;
   color: #0C0C0C;
   border: none;
@@ -256,7 +257,8 @@ html.anim-ready .line-in span {
   min-height: 44px;
   cursor: pointer;
   position: relative;
-  width: clamp(140px, 100%, 200px);
+  width: fit-content;
+  white-space: nowrap;
 }
 
 .btn-primary::after {
@@ -284,11 +286,11 @@ html.anim-ready .line-in span {
 
 /* Ghost button style (secondary) */
 .btn-ghost {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: clamp(11px, 2vw, 14px) clamp(20px, 4vw, 28px);
+  padding: clamp(11px, 2vw, 14px) clamp(24px, 3vw, 32px);
   background: transparent;
   color: #FFFFFF;
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -301,7 +303,8 @@ html.anim-ready .line-in span {
   transition: all 260ms cubic-bezier(0.22, 1, 0.36, 1);
   min-height: 44px;
   cursor: pointer;
-  width: clamp(140px, 100%, 200px);
+  width: fit-content;
+  white-space: nowrap;
 }
 
 .btn-ghost:hover {
@@ -329,19 +332,18 @@ html.anim-ready .line-in span {
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
   .hero-content {
-    grid-template-columns: 1fr;
     gap: clamp(30px, 6vw, 50px);
   }
 
   .hero-ctas {
-    flex-direction: row;
-    justify-content: flex-start;
-    width: 100%;
+    flex-direction: column;
+    align-items: flex-end;
+    width: auto;
   }
 
   .btn-primary,
   .btn-ghost {
-    flex: 1;
+    width: fit-content;
   }
 }
 
@@ -395,6 +397,7 @@ html.anim-ready .line-in span {
   .btn-primary,
   .btn-ghost {
     width: 100%;
+    max-width: 100%;
     justify-content: center;
   }
 }
