@@ -1,74 +1,56 @@
-# Rol
+# Claude Code Instructions — maikphotographer.com
 
-Eres un ingeniero de software de clase mundial especializado en experiencias web premium, animaciones cinematográficas, interfaces de alto impacto y diseño front-end de nivel internacional.
+Eres un ingeniero de software especializado en crear experiencias web premium, animaciones cinematográficas e interfaces de alto impacto visual.
 
-No creas páginas web genéricas. Construyes experiencias visuales de alta calidad, con estética premium, animaciones fluidas, composición editorial, rendimiento optimizado y código limpio.
-
-Tu objetivo es crear sitios web que parezcan desarrollados por un equipo senior de producto, diseño y motion design.
+Tu objetivo es mantener y mejorar maikphotographer.com: un sitio web premium para Maikel Marshall, fotógrafo profesional en Miami con estética cinematográfica, dark theme, botones cream-colored, y animaciones fluidas.
 
 ---
 
-# Stack tecnológico
-
-Usa este stack tecnológico de forma estricta:
-
-- React 19
-- TailwindCSS v3.4.17
-- Lucide Icons
-- GSAP
-- ScrollTrigger
-- Framer Motion si es necesario
-- JavaScript moderno
-- HTML semántico
-- CSS limpio, modular y optimizado
-
-No uses librerías innecesarias.  
-No instales dependencias sin justificar su uso.  
-No cambies el stack salvo que sea absolutamente necesario.
-
----
-
-# Skill de diseño
-
-Usa la skill de diseño front-end instalada en:
+## Stack Tecnológico Actual (IMPORTANTE: NO REACT)
 
 ```
-.claude/skills/taste-skill
+HTML vanilla (public/index.html)
+CSS modular — múltiples archivos en public/css/
+JavaScript vanilla — scripts en public/js/
+(NO React, NO TailwindCSS, NO Framer Motion)
 ```
 
-Lee la skill completa antes de escribir cualquier línea de código.  
-Aplica sus principios en cada decisión de diseño, composición y animación.  
-La skill define el estándar visual mínimo aceptable.
+**Arquitectura CSS actual:**
+- `public/css/main.css` — estilos base globales
+- `public/css/hero-design-upgrade.css` — hero section (video, botones cream, line-in animations)
+- `public/css/marketing-services.css` — sección de servicios de marketing (4 cards)
+- `public/css/marketing-cta.css` — CTA mid-page
+- Otros CSS según sea necesario
+
+**JavaScript actual:**
+- `public/js/hero-design-upgrade.js` — animaciones hero (video fade-in, line-in text split, badge pulse)
 
 ---
 
-# Sistema de diseño — maikphotographer.com
+---
 
-## Identidad visual
+## Sistema de Diseño — maikphotographer.com
 
-**Fotógrafo:** Maikel Marshall (@maik_photographer)  
-**Estilo:** Cinematográfico · Minimalista · Lujo editorial  
-**Referencia:** Entre Apple.com y Leica Camera  
-**Sensación:** "Este fotógrafo cobra $500+ por sesión. Vale cada dólar."
+### Identidad Visual
 
-## Paleta de colores
+```
+Fotógrafo: Maikel Marshall (@maik_photographer)
+Estilo: Cinematográfico · Minimalista · Lujo editorial
+Paleta: Dark theme (#0C0C0C base) + naranja (#FF5722) + cream buttons (#E1E0CC)
+Sensación: "Este fotógrafo cobra $400-500+ por sesión. Vale cada dólar."
+```
+
+### Colores
 
 ```css
 :root {
-  --bg:             #0C0C0C;  /* Negro profundo — base de todo */
-  --bg-2:           #111111;  /* Cards y secciones alternadas */
-  --bg-3:           #1A1A1A;  /* Fondos elevados */
-  --bg-4:           #222222;  /* Inputs y elementos interactivos */
-  --accent:         #FF5722;  /* Naranja cinematográfico — solo en CTAs */
-  --accent-hover:   #E64A19;  /* Hover del acento */
-  --accent-muted:   rgba(255, 87, 34, 0.12);
-  --text:           #FFFFFF;  /* Texto principal */
-  --text-2:         #888888;  /* Subtítulos y metadata */
-  --text-3:         #555555;  /* Elementos decorativos */
-  --border:         rgba(255, 255, 255, 0.08);
-  --border-hover:   rgba(255, 255, 255, 0.16);
-  --green:          #22C55E;  /* SOLO para el badge de disponibilidad */
-  --whatsapp:       #25D366;  /* SOLO para el icono de WhatsApp */
+  --bg:             #0C0C0C;      /* Negro profundo — base */
+  --accent:         #FF5722;      /* Naranja cinematográfico — CTAs */
+  --accent-hover:   #E64A19;
+  --cream:          #E1E0CC;      /* Botones primarios */
+  --text:           #FFFFFF;      /* Texto principal */
+  --text-secondary: #888888;      /* Subtítulos */
+  --border:         rgba(255,255,255,0.08);
 }
 ```
 
@@ -116,144 +98,363 @@ La skill define el estándar visual mínimo aceptable.
 
 ---
 
-# Estructura de la web
+---
 
-## Secciones en orden
+## Estructura de Páginas
+
+### `public/index.html` — Página Principal
+
+**Secciones en orden:**
 
 ```
-1. Hero          — Video cinematográfico + título + badge disponibilidad
-2. Scroll Video  — Cámara Sony A7 III desmontándose (efecto 3D scroll)
-3. About         — Foto BTS + texto + firma + stats animados
-4. Portfolio     — Grid 3x3 con filtros y hover effects
-5. Services      — 3 cards de servicios con precios
-6. CTA Mid       — Llamada a la acción intermedia
-7. Contact       — Formulario + iconos SVG + Cal.com embed
-8. Footer        — Logo + links + copyright
-```
+1. Hero
+   - Video background (loop de cámara)
+   - Badge con disponibilidad (punto verde pulsante)
+   - Título con line-in animation ("Shoot real. Feel it." — "real." en naranja itálica)
+   - Subtítulo
+   - CTAs: botón cream (primario) + ghost button (secundario)
+   - Mobile: foto estática en lugar de video
 
-## Hero section
+2. About (Stats Section)
+   - Foto de Maikel (the303-netflix-3.png con background removido)
+   - Texto "I don't just take photos. I direct."
+   - Stats: sesiones, países, años de experiencia
+   - [REMOVIDO: firma 28_firma_maikel.png]
 
-```jsx
-// Elementos del hero en orden de z-index:
-// 0 — Video loop de fondo (cámara flotando, opacidad 40%)
-// 1 — Video partículas naranja (mix-blend-mode: screen, opacidad 18%)
-// 2 — Light leak overlay (PNG, mix-blend-mode: screen)
-// 3 — Grain texture (PNG 512x512, opacity 4%, mix-blend-mode: overlay)
-// 10 — Contenido del hero (badge + título + sub + CTAs)
-// 5 — Foto del fotógrafo (derecha, mask gradient)
+3. Portfolio Grid (3x3)
+   - 9 fotos con aspect-ratio 3/4
+   - Filtros: All | Portrait | Editorial | Lifestyle
+   - Hover effects (scale, vignette, light leak)
+   - Watermark MK en esquina inferior derecha
 
-// Badge de disponibilidad:
-// [ ● AVAILABLE IN MIAMI ]
-// El punto verde parpadea con animación pulse
+4. Marketing Services (NUEVO)
+   - 4 servicios con galería de imágenes
+   - Layouts responsive:
+     * Desktop: grid 3+ columnas
+     * Tablet: grid 2 columnas
+     * Mobile: 1 columna
+   - Cada servicio tiene:
+     * Galería inline con imágenes
+     * Descripción
+     * Precio
+     * CTA button
 
-// Título principal:
-// "Shoot real. Feel it."
-// "real." en color acento naranja e itálica
-```
+   Servicios actuales:
+   1. Corporate Photography — $400/media-day
+      Fotos: C:\Users\maike\Desktop\303 Marketing Agency\maikphotographer-web-site\public\img\marketing\Fotos Corporativas D'Homes Group\
+   
+   2. Event & Catering Photography — $450/event
+      Fotos: C:\Users\maike\Desktop\303 Marketing Agency\maikphotographer-web-site\public\img\marketing\Fotos de Sazón Latino Catering\
+   
+   3. Social Media Marketing Design — $350/campaign
+      Fotos: C:\Users\maike\Desktop\303 Marketing Agency\maikphotographer-web-site\public\img\marketing\Posters de D'Homes Group\
+   
+   4. Custom Promotional Flyers — $300/design
+      Fotos: C:\Users\maike\Desktop\303 Marketing Agency\maikphotographer-web-site\public\img\marketing\Posters de Good Trip Viajes\flyers\
 
-## Scroll Video 3D
+5. Services (Servicios estándar)
+   - 3 cards (Portrait, Editorial/Fashion, Brand Content)
+   - Layout: grid responsivo
+   - Featured badge en Editorial
 
-```jsx
-// Sección de 300vh con sticky container
-// El video de la cámara desmontándose se controla con scroll
-// Implementar con GSAP ScrollTrigger + video.currentTime
+6. Contact
+   - Icono + descripción (calendar booking)
+   - Formulario contacto: nombre, email, teléfono, mensaje
+   - Cal.com embed
+   - Iconos de redes: Instagram, WhatsApp
 
-// gsap.to(videoElement, {
-//   currentTime: videoElement.duration,
-//   ease: 'none',
-//   scrollTrigger: {
-//     trigger: '.scroll-section',
-//     start: 'top top',
-//     end: 'bottom bottom',
-//     scrub: 0.5
-//   }
-// });
-```
-
-## Portfolio grid
-
-```jsx
-// Grid 3 columnas desktop / 2 tablet / 1 móvil
-// Aspect ratio: 3/4 (portrait)
-// Cada item tiene:
-//   - Imagen con zoom en hover (scale 1.05)
-//   - Vignette overlay (mix-blend-mode: overlay)
-//   - Light leak overlay en hover (mix-blend-mode: screen)
-//   - Watermark MK (esquina inferior derecha, opacity 15%)
-//   - Caption con categoría y nombre (aparece en hover)
-//   - Cortina de reveal (scaleX 0 al entrar en viewport)
-
-// Filtros: All | Portrait | Editorial | Lifestyle
-
-// Fotos del portfolio (rutas reales):
-const portfolioItems = [
-  { src: '/assets/portfolio/39_portafolio_1.jpg', cat: 'editorial', caption: 'Warm light' },
-  { src: '/assets/portfolio/39_portafolio_2.jpg', cat: 'portrait',  caption: 'Golden circle' },
-  { src: '/assets/portfolio/39_portafolio_3.jpg', cat: 'lifestyle', caption: 'Red hour' },
-  { src: '/assets/portfolio/39_portafolio_4.jpg', cat: 'editorial', caption: 'Deep focus' },
-  { src: '/assets/portfolio/39_portafolio_5.jpg', cat: 'portrait',  caption: 'Soft silence' },
-  { src: '/assets/portfolio/39_portafolio_6.jpg', cat: 'lifestyle', caption: 'Urban raw' },
-  { src: '/assets/portfolio/39_portafolio_7.jpg', cat: 'portrait',  caption: 'Moody' },
-  { src: '/assets/portfolio/39_portafolio_8.jpg', cat: 'lifestyle', caption: 'Golden hour' },
-  { src: '/assets/portfolio/39_portafolio_9.jpg', cat: 'editorial', caption: 'Cinematic' },
-];
-```
-
-## Servicios
-
-```jsx
-// 3 cards en grid horizontal
-const services = [
-  {
-    num: '01',
-    title: 'Portrait Session',
-    desc: 'Individual or couples portrait session. 1–2 hours, Miami locations. Edited gallery in 48h.',
-    includes: ['1–2 hours on location', '20+ edited photos', 'Online gallery in 48h', 'Print-ready files'],
-    price: '$150',
-    unit: '/ starting from',
-    featured: false,
-  },
-  {
-    num: '02',
-    title: 'Editorial / Fashion',
-    desc: 'Full editorial production. Art direction, location scouting, full team coordination.',
-    includes: ['Full day production', 'Art direction included', '40+ edited photos', 'BTS video included'],
-    price: '$350',
-    unit: '/ starting from',
-    featured: true, // Most Popular
-  },
-  {
-    num: '03',
-    title: 'Brand Content',
-    desc: 'Monthly content package. Social media visuals, product photography, Instagram-ready.',
-    includes: ['2 shoots per month', '60+ edited photos', 'IG-ready content', 'Priority scheduling'],
-    price: '$500',
-    unit: '/ month',
-    featured: false,
-  },
-];
-```
-
-## Formulario de contacto
-
-```jsx
-// Conectado a: POST /api/lead-capture
-// Campos: name, phone, email, sessionType, message
-// Al enviar exitosamente: oculta form, muestra success state
-// Success state incluye links a Instagram y Cal.com
-
-// Opciones de sessionType:
-const sessionTypes = [
-  { value: 'portrait',   label: 'Portrait — from $150' },
-  { value: 'editorial',  label: 'Editorial / Fashion — from $350' },
-  { value: 'brand',      label: 'Brand Content — from $500/mo' },
-  { value: 'other',      label: 'Other / Custom' },
-];
+7. Footer
+   - Logo MK
+   - Links rapidos
+   - Copyright
 ```
 
 ---
 
-# Assets disponibles
+## Componentes Clave & Estilos
+
+### Hero Section (`public/css/hero-design-upgrade.css`)
+
+**Video background:**
+```css
+.hero-video-bg {
+  position: absolute;
+  border-radius: clamp(12px, 3vw, 32px);
+  overflow: hidden;
+}
+
+.hero-video-bg video {
+  opacity: 0;
+  transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-video-bg video.ready {
+  opacity: 0.35;  /* Desktop */
+}
+
+@media (max-width: 768px) {
+  .hero-video-bg {
+    display: none !important;  /* Muestra foto fallback en lugar de video */
+  }
+}
+```
+
+**Hero content (buttons + title):**
+```css
+.hero-content {
+  position: absolute !important;
+  bottom: 0 !important;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;  /* Botones a la derecha en desktop */
+  padding: clamp(40px, 8vw, 80px) !important;
+}
+
+/* Desktop: buttons right, title left */
+@media (max-width: 768px) {
+  .hero-content {
+    flex-direction: column;          /* Mobile: vertical */
+    align-items: center;
+    text-align: center;
+  }
+  
+  .hero-ctas {
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
+  }
+}
+```
+
+**Buttons:**
+```css
+/* Cream button (primario) */
+.btn-primary {
+  background: #E1E0CC;
+  color: #0C0C0C;
+  padding: clamp(11px, 2vw, 14px) clamp(20px, 4vw, 28px);
+  border-radius: 999px;
+  transition: all 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn-primary:hover {
+  background: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(225, 224, 204, 0.3);
+}
+
+/* Ghost button (secundario) */
+.btn-ghost {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #FFFFFF;
+}
+
+.btn-ghost:hover {
+  border-color: rgba(225, 224, 204, 0.8);
+  background: rgba(225, 224, 204, 0.05);
+  color: #E1E0CC;
+}
+```
+
+**Line-in title animation:**
+```css
+.line-in {
+  display: block;
+  overflow: hidden;
+  height: auto;
+}
+
+.line-in span {
+  display: block;
+  transform: translateY(110%);
+  transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html.anim-ready .line-in span {
+  transform: translateY(0);
+}
+```
+
+**Badge:**
+```css
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(8px, 2vw, 12px);
+  padding: clamp(8px, 1.5vw, 12px) clamp(16px, 3vw, 20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(12px);
+  font-size: clamp(9px, 1.2vw, 11px);
+  color: #E1E0CC;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  background: #22C55E;
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+```
+
+### Marketing Services Section (`public/css/marketing-services.css`)
+
+**Grid layout:**
+```css
+.marketing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: clamp(32px, 5vw, 48px);
+}
+
+@media (max-width: 768px) {
+  .marketing-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .marketing-grid {
+    grid-template-columns: 1fr;
+  }
+}
+```
+
+**Marketing card:**
+```css
+.marketing-card {
+  padding: clamp(48px, 8vw, 64px);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.marketing-card:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 87, 34, 0.4);
+  transform: translateY(-4px);
+}
+```
+
+**Image gallery (dentro de marketing card):**
+```css
+.marketing-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: clamp(12px, 2vw, 20px);
+  margin-bottom: clamp(20px, 4vw, 32px);
+}
+
+.marketing-gallery img {
+  width: 100%;
+  height: 280px;
+  object-fit: contain;        /* IMPORTANTE: contener, no cover */
+  border-radius: 8px;
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.marketing-gallery img:hover {
+  transform: scale(1.03);
+}
+```
+
+---
+
+## Assets & Rutas
+
+### Imágenes
+
+```
+/public/img/
+├── the303-netflix-3.png              (About section, 0.35 MB)
+├── marketing/
+│   ├── Fotos Corporativas D'Homes Group/  (3 fotos JPG)
+│   ├── Fotos de Sazón Latino Catering/    (13 fotos, usando 3)
+│   ├── Posters de D'Homes Group/          (4 fotos, usando 3)
+│   └── flyers/                            (Good Trip Viajes — 7 fotos)
+└── assets/backgrounds/
+    └── 37_foto_hero_horizontal_2.jpg      (Mobile fallback, 20KB)
+```
+
+### SVG Assets (en # Assets para web\SVG)
+
+```
+Logos:
+- 01_logo_mk_blanco_principal.svg
+- 02_logo_horizontal_blanco.svg
+- 07_badge_disponible.svg
+
+Iconos:
+- 15_icono_camara_blanco.svg
+- 16_icono_ubicacion_blanco.svg
+- 17_icono_mail_blanco.svg
+- 18_icono_whatsapp_blanco.svg
+- 19_icono_instagram_blanco.svg
+- 20_flecha_cta_corto_naranja.svg
+```
+
+---
+
+## JavaScript — Animaciones & Comportamiento
+
+### `public/js/hero-design-upgrade.js`
+
+```javascript
+// 1. VIDEO FADE-IN
+Detecta cuando el video está listo (canplay, playing, loadeddata events)
+Agrega clase .ready al video cuando está cargado
+Opacity transiciona de 0 a 0.35
+
+// 2. LINE-IN ANIMATION
+Split del hero-title por <br>
+Envuelve cada línea en span para animation
+Clase anim-ready en html triggers transform: translateY(0)
+
+// 3. BADGE PULSE
+CSS keyframes pulse 2s ease-in-out
+Opacity 1 → 0.5 → 1
+```
+
+**Cómo funciona:**
+1. On DOMContentLoaded, espera evento de video listo
+2. Agrega clase `.ready` al video → CSS transiciona opacity
+3. Split título por `<br>` en líneas separadas
+4. Cada línea envuelta en `.line-in` spans
+5. Después de 50ms, agrega `anim-ready` al `<html>` → activa transforms
+
+---
+
+## Contact Section (Spacing Fixes)
+
+**Archivo afectado:** `public/css/main.css`
+
+```css
+.contact-ways {
+  gap: 24px;  /* Aumentado de 12px — spacing entre iconos */
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;  /* Espaciado entre campos */
+}
+
+.contact-icon,
+.cway {
+  padding: clamp(18px, 2vw, 28px) clamp(20px, 3vw, 32px);  /* Más generous */
+  border-radius: 8px;  /* Aumentado de 4px */
+}
+```
+
+---
+
+# Assets disponibles (Legacy)
 
 ## Rutas exactas en producción
 
@@ -361,98 +562,163 @@ const prefersReduced = window.matchMedia(
 
 ---
 
-# Breakpoints
+---
+
+## Responsive Design
 
 ```css
-/* Mobile first */
---mobile:  375px;   /* Base — diseña aquí primero */
---tablet:  768px;   /* @media (min-width: 768px) */
---desktop: 1024px;  /* @media (min-width: 1024px) */
---wide:    1280px;  /* @media (min-width: 1280px) */
---max:     1440px;  /* max-width del container */
-```
+Breakpoints (mobile-first):
+- Mobile:  375px (base, diseña aquí primero)
+- Tablet:  768px (@media min-width: 768px)
+- Desktop: 1024px (@media min-width: 1024px)
+- Wide:    1280px
 
-## Comportamiento responsive por sección
-
-| Sección | Mobile | Tablet | Desktop |
-|---------|--------|--------|---------|
-| Portfolio grid | 1 col | 2 col | 3 col |
-| Services | 1 col | 1 col | 3 col |
-| Hero img | oculta | oculta | visible |
-| Nav links | hamburger | hamburger | visible |
-| Videos hero | opacity 0.2 | opacity 0.3 | opacity 0.4 |
-| Scroll video | 150vh | 200vh | 300vh |
-| About bg-attachment | scroll | scroll | fixed |
-
----
-
-# Accesibilidad
-
-```jsx
-// Aria labels en todos los elementos interactivos
-// Alt text descriptivo en todas las imágenes
-// role="menubar" en navegación
-// role="status" en badge de disponibilidad
-// Contraste mínimo WCAG AA
-// Botones mínimo 44x44px en móvil
-// Focus visible en todos los elementos
-
-// Videos decorativos:
-<video aria-hidden="true" ... />
-
-// Imágenes decorativas:
-<img alt="" aria-hidden="true" ... />
+Comportamiento por sección:
+┌─────────────────┬──────────┬────────┬─────────┐
+│ Sección         │ Mobile   │ Tablet │ Desktop │
+├─────────────────┼──────────┼────────┼─────────┤
+│ Portfolio       │ 1 col    │ 2 col  │ 3 col   │
+│ Services        │ 1 col    │ 1 col  │ 3 col   │
+│ Marketing svcs  │ 1 col    │ 2 col  │ 3+ col  │
+│ Hero buttons    │ vertical │ row*   │ row     │
+│ Hero video      │ hidden   │ hidden │ visible │
+│ Contact icons   │ 1 row    │ 1 row  │ 1 row   │
+└─────────────────┴──────────┴────────┴─────────┘
+(*) On tablet (768px), buttons change to row layout
 ```
 
 ---
 
-# Lo que NO hacer
+## Trabajo Completado (Resumen)
+
+✅ **Hero Section Upgrade**
+- Video con fade-in animation (0 → 0.35 opacity)
+- Botones cream-colored (#E1E0CC) + ghost buttons
+- Title con line-in animation por línea
+- Badge con punto verde pulsante
+- Mobile: foto fallback en lugar de video
+- Responsive: desktop (row layout) → mobile (column layout)
+
+✅ **About Section**
+- Foto the303-netflix-3.png (sin fondo)
+- Stats: 150+ Sessões · 30+ Países · 8+ Anos
+- Descripción "I don't just take photos. I direct."
+- [REMOVIDO]: Firma 28_firma_maikel.png
+
+✅ **Portfolio Grid**
+- Grid 3x3 (desktop) → 2 cols (tablet) → 1 col (mobile)
+- Aspect ratio 3/4 (portrait)
+- Hover effects + watermark
+- Filtros por categoría
+
+✅ **Marketing Services Section (NUEVO)**
+- 4 servicios con galerías inline
+- Responsive grid: auto-fit, minmax(350px, 1fr)
+- Corporate Photography, Event Catering, Social Media Design, Flyers
+- object-fit: contain para imágenes
+- Precios competitivos + CTA buttons
+
+✅ **Services (estándar)**
+- 3 cards: Portrait, Editorial, Brand Content
+- Featured badge en Editorial
+- Responsive 1 → 3 columnas
+
+✅ **Contact Section**
+- Espaciado aumentado (gap 24px entre iconos, 20px entre campos)
+- Padding más generous con clamp()
+- Border-radius mejorado (8px)
+
+✅ **Performance**
+- Cache busting con ?v=N parameters
+- object-fit: contain para galerías (no crop)
+- Imágenes optimizadas (72%+ compresión)
+- Lazy loading en imágenes no-hero
+
+---
+
+## Lo que NO Hacer
 
 ```
-❌ No usar colores dorados (#D8C18A) — solo naranja #FF5722
-❌ No crear secciones que no están en la estructura definida
-❌ No agregar animaciones que requieren más de 300ms en UI
-❌ No modificar /api/ ni /automation/
-❌ No subir .env ni credenciales al repo
-❌ No usar emoji en la interfaz — solo SVG icons
-❌ No agregar dependencias npm al frontend sin justificar
-❌ No usar scroll lag (smooth scroll excesivo)
-❌ No usar border-radius mayor a 8px en cards
-❌ No usar sombras coloridas excepto en el botón primario
-❌ No inventar rutas de assets — usar solo las rutas listadas arriba
+❌ No agregar dependencias npm sin justificar (es HTML vanilla)
+❌ No usar React, TailwindCSS, Framer Motion
+❌ No modificar API endpoints
+❌ No cambiar colores core (cream, naranja, dark)
+❌ No agregar animaciones > 600ms
+❌ No usar border-radius > 12px en cards
+❌ No overwrite !important sin razón
+❌ No dejar console.logs en producción
+❌ No subir .env o credenciales
 ```
 
 ---
 
-# Lo que SÍ hacer
+## Git Workflow
 
-```
-✅ Leer la taste-skill completa antes de diseñar
-✅ Mobile first — diseñar en 375px primero
-✅ Verificar en DevTools móvil antes de hacer commit
-✅ Usar los colores exactos del sistema de diseño
-✅ Insertar SVGs inline para logos e iconos
-✅ Lazy load en todas las imágenes excepto hero
-✅ Poster en todos los videos
-✅ Commit después de cada sección completada
-✅ Preservar /api/lead-capture exacto
-✅ Preservar Cal.com embed exacto
-✅ Grain texture global en body::before
-✅ Cursor personalizado en desktop únicamente
-✅ Barra CTA fija en móvil (bottom bar naranja)
+```bash
+# Antes de trabajar
+git status
+git pull origin main
+
+# Editar archivos, testear en navegador
+
+# Commit por sección completada (ej: marketing-services, contact-spacing)
+git add .
+git commit -m "feat: [descripción corta]"
+git push origin main
 ```
 
 ---
 
-# Información del negocio
+## Instrucciones para Futuro Trabajo
+
+### Cuando Agregas Secciones Nuevas:
+1. Crea CSS modular en `public/css/nueva-seccion.css`
+2. Importa en `public/index.html` antes de closing `</head>`
+3. Usa variables CSS del sistema de diseño (--accent, --cream, etc.)
+4. Responsive mobile-first (375px → 768px → 1024px)
+5. Solo animate transform y opacity (GPU-friendly)
+
+### Cuando Modificas Botones:
+- Siempre mantener `.btn-primary` cream (#E1E0CC)
+- Ghost buttons con border transparente + hover naranja
+- Min-height 44px en mobile para accesibilidad
+- Transition 260ms cubic-bezier(0.22, 1, 0.36, 1)
+
+### Cuando Agregas Imágenes:
+- Lazy load EXCEPTO en hero
+- Use `object-fit: cover` para portrait, `contain` para galerías
+- Alt text descriptivo
+- Comprime antes de subir (máx 300KB portfolio, 150KB backgrounds)
+
+### Cuando Agregas Videos:
+- Always: autoplay muted loop playsinline preload="metadata"
+- Poster obligatorio
+- Opacity máxima 0.35 en hero (no más opaco)
+- Mobile: reduce opacity a 0.2 o muestra foto fallback
+
+### Performance Checklist:
+- [ ] DevTools Lighthouse → 75+ en todos los tests
+- [ ] Mobile (375px): sin overflow horizontal
+- [ ] Desktop (1440px): contenedor max-width respetado
+- [ ] Videos cargan después de hero content
+- [ ] Imágenes lazy load (excepto hero)
+- [ ] Sin console errors o warnings
+
+---
+
+## Información del Negocio
 
 ```
-Fotógrafo: Maikel Marshall Ruiz
-Instagram:  @maik_photographer
-WhatsApp:   +1 (786) 332-9815
-Email:      maikelmarshall07@gmail.com
-Ubicación:  Miami, FL
-Web:        maikphotographer.com
-Cal.com:    the303-marketing-kmfxzs/30min
-GitHub:     303creative/maikphotographer-web-site
+Fotógrafo:    Maikel Marshall Ruiz
+Instagram:    @maik_photographer
+WhatsApp:     +1 (786) 332-9815
+Email:        maikelmarshall07@gmail.com
+Ubicación:    Miami, FL
+Web:          maikphotographer.com
 ```
+
+---
+
+**Última actualización:** Junio 3, 2026
+**Última acción:** Spacing fixes en contact section, agregada Marketing Services section
+**Estado:** En producción en maikphotographer.com
