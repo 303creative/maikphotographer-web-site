@@ -496,9 +496,10 @@ em {
 .about-photo {
   width: 100%;
   height: auto;
-  border-radius: 16px;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
+  border-radius: 0;
+  object-fit: contain;
+  background: transparent;
+  mix-blend-mode: normal;
 }
 .about-desc {
   color: var(--text-2);
@@ -877,10 +878,22 @@ em {
   transition: all 300ms ease;
 }
 .cway:hover { border-color: var(--accent); }
-.cway svg {
+.cway svg,
+.contact-icon svg {
   width: 22px; height: 22px;
   flex-shrink: 0;
 }
+.contact-icon span {
+  font-family: var(--font-b);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.contact-icon:hover { border-color: var(--accent); }
+.contact-icon svg path { transition: fill 300ms ease; }
+.contact-icon:hover svg path { fill: var(--accent) !important; }
 .cway svg path,
 .cway svg rect,
 .cway svg circle {

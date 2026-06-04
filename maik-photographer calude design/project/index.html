@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Maikel Marshall — Photography · Miami</title>
+
+<!-- Resources referenced as strings in JS/JSX (lifted for standalone bundling) -->
+<meta name="ext-resource-dependency" content="uploads/40_hero_camara_loop.mp4" data-resource-id="heroVideo" />
+<meta name="ext-resource-dependency" content="uploads/the303-netflix-3.png" data-resource-id="aboutPortrait" />
+<meta name="ext-resource-dependency" content="uploads/39_portafolio_1.jpg" data-resource-id="p1" />
+<meta name="ext-resource-dependency" content="uploads/39_portafolio_2.jpg" data-resource-id="p2" />
+<meta name="ext-resource-dependency" content="uploads/39_portafolio_3.jpg" data-resource-id="p3" />
+<meta name="ext-resource-dependency" content="uploads/39_portafolio_4.jpg" data-resource-id="p4" />
+<meta name="ext-resource-dependency" content="uploads/39_portafolio_5.jpg" data-resource-id="p5" />
+<meta name="ext-resource-dependency" content="uploads/39_portafolio_6.jpg" data-resource-id="p6" />
+<meta name="ext-resource-dependency" content="uploads/39_portafolio_7.jpg" data-resource-id="p7" />
+<meta name="ext-resource-dependency" content="uploads/39_portafolio_8.jpg" data-resource-id="p8" />
+<meta name="ext-resource-dependency" content="uploads/39_portafolio_9.jpg" data-resource-id="p9" />
+<script>
+  // Fallback so the live (non-bundled) preview still resolves resources.
+  // The bundler sets blob URLs on window.__resources first; we never overwrite those.
+  window.__resources = window.__resources || {};
+  document.querySelectorAll('meta[name="ext-resource-dependency"]').forEach(function (m) {
+    var id = m.getAttribute('data-resource-id');
+    if (id && !window.__resources[id]) window.__resources[id] = m.getAttribute('content');
+  });
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          bgp: '#0C0C0C',
+          bgs: '#1A1A1A',
+          bgc: '#111111',
+          accent: '#FF5722',
+          accenth: '#E64A19',
+          txtp: '#FFFFFF',
+          cream: '#E1E0CC',
+          txts: '#888888',
+          txtsub: '#555555',
+          status: '#22C55E',
+        },
+        fontFamily: {
+          head: ['"Bebas Neue"', 'sans-serif'],
+          body: ['Almarai', 'Inter', 'sans-serif'],
+          serif: ['"Instrument Serif"', 'serif'],
+          mono: ['"JetBrains Mono"', 'monospace'],
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  :root {
+    --bg-primary: #0C0C0C;
+    --bg-secondary: #1A1A1A;
+    --bg-card: #111111;
+    --accent: #FF5722;
+    --accent-hover: #E64A19;
+    --text-primary: #FFFFFF;
+    --text-secondary: #888888;
+    --text-subtle: #555555;
+    --green-status: #22C55E;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Almarai', 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--accent); color: #fff; }
+
+  /* Editorial heading defaults */
+  .font-head { letter-spacing: 0.01em; line-height: 0.9; }
+
+  /* Grain overlay — feTurbulence noise, fixed over everything */
+  #grain {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+  }
+
+  /* Custom cursor */
+  #cursor-dot, #cursor-ring {
+    position: fixed;
+    top: 0; left: 0;
+    border-radius: 9999px;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    will-change: transform;
+  }
+  #cursor-dot {
+    width: 6px; height: 6px;
+    background: #fff;
+  }
+  #cursor-ring {
+    width: 20px; height: 20px;
+    border: 1px solid rgba(255,255,255,0.6);
+    transition: width .25s cubic-bezier(.22,1,.36,1), height .25s cubic-bezier(.22,1,.36,1), background-color .25s, border-color .25s;
+  }
+  #cursor-ring.grow {
+    width: 64px; height: 64px;
+    background: rgba(255,87,34,0.10);
+    border-color: rgba(255,87,34,0.9);
+    mix-blend-mode: normal;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    body { cursor: none; }
+    a, button { cursor: none; }
+  }
+  @media (hover: none), (pointer: coarse) {
+    #cursor-dot, #cursor-ring { display: none; }
+  }
+
+  .spotlight {
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 38%, rgba(255,255,255,0.07), transparent 70%),
+      radial-gradient(ellipse 40% 40% at 50% 45%, rgba(255,87,34,0.05), transparent 60%);
+  }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  .signature {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  /* SVG noise textures (Prisma format) */
+  .noise-overlay {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='no'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23no)'/%3E%3C/svg%3E");
+  }
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='nb'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23nb)'/%3E%3C/svg%3E");
+  }
+
+  /* ----------------------------------------------------------
+     Reveal system — content is VISIBLE by default. The hidden
+     "pre-animation" state only applies once JS adds .anim-ready
+     to <html>, so a stalled animation clock can never strand
+     content offscreen (print / reduced-motion show it too).
+  ---------------------------------------------------------- */
+  html.anim-ready .r-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1);
+    transition-delay: var(--rd, 0s);
+  }
+  html.anim-ready .r-up.in { opacity: 1; transform: none; }
+
+  .line-in { display: block; overflow: hidden; }
+  .line-in > span { display: block; }
+  html.anim-ready .line-in > span {
+    transform: translateY(110%);
+    transition: transform 1s cubic-bezier(.22,1,.36,1);
+    transition-delay: var(--rd, 0s);
+  }
+  html.anim-ready .line-in.in > span { transform: none; }
+
+  .reveal-clip { clip-path: inset(0 0 0 0); }
+  html.anim-ready .reveal-clip {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path .9s cubic-bezier(.22,1,.36,1);
+    transition-delay: var(--rd, 0s);
+  }
+  html.anim-ready .reveal-clip.in { clip-path: inset(0 0 0 0); }
+
+  .char { display: inline-block; white-space: pre; }
+  html.anim-ready .split .char {
+    opacity: 0;
+    transform: translateY(0.45em);
+    transition: opacity .5s ease, transform .5s cubic-bezier(.22,1,.36,1);
+    transition-delay: calc(var(--ci, 0) * 0.035s);
+  }
+  html.anim-ready .split.in .char { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html.anim-ready .r-up,
+    html.anim-ready .line-in > span,
+    html.anim-ready .reveal-clip,
+    html.anim-ready .split .char {
+      transition: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+      clip-path: none !important;
+    }
+  }
+</style>
+</head>
+<body>
+  <template id="__bundler_thumbnail" data-bg-color="#0C0C0C">
+    <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <rect width="1200" height="800" fill="#0C0C0C" />
+      <text x="600" y="430" text-anchor="middle" font-family="'Bebas Neue', sans-serif" font-size="150" fill="#E1E0CC" letter-spacing="2">MAIKEL</text>
+      <text x="600" y="560" text-anchor="middle" font-family="'Bebas Neue', sans-serif" font-size="150" fill="#E1E0CC" letter-spacing="2">MARSHALL<tspan fill="#FF5722" font-size="60" dy="-60">*</tspan></text>
+      <text x="600" y="640" text-anchor="middle" font-family="monospace" font-size="22" fill="#888888" letter-spacing="10">PHOTOGRAPHY · MIAMI</text>
+    </svg>
+  </template>
+  <div id="grain"></div>
+  <div id="cursor-ring"></div>
+  <div id="cursor-dot"></div>
+  <div id="root"></div>
+
+  <!-- React (pinned) -->
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <!-- lucide (UMD global: lucide) -->
+  <script src="https://unpkg.com/lucide@0.456.0/dist/umd/lucide.js"></script>
+
+  <!-- App -->
+  <script type="text/babel" src="components.jsx"></script>
+  <script type="text/babel" src="hero.jsx"></script>
+  <script type="text/babel" src="portfolio.jsx"></script>
+  <script type="text/babel" src="about.jsx"></script>
+  <script type="text/babel" src="services.jsx"></script>
+  <script type="text/babel" src="booking.jsx"></script>
+  <script type="text/babel" src="app.jsx"></script>
+</body>
+</html>
