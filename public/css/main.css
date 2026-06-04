@@ -605,6 +605,15 @@ em {
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
 }
+
+.portfolio-grid {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+  max-width: 800px !important;
+  margin: 0 auto !important;
+}
+
 .port-item {
   position: relative;
   overflow: hidden;
@@ -613,6 +622,15 @@ em {
   cursor: pointer;
   border: 1px solid var(--border);
   transition: border-color 200ms var(--ease-smooth);
+  will-change: transform, filter;
+  transform-origin: top center;
+}
+
+.portfolio-grid .port-item {
+  position: sticky !important;
+  top: 120px !important;
+  height: 60vh !important;
+  margin-bottom: 40px !important;
 }
 .port-item:hover {
   border-color: var(--border-h);
