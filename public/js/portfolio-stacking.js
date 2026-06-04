@@ -1,25 +1,36 @@
-/* Portfolio Stacking Effect — Scroll-based card animation */
+/* Portfolio Scroll-Triggered Appearance Effect */
 document.addEventListener('DOMContentLoaded', function() {
-  const portfolioGrid = document.querySelector('.portfolio-grid');
   const items = document.querySelectorAll('.port-item');
 
   if (!items.length) return;
 
   let raf = null;
-  const pinTop = 120;
   const itemsArray = Array.from(items);
-  const n = itemsArray.length;
+  const itemsPerGroup = 3;
+  const totalGroups = Math.ceil(itemsArray.length / itemsPerGroup);
 
   const apply = () => {
     raf = null;
+
     itemsArray.forEach((item, i) => {
       const rect = item.getBoundingClientRect();
-      const target = 1 - (n - 1 - i) * 0.05;
-      const prog = Math.min(Math.max((pinTop - rect.top) / (rect.height * 0.7), 0), 1);
-      const scale = 1 - (1 - target) * prog;
+      const viewportCenter = window.innerHeight / 2;
+      const distanceFromCenter = rect.top - viewportCenter;
 
-      item.style.transform = "scale(" + scale.toFixed(4) + ")";
-      item.style.filter = "brightness(" + (1 - 0.22 * prog).toFixed(3) + ")";
+      // Range: -viewportCenter (fully above) to +viewportCenter (fully below)
+      // We want items visible when in viewport
+      const normalizedDistance = Math.max(-1, Math.min(1, distanceFromCenter / (window.innerHeight / 2)));
+
+      // Calculate opacity:
+      // 1 when at center (normalizedDistance = 0)
+      // 0 when off screen (normalizedDistance = ±1)
+      const opacity = 1 - Math.abs(normalizedDistance);
+
+      // Calculate scale: grows as it approaches center
+      const scale = 0.8 + (1 - Math.abs(normalizedDistance)) * 0.2;
+
+      item.style.opacity = opacity.toFixed(3);
+      item.style.transform = `scale(${scale.toFixed(3)})`;
     });
   };
 
@@ -28,13 +39,11 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 
   window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll);
   apply();
 
-  // Cleanup
-  return () => {
+  // Cleanup on unload
+  window.addEventListener('unload', () => {
     window.removeEventListener('scroll', onScroll);
-    window.removeEventListener('resize', onScroll);
     if (raf) cancelAnimationFrame(raf);
-  };
+  });
 });

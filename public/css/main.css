@@ -607,11 +607,9 @@ em {
 }
 
 .portfolio-grid {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 20px !important;
-  max-width: 800px !important;
-  margin: 0 auto !important;
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 12px !important;
 }
 
 .port-item {
@@ -622,15 +620,14 @@ em {
   cursor: pointer;
   border: 1px solid var(--border);
   transition: border-color 200ms var(--ease-smooth);
-  will-change: transform, filter;
-  transform-origin: top center;
+  will-change: opacity, transform;
+  transform-origin: center;
+  opacity: 0;
+  transform: scale(0.9);
 }
 
 .portfolio-grid .port-item {
-  position: sticky !important;
-  top: 120px !important;
-  height: 60vh !important;
-  margin-bottom: 40px !important;
+  transition: opacity 500ms ease, transform 500ms ease !important;
 }
 .port-item:hover {
   border-color: var(--border-h);
