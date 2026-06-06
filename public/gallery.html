@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/unified-nav.css">
 
   <style>
     /* ── RESET & BASE ── */
@@ -104,7 +105,7 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 120px 40px 60px;
+      padding: 40px 40px 60px;
       position: relative;
       overflow: hidden;
       border-bottom: 1px solid var(--border);
@@ -504,13 +505,38 @@
 </head>
 
 <body>
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursor-ring"></div>
+  <div class="mk-cursor" id="mkCursor"></div>
+  <div class="mk-cursor-ring" id="mkCursorRing"></div>
+
+  <!-- MOBILE NAV -->
+  <div class="mk-mobile-nav" id="mkMobileNav">
+    <a href="/" onclick="closeMkNav()">Home</a>
+    <a href="/#portfolio" onclick="closeMkNav()">Portfolio</a>
+    <a href="/gallery" onclick="closeMkNav()">Gallery</a>
+    <a href="/sessions" onclick="closeMkNav()">Sessions</a>
+    <a href="/pricing" onclick="closeMkNav()">Pricing</a>
+    <a href="/blog" onclick="closeMkNav()">Blog</a>
+    <a href="/marketing" onclick="closeMkNav()">Marketing</a>
+    <a href="/#contact" class="mk-mobile-cta" onclick="closeMkNav()">Book Now</a>
+  </div>
 
   <!-- NAV -->
-  <nav class="nav">
-    <a href="/" class="nav-logo">MK<em>.</em></a>
-    <a href="/#portfolio" class="nav-back">Back to site</a>
+  <nav class="mk-nav" id="mkNav">
+    <a href="/" class="mk-nav-logo">MK<em>.</em></a>
+    <div class="mk-nav-links">
+      <a href="/#portfolio">Portfolio</a>
+      <a href="/gallery" class="active">Gallery</a>
+      <a href="/sessions">Sessions</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/blog">Blog</a>
+      <a href="/marketing">Marketing</a>
+    </div>
+    <div class="mk-nav-right">
+      <a href="/#contact" class="mk-nav-cta">Book Now</a>
+      <button class="mk-hamburger" id="mkHamburger" onclick="toggleMkNav()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
 
   <!-- HERO -->
@@ -1087,8 +1113,8 @@
 
   <script>
   // ── CURSOR ──
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursor-ring');
+  const cursor = document.getElementById('mkCursor');
+  const ring = document.getElementById('mkCursorRing');
   let mx = 0, my = 0, rx = 0, ry = 0;
 
   document.addEventListener('mousemove', e => {
@@ -1105,7 +1131,15 @@
     requestAnimationFrame(animateRing);
   })();
 
-  document.querySelectorAll('.gallery-item, .filter-btn, .lightbox-close, .lightbox-prev, .lightbox-next, .btn-book, .nav-back, .nav-logo').forEach(el => {
+  // Nav scroll
+  window.addEventListener('scroll', () => document.getElementById('mkNav').classList.toggle('scrolled', scrollY > 50));
+
+  // Mobile nav
+  let navOpen = false;
+  function toggleMkNav() { navOpen=!navOpen; document.getElementById('mkMobileNav').classList.toggle('open',navOpen); document.getElementById('mkHamburger').classList.toggle('open',navOpen); document.body.style.overflow=navOpen?'hidden':''; }
+  function closeMkNav() { navOpen=false; document.getElementById('mkMobileNav').classList.remove('open'); document.getElementById('mkHamburger').classList.remove('open'); document.body.style.overflow=''; }
+
+  document.querySelectorAll('.gallery-item, .filter-btn, .lightbox-close, .lightbox-prev, .lightbox-next, .btn-book, .mk-nav-logo').forEach(el => {
     el.addEventListener('mouseenter', () => {
       cursor.style.transform = 'translate(-50%,-50%) scale(2.2)';
       ring.style.width = '64px'; ring.style.height = '64px';

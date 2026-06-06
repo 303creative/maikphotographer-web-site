@@ -1,16 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="color-scheme" content="dark light">
+  <meta name="color-scheme" content="dark">
   <meta name="theme-color" content="#0C0C0C">
   <title>Marketing Services — Maikel Marshall</title>
   <meta name="description" content="Professional marketing services: corporate photography, event catering photography, social media design, promotional flyers.">
+  <link rel="icon" href="/assets/icons/01_logo_mk_blanco_principal.svg" type="image/svg+xml">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/css/design-system.css">
   <link rel="stylesheet" href="/css/components.css">
@@ -20,17 +21,46 @@
   <link rel="stylesheet" href="/css/spacing-composition.css">
   <link rel="stylesheet" href="/css/svg-assets.css">
   <link rel="stylesheet" href="/css/marketing-services.css">
+  <link rel="stylesheet" href="/css/unified-nav.css">
 
   <style>
-    body { background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-secondary) 100%); }
-    .marketing-services { padding: var(--sp-section) 0; background: transparent; }
-    .marketing-services > h2 { font-size: clamp(2rem, 6vw, 3.5rem); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: clamp(40px, 8vw, 80px); text-align: center; font-family: var(--font-heading); }
-    
-    .marketing-grid { display: flex; flex-direction: column; gap: clamp(40px, 8vw, 60px); max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 60px); }
-    .marketing-card { padding: clamp(48px, 8vw, 64px); border: 1px solid var(--color-border); border-radius: 12px; background: var(--color-bg-card); display: flex; flex-direction: column; }
-    .marketing-card.featured { border-color: var(--color-accent-muted); background: linear-gradient(135deg, rgba(255, 87, 34, 0.05) 0%, rgba(255, 87, 34, 0.01) 100%); }
+    body { background:#0C0C0C; cursor:none; }
 
-    .marketing-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 48px 0; border: 1px solid var(--color-border); border-radius: 8px; padding: 20px; background: rgba(0, 0, 0, 0.2); }
+    .page-hero {
+      min-height: 52vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 80px 7vw 56px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(255,87,34,.08) 0%, rgba(255,87,34,0) 100%);
+    }
+    .page-hero::before {
+      content: 'MARKETING';
+      position: absolute;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(80px,14vw,200px);
+      color: rgba(255,255,255,0.022);
+      bottom: -20px; left: -8px;
+      line-height:1; pointer-events:none;
+    }
+    .page-eyebrow { font-size:0.68rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#FF5722; margin-bottom:16px; display:flex; align-items:center; gap:10px; }
+    .page-eyebrow::before { content:''; display:block; width:28px; height:1px; background:#FF5722; }
+    .page-hero h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(56px,10vw,130px); line-height:.9; letter-spacing:-.01em; margin-bottom:20px; color:#fff; }
+    .page-hero h1 em { color:#FF5722; font-style:normal; }
+    .page-hero p { font-size:0.9rem; color:#888; max-width:560px; line-height:1.7; }
+
+    .marketing-services { padding: 80px 0; background: transparent; }
+    .marketing-services > h2 { font-size: clamp(2rem, 6vw, 3.5rem); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: clamp(40px, 8vw, 80px); text-align: center; font-family: 'Bebas Neue', sans-serif; color: #fff; }
+
+    .marketing-grid { display: flex; flex-direction: column; gap: clamp(40px, 8vw, 60px); max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 60px); }
+    .marketing-card { padding: clamp(48px, 8vw, 64px); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; background: rgba(255,255,255,.03); display: flex; flex-direction: column; transition: border-color .4s, transform .4s; }
+    .marketing-card:hover { border-color: rgba(255,87,34,.3); transform: translateY(-3px); }
+    .marketing-card.featured { border-color: rgba(255,87,34,.2); background: linear-gradient(135deg, rgba(255, 87, 34, 0.06) 0%, rgba(255, 87, 34, 0.01) 100%); }
+
+    .marketing-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 48px 0; border: 1px solid rgba(255,255,255,.08); border-radius: 8px; padding: 20px; background: rgba(0, 0, 0, 0.2); }
     .marketing-gallery img { width: 100%; height: 200px; object-fit: cover; border-radius: 6px; transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1); }
     .marketing-gallery img:hover { transform: scale(1.05); box-shadow: 0 12px 32px rgba(255, 87, 34, 0.2); }
 
@@ -40,43 +70,57 @@
       .marketing-gallery { grid-template-columns: repeat(2, 1fr); gap: 16px; padding: 16px; margin: 32px 0; }
       .marketing-gallery img { height: 160px; }
     }
-
     @media (max-width: 640px) {
       .marketing-grid { gap: clamp(20px, 4vw, 30px); padding: 0 16px; }
       .marketing-card { padding: 24px; }
       .marketing-gallery { grid-template-columns: 1fr; gap: 12px; padding: 12px; margin: 24px 0; }
       .marketing-gallery img { height: 180px; }
+      .page-hero { padding: 60px 5vw 48px; }
     }
-
-    .marketing-header { padding: clamp(80px, 15vw, 120px) clamp(20px, 5vw, 60px); text-align: center; background: linear-gradient(180deg, rgba(255, 87, 34, 0.1) 0%, rgba(255, 87, 34, 0) 100%); border-bottom: 1px solid var(--color-border); margin-bottom: clamp(60px, 10vw, 100px); }
-    .marketing-header h1 { font-size: clamp(2.5rem, 7vw, 4rem); font-family: var(--font-heading); color: #FFFFFF; margin: 0 0 16px 0; }
-    .marketing-header p { font-size: clamp(1rem, 2vw, 1.1rem); color: var(--color-text-secondary); max-width: 800px; margin: 0 auto; line-height: 1.6; }
-
-    .marketing-footer-section { padding: clamp(60px, 10vw, 100px) clamp(20px, 5vw, 60px); text-align: center; border-top: 1px solid var(--color-border); margin-top: clamp(80px, 15vw, 120px); }
-    .marketing-footer-section a { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; color: #FF5722; text-decoration: none; font-weight: 600; transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1); }
-    .marketing-footer-section a:hover { transform: translateX(-4px); color: #E64A19; }
   </style>
 </head>
-<body>
+<body class="mk-page-marketing">
 
-<nav class="navbar">
-  <div class="nav-container">
-    <a href="/" class="logo-link">
-      <svg class="logo logo-main" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
-        <text x="64" y="80" font-family="Bebas Neue, sans-serif" font-size="72" font-weight="700" text-anchor="middle" fill="#FFFFFF">MK</text>
-      </svg>
-    </a>
-    <div class="nav-menu">
-      <a href="/" class="nav-link">Home</a>
-      <a href="/#contact" class="nav-link">Contact</a>
-    </div>
+<div class="mk-cursor" id="mkCursor"></div>
+<div class="mk-cursor-ring" id="mkCursorRing"></div>
+
+<!-- MOBILE NAV -->
+<div class="mk-mobile-nav" id="mkMobileNav">
+  <a href="/" onclick="closeMkNav()">Home</a>
+  <a href="/#portfolio" onclick="closeMkNav()">Portfolio</a>
+  <a href="/gallery" onclick="closeMkNav()">Gallery</a>
+  <a href="/sessions" onclick="closeMkNav()">Sessions</a>
+  <a href="/pricing" onclick="closeMkNav()">Pricing</a>
+  <a href="/blog" onclick="closeMkNav()">Blog</a>
+  <a href="/marketing" onclick="closeMkNav()">Marketing</a>
+  <a href="/#contact" class="mk-mobile-cta" onclick="closeMkNav()">Book Now</a>
+</div>
+
+<!-- NAV -->
+<nav class="mk-nav" id="mkNav">
+  <a href="/" class="mk-nav-logo">MK<em>.</em></a>
+  <div class="mk-nav-links">
+    <a href="/#portfolio">Portfolio</a>
+    <a href="/gallery">Gallery</a>
+    <a href="/sessions">Sessions</a>
+    <a href="/pricing">Pricing</a>
+    <a href="/blog">Blog</a>
+    <a href="/marketing" class="active">Marketing</a>
+  </div>
+  <div class="mk-nav-right">
+    <a href="/#contact" class="mk-nav-cta">Book Now</a>
+    <button class="mk-hamburger" id="mkHamburger" onclick="toggleMkNav()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
-<header class="marketing-header">
-  <h1>Marketing Services</h1>
-  <p>Professional photography, design, and branding solutions tailored to your business needs. From corporate imagery to promotional materials, we deliver cinematic quality on every project.</p>
-</header>
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-eyebrow">Business Solutions</div>
+  <h1>Marketing<br><em>Services.</em></h1>
+  <p>Professional photography, design, and branding solutions tailored to your business. From corporate imagery to promotional materials — cinematic quality on every project.</p>
+</section>
 
 <main class="marketing-services">
   <h2>Our Services</h2>
@@ -134,7 +178,7 @@
     <div class="marketing-card fade-in-up">
       <div class="marketing-number">03</div>
       <h3>Social Media Marketing Design</h3>
-      <p class="marketing-desc">Complete social media campaign graphics and marketing materials. Custom designs for Instagram, Facebook, and other platforms. Professional layouts with your brand identity and cinematic aesthetic.</p>
+      <p class="marketing-desc">Complete social media campaign graphics and marketing materials. Custom designs for Instagram, Facebook, and other platforms with your brand identity and cinematic aesthetic.</p>
       <ul class="marketing-features">
         <li>Instagram feed templates</li>
         <li>Social media carousel designs</li>
@@ -145,9 +189,9 @@
         <li>Ready for instant posting</li>
       </ul>
       <div class="marketing-gallery">
-        <img src="/img/marketing/Posters de D´Homes Group/D´Homes (1).jpg" alt="Social media marketing design for real estate" loading="lazy">
+        <img src="/img/marketing/Posters de D´Homes Group/D´Homes (1).jpg" alt="Social media marketing design" loading="lazy">
         <img src="/img/marketing/Posters de D´Homes Group/D´Homes (2).jpg" alt="Instagram promotional graphics" loading="lazy">
-        <img src="/img/marketing/Posters de D´Homes Group/D´Homes (3).jpg" alt="Facebook campaign design templates" loading="lazy">
+        <img src="/img/marketing/Posters de D´Homes Group/D´Homes (3).jpg" alt="Facebook campaign design" loading="lazy">
       </div>
       <div class="marketing-footer">
         <div class="marketing-price">$350 <span>/ campaign package</span></div>
@@ -158,7 +202,7 @@
     <div class="marketing-card fade-in-up">
       <div class="marketing-number">04</div>
       <h3>Custom Promotional Flyers</h3>
-      <p class="marketing-desc">Eye-catching promotional flyers and advertising materials. Perfect for travel promotions, events, product launches, and special campaigns. Professionally designed with striking visuals and compelling copy layout.</p>
+      <p class="marketing-desc">Eye-catching promotional flyers and advertising materials. Perfect for travel promotions, events, product launches, and special campaigns with striking visuals and compelling copy layout.</p>
       <ul class="marketing-features">
         <li>Travel promotion flyers</li>
         <li>Event announcement designs</li>
@@ -182,10 +226,53 @@
   </div>
 </main>
 
-<footer class="marketing-footer-section">
-  <a href="/">← Back to Home</a>
-  <p style="margin-top: 24px; color: var(--color-text-secondary); font-size: 14px;">© 2026 Maikel Marshall. All rights reserved.</p>
+<!-- FOOTER -->
+<footer class="mk-footer">
+  <a href="/" class="mk-footer-brand">MK<em>.</em> Maikel Marshall</a>
+  <nav class="mk-footer-links">
+    <a href="/#portfolio">Portfolio</a>
+    <a href="/gallery">Gallery</a>
+    <a href="/sessions">Sessions</a>
+    <a href="/pricing">Pricing</a>
+    <a href="/blog">Blog</a>
+    <a href="/marketing">Marketing</a>
+    <a href="https://www.instagram.com/maik_photographer/" target="_blank" rel="noopener">Instagram</a>
+  </nav>
+  <div class="mk-footer-copy">© 2026 Maikel Marshall · Miami, FL</div>
 </footer>
 
+<!-- WHATSAPP -->
+<a href="https://wa.me/17863329815?text=Hi%20Maikel!%20I'm%20interested%20in%20your%20marketing%20services." class="mk-wa" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+// Cursor
+const cur = document.getElementById('mkCursor');
+const ring = document.getElementById('mkCursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
+(function anim(){ rx+=(mx-rx)*.1; ry+=(my-ry)*.1; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(anim); })();
+
+// Nav scroll
+window.addEventListener('scroll', () => document.getElementById('mkNav').classList.toggle('scrolled', scrollY > 50));
+
+// Mobile nav
+let navOpen = false;
+function toggleMkNav() { navOpen=!navOpen; document.getElementById('mkMobileNav').classList.toggle('open',navOpen); document.getElementById('mkHamburger').classList.toggle('open',navOpen); document.body.style.overflow=navOpen?'hidden':''; }
+function closeMkNav() { navOpen=false; document.getElementById('mkMobileNav').classList.remove('open'); document.getElementById('mkHamburger').classList.remove('open'); document.body.style.overflow=''; }
+
+// Scroll reveal
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; io.unobserve(e.target); }
+  });
+}, { threshold: 0.06 });
+document.querySelectorAll('.fade-in-up').forEach((el,i) => {
+  el.style.opacity='0'; el.style.transform='translateY(32px)';
+  el.style.transition=`opacity .6s ease ${i*80}ms, transform .6s ease ${i*80}ms`;
+  io.observe(el);
+});
+</script>
 </body>
 </html>

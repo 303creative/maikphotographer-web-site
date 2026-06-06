@@ -1,0 +1,319 @@
+/* ═══════════════════════════════════════════════════════════════════
+   UNIFIED NAVIGATION — Maikel Marshall Photography
+   Applies to ALL pages. Matches index.html design system.
+   Design tokens: Bebas Neue, #0C0C0C bg, #FF5722 accent
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Shared tokens (safe to declare here; won't break design-system.css) ── */
+:root {
+  --mk-black:   #0C0C0C;
+  --mk-white:   #FFFFFF;
+  --mk-cream:   #E1E0CC;
+  --mk-accent:  #FF5722;
+  --mk-accent2: #E64A19;
+  --mk-gray:    #888888;
+  --mk-border:  rgba(255,255,255,0.08);
+  --mk-nav-h:   72px;
+  --mk-ease:    cubic-bezier(0.16, 1, 0.3, 1);
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body:    'Inter', sans-serif;
+}
+
+/* ── Custom cursor ── */
+.mk-cursor {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: var(--mk-accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s var(--mk-ease), opacity 0.2s;
+}
+
+.mk-cursor-ring {
+  position: fixed;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255, 87, 34, 0.45);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s var(--mk-ease), height 0.3s var(--mk-ease);
+}
+
+/* ── Main nav bar ── */
+.mk-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: var(--mk-nav-h);
+  background: rgba(12, 12, 12, 0.0);
+  backdrop-filter: blur(0px);
+  border-bottom: 1px solid transparent;
+  transition: background 0.4s ease, backdrop-filter 0.4s ease,
+              border-color 0.4s ease, height 0.4s ease;
+}
+
+.mk-nav.scrolled {
+  background: rgba(12, 12, 12, 0.96);
+  backdrop-filter: blur(20px);
+  border-bottom-color: var(--mk-border);
+  height: 60px;
+}
+
+/* Logo */
+.mk-nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: 0.04em;
+  color: var(--mk-white);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.mk-nav-logo em {
+  color: var(--mk-accent);
+  font-style: normal;
+}
+
+/* Desktop links */
+.mk-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.mk-nav-links a {
+  padding: 8px 16px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.mk-nav-links a:hover,
+.mk-nav-links a.active {
+  color: var(--mk-white);
+}
+
+.mk-nav-links a.active {
+  color: var(--mk-accent);
+}
+
+/* Right side: CTA + hamburger */
+.mk-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.mk-nav-cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 22px;
+  background: var(--mk-accent);
+  color: var(--mk-white);
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  white-space: nowrap;
+}
+
+.mk-nav-cta:hover {
+  background: var(--mk-accent2);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(255, 87, 34, 0.3);
+}
+
+/* Hamburger */
+.mk-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.mk-hamburger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--mk-white);
+  transition: all 0.3s ease;
+}
+
+.mk-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.mk-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.mk-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* ── Mobile full-screen nav ── */
+.mk-mobile-nav {
+  position: fixed;
+  inset: 0;
+  z-index: 190;
+  background: rgba(12, 12, 12, 0.98);
+  backdrop-filter: blur(24px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.mk-mobile-nav.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.mk-mobile-nav a {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 7vw, 3.5rem);
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  line-height: 1.2;
+}
+
+.mk-mobile-nav a:hover {
+  color: var(--mk-accent);
+}
+
+.mk-mobile-nav .mk-mobile-cta {
+  margin-top: 24px;
+  display: inline-flex;
+  padding: 14px 40px;
+  background: var(--mk-accent);
+  color: var(--mk-white);
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ── Body offset for fixed nav ── */
+body { padding-top: var(--mk-nav-h); }
+
+/* ── Unified Footer ── */
+.mk-footer {
+  background: var(--mk-black);
+  border-top: 1px solid var(--mk-border);
+  padding: 48px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.mk-footer-brand {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  letter-spacing: 0.04em;
+  color: var(--mk-white);
+  text-decoration: none;
+}
+
+.mk-footer-brand em {
+  color: var(--mk-accent);
+  font-style: normal;
+}
+
+.mk-footer-links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.mk-footer-links a {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mk-gray);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.mk-footer-links a:hover {
+  color: var(--mk-white);
+}
+
+.mk-footer-copy {
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.25);
+  letter-spacing: 0.06em;
+}
+
+/* WhatsApp button */
+.mk-wa {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 300;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  text-decoration: none;
+}
+
+.mk-wa:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 28px rgba(37, 211, 102, 0.45);
+}
+
+.mk-wa svg { width: 22px; height: 22px; fill: #fff; }
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .mk-nav-links { display: none; }
+  .mk-hamburger { display: flex; }
+  .mk-nav { padding: 0 24px; }
+}
+
+@media (max-width: 600px) {
+  .mk-footer { flex-direction: column; align-items: flex-start; padding: 36px 20px; }
+  .mk-footer-links { gap: 14px; }
+}
+
+/* ── Nav JS helper ── */
+/* Add class .mk-page-* to <body> to auto-highlight active link */
+body.mk-page-gallery  .mk-nav-links a[href="/gallery"],
+body.mk-page-sessions .mk-nav-links a[href="/sessions"],
+body.mk-page-pricing  .mk-nav-links a[href="/pricing"],
+body.mk-page-blog     .mk-nav-links a[href="/blog"],
+body.mk-page-marketing .mk-nav-links a[href="/marketing"] {
+  color: var(--mk-accent);
+}

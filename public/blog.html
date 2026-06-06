@@ -5,30 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blog — Maikel Marshall · Photographer</title>
 <meta name="description" content="Behind the scenes stories, photography tips, and creative insights from Maikel Marshall.">
+<link rel="icon" href="/assets/icons/01_logo_mk_blanco_principal.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/unified-nav.css">
 <style>
 :root {
-  --bg:          #0B0C0A;
-  --bg2:         #0E0F0D;
-  --bg3:         #141512;
-  --surface:     rgba(14,15,13,.88);
-  --gold:        #D8C18A;
-  --gold2:       #C7B68A;
-  --gold-dim:    rgba(216,193,138,.12);
-  --gold-glow:   rgba(216,193,138,.25);
-  --white:       #E6E3D8;
-  --muted:       #9B978B;
-  --muted2:      rgba(230,227,216,.38);
-  --border:      rgba(216,193,138,.12);
-  --border2:     rgba(216,193,138,.22);
-  --display:     'Jost', sans-serif;
-  --body:        'Inter', sans-serif;
-  --ease:        cubic-bezier(.16,1,.3,1);
-  --ease2:       cubic-bezier(.4,0,.2,1);
-  --r-card:      28px;
-  --r-btn:       999px;
+  --bg:        #0C0C0C;
+  --bg2:       #111111;
+  --surface:   rgba(255,255,255,0.04);
+  --accent:    #FF5722;
+  --accent2:   #E64A19;
+  --accent-dim: rgba(255,87,34,.12);
+  --white:     #FFFFFF;
+  --muted:     #888888;
+  --muted2:    rgba(255,255,255,.38);
+  --border:    rgba(255,255,255,.08);
+  --border2:   rgba(255,255,255,.16);
+  --display:   'Bebas Neue', sans-serif;
+  --body:      'Inter', sans-serif;
+  --ease:      cubic-bezier(.16,1,.3,1);
+  --r-card:    16px;
+  --r-btn:     999px;
 }
 
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box }
@@ -37,247 +36,251 @@ body { font-family:var(--body); background:var(--bg); color:var(--white); overfl
 img { max-width:100%; display:block }
 a { text-decoration:none; color:inherit }
 
-body::before { content:''; position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.04;
+body::before { content:''; position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.025;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size:200px }
 
-.cur-dot { position:fixed; top:0; left:0; width:6px; height:6px; background:var(--white); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%) }
-.cur-ring { position:fixed; top:0; left:0; width:32px; height:32px; border:1px solid rgba(216,193,138,.6); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:all .1s var(--ease2) }
+.page-hero {
+  min-height: 52vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 80px 7vw 56px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::before {
+  content: 'BLOG';
+  position: absolute;
+  font-family: var(--display);
+  font-size: clamp(100px,18vw,240px);
+  color: rgba(255,255,255,0.022);
+  bottom: -20px; left: -8px;
+  line-height:1; pointer-events:none;
+}
+.page-eyebrow {
+  font-size: 0.68rem; font-weight:700; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--accent);
+  margin-bottom:16px; display:flex; align-items:center; gap:10px;
+}
+.page-eyebrow::before { content:''; display:block; width:28px; height:1px; background:var(--accent); }
+.page-hero h1 {
+  font-family: var(--display);
+  font-size: clamp(56px,10vw,130px);
+  line-height:.9; letter-spacing:-.01em;
+  margin-bottom:20px;
+}
+.page-hero h1 em { color:var(--accent); font-style:normal; }
+.page-hero p { font-size:0.9rem; color:var(--muted); max-width:460px; line-height:1.7; }
 
-.site-header { position:fixed; top:0; left:0; width:100%; z-index:100;
-  padding:28px 7vw; display:flex; justify-content:space-between; align-items:center;
-  background:rgba(11,12,10,.0); backdrop-filter:blur(0px); border-bottom:1px solid transparent;
-  transition:all .5s var(--ease2) }
-.site-header.sticky { background:rgba(11,12,10,.92); backdrop-filter:blur(20px); border-bottom-color:var(--border); padding:18px 7vw }
+.blog-section { padding:80px 7vw; }
+.blog-inner { max-width:1240px; margin:0 auto; }
+.blog-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:40px; }
+.blog-card {
+  border-radius:var(--r-card); overflow:hidden;
+  background:var(--surface); border:1px solid var(--border);
+  transition:all .4s var(--ease);
+}
+.blog-card:hover { border-color:var(--border2); transform:translateY(-4px); box-shadow:0 24px 60px rgba(0,0,0,.5); }
 
-.logo { font-family:var(--display); font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); font-weight:500 }
-.header-nav { display:flex; align-items:center; gap:0 }
-.header-nav a { margin-left:32px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--white); opacity:.72; transition:opacity .3s; font-weight:400 }
-.header-nav a:hover { opacity:1 }
-
-.header-right { display:flex; align-items:center; gap:16px }
-.lang-btn { font-size:10px; letter-spacing:.2em; text-transform:uppercase; padding:7px 14px;
-  border:1px solid var(--border2); border-radius:var(--r-btn); color:var(--gold2);
-  background:transparent; cursor:pointer; transition:all .3s; font-family:var(--body) }
-.lang-btn:hover { background:var(--gold-dim) }
-
-.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; background:none; border:none }
-.hamburger span { width:22px; height:1px; background:var(--white); display:block; transition:all .3s }
-
-.mobile-nav { position:fixed; inset:0; z-index:90; background:rgba(11,12,10,.97);
-  backdrop-filter:blur(20px); display:flex; flex-direction:column;
-  align-items:center; justify-content:center; gap:32px;
-  opacity:0; pointer-events:none; transition:opacity .4s }
-.mobile-nav.open { opacity:1; pointer-events:all }
-.mobile-nav a { font-family:var(--display); font-size:2rem; font-weight:400; letter-spacing:.1em; color:var(--white); transition:color .3s }
-.mobile-nav a:hover { color:var(--gold2) }
-
-.page-header { min-height:70vh; display:grid; place-items:center; text-align:center;
-  padding:120px 7vw 80px; position:relative; background:var(--bg) }
-.page-header h1 { font-family:var(--display); font-size:clamp(42px,5.5vw,72px);
-  font-weight:400; letter-spacing:.16em; line-height:1.12; margin-bottom:24px; color:var(--white) }
-.page-header p { font-size:14px; color:var(--muted); max-width:520px; margin:0 auto }
-
-.blog-section { padding:100px 7vw; background:var(--bg) }
-.blog-inner { max-width:1240px; margin:0 auto }
-.blog-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:48px }
-.blog-card { border-radius:var(--r-card); overflow:hidden;
-  background:var(--surface); border:1px solid var(--border); transition:all .4s var(--ease) }
-.blog-card:hover { border-color:var(--border2); transform:translateY(-4px); box-shadow:0 24px 60px rgba(0,0,0,.4) }
-
-.blog-cover { height:280px; position:relative; overflow:hidden; cursor:pointer }
-.blog-cover img { width:100%; height:100%; object-fit:cover; transition:transform .9s var(--ease) }
-.blog-card:hover .blog-cover img { transform:scale(1.06) }
-.blog-badge { position:absolute; top:20px; left:20px; background:var(--gold); color:#111;
-  padding:6px 14px; border-radius:var(--r-btn); font-size:10px; letter-spacing:.14em;
-  text-transform:uppercase; font-weight:500 }
-
-.blog-content { padding:36px }
-.blog-date { font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted2); margin-bottom:12px }
-.blog-title { font-family:var(--display); font-size:1.4rem; font-weight:400; letter-spacing:.12em;
-  margin-bottom:16px; line-height:1.2; color:var(--white) }
-.blog-excerpt { font-size:13px; color:var(--muted); line-height:1.85; margin-bottom:24px }
-.blog-link { font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--gold2);
-  display:flex; align-items:center; gap:10px; transition:gap .3s }
-.blog-link:hover { gap:18px }
-
-.coming-soon { text-align:center; padding:80px 40px; color:var(--muted) }
-.coming-soon h2 { font-family:var(--display); font-size:2rem; font-weight:400; letter-spacing:.14em;
-  margin-bottom:16px; color:var(--white) }
-.coming-soon p { font-size:14px; margin-bottom:32px }
-
-.site-footer { background:var(--bg); border-top:1px solid var(--border);
-  padding:48px 7vw; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px }
-.footer-brand { font-family:var(--display); font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); font-weight:400 }
-.footer-links { display:flex; gap:24px; flex-wrap:wrap }
-.footer-links a { font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); transition:color .3s }
-.footer-links a:hover { color:var(--gold2) }
-.footer-copy { font-size:11px; color:rgba(155,151,139,.5) }
-
-.wa-btn { position:fixed; bottom:32px; right:32px; z-index:200;
-  width:52px; height:52px; border-radius:50%; background:#25D366;
-  display:flex; align-items:center; justify-content:center;
-  box-shadow:0 4px 20px rgba(37,211,102,.3); transition:all .3s }
-.wa-btn:hover { transform:scale(1.1); box-shadow:0 6px 30px rgba(37,211,102,.45) }
-.wa-btn svg { width:24px; height:24px; fill:#fff }
-
-@media(max-width:1024px){
-  .blog-grid { grid-template-columns:1fr }
+.blog-cover { height:280px; position:relative; overflow:hidden; cursor:pointer; }
+.blog-cover img { width:100%; height:100%; object-fit:cover; transition:transform .9s var(--ease); }
+.blog-card:hover .blog-cover img { transform:scale(1.06); }
+.blog-badge {
+  position:absolute; top:16px; left:16px;
+  background:var(--accent); color:#fff;
+  padding:5px 12px; border-radius:var(--r-btn);
+  font-size:0.62rem; letter-spacing:.14em;
+  text-transform:uppercase; font-weight:700;
 }
 
-@media(max-width:768px){
-  .header-nav { display:none }
-  .hamburger { display:flex }
-  .site-header { padding:20px 5vw }
-  .page-header { padding:100px 5vw 60px; min-height:50vh }
-  .page-header h1 { font-size:clamp(36px,10vw,52px); letter-spacing:.1em }
-  .blog-section { padding:80px 5vw }
-  .blog-grid { gap:32px }
-  .blog-card { border-radius:22px }
-  .blog-cover { height:240px }
-  .blog-content { padding:28px }
-  .site-footer { flex-direction:column; text-align:center; padding:36px 5vw }
-  .footer-links { justify-content:center }
+.blog-content { padding:32px; }
+.blog-date { font-size:0.65rem; letter-spacing:.16em; text-transform:uppercase; color:var(--muted2); margin-bottom:10px; }
+.blog-title {
+  font-family:var(--display); font-size:1.5rem; letter-spacing:.06em;
+  margin-bottom:14px; line-height:1.1; color:var(--white);
+}
+.blog-excerpt { font-size:0.82rem; color:var(--muted); line-height:1.85; margin-bottom:20px; }
+.blog-link {
+  font-size:0.68rem; letter-spacing:.16em; text-transform:uppercase; color:var(--accent);
+  display:flex; align-items:center; gap:8px; transition:gap .3s;
+}
+.blog-link:hover { gap:16px; }
+
+.coming-soon { text-align:center; padding:72px 40px; color:var(--muted); margin-top:60px; border-top:1px solid var(--border); }
+.coming-soon h2 { font-family:var(--display); font-size:clamp(2rem,5vw,3.5rem); letter-spacing:.08em; margin-bottom:12px; color:var(--white); }
+.coming-soon p { font-size:0.85rem; max-width:420px; margin:0 auto; }
+
+@media(max-width:900px){ .blog-grid { grid-template-columns:1fr; } }
+@media(max-width:600px){
+  .page-hero { padding:60px 5vw 48px; }
+  .blog-section { padding:60px 5vw; }
+  .blog-grid { gap:28px; }
+  .blog-cover { height:220px; }
+  .blog-content { padding:24px; }
 }
 </style>
 </head>
-<body>
+<body class="mk-page-blog">
 
-<div class="cur-dot" id="curDot"></div>
-<div class="cur-ring" id="curRing"></div>
+<div class="mk-cursor" id="mkCursor"></div>
+<div class="mk-cursor-ring" id="mkCursorRing"></div>
 
-<nav class="mobile-nav" id="mobileNav">
-  <a href="index.html#about" onclick="closeMobileNav()" data-en="About" data-es="Sobre mí">About</a>
-  <a href="index.html#portfolio" onclick="closeMobileNav()" data-en="Portfolio" data-es="Portfolio">Portfolio</a>
-  <a href="gallery.html" onclick="closeMobileNav()" data-en="Gallery" data-es="Galería">Gallery</a>
-  <a href="index.html#services" onclick="closeMobileNav()" data-en="Services" data-es="Servicios">Services</a>
-  <a href="pricing.html" onclick="closeMobileNav()" data-en="Pricing" data-es="Precios">Pricing</a>
-  <a href="index.html#contact" onclick="closeMobileNav()" data-en="Contact" data-es="Contacto">Contact</a>
-</nav>
+<!-- MOBILE NAV -->
+<div class="mk-mobile-nav" id="mkMobileNav">
+  <a href="/" onclick="closeMkNav()">Home</a>
+  <a href="/#portfolio" onclick="closeMkNav()">Portfolio</a>
+  <a href="/gallery" onclick="closeMkNav()">Gallery</a>
+  <a href="/sessions" onclick="closeMkNav()">Sessions</a>
+  <a href="/pricing" onclick="closeMkNav()">Pricing</a>
+  <a href="/blog" onclick="closeMkNav()">Blog</a>
+  <a href="/marketing" onclick="closeMkNav()">Marketing</a>
+  <a href="/#contact" class="mk-mobile-cta" onclick="closeMkNav()">Book Now</a>
+</div>
 
-<header class="site-header" id="siteHeader">
-  <a href="index.html" class="logo">MK — Studio</a>
-  <nav class="header-nav">
-    <a href="index.html#about" data-en="About" data-es="Sobre mí">About</a>
-    <a href="index.html#portfolio" data-en="Portfolio" data-es="Portfolio">Portfolio</a>
-    <a href="gallery.html" data-en="Gallery" data-es="Galería">Gallery</a>
-    <a href="index.html#services" data-en="Services" data-es="Servicios">Services</a>
-    <a href="pricing.html" data-en="Pricing" data-es="Precios">Pricing</a>
-    <a href="index.html#contact" data-en="Contact" data-es="Contacto">Contact</a>
-  </nav>
-  <div class="header-right">
-    <button class="lang-btn" id="langBtn" onclick="toggleLang()">ES</button>
-    <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+<!-- NAV -->
+<nav class="mk-nav" id="mkNav">
+  <a href="/" class="mk-nav-logo">MK<em>.</em></a>
+  <div class="mk-nav-links">
+    <a href="/#portfolio">Portfolio</a>
+    <a href="/gallery">Gallery</a>
+    <a href="/sessions">Sessions</a>
+    <a href="/pricing">Pricing</a>
+    <a href="/blog" class="active">Blog</a>
+    <a href="/marketing">Marketing</a>
+  </div>
+  <div class="mk-nav-right">
+    <a href="/#contact" class="mk-nav-cta">Book Now</a>
+    <button class="mk-hamburger" id="mkHamburger" onclick="toggleMkNav()" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
   </div>
-</header>
+</nav>
 
-<section class="page-header">
-  <div>
-    <h1 data-en="Behind the Scenes" data-es="Detrás de Cámaras">Behind the Scenes</h1>
-    <p data-en="Stories, tips, and insights from my creative process. Learn about the craft, the challenges, and the moments that make photography real." data-es="Historias, consejos e insights de mi proceso creativo. Aprende sobre el oficio, los desafíos y los momentos que hacen real la fotografía.">Stories, tips, and insights from my creative process.</p>
-  </div>
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-eyebrow">Behind the Lens</div>
+  <h1>Blog &amp;<br><em>Stories.</em></h1>
+  <p>Photography tips, creative process insights, and behind-the-scenes stories from every session.</p>
 </section>
 
+<!-- BLOG GRID -->
 <section class="blog-section">
   <div class="blog-inner">
     <div class="blog-grid">
+
       <article class="blog-card">
         <div class="blog-cover">
-          <img src="img/mejores fotos/d2b49be8-f77b-4d97-8016-a60525b7c770.jpg" alt="Editorial shoot">
-          <div class="blog-badge" data-en="Behind-the-Scenes" data-es="Detrás-de-Cámaras">BTS</div>
+          <img src="/img/mejores fotos/d2b49be8-f77b-4d97-8016-a60525b7c770.jpg" alt="Editorial shoot" loading="lazy">
+          <div class="blog-badge">BTS</div>
         </div>
         <div class="blog-content">
-          <div class="blog-date" data-en="May 20, 2026" data-es="20 de mayo, 2026">May 20, 2026</div>
-          <div class="blog-title" data-en="The Art of Location Scouting" data-es="El Arte del Location Scouting">The Art of Location Scouting</div>
-          <p class="blog-excerpt" data-en="Finding the perfect location is half the battle. Discover how I explore Miami to find authentic backdrops that tell your story." data-es="Encontrar la locación perfecta es la mitad de la batalla. Descubre cómo exploro Miami para encontrar escenarios auténticos.">Finding the perfect location is half the battle. Discover how I explore Miami...</p>
-          <a href="#" class="blog-link" data-en="Read Story" data-es="Leer Historia">Read Story →</a>
+          <div class="blog-date">May 20, 2026</div>
+          <div class="blog-title">The Art of Location Scouting</div>
+          <p class="blog-excerpt">Finding the perfect location is half the battle. Discover how I explore Miami to find authentic backdrops that tell your story.</p>
+          <a href="#" class="blog-link">Read Story →</a>
         </div>
       </article>
 
       <article class="blog-card">
         <div class="blog-cover">
-          <img src="img/mejores fotos/c6ea7574-bc41-4beb-87f0-62f5327810b8.jpg" alt="Portrait session">
-          <div class="blog-badge" data-en="Photography Tips" data-es="Consejos de Fotografía">TIPS</div>
+          <img src="/img/mejores fotos/c6ea7574-bc41-4beb-87f0-62f5327810b8.jpg" alt="Portrait session" loading="lazy">
+          <div class="blog-badge">TIPS</div>
         </div>
         <div class="blog-content">
-          <div class="blog-date" data-en="May 15, 2026" data-es="15 de mayo, 2026">May 15, 2026</div>
-          <div class="blog-title" data-en="Mastering Natural Light" data-es="Dominando la Luz Natural">Mastering Natural Light</div>
-          <p class="blog-excerpt" data-en="Natural light is your best friend. Learn the techniques I use to create cinematic portraits with just sunlight and reflectors." data-es="La luz natural es tu mejor amiga. Aprende las técnicas que uso para crear retratos cinemáticos.">Natural light is your best friend. Learn the techniques I use...</p>
-          <a href="#" class="blog-link" data-en="Read Story" data-es="Leer Historia">Read Story →</a>
+          <div class="blog-date">May 15, 2026</div>
+          <div class="blog-title">Mastering Natural Light</div>
+          <p class="blog-excerpt">Natural light is your best friend. Learn the techniques I use to create cinematic portraits with just sunlight and reflectors.</p>
+          <a href="#" class="blog-link">Read Story →</a>
         </div>
       </article>
 
       <article class="blog-card">
         <div class="blog-cover">
-          <img src="img/mejores fotos/5816f957-12b0-4fad-b4d1-5410a0277dbf.jpg" alt="Creative direction">
-          <div class="blog-badge" data-en="Creative" data-es="Creativo">CREATIVE</div>
+          <img src="/img/mejores fotos/5816f957-12b0-4fad-b4d1-5410a0277dbf.jpg" alt="Creative direction" loading="lazy">
+          <div class="blog-badge">CREATIVE</div>
         </div>
         <div class="blog-content">
-          <div class="blog-date" data-en="May 8, 2026" data-es="8 de mayo, 2026">May 8, 2026</div>
-          <div class="blog-title" data-en="Directing Authentic Emotions" data-es="Dirigiendo Emociones Auténticas">Directing Authentic Emotions</div>
-          <p class="blog-excerpt" data-en="The best photos capture real emotion. Here's how I guide clients and models to feel comfortable and express themselves naturally." data-es="Las mejores fotos capturan emociones reales. Aquí te muestro cómo guío a clientes y modelos.">The best photos capture real emotion. Here's how I guide clients...</p>
-          <a href="#" class="blog-link" data-en="Read Story" data-es="Leer Historia">Read Story →</a>
+          <div class="blog-date">May 8, 2026</div>
+          <div class="blog-title">Directing Authentic Emotions</div>
+          <p class="blog-excerpt">The best photos capture real emotion. Here's how I guide clients and models to feel comfortable and express themselves naturally.</p>
+          <a href="#" class="blog-link">Read Story →</a>
         </div>
       </article>
 
       <article class="blog-card">
         <div class="blog-cover">
-          <img src="img/mejores fotos/a0dffcc9-8c2e-471e-86ee-d98e913cf977.jpg" alt="Editing workflow">
-          <div class="blog-badge" data-en="Workflow" data-es="Flujo de trabajo">WORKFLOW</div>
+          <img src="/img/mejores fotos/a0dffcc9-8c2e-471e-86ee-d98e913cf977.jpg" alt="Editing workflow" loading="lazy">
+          <div class="blog-badge">WORKFLOW</div>
         </div>
         <div class="blog-content">
-          <div class="blog-date" data-en="April 30, 2026" data-es="30 de abril, 2026">April 30, 2026</div>
-          <div class="blog-title" data-en="My Complete Editing Process" data-es="Mi Proceso Completo de Edición">My Complete Editing Process</div>
-          <p class="blog-excerpt" data-en="From RAW to final delivery in 48 hours. A look at how I edit to achieve that distinctive cinematic look across all my work." data-es="De RAW a entrega final en 48 horas. Mira cómo edito para lograr ese look cinemático distintivo.">From RAW to final delivery in 48 hours. A look at how...</p>
-          <a href="#" class="blog-link" data-en="Read Story" data-es="Leer Historia">Read Story →</a>
+          <div class="blog-date">April 30, 2026</div>
+          <div class="blog-title">My Complete Editing Process</div>
+          <p class="blog-excerpt">From RAW to final delivery in 48 hours. A look at how I edit to achieve that distinctive cinematic look across all my work.</p>
+          <a href="#" class="blog-link">Read Story →</a>
         </div>
       </article>
+
     </div>
 
-    <div class="coming-soon" style="margin-top:80px">
-      <h2 data-en="Coming Soon" data-es="Próximamente">Coming Soon</h2>
-      <p data-en="More stories and insights are on the way. Subscribe to my newsletter to be the first to read new behind-the-scenes content." data-es="Más historias e insights están en camino. Suscríbete a mi boletín para ser el primero en leer nuevo contenido.">More stories and insights are on the way. Check back soon.</p>
+    <div class="coming-soon">
+      <h2>More Coming Soon</h2>
+      <p>New stories and insights on the way. Follow me on Instagram for real-time updates from every shoot.</p>
     </div>
   </div>
 </section>
 
-<footer class="site-footer">
-  <div class="footer-brand">MK — Maikel Marshall</div>
-  <nav class="footer-links">
-    <a href="index.html#about" data-en="About" data-es="Sobre mí">About</a>
-    <a href="index.html#portfolio" data-en="Portfolio" data-es="Portfolio">Portfolio</a>
-    <a href="gallery.html" data-en="Gallery" data-es="Galería">Gallery</a>
-    <a href="pricing.html" data-en="Pricing" data-es="Precios">Pricing</a>
-    <a href="blog.html" data-en="Blog" data-es="Blog">Blog</a>
-    <a href="https://www.instagram.com/maik_photographer/" target="_blank">Instagram</a>
-    <a href="https://wa.me/17863329815" target="_blank">WhatsApp</a>
+<!-- FOOTER -->
+<footer class="mk-footer">
+  <a href="/" class="mk-footer-brand">MK<em>.</em> Maikel Marshall</a>
+  <nav class="mk-footer-links">
+    <a href="/#portfolio">Portfolio</a>
+    <a href="/gallery">Gallery</a>
+    <a href="/sessions">Sessions</a>
+    <a href="/pricing">Pricing</a>
+    <a href="/blog">Blog</a>
+    <a href="/marketing">Marketing</a>
+    <a href="https://www.instagram.com/maik_photographer/" target="_blank" rel="noopener">Instagram</a>
   </nav>
-  <div class="footer-copy">© 2026 Maikel Marshall · Miami, FL</div>
+  <div class="mk-footer-copy">© 2026 Maikel Marshall · Miami, FL</div>
 </footer>
 
-<a href="https://wa.me/17863329815?text=Hi%20Maikel!%20I%20love%20your%20blog%20and%20would%20like%20to%20discuss%20a%20project." class="wa-btn" target="_blank" rel="noopener" aria-label="WhatsApp">
+<!-- WHATSAPP -->
+<a href="https://wa.me/17863329815?text=Hi%20Maikel!%20I'd%20love%20to%20book%20a%20session." class="mk-wa" target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
 <script>
-const dot=document.getElementById('curDot'),ring=document.getElementById('curRing');
+// Cursor
+const cur = document.getElementById('mkCursor');
+const ring = document.getElementById('mkCursorRing');
 let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
-(function animRing(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)})();
+document.addEventListener('mousemove', e => {
+  mx=e.clientX; my=e.clientY;
+  cur.style.left=mx+'px'; cur.style.top=my+'px';
+});
+(function anim(){ rx+=(mx-rx)*.1; ry+=(my-ry)*.1;
+  ring.style.left=rx+'px'; ring.style.top=ry+'px';
+  requestAnimationFrame(anim); })();
 
-window.addEventListener('scroll',()=>document.getElementById('siteHeader').classList.toggle('sticky',scrollY>60));
+// Nav scroll
+window.addEventListener('scroll', () =>
+  document.getElementById('mkNav').classList.toggle('scrolled', scrollY > 50));
 
-let navOpen=false;
-function toggleMobileNav(){navOpen=!navOpen;document.getElementById('mobileNav').classList.toggle('open',navOpen);document.body.style.overflow=navOpen?'hidden':''}
-function closeMobileNav(){navOpen=false;document.getElementById('mobileNav').classList.remove('open');document.body.style.overflow=''}
-
-let lang='en';
-function toggleLang(){
-  lang=lang==='en'?'es':'en';
-  document.getElementById('langBtn').textContent=lang==='en'?'ES':'EN';
-  document.querySelectorAll('[data-en]').forEach(el=>el.textContent=lang==='en'?el.dataset.en:el.dataset.es);
+// Mobile nav
+let navOpen = false;
+function toggleMkNav() {
+  navOpen = !navOpen;
+  document.getElementById('mkMobileNav').classList.toggle('open', navOpen);
+  document.getElementById('mkHamburger').classList.toggle('open', navOpen);
+  document.body.style.overflow = navOpen ? 'hidden' : '';
+}
+function closeMkNav() {
+  navOpen = false;
+  document.getElementById('mkMobileNav').classList.remove('open');
+  document.getElementById('mkHamburger').classList.remove('open');
+  document.body.style.overflow = '';
 }
 </script>
 </body>

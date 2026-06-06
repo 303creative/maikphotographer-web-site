@@ -5,30 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pricing — Maikel Marshall · Photographer</title>
 <meta name="description" content="Photography packages and pricing. Portrait sessions, editorial productions, brand content.">
+<link rel="icon" href="/assets/icons/01_logo_mk_blanco_principal.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/unified-nav.css">
 <style>
 :root {
-  --bg:          #0B0C0A;
-  --bg2:         #0E0F0D;
-  --bg3:         #141512;
-  --surface:     rgba(14,15,13,.88);
-  --gold:        #D8C18A;
-  --gold2:       #C7B68A;
-  --gold-dim:    rgba(216,193,138,.12);
-  --gold-glow:   rgba(216,193,138,.25);
-  --white:       #E6E3D8;
-  --muted:       #9B978B;
-  --muted2:      rgba(230,227,216,.38);
-  --border:      rgba(216,193,138,.12);
-  --border2:     rgba(216,193,138,.22);
-  --display:     'Jost', sans-serif;
-  --body:        'Inter', sans-serif;
-  --ease:        cubic-bezier(.16,1,.3,1);
-  --ease2:       cubic-bezier(.4,0,.2,1);
-  --r-card:      28px;
-  --r-btn:       999px;
+  --bg:        #0C0C0C;
+  --bg2:       #111111;
+  --surface:   rgba(255,255,255,0.04);
+  --accent:    #FF5722;
+  --accent2:   #E64A19;
+  --accent-dim: rgba(255,87,34,.12);
+  --accent-glow: rgba(255,87,34,.25);
+  --white:     #FFFFFF;
+  --muted:     #888888;
+  --muted2:    rgba(255,255,255,.38);
+  --border:    rgba(255,255,255,.08);
+  --border2:   rgba(255,255,255,.16);
+  --display:   'Bebas Neue', sans-serif;
+  --body:      'Inter', sans-serif;
+  --ease:      cubic-bezier(.16,1,.3,1);
+  --r-card:    20px;
+  --r-btn:     999px;
 }
 
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box }
@@ -37,294 +37,299 @@ body { font-family:var(--body); background:var(--bg); color:var(--white); overfl
 img { max-width:100%; display:block }
 a { text-decoration:none; color:inherit }
 
-body::before { content:''; position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.04;
+body::before { content:''; position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.025;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size:200px }
 
-.cur-dot { position:fixed; top:0; left:0; width:6px; height:6px; background:var(--white); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%) }
-.cur-ring { position:fixed; top:0; left:0; width:32px; height:32px; border:1px solid rgba(216,193,138,.6); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:all .1s var(--ease2) }
+.page-hero {
+  min-height: 52vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 80px 7vw 56px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::before {
+  content: 'PRICING';
+  position: absolute;
+  font-family: var(--display);
+  font-size: clamp(100px,18vw,240px);
+  color: rgba(255,255,255,0.022);
+  bottom: -20px; left: -8px;
+  line-height:1; pointer-events:none;
+}
+.page-eyebrow {
+  font-size: 0.68rem; font-weight:700; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--accent);
+  margin-bottom:16px; display:flex; align-items:center; gap:10px;
+}
+.page-eyebrow::before { content:''; display:block; width:28px; height:1px; background:var(--accent); }
+.page-hero h1 {
+  font-family: var(--display);
+  font-size: clamp(56px,10vw,130px);
+  line-height:.9; letter-spacing:-.01em;
+  margin-bottom:20px;
+}
+.page-hero h1 em { color:var(--accent); font-style:normal; }
+.page-hero p { font-size:0.9rem; color:var(--muted); max-width:460px; line-height:1.7; }
 
-.site-header { position:fixed; top:0; left:0; width:100%; z-index:100;
-  padding:28px 7vw; display:flex; justify-content:space-between; align-items:center;
-  background:rgba(11,12,10,.0); backdrop-filter:blur(0px); border-bottom:1px solid transparent;
-  transition:all .5s var(--ease2) }
-.site-header.sticky { background:rgba(11,12,10,.92); backdrop-filter:blur(20px); border-bottom-color:var(--border); padding:18px 7vw }
-
-.logo { font-family:var(--display); font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); font-weight:500 }
-.header-nav { display:flex; align-items:center; gap:0 }
-.header-nav a { margin-left:32px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--white); opacity:.72; transition:opacity .3s; font-weight:400 }
-.header-nav a:hover { opacity:1 }
-
-.header-right { display:flex; align-items:center; gap:16px }
-.lang-btn { font-size:10px; letter-spacing:.2em; text-transform:uppercase; padding:7px 14px;
-  border:1px solid var(--border2); border-radius:var(--r-btn); color:var(--gold2);
-  background:transparent; cursor:pointer; transition:all .3s; font-family:var(--body) }
-.lang-btn:hover { background:var(--gold-dim) }
-
-.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; background:none; border:none }
-.hamburger span { width:22px; height:1px; background:var(--white); display:block; transition:all .3s }
-
-.mobile-nav { position:fixed; inset:0; z-index:90; background:rgba(11,12,10,.97);
-  backdrop-filter:blur(20px); display:flex; flex-direction:column;
-  align-items:center; justify-content:center; gap:32px;
-  opacity:0; pointer-events:none; transition:opacity .4s }
-.mobile-nav.open { opacity:1; pointer-events:all }
-.mobile-nav a { font-family:var(--display); font-size:2rem; font-weight:400; letter-spacing:.1em; color:var(--white); transition:color .3s }
-.mobile-nav a:hover { color:var(--gold2) }
-
-.page-header { min-height:70vh; display:grid; place-items:center; text-align:center;
-  padding:120px 7vw 80px; position:relative; background:var(--bg) }
-.page-header h1 { font-family:var(--display); font-size:clamp(42px,5.5vw,72px);
-  font-weight:400; letter-spacing:.16em; line-height:1.12; margin-bottom:24px; color:var(--white) }
-.page-header p { font-size:14px; color:var(--muted); max-width:520px; margin:0 auto }
-
-.section { padding:100px 7vw; background:var(--bg) }
-.section.alt { background:var(--bg2) }
-.section-inner { max-width:1240px; margin:0 auto }
-.section-title { font-family:var(--display); font-size:clamp(32px,4vw,52px);
-  font-weight:400; letter-spacing:.14em; line-height:1.1; margin-bottom:60px; text-align:center }
-
-.pricing-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:32px; margin-bottom:80px }
-.price-card { border-radius:var(--r-card); padding:48px 36px; position:relative; overflow:hidden;
-  background:var(--surface); border:1px solid var(--border); transition:all .4s var(--ease) }
-.price-card:hover { border-color:var(--border2); transform:translateY(-4px); box-shadow:0 24px 60px rgba(0,0,0,.4) }
-.price-card::before { content:''; position:absolute; top:0; left:0; right:0; height:1px;
-  background:var(--gold); transform:scaleX(0); transition:transform .4s var(--ease); transform-origin:left }
-.price-card:hover::before { transform:scaleX(1) }
-
-.price-num { font-family:var(--display); font-size:2.8rem; font-weight:400; color:var(--gold); line-height:1; margin-bottom:20px; font-style:italic }
-.price-name { font-family:var(--display); font-size:.9rem; font-weight:500; letter-spacing:.18em;
-  text-transform:uppercase; color:var(--white); margin-bottom:16px }
-.price-desc { font-size:13px; line-height:1.85; color:var(--muted); margin-bottom:28px }
-.price-features { list-style:none; margin-bottom:32px; padding:32px 0 0; border-top:1px solid var(--border) }
-.price-features li { font-size:12px; color:var(--muted); padding:10px 0; display:flex; align-items:center; gap:10px }
-.price-features li::before { content:'✓'; color:var(--gold2); font-size:.9rem; font-weight:700 }
-.price-cta { width:100%; padding:14px 28px; border-radius:var(--r-btn); background:var(--gold); color:#111;
-  font-family:var(--body); font-size:11px; letter-spacing:.16em; text-transform:uppercase; font-weight:500;
-  border:none; cursor:pointer; transition:all .35s; text-decoration:none; display:inline-block; text-align:center }
-.price-cta:hover { transform:translateY(-2px); box-shadow:0 0 36px var(--gold-glow) }
-
-.faq-section { max-width:800px; margin:0 auto }
-.faq-title { font-family:var(--display); font-size:2rem; font-weight:400; letter-spacing:.14em;
-  margin-bottom:48px; text-align:center }
-.faq-item { margin-bottom:24px; border-bottom:1px solid var(--border); padding-bottom:24px }
-.faq-q { font-family:var(--display); font-size:1.1rem; font-weight:500; color:var(--white); margin-bottom:12px; cursor:pointer }
-.faq-q:hover { color:var(--gold2) }
-.faq-a { font-size:13px; color:var(--muted); line-height:1.85 }
-
-.site-footer { background:var(--bg); border-top:1px solid var(--border);
-  padding:48px 7vw; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px }
-.footer-brand { font-family:var(--display); font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); font-weight:400 }
-.footer-links { display:flex; gap:24px; flex-wrap:wrap }
-.footer-links a { font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); transition:color .3s }
-.footer-links a:hover { color:var(--gold2) }
-.footer-copy { font-size:11px; color:rgba(155,151,139,.5) }
-
-.wa-btn { position:fixed; bottom:32px; right:32px; z-index:200;
-  width:52px; height:52px; border-radius:50%; background:#25D366;
-  display:flex; align-items:center; justify-content:center;
-  box-shadow:0 4px 20px rgba(37,211,102,.3); transition:all .3s }
-.wa-btn:hover { transform:scale(1.1); box-shadow:0 6px 30px rgba(37,211,102,.45) }
-.wa-btn svg { width:24px; height:24px; fill:#fff }
-
-@media(max-width:1024px){
-  .pricing-grid { grid-template-columns:1fr }
+.section { padding:80px 7vw; }
+.section.alt { background:var(--bg2); }
+.section-inner { max-width:1240px; margin:0 auto; }
+.section-title {
+  font-family:var(--display);
+  font-size:clamp(2rem,5vw,3.5rem);
+  letter-spacing:.1em;
+  margin-bottom:60px; text-align:center;
 }
 
-@media(max-width:768px){
-  .header-nav { display:none }
-  .hamburger { display:flex }
-  .site-header { padding:20px 5vw }
-  .page-header { padding:100px 5vw 60px; min-height:50vh }
-  .page-header h1 { font-size:clamp(36px,10vw,52px); letter-spacing:.1em }
-  .section { padding:80px 5vw }
-  .pricing-grid { gap:24px }
-  .price-card { padding:36px 24px }
-  .site-footer { flex-direction:column; text-align:center; padding:36px 5vw }
-  .footer-links { justify-content:center }
+.pricing-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:28px; }
+.price-card {
+  border-radius:var(--r-card); padding:44px 36px; position:relative; overflow:hidden;
+  background:var(--surface); border:1px solid var(--border);
+  transition:all .4s var(--ease);
+}
+.price-card:hover { border-color:var(--border2); transform:translateY(-4px); box-shadow:0 24px 60px rgba(0,0,0,.5); }
+.price-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:1px;
+  background:var(--accent); transform:scaleX(0); transition:transform .4s var(--ease); transform-origin:left;
+}
+.price-card:hover::before { transform:scaleX(1); }
+
+.price-num { font-family:var(--display); font-size:2.6rem; color:var(--accent); line-height:1; margin-bottom:16px; }
+.price-name { font-family:var(--display); font-size:.85rem; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:var(--white); margin-bottom:14px; }
+.price-amount { font-family:var(--display); font-size:2rem; color:var(--accent); margin-bottom:24px; }
+.price-amount span { font-size:.75em; color:var(--muted); font-family:var(--body); font-weight:300; }
+.price-desc { font-size:0.82rem; color:var(--muted); line-height:1.8; margin-bottom:24px; }
+.price-features { list-style:none; margin-bottom:32px; padding:28px 0 0; border-top:1px solid var(--border); }
+.price-features li { font-size:0.78rem; color:var(--muted); padding:8px 0; display:flex; align-items:center; gap:10px; }
+.price-features li::before { content:'✓'; color:var(--accent2); font-weight:700; }
+.price-cta {
+  width:100%; padding:14px 24px; border-radius:var(--r-btn);
+  background:var(--accent); color:#fff;
+  font-family:var(--body); font-size:0.72rem; letter-spacing:.14em; text-transform:uppercase; font-weight:600;
+  border:none; cursor:pointer; transition:all .3s;
+  text-decoration:none; display:inline-block; text-align:center;
+}
+.price-cta:hover { background:var(--accent2); transform:translateY(-2px); box-shadow:0 12px 36px var(--accent-glow); }
+
+.faq-section { max-width:800px; margin:0 auto; }
+.faq-item { margin-bottom:24px; border-bottom:1px solid var(--border); padding-bottom:24px; }
+.faq-q { font-family:var(--display); font-size:1.1rem; letter-spacing:.06em; color:var(--white); margin-bottom:10px; }
+.faq-a { font-size:0.82rem; color:var(--muted); line-height:1.85; }
+
+.cta-block { text-align:center; }
+.cta-block h2 { font-family:var(--display); font-size:clamp(2rem,5vw,3.5rem); letter-spacing:.08em; margin-bottom:16px; }
+.cta-block p { font-size:0.85rem; color:var(--muted); max-width:460px; margin:0 auto 36px; line-height:1.8; }
+.btn-primary {
+  display:inline-block; padding:14px 40px; border-radius:var(--r-btn);
+  background:var(--accent); color:#fff;
+  font-size:0.72rem; letter-spacing:.14em; text-transform:uppercase; font-weight:600;
+  transition:all .3s;
+}
+.btn-primary:hover { background:var(--accent2); transform:translateY(-2px); box-shadow:0 12px 36px var(--accent-glow); }
+
+@media(max-width:900px){ .pricing-grid { grid-template-columns:1fr; } }
+@media(max-width:600px){
+  .page-hero { padding:60px 5vw 48px; }
+  .section { padding:60px 5vw; }
+  .price-card { padding:32px 24px; }
 }
 </style>
 </head>
-<body>
+<body class="mk-page-pricing">
 
-<div class="cur-dot" id="curDot"></div>
-<div class="cur-ring" id="curRing"></div>
+<div class="mk-cursor" id="mkCursor"></div>
+<div class="mk-cursor-ring" id="mkCursorRing"></div>
 
-<nav class="mobile-nav" id="mobileNav">
-  <a href="index.html#about" onclick="closeMobileNav()" data-en="About" data-es="Sobre mí">About</a>
-  <a href="index.html#portfolio" onclick="closeMobileNav()" data-en="Portfolio" data-es="Portfolio">Portfolio</a>
-  <a href="gallery.html" onclick="closeMobileNav()" data-en="Gallery" data-es="Galería">Gallery</a>
-  <a href="sessions.html" onclick="closeMobileNav()" data-en="Book Session" data-es="Reservar Sesión">Book Session</a>
-  <a href="pricing.html" onclick="closeMobileNav()" data-en="Pricing" data-es="Precios">Pricing</a>
-  <a href="index.html#contact" onclick="closeMobileNav()" data-en="Contact" data-es="Contacto">Contact</a>
-</nav>
+<!-- MOBILE NAV -->
+<div class="mk-mobile-nav" id="mkMobileNav">
+  <a href="/" onclick="closeMkNav()">Home</a>
+  <a href="/#portfolio" onclick="closeMkNav()">Portfolio</a>
+  <a href="/gallery" onclick="closeMkNav()">Gallery</a>
+  <a href="/sessions" onclick="closeMkNav()">Sessions</a>
+  <a href="/pricing" onclick="closeMkNav()">Pricing</a>
+  <a href="/blog" onclick="closeMkNav()">Blog</a>
+  <a href="/marketing" onclick="closeMkNav()">Marketing</a>
+  <a href="/#contact" class="mk-mobile-cta" onclick="closeMkNav()">Book Now</a>
+</div>
 
-<header class="site-header" id="siteHeader">
-  <a href="index.html" class="logo">MK — Studio</a>
-  <nav class="header-nav">
-    <a href="index.html#about" data-en="About" data-es="Sobre mí">About</a>
-    <a href="index.html#portfolio" data-en="Portfolio" data-es="Portfolio">Portfolio</a>
-    <a href="gallery.html" data-en="Gallery" data-es="Galería">Gallery</a>
-    <a href="sessions.html" data-en="Book Session" data-es="Reservar Sesión">Book Session</a>
-    <a href="pricing.html" data-en="Pricing" data-es="Precios">Pricing</a>
-    <a href="index.html#contact" data-en="Contact" data-es="Contacto">Contact</a>
-  </nav>
-  <div class="header-right">
-    <button class="lang-btn" id="langBtn" onclick="toggleLang()">ES</button>
-    <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+<!-- NAV -->
+<nav class="mk-nav" id="mkNav">
+  <a href="/" class="mk-nav-logo">MK<em>.</em></a>
+  <div class="mk-nav-links">
+    <a href="/#portfolio">Portfolio</a>
+    <a href="/gallery">Gallery</a>
+    <a href="/sessions">Sessions</a>
+    <a href="/pricing" class="active">Pricing</a>
+    <a href="/blog">Blog</a>
+    <a href="/marketing">Marketing</a>
+  </div>
+  <div class="mk-nav-right">
+    <a href="/#contact" class="mk-nav-cta">Book Now</a>
+    <button class="mk-hamburger" id="mkHamburger" onclick="toggleMkNav()" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
   </div>
-</header>
+</nav>
 
-<section class="page-header">
-  <div>
-    <h1 data-en="Pricing & Packages" data-es="Precios y Paquetes">Pricing & Packages</h1>
-    <p data-en="Photography, creative direction, and brand strategy services. Transparent pricing for all project types. Book your session or discuss custom packages." data-es="Servicios de fotografía, dirección creativa y estrategia de marca. Precios transparentes para todos los tipos de proyectos. Reserva tu sesión o discute paquetes personalizados.">Photography, creative direction, and brand strategy services. Transparent pricing for all project types. Book your session or discuss custom packages.</p>
-  </div>
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-eyebrow">Transparent Pricing</div>
+  <h1>Packages &amp;<br><em>Pricing.</em></h1>
+  <p>Photography, creative direction, and brand strategy. Clear rates for every type of project.</p>
 </section>
 
+<!-- PRICING GRID -->
 <section class="section">
   <div class="section-inner">
     <div class="pricing-grid">
+
       <div class="price-card">
         <div class="price-num">01</div>
-        <div class="price-name" data-en="Portrait Session" data-es="Sesión de Retrato">Portrait Session</div>
-        <p class="price-desc" data-en="Individual or couples portrait session. 1–2 hours, one or two Miami locations. Edited gallery delivered in 48 hours." data-es="Sesión de retrato individual o en pareja. 1–2 horas, una o dos locaciones en Miami. Galería editada en 48 horas.">Individual or couples portrait session. 1–2 hours, one or two Miami locations.</p>
-        <div class="price-num" style="font-size:2.2rem;margin-bottom:28px;color:var(--gold)">$150</div>
+        <div class="price-name">Portrait Session</div>
+        <div class="price-amount">$150</div>
+        <p class="price-desc">Individual or couples portrait. 1–2 hours, one or two Miami locations. Gallery delivered in 48 hours.</p>
         <ul class="price-features">
-          <li data-en="1–2 hours on location" data-es="1–2 horas en locación">1–2 hours on location</li>
-          <li data-en="20+ edited photos" data-es="20+ fotos editadas">20+ edited photos</li>
-          <li data-en="Online gallery in 48h" data-es="Galería online en 48h">Online gallery in 48h</li>
-          <li data-en="Print-ready files" data-es="Archivos para impresión">Print-ready files</li>
-          <li data-en="Unlimited locations" data-es="Locaciones ilimitadas">Unlimited locations</li>
+          <li>1–2 hours on location</li>
+          <li>20+ edited photos</li>
+          <li>Online gallery in 48h</li>
+          <li>Print-ready files</li>
+          <li>Unlimited locations</li>
         </ul>
-        <a href="sessions.html" class="price-cta" data-en="Book Session" data-es="Reservar">Book Session</a>
+        <a href="/sessions" class="price-cta">Book Session</a>
       </div>
 
       <div class="price-card">
         <div class="price-num">02</div>
-        <div class="price-name" data-en="Editorial / Fashion" data-es="Editorial / Moda">Editorial / Fashion</div>
-        <p class="price-desc" data-en="Full editorial production. Concept, art direction, location scouting, complete team coordination." data-es="Producción editorial completa. Concepto, dirección de arte, scouting de locaciones, coordinación de equipo.">Full editorial production for brands, models & creators.</p>
-        <div class="price-num" style="font-size:2.2rem;margin-bottom:28px;color:var(--gold)">$350</div>
+        <div class="price-name">Editorial / Fashion</div>
+        <div class="price-amount">$350</div>
+        <p class="price-desc">Full editorial production. Concept, art direction, location scouting, complete team coordination.</p>
         <ul class="price-features">
-          <li data-en="Full day production" data-es="Producción de día completo">Full day production</li>
-          <li data-en="Art direction included" data-es="Dirección de arte incluida">Art direction included</li>
-          <li data-en="40+ edited photos" data-es="40+ fotos editadas">40+ edited photos</li>
-          <li data-en="BTS video included" data-es="Video BTS incluido">BTS video included</li>
-          <li data-en="Multiple setups" data-es="Múltiples configuraciones">Multiple setups</li>
+          <li>Full day production</li>
+          <li>Art direction included</li>
+          <li>40+ edited photos</li>
+          <li>BTS video included</li>
+          <li>Multiple setups</li>
         </ul>
-        <a href="sessions.html" class="price-cta" data-en="Inquire Now" data-es="Consultar">Inquire Now</a>
+        <a href="/sessions" class="price-cta">Inquire Now</a>
       </div>
 
       <div class="price-card">
         <div class="price-num">03</div>
-        <div class="price-name" data-en="Brand Content" data-es="Contenido de Marca">Brand Content</div>
-        <p class="price-desc" data-en="Monthly content subscription. 2 shoots, 60+ edited photos, IG-ready content, priority scheduling." data-es="Suscripción mensual de contenido. 2 sesiones, 60+ fotos editadas, contenido listo para IG, programación prioritaria.">Ongoing monthly content for brands.</p>
-        <div class="price-num" style="font-size:2.2rem;margin-bottom:28px;color:var(--gold)">$500 <span style="font-size:.8em;color:var(--muted)">/mo</span></div>
+        <div class="price-name">Brand Content</div>
+        <div class="price-amount">$500 <span>/month</span></div>
+        <p class="price-desc">Monthly content subscription. 2 shoots, 60+ edited photos, IG-ready content, priority scheduling.</p>
         <ul class="price-features">
-          <li data-en="2 shoots per month" data-es="2 sesiones al mes">2 shoots per month</li>
-          <li data-en="60+ edited photos" data-es="60+ fotos editadas">60+ edited photos</li>
-          <li data-en="IG-ready content" data-es="Contenido listo para IG">IG-ready content</li>
-          <li data-en="Priority scheduling" data-es="Programación prioritaria">Priority scheduling</li>
-          <li data-en="Unlimited revisions" data-es="Revisiones ilimitadas">Unlimited revisions</li>
+          <li>2 shoots per month</li>
+          <li>60+ edited photos</li>
+          <li>IG-ready content</li>
+          <li>Priority scheduling</li>
+          <li>Unlimited revisions</li>
         </ul>
-        <a href="sessions.html" class="price-cta" data-en="Subscribe" data-es="Suscribirse">Subscribe</a>
+        <a href="/sessions" class="price-cta">Subscribe</a>
       </div>
 
       <div class="price-card">
         <div class="price-num">04</div>
-        <div class="price-name" data-en="Brand Strategy" data-es="Estrategia de Marca">Brand Strategy</div>
-        <p class="price-desc" data-en="Creative direction, brand identity design, visual storytelling strategy, and marketing consultation." data-es="Dirección creativa, diseño de identidad de marca, estrategia de narrativa visual y consultoría de marketing.">Complete brand strategy & creative direction.</p>
-        <div class="price-num" style="font-size:2.2rem;margin-bottom:28px;color:var(--gold)">$750+</div>
+        <div class="price-name">Brand Strategy</div>
+        <div class="price-amount">$750+</div>
+        <p class="price-desc">Creative direction, brand identity design, visual storytelling strategy, and marketing consultation.</p>
         <ul class="price-features">
-          <li data-en="Brand identity design" data-es="Diseño de identidad de marca">Brand identity design</li>
-          <li data-en="Visual strategy session" data-es="Sesión de estrategia visual">Visual strategy session</li>
-          <li data-en="Creative direction" data-es="Dirección creativa">Creative direction</li>
-          <li data-en="Content roadmap" data-es="Roadmap de contenido">Content roadmap</li>
-          <li data-en="Graphic + photo assets" data-es="Activos gráficos + foto">Graphic + photo assets</li>
+          <li>Brand identity design</li>
+          <li>Visual strategy session</li>
+          <li>Creative direction</li>
+          <li>Content roadmap</li>
+          <li>Graphic + photo assets</li>
         </ul>
-        <a href="index.html#contact" class="price-cta" data-en="Inquire Now" data-es="Consultar">Inquire Now</a>
+        <a href="/#contact" class="price-cta">Inquire Now</a>
       </div>
+
     </div>
   </div>
 </section>
 
+<!-- FAQ -->
 <section class="section alt">
   <div class="section-inner">
-    <h2 class="faq-title" data-en="Frequently Asked" data-es="Preguntas Frecuentes">Frequently Asked</h2>
+    <h2 class="section-title">Frequently Asked</h2>
     <div class="faq-section">
       <div class="faq-item">
-        <div class="faq-q" data-en="What is included in the session?" data-es="¿Qué está incluido en la sesión?">What is included in the session?</div>
-        <div class="faq-a" data-en="All sessions include the photographer's time on location, full editing, an online gallery with print-ready files, and a 48-hour delivery turnaround." data-es="Todas las sesiones incluyen el tiempo del fotógrafo en la locación, edición completa, galería online con archivos para impresión, y entrega en 48 horas.">All sessions include the photographer's time on location, full editing, an online gallery with print-ready files, and a 48-hour delivery turnaround.</div>
+        <div class="faq-q">What is included in the session?</div>
+        <div class="faq-a">All sessions include the photographer's time on location, full editing, an online gallery with print-ready files, and a 48-hour delivery turnaround.</div>
       </div>
-
       <div class="faq-item">
-        <div class="faq-q" data-en="Do you travel outside Miami?" data-es="¿Viajas fuera de Miami?">Do you travel outside Miami?</div>
-        <div class="faq-a" data-en="Yes! I'm available for travel. Travel sessions require a higher rate and minimum 3-day booking. Let's discuss your location in the inquiry form." data-es="¡Sí! Estoy disponible para viajes. Las sesiones de viaje requieren una tarifa más alta y un mínimo de 3 días. Discutamos tu locación en el formulario.">Yes! I'm available for travel. Travel sessions require a higher rate and minimum 3-day booking. Let's discuss your location in the inquiry form.</div>
+        <div class="faq-q">Do you travel outside Miami?</div>
+        <div class="faq-a">Yes! I'm available for travel. Travel sessions require a higher rate and minimum 3-day booking. Let's discuss your location via the contact form.</div>
       </div>
-
       <div class="faq-item">
-        <div class="faq-q" data-en="Can I book a custom package?" data-es="¿Puedo reservar un paquete personalizado?">Can I book a custom package?</div>
-        <div class="faq-a" data-en="Absolutely. If none of the standard packages fit your needs, I'm happy to create a custom quote for multi-day shoots, larger teams, or specific requirements." data-es="Claro. Si ninguno de los paquetes estándar se ajusta a tus necesidades, puedo crear una cotización personalizada para sesiones de múltiples días, equipos más grandes o requisitos específicos.">Absolutely. If none of the standard packages fit your needs, I'm happy to create a custom quote for multi-day shoots, larger teams, or specific requirements.</div>
+        <div class="faq-q">Can I book a custom package?</div>
+        <div class="faq-a">Absolutely. If none of the standard packages fit, I'm happy to create a custom quote for multi-day shoots, larger teams, or specific requirements.</div>
       </div>
-
       <div class="faq-item">
-        <div class="faq-q" data-en="What's your payment & cancellation policy?" data-es="¿Cuál es tu política de pago y cancelación?">What's your payment & cancellation policy?</div>
-        <div class="faq-a" data-en="A 50% deposit secures your date, balance due on the day of the shoot. Cancellations within 14 days forfeit the deposit. Rescheduling is always possible." data-es="Un depósito del 50% asegura tu fecha, saldo a pagar el día de la sesión. Las cancelaciones dentro de 14 días pierden el depósito. El reprogramación siempre es posible.">A 50% deposit secures your date, balance due on the day of the shoot. Cancellations within 14 days forfeit the deposit. Rescheduling is always possible.</div>
+        <div class="faq-q">What's your payment & cancellation policy?</div>
+        <div class="faq-a">A 50% deposit secures your date, balance due on the day of the shoot. Cancellations within 14 days forfeit the deposit. Rescheduling is always possible.</div>
       </div>
-
       <div class="faq-item">
-        <div class="faq-q" data-en="How quickly can I get my photos?" data-es="¿Qué tan rápido puedo obtener mis fotos?">How quickly can I get my photos?</div>
-        <div class="faq-a" data-en="Standard turnaround is 48 hours for edited galleries. Rush delivery (24 hours) is available for +$50. Your files include JPG, RAW, and print-ready formats." data-es="El tiempo estándar de entrega es 48 horas para galerías editadas. La entrega acelerada (24 horas) está disponible por +$50. Tus archivos incluyen JPG, RAW y formatos para impresión.">Standard turnaround is 48 hours for edited galleries. Rush delivery (24 hours) is available for +$50. Your files include JPG, RAW, and print-ready formats.</div>
+        <div class="faq-q">How quickly can I get my photos?</div>
+        <div class="faq-a">Standard turnaround is 48 hours for edited galleries. Rush delivery (24 hours) is available for +$50. Files include JPG, RAW, and print-ready formats.</div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- CTA -->
 <section class="section">
-  <div class="section-inner" style="text-align:center">
-    <h2 class="section-title" data-en="Ready to Collaborate?" data-es="¿Listo para colaborar?">Ready to Collaborate?</h2>
-    <p style="font-size:14px;color:var(--muted);max-width:520px;margin:0 auto 40px;line-height:1.85" data-en="Let's discuss your vision. Fill out the form on my contact page and I'll get back to you within 24 hours." data-es="Discutamos tu visión. Completa el formulario en mi página de contacto y te responderé en menos de 24 horas.">Let's discuss your vision. Fill out the form on my contact page and I'll get back to you within 24 hours.</p>
-    <a href="index.html#contact" style="display:inline-block;padding:13px 32px;border-radius:var(--r-btn);background:var(--gold);color:#111;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;transition:all .35s" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 0 36px var(--gold-glow)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'" data-en="Get in Touch" data-es="Contáctame">Get in Touch</a>
+  <div class="section-inner cta-block">
+    <h2>Ready to Collaborate?</h2>
+    <p>Let's discuss your vision. Fill out the form and I'll get back to you within 24 hours.</p>
+    <a href="/#contact" class="btn-primary">Get in Touch</a>
   </div>
 </section>
 
-<footer class="site-footer">
-  <div class="footer-brand">MK — Maikel Marshall</div>
-  <nav class="footer-links">
-    <a href="index.html#about" data-en="About" data-es="Sobre mí">About</a>
-    <a href="index.html#portfolio" data-en="Portfolio" data-es="Portfolio">Portfolio</a>
-    <a href="gallery.html" data-en="Gallery" data-es="Galería">Gallery</a>
-    <a href="pricing.html" data-en="Pricing" data-es="Precios">Pricing</a>
-    <a href="blog.html" data-en="Blog" data-es="Blog">Blog</a>
-    <a href="https://www.instagram.com/maik_photographer/" target="_blank">Instagram</a>
-    <a href="https://wa.me/17863329815" target="_blank">WhatsApp</a>
+<!-- FOOTER -->
+<footer class="mk-footer">
+  <a href="/" class="mk-footer-brand">MK<em>.</em> Maikel Marshall</a>
+  <nav class="mk-footer-links">
+    <a href="/#portfolio">Portfolio</a>
+    <a href="/gallery">Gallery</a>
+    <a href="/sessions">Sessions</a>
+    <a href="/pricing">Pricing</a>
+    <a href="/blog">Blog</a>
+    <a href="/marketing">Marketing</a>
+    <a href="https://www.instagram.com/maik_photographer/" target="_blank" rel="noopener">Instagram</a>
   </nav>
-  <div class="footer-copy">© 2026 Maikel Marshall · Miami, FL</div>
+  <div class="mk-footer-copy">© 2026 Maikel Marshall · Miami, FL</div>
 </footer>
 
-<a href="https://wa.me/17863329815?text=Hi%20Maikel!%20I'm%20interested%20in%20your%20pricing%20and%20would%20like%20to%20book%20a%20session." class="wa-btn" target="_blank" rel="noopener" aria-label="WhatsApp">
+<!-- WHATSAPP -->
+<a href="https://wa.me/17863329815?text=Hi%20Maikel!%20I'm%20interested%20in%20your%20pricing." class="mk-wa" target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
 <script>
-const dot=document.getElementById('curDot'),ring=document.getElementById('curRing');
+const cur = document.getElementById('mkCursor');
+const ring = document.getElementById('mkCursorRing');
 let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
-(function animRing(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)})();
+document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
+(function anim(){ rx+=(mx-rx)*.1; ry+=(my-ry)*.1; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(anim); })();
 
-window.addEventListener('scroll',()=>document.getElementById('siteHeader').classList.toggle('sticky',scrollY>60));
+window.addEventListener('scroll', () => document.getElementById('mkNav').classList.toggle('scrolled', scrollY > 50));
 
-let navOpen=false;
-function toggleMobileNav(){navOpen=!navOpen;document.getElementById('mobileNav').classList.toggle('open',navOpen);document.body.style.overflow=navOpen?'hidden':''}
-function closeMobileNav(){navOpen=false;document.getElementById('mobileNav').classList.remove('open');document.body.style.overflow=''}
-
-let lang='en';
-function toggleLang(){
-  lang=lang==='en'?'es':'en';
-  document.getElementById('langBtn').textContent=lang==='en'?'ES':'EN';
-  document.querySelectorAll('[data-en]').forEach(el=>el.textContent=lang==='en'?el.dataset.en:el.dataset.es);
+let navOpen = false;
+function toggleMkNav() {
+  navOpen = !navOpen;
+  document.getElementById('mkMobileNav').classList.toggle('open', navOpen);
+  document.getElementById('mkHamburger').classList.toggle('open', navOpen);
+  document.body.style.overflow = navOpen ? 'hidden' : '';
+}
+function closeMkNav() {
+  navOpen = false;
+  document.getElementById('mkMobileNav').classList.remove('open');
+  document.getElementById('mkHamburger').classList.remove('open');
+  document.body.style.overflow = '';
 }
 </script>
 </body>
