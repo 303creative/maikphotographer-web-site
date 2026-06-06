@@ -1,36 +1,10 @@
-# Environment files with secrets
+# ══════════════════════════════════════════════════════════
+# SECRETS & ENV — NEVER commit these
+# ══════════════════════════════════════════════════════════
 .env
 .env.local
 .env.*.local
 *.env
-
-# Dependencies
-node_modules/
-package-lock.json
-yarn.lock
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# OS
-.DS_Store
-Thumbs.db
-desktop.ini
-
-# Logs
-logs/
-*.log
-
-# Build artifacts
-dist/
-build/
-.next/
-out/
-
-# Credentials and API keys
 credentials.json
 **/credentials.json
 **/secrets.*
@@ -38,6 +12,92 @@ config.local.json
 google-drive-credentials.json
 **/google-drive-credentials.json
 
-# Temporary files
+# ══════════════════════════════════════════════════════════
+# DEPENDENCIES
+# ══════════════════════════════════════════════════════════
+node_modules/
+package-lock.json
+yarn.lock
+.pnp
+.pnp.js
+
+# ══════════════════════════════════════════════════════════
+# BUILD OUTPUT
+# ══════════════════════════════════════════════════════════
+dist/
+build/
+.next/
+out/
+.vercel/
+
+# ══════════════════════════════════════════════════════════
+# DESIGN & SOURCE ASSETS (no se despliegan)
+# ══════════════════════════════════════════════════════════
+"# Assets para web"/
+maik-photographer calude design/
+*.ai
+*.psd
+*.sketch
+*.fig
+
+# ══════════════════════════════════════════════════════════
+# SCRIPTS DE TEST & UTILIDADES (no van a producción)
+# ══════════════════════════════════════════════════════════
+check-notion-schema.js
+copy-all.js
+copy-videos.js
+enhance-images.js
+generate-html.js
+optimize-images.js
+qa-test.mjs
+send-confirmation-email.js
+send-final-success.js
+send-test-email-v2.js
+send-test-email-v3.js
+send-test-universal-email.js
+test-email-system.js
+test-n8n-api.js
+test-notion-lead.js
+verify-production.js
+
+# ══════════════════════════════════════════════════════════
+# ARCHIVOS DE CAMPAÑA & TRACKING
+# ══════════════════════════════════════════════════════════
+campaign-history.json
+campaign-results.json
+campaign-tracker.json
+research-extraction.md
+QA_CHECKLIST.csv
+LANZAR-CAMPAÑA-MAÑANA.md
+EMIL-RESUMEN.txt
+
+# ══════════════════════════════════════════════════════════
+# REPORTES & ANÁLISIS INTERNOS
+# ══════════════════════════════════════════════════════════
+_claude_reports/
+output/
+
+# ══════════════════════════════════════════════════════════
+# IDE & OS
+# ══════════════════════════════════════════════════════════
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ══════════════════════════════════════════════════════════
+# LOGS
+# ══════════════════════════════════════════════════════════
+logs/
+*.log
+npm-debug.log*
+
+# ══════════════════════════════════════════════════════════
+# TEMP
+# ══════════════════════════════════════════════════════════
 temp-photos/
 **/temp-photos/
+*.tmp
