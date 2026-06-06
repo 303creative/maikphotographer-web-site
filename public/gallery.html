@@ -1,1254 +1,362 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Full Portfolio — Maikel Marshall · Miami Photographer</title>
-  <meta name="description" content="Extended portfolio gallery by Maikel Marshall — cinematic portrait, editorial and lifestyle photography in Miami, FL.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photography Portfolio Gallery — Cinematic Portraits & Editorials · Maikel Marshall</title>
+<meta name="description" content="Browse the complete gallery of cinematic portrait, fashion, editorial and lifestyle photography by Maikel Marshall. Based in Miami, FL.">
   <link rel="canonical" href="https://www.maikphotographer.com/gallery">
-  <link rel="icon" href="/assets/icons/01_logo_mk_blanco_principal.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#0C0C0C">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Photography Portfolio Gallery — Cinematic Portraits & Editorials · Maikel Marshall">
+  <meta property="og:description" content="Browse the complete gallery of cinematic portrait, fashion, editorial and lifestyle photography by Maikel Marshall. Based in Miami, FL.">
+  <meta property="og:url" content="https://www.maikphotographer.com/gallery">
   <meta property="og:image" content="https://www.maikphotographer.com/assets/backgrounds/31_fondo_ia1_oscuro_principal.jpg">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/unified-nav.css">
-
-  <style>
-    /* ── RESET & BASE ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --black: #0C0C0C;
-      --white: #FFFFFF;
-      --cream: #E1E0CC;
-      --accent: #FF5722;
-      --accent-dim: rgba(255,87,34,0.15);
-      --gray: #888;
-      --border: rgba(255,255,255,0.08);
-      --font-display: 'Bebas Neue', sans-serif;
-      --font-body: 'Inter', sans-serif;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--black);
-      color: var(--white);
-      font-family: var(--font-body);
-      overflow-x: hidden;
-      cursor: none;
-    }
-
-    /* ── CUSTOM CURSOR ── */
-    .cursor {
-      position: fixed;
-      width: 12px; height: 12px;
-      background: var(--accent);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transition: transform 0.15s ease, opacity 0.2s ease;
-      transform: translate(-50%, -50%);
-    }
-    .cursor-ring {
-      position: fixed;
-      width: 36px; height: 36px;
-      border: 1px solid rgba(255,87,34,0.5);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      transition: transform 0.35s ease, width 0.3s ease, height 0.3s ease;
-      transform: translate(-50%, -50%);
-    }
-
-    /* ── NAV ── */
-    .nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 24px 40px;
-      background: linear-gradient(to bottom, rgba(12,12,12,0.95) 0%, transparent 100%);
-      backdrop-filter: blur(8px);
-    }
-
-    .nav-logo {
-      font-family: var(--font-display);
-      font-size: 1.4rem;
-      letter-spacing: 0.05em;
-      color: var(--white);
-      text-decoration: none;
-    }
-    .nav-logo em { color: var(--accent); font-style: normal; }
-
-    .nav-back {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.6);
-      text-decoration: none;
-      transition: color 0.25s;
-    }
-    .nav-back:hover { color: var(--white); }
-    .nav-back::before { content: '←'; font-size: 1rem; }
-
-    /* ── HERO HEADER ── */
-    .gallery-hero {
-      min-height: 52vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 40px 40px 60px;
-      position: relative;
-      overflow: hidden;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .gallery-hero::before {
-      content: 'PORTFOLIO';
-      position: absolute;
-      font-family: var(--font-display);
-      font-size: clamp(100px, 18vw, 260px);
-      color: rgba(255,255,255,0.022);
-      bottom: -20px;
-      left: -10px;
-      line-height: 1;
-      pointer-events: none;
-      white-space: nowrap;
-    }
-
-    .gallery-eyebrow {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .gallery-eyebrow::before {
-      content: '';
-      display: block;
-      width: 32px;
-      height: 1px;
-      background: var(--accent);
-    }
-
-    .gallery-title {
-      font-family: var(--font-display);
-      font-size: clamp(64px, 13vw, 172px);
-      line-height: 0.88;
-      letter-spacing: -0.01em;
-      color: var(--white);
-      margin-bottom: 36px;
-    }
-
-    .gallery-title em {
-      color: var(--accent);
-      font-style: normal;
-    }
-
-    .gallery-meta {
-      display: flex;
-      align-items: center;
-      gap: 40px;
-      flex-wrap: wrap;
-    }
-
-    .gallery-count {
-      font-size: 0.82rem;
-      color: var(--gray);
-      letter-spacing: 0.05em;
-    }
-
-    .gallery-count strong {
-      color: var(--white);
-    }
-
-    /* ── FILTER BAR ── */
-    .filter-bar {
-      padding: 28px 40px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(12,12,12,0.97);
-      backdrop-filter: blur(16px);
-    }
-
-    .filter-label {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gray);
-      margin-right: 16px;
-      white-space: nowrap;
-    }
-
-    .filter-btn {
-      padding: 8px 22px;
-      background: transparent;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      color: rgba(255,255,255,0.45);
-      font-family: var(--font-body);
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      cursor: none;
-      transition: all 0.2s ease;
-      white-space: nowrap;
-    }
-
-    .filter-btn:hover,
-    .filter-btn.active {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: var(--white);
-    }
-
-    .filter-count {
-      margin-left: auto;
-      font-size: 0.68rem;
-      color: var(--gray);
-      letter-spacing: 0.1em;
-      white-space: nowrap;
-    }
-
-    /* ── MASONRY GRID ── */
-    .gallery-grid {
-      padding: 48px 40px;
-      columns: 3;
-      column-gap: 10px;
-    }
-
-    @media (max-width: 1024px) { .gallery-grid { columns: 2; } }
-    @media (max-width: 600px) {
-      .gallery-grid { columns: 1; padding: 24px 16px; }
-      .filter-bar { padding: 20px 16px; overflow-x: auto; }
-      .nav { padding: 20px 24px; }
-      .gallery-hero { padding: 100px 24px 48px; }
-      .gallery-section-break { padding: 60px 24px 32px; flex-direction: column; align-items: flex-start; }
-      .gallery-footer { padding: 48px 24px; flex-direction: column; }
-    }
-
-    /* ── GALLERY ITEM ── */
-    .gallery-item {
-      position: relative;
-      break-inside: avoid;
-      margin-bottom: 10px;
-      overflow: hidden;
-      background: #111;
-      cursor: none;
-    }
-
-    .gallery-item img {
-      width: 100%;
-      display: block;
-      transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-                  filter 0.4s ease;
-      filter: grayscale(6%) brightness(0.9);
-    }
-
-    .gallery-item:hover img {
-      transform: scale(1.05);
-      filter: grayscale(0%) brightness(1.02);
-    }
-
-    /* Overlay */
-    .gallery-item-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.1) 55%, transparent 100%);
-      opacity: 0;
-      transition: opacity 0.35s ease;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 22px;
-    }
-
-    .gallery-item:hover .gallery-item-overlay { opacity: 1; }
-
-    .gallery-item-category {
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 5px;
-    }
-
-    .gallery-item-title {
-      font-family: var(--font-display);
-      font-size: clamp(1.1rem, 2.2vw, 1.7rem);
-      color: var(--white);
-      line-height: 0.95;
-      letter-spacing: 0.02em;
-    }
-
-    .gallery-item-action {
-      margin-top: 10px;
-      width: 32px;
-      height: 32px;
-      border: 1px solid rgba(255,255,255,0.25);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
-      color: var(--white);
-      transition: background 0.2s, border-color 0.2s;
-    }
-
-    .gallery-item:hover .gallery-item-action {
-      background: var(--accent);
-      border-color: var(--accent);
-    }
-
-    .gallery-item-num {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      font-family: var(--font-display);
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      color: rgba(255,255,255,0.35);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .gallery-item:hover .gallery-item-num { opacity: 1; }
-
-    /* ── EDITORIAL SECTION BREAKS ── */
-    .gallery-section-break {
-      padding: 80px 40px 40px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 32px;
-      border-top: 1px solid var(--border);
-    }
-
-    .gsb-title {
-      font-family: var(--font-display);
-      font-size: clamp(52px, 9vw, 110px);
-      line-height: 0.88;
-      color: var(--white);
-    }
-
-    .gsb-title em {
-      color: var(--accent);
-      font-style: normal;
-      display: block;
-    }
-
-    .gsb-desc {
-      max-width: 300px;
-      font-size: 0.82rem;
-      line-height: 1.75;
-      color: var(--gray);
-    }
-
-    .gsb-cross {
-      color: var(--accent);
-      font-size: 2rem;
-      line-height: 1;
-      opacity: 0.5;
-      flex-shrink: 0;
-    }
-
-    /* ── LIGHTBOX ── */
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      background: rgba(0,0,0,0.97);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-
-    .lightbox.open {
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    .lightbox-img {
-      max-width: 88vw;
-      max-height: 88vh;
-      object-fit: contain;
-      display: block;
-    }
-
-    .lightbox-close {
-      position: absolute;
-      top: 24px; right: 32px;
-      font-family: var(--font-display);
-      font-size: 2rem;
-      color: rgba(255,255,255,0.45);
-      cursor: none;
-      transition: color 0.2s;
-      background: none; border: none; line-height: 1;
-    }
-    .lightbox-close:hover { color: var(--white); }
-
-    .lightbox-prev,
-    .lightbox-next {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 2.2rem;
-      color: rgba(255,255,255,0.35);
-      background: none; border: none;
-      cursor: none; padding: 20px;
-      transition: color 0.2s;
-    }
-    .lightbox-prev:hover, .lightbox-next:hover { color: var(--white); }
-    .lightbox-prev { left: 16px; }
-    .lightbox-next { right: 16px; }
-
-    .lightbox-info {
-      position: absolute;
-      bottom: 28px; left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-    }
-
-    .lightbox-category {
-      font-size: 0.62rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 4px;
-    }
-
-    .lightbox-counter {
-      font-size: 0.72rem;
-      color: rgba(255,255,255,0.4);
-      letter-spacing: 0.12em;
-    }
-
-    /* ── FOOTER ── */
-    .gallery-footer {
-      padding: 64px 40px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
-
-    .gallery-footer-text {
-      font-family: var(--font-display);
-      font-size: clamp(1.8rem, 4.5vw, 3.5rem);
-      color: var(--white);
-      line-height: 1;
-    }
-
-    .gallery-footer-text em {
-      color: var(--accent);
-      font-style: normal;
-    }
-
-    .btn-book {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 15px 36px;
-      background: var(--accent);
-      color: var(--white);
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 0.82rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: transform 0.2s, box-shadow 0.2s;
-      white-space: nowrap;
-    }
-
-    .btn-book:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 36px rgba(255,87,34,0.38);
-    }
-
-    /* ── NOISE GRAIN OVERLAY ── */
-    body::after {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      opacity: 0.022;
-      pointer-events: none;
-      z-index: 9997;
-      mix-blend-mode: overlay;
-    }
-  </style>
-</head>
-
-<body>
-  <div class="mk-cursor" id="mkCursor"></div>
-  <div class="mk-cursor-ring" id="mkCursorRing"></div>
-
-  <!-- MOBILE NAV -->
-  <div class="mk-mobile-nav" id="mkMobileNav">
-    <a href="/" onclick="closeMkNav()">Home</a>
-    <a href="/#portfolio" onclick="closeMkNav()">Portfolio</a>
-    <a href="/gallery" onclick="closeMkNav()">Gallery</a>
-    <a href="/sessions" onclick="closeMkNav()">Sessions</a>
-    <a href="/pricing" onclick="closeMkNav()">Pricing</a>
-    <a href="/blog" onclick="closeMkNav()">Blog</a>
-    <a href="/marketing" onclick="closeMkNav()">Marketing</a>
-    <a href="/#contact" class="mk-mobile-cta" onclick="closeMkNav()">Book Now</a>
-  </div>
-
-  <!-- NAV -->
-  <nav class="mk-nav" id="mkNav">
-    <a href="/" class="mk-nav-logo">MK<em>.</em></a>
-    <div class="mk-nav-links">
-      <a href="/#portfolio">Portfolio</a>
-      <a href="/gallery" class="active">Gallery</a>
-      <a href="/sessions">Sessions</a>
-      <a href="/pricing">Pricing</a>
-      <a href="/blog">Blog</a>
-      <a href="/marketing">Marketing</a>
-    </div>
-    <div class="mk-nav-right">
-      <a href="/#contact" class="mk-nav-cta">Book Now</a>
-      <button class="mk-hamburger" id="mkHamburger" onclick="toggleMkNav()" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <section class="gallery-hero">
-    <div class="gallery-eyebrow">Full Collection · Miami, FL</div>
-    <h1 class="gallery-title">Every<br><em>Frame.</em></h1>
-    <div class="gallery-meta">
-      <div class="gallery-count"><strong id="visible-count">50</strong> photographs</div>
-      <div class="gallery-count">Portrait · Editorial · Lifestyle</div>
-      <div class="gallery-count">© 2026 Maikel Marshall</div>
-    </div>
-  </section>
-
-  <!-- FILTER BAR -->
-  <div class="filter-bar">
-    <span class="filter-label">Filter</span>
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="portrait">Portrait</button>
-    <button class="filter-btn" data-filter="editorial">Editorial</button>
-    <button class="filter-btn" data-filter="lifestyle">Lifestyle</button>
-    <span class="filter-count" id="filter-count">50 images</span>
-  </div>
-
-  <!-- ══════════ SECTION 1 ══════════ -->
-  <div class="gallery-section-break">
-    <div class="gsb-title">See.<br><em>Feel.</em></div>
-    <p class="gsb-desc">Cinematic portraits and editorial work. Every session is a story — directed, not just captured.</p>
-    <div class="gsb-cross">+</div>
-  </div>
-
-  <div class="gallery-grid" id="grid-1">
-
-    <div class="gallery-item" data-category="editorial">
-      <img src="/img/toda la galeria/07d1529f-9339-469b-a628-faba60abaefe.webp" alt="Editorial portrait — cinematic direction" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Editorial</div>
-        <div class="gallery-item-title">Cinematic<br>Direction</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">01</div>
-    </div>
-
-    <div class="gallery-item" data-category="portrait">
-      <img src="/img/toda la galeria/0e7f58e9-1cc5-4efb-9bee-7fbe1c73b7a1.webp" alt="Portrait — natural light" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Portrait</div>
-        <div class="gallery-item-title">Natural<br>Light</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">02</div>
-    </div>
-
-    <div class="gallery-item" data-category="lifestyle">
-      <img src="/img/toda la galeria/28bd9338-5205-4619-8a08-6a4e83a510b6.webp" alt="Lifestyle — brand content" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Lifestyle</div>
-        <div class="gallery-item-title">Brand<br>Content</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">03</div>
-    </div>
-
-    <div class="gallery-item" data-category="editorial">
-      <img src="/img/toda la galeria/298bc3f1-c201-41d1-be74-11f78b234699.webp" alt="Editorial campaign" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Editorial</div>
-        <div class="gallery-item-title">Campaign<br>Shot</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">04</div>
-    </div>
-
-    <div class="gallery-item" data-category="portrait">
-      <img src="/img/toda la galeria/2fcefe94-b154-4b88-9f6b-cee08fbdafd4.webp" alt="Portrait — professional session" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Portrait</div>
-        <div class="gallery-item-title">Professional<br>Session</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">05</div>
-    </div>
-
-    <div class="gallery-item" data-category="lifestyle">
-      <img src="/img/toda la galeria/49ac4b8a-bd72-4836-b01d-631994a74a3f.webp" alt="Lifestyle — creative direction" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Lifestyle</div>
-        <div class="gallery-item-title">Creative<br>Direction</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">06</div>
-    </div>
-
-    <div class="gallery-item" data-category="editorial">
-      <img src="/img/toda la galeria/4d9b139f-3fa4-4f54-8eff-fb4f326d5ca5.webp" alt="Editorial — urban raw" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Editorial</div>
-        <div class="gallery-item-title">Urban<br>Raw</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">07</div>
-    </div>
-
-    <div class="gallery-item" data-category="portrait">
-      <img src="/img/toda la galeria/52c39845-b7f5-4d1d-880c-30ebee31b9f4.webp" alt="Portrait — moody cinematic" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Portrait</div>
-        <div class="gallery-item-title">Moody<br>Cinematic</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">08</div>
-    </div>
-
-    <div class="gallery-item" data-category="lifestyle">
-      <img src="/img/toda la galeria/54842636-e52d-4556-a0b7-b87328675253.webp" alt="Lifestyle — Miami vibes" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Lifestyle</div>
-        <div class="gallery-item-title">Miami<br>Vibes</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">09</div>
-    </div>
-
-    <div class="gallery-item" data-category="editorial">
-      <img src="/img/toda la galeria/55b9606e-078e-4ec3-86dd-c6aae449d6dc.webp" alt="Editorial — fashion" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Editorial</div>
-        <div class="gallery-item-title">Fashion<br>Editorial</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">10</div>
-    </div>
-
-    <div class="gallery-item" data-category="portrait">
-      <img src="/img/toda la galeria/5b7b9e82-36c4-44c5-bb61-10685eb81a65.webp" alt="Portrait — soft silence" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Portrait</div>
-        <div class="gallery-item-title">Soft<br>Silence</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">11</div>
-    </div>
-
-    <div class="gallery-item" data-category="editorial">
-      <img src="/img/toda la galeria/64e3dde7-2967-4cae-8e72-53203a5d1398.webp" alt="Editorial — golden hour" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Editorial</div>
-        <div class="gallery-item-title">Golden<br>Hour</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">12</div>
-    </div>
-
-    <div class="gallery-item" data-category="lifestyle">
-      <img src="/img/toda la galeria/69b33119-e802-4570-a68f-c60396c40d8a.webp" alt="Lifestyle — visual story" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Lifestyle</div>
-        <div class="gallery-item-title">Visual<br>Story</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">13</div>
-    </div>
-
-    <div class="gallery-item" data-category="portrait">
-      <img src="/img/toda la galeria/6f1d4671-4390-430f-9fc9-9981a083de74.webp" alt="Portrait — deep focus" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Portrait</div>
-        <div class="gallery-item-title">Deep<br>Focus</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">14</div>
-    </div>
-
-    <div class="gallery-item" data-category="editorial">
-      <img src="/img/toda la galeria/79a7b298-ace2-49ba-9e9e-1c567c8aa331.webp" alt="Editorial — warm tones" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Editorial</div>
-        <div class="gallery-item-title">Warm<br>Tones</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">15</div>
-    </div>
-
-    <div class="gallery-item" data-category="lifestyle">
-      <img src="/img/toda la galeria/8a0f30b5-1cb7-47f6-93d3-6c5c40005591.webp" alt="Lifestyle — outdoor session" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Lifestyle</div>
-        <div class="gallery-item-title">Outdoor<br>Session</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">16</div>
-    </div>
-
-    <div class="gallery-item" data-category="portrait">
-      <img src="/img/toda la galeria/94d87035-a093-4f35-ba76-93c117602b75.webp" alt="Portrait — studio light" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Portrait</div>
-        <div class="gallery-item-title">Studio<br>Light</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">17</div>
-    </div>
-
-    <div class="gallery-item" data-category="editorial">
-      <img src="/img/toda la galeria/97bbeb58-5744-43ae-a2d3-3a02f30cd7da.webp" alt="Editorial — campaign series" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Editorial</div>
-        <div class="gallery-item-title">Campaign<br>Series</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">18</div>
-    </div>
-
-    <div class="gallery-item" data-category="lifestyle">
-      <img src="/img/toda la galeria/9b2b1a15-837f-4ded-b0c3-a1461415098f.webp" alt="Lifestyle — brand story" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Lifestyle</div>
-        <div class="gallery-item-title">Brand<br>Story</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">19</div>
-    </div>
-
-    <div class="gallery-item" data-category="portrait">
-      <img src="/img/toda la galeria/9f9ece98-fa4a-4c6b-8b97-57040be62c94.webp" alt="Portrait — intimate frame" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Portrait</div>
-        <div class="gallery-item-title">Intimate<br>Frame</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">20</div>
-    </div>
-
-  </div>
-
-  <!-- ══════════ SECTION 2: ON-LOCATION SESSIONS ══════════ -->
-  <div class="gallery-section-break">
-    <div class="gsb-title">Real.<br><em>Raw.</em></div>
-    <p class="gsb-desc">On-location sessions. Unscripted moments captured with cinematic precision and intentional light.</p>
-    <div class="gsb-cross">+</div>
-  </div>
-
-  <div class="gallery-grid" id="grid-2">
-
-    <div class="gallery-item" data-category="portrait">
-      <img src="/img/toda la galeria/DSC01763_0000_Tono_saturación-1.webp" alt="Portrait — saturated tones" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Portrait</div>
-        <div class="gallery-item-title">Saturated<br>Tones</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">21</div>
-    </div>
-
-    <div class="gallery-item" data-category="lifestyle">
-      <img src="/img/toda la galeria/DSC01763_0001_DSC01790.webp" alt="Lifestyle — location session" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Lifestyle</div>
-        <div class="gallery-item-title">Location<br>Session</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">22</div>
-    </div>
-
-    <div class="gallery-item" data-category="portrait">
-      <img src="/img/toda la galeria/DSC01763_0002_DSC01791.webp" alt="Portrait — natural environment" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Portrait</div>
-        <div class="gallery-item-title">Natural<br>Environment</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">23</div>
-    </div>
-
-    <div class="gallery-item" data-category="editorial">
-      <img src="/img/toda la galeria/DSC01763_0002_DSC01791_1.webp" alt="Editorial — location shoot" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Editorial</div>
-        <div class="gallery-item-title">Location<br>Shoot</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">24</div>
-    </div>
-
-    <div class="gallery-item" data-category="portrait">
-      <img src="/img/toda la galeria/DSC01763_0003_DSC01794.webp" alt="Portrait — cinematic light" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Portrait</div>
-        <div class="gallery-item-title">Cinematic<br>Light</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">25</div>
-    </div>
-
-    <div class="gallery-item" data-category="lifestyle">
-      <img src="/img/toda la galeria/DSC01763_0003_DSC01794_1.webp" alt="Lifestyle — candid moment" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Lifestyle</div>
-        <div class="gallery-item-title">Candid<br>Moment</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">26</div>
-    </div>
-
-    <div class="gallery-item" data-category="portrait">
-      <img src="/img/toda la galeria/DSC01763_0004_DSC01805.webp" alt="Portrait — direction series" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Portrait</div>
-        <div class="gallery-item-title">Direction<br>Series</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">27</div>
-    </div>
-
-    <div class="gallery-item" data-category="editorial">
-      <img src="/img/toda la galeria/DSC01763_0004_DSC01805_1.webp" alt="Editorial — portrait series" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Editorial</div>
-        <div class="gallery-item-title">Portrait<br>Series</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">28</div>
-    </div>
-
-    <div class="gallery-item" data-category="portrait">
-      <img src="/img/toda la galeria/DSC01763_0004_DSC01806.webp" alt="Portrait — strong composition" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Portrait</div>
-        <div class="gallery-item-title">Strong<br>Composition</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">29</div>
-    </div>
-
-    <div class="gallery-item" data-category="lifestyle">
-      <img src="/img/toda la galeria/DSC01763_0004_DSC01806_1.webp" alt="Lifestyle — natural moments" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Lifestyle</div>
-        <div class="gallery-item-title">Natural<br>Moments</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">30</div>
-    </div>
-
-    <div class="gallery-item" data-category="portrait">
-      <img src="/img/toda la galeria/DSC01763_0006_DSC01831.webp" alt="Portrait — artistic direction" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Portrait</div>
-        <div class="gallery-item-title">Artistic<br>Direction</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">31</div>
-    </div>
-
-    <div class="gallery-item" data-category="editorial">
-      <img src="/img/toda la galeria/DSC01763_0007_DSC01835.webp" alt="Editorial — lifestyle blend" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Editorial</div>
-        <div class="gallery-item-title">Lifestyle<br>Blend</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">32</div>
-    </div>
-
-    <div class="gallery-item" data-category="portrait">
-      <img src="/img/toda la galeria/DSC01763_0008.webp" alt="Portrait — final series" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Portrait</div>
-        <div class="gallery-item-title">Final<br>Series</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">33</div>
-    </div>
-
-    <div class="gallery-item" data-category="lifestyle">
-      <img src="/img/toda la galeria/DSC01763_0008_1.webp" alt="Lifestyle — closing frame" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Lifestyle</div>
-        <div class="gallery-item-title">Closing<br>Frame</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">34</div>
-    </div>
-
-  </div>
-
-  <!-- ══════════ SECTION 3 ══════════ -->
-  <div class="gallery-section-break">
-    <div class="gsb-title">More<br><em>Work.</em></div>
-    <p class="gsb-desc">Extended collection. Fashion, brand campaigns, and intimate portrait sessions delivered across Miami and beyond.</p>
-    <div class="gsb-cross">+</div>
-  </div>
-
-  <div class="gallery-grid" id="grid-3">
-
-    <div class="gallery-item" data-category="editorial">
-      <img src="/img/toda la galeria/a1adce51-2d8a-4d3b-8123-9db19847b032.webp" alt="Editorial — creative session" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Editorial</div>
-        <div class="gallery-item-title">Creative<br>Session</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">35</div>
-    </div>
-
-    <div class="gallery-item" data-category="portrait">
-      <img src="/img/toda la galeria/a4c8f285-6391-4cfe-93b5-8a8da8298118.webp" alt="Portrait — dramatic light" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Portrait</div>
-        <div class="gallery-item-title">Dramatic<br>Light</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">36</div>
-    </div>
-
-    <div class="gallery-item" data-category="lifestyle">
-      <img src="/img/toda la galeria/a4c8f5e8-6780-4d0e-bde2-ebadd7a03f98.webp" alt="Lifestyle — urban shoot" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Lifestyle</div>
-        <div class="gallery-item-title">Urban<br>Shoot</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">37</div>
-    </div>
-
-    <div class="gallery-item" data-category="editorial">
-      <img src="/img/toda la galeria/ac41519d-4f62-4d6e-a568-ddb0a144aba0.webp" alt="Editorial — fashion campaign" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Editorial</div>
-        <div class="gallery-item-title">Fashion<br>Campaign</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">38</div>
-    </div>
-
-    <div class="gallery-item" data-category="portrait">
-      <img src="/img/toda la galeria/ae27742a-5bc1-4418-b853-d2592dc62a25.webp" alt="Portrait — editorial feel" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Portrait</div>
-        <div class="gallery-item-title">Editorial<br>Feel</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">39</div>
-    </div>
-
-    <div class="gallery-item" data-category="lifestyle">
-      <img src="/img/toda la galeria/be32ef62-df84-43b4-8277-7e84b7f65f35.webp" alt="Lifestyle — content creation" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Lifestyle</div>
-        <div class="gallery-item-title">Content<br>Creation</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">40</div>
-    </div>
-
-    <div class="gallery-item" data-category="editorial">
-      <img src="/img/toda la galeria/c052e16f-02a5-4545-b6ba-e6b91a2b3a4a.webp" alt="Editorial — mood series" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Editorial</div>
-        <div class="gallery-item-title">Mood<br>Series</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">41</div>
-    </div>
-
-    <div class="gallery-item" data-category="portrait">
-      <img src="/img/toda la galeria/c850f347-ea70-453a-9ee4-be52f35028c0.webp" alt="Portrait — close up" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Portrait</div>
-        <div class="gallery-item-title">Close<br>Up</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">42</div>
-    </div>
-
-    <div class="gallery-item" data-category="lifestyle">
-      <img src="/img/toda la galeria/e5524697-a4ba-4b5a-a259-f10ac8bfa082.webp" alt="Lifestyle — storytelling" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Lifestyle</div>
-        <div class="gallery-item-title">Story<br>Telling</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">43</div>
-    </div>
-
-    <div class="gallery-item" data-category="editorial">
-      <img src="/img/toda la galeria/e6acea08-7947-4587-85a9-9aa5f405568f.webp" alt="Editorial — high fashion" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Editorial</div>
-        <div class="gallery-item-title">High<br>Fashion</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">44</div>
-    </div>
-
-    <div class="gallery-item" data-category="portrait">
-      <img src="/img/toda la galeria/ec5a1a57-ff41-4967-b987-b954b0940edb.webp" alt="Portrait — expressive frame" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Portrait</div>
-        <div class="gallery-item-title">Expressive<br>Frame</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">45</div>
-    </div>
-
-    <div class="gallery-item" data-category="lifestyle">
-      <img src="/img/toda la galeria/f52268c6-159d-4bca-8da5-3b3140afb96a.webp" alt="Lifestyle — behind the lens" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Lifestyle</div>
-        <div class="gallery-item-title">Behind<br>The Lens</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">46</div>
-    </div>
-
-    <div class="gallery-item" data-category="editorial">
-      <img src="/img/toda la galeria/f6dfdde8-52c9-4178-b17c-6a52496809a4.webp" alt="Editorial — concept shoot" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Editorial</div>
-        <div class="gallery-item-title">Concept<br>Shoot</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">47</div>
-    </div>
-
-    <div class="gallery-item" data-category="portrait">
-      <img src="/img/toda la galeria/f7a0181f-c8f1-43b1-86c3-88d05c79d07f.webp" alt="Portrait — signature style" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Portrait</div>
-        <div class="gallery-item-title">Signature<br>Style</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">48</div>
-    </div>
-
-    <div class="gallery-item" data-category="lifestyle">
-      <img src="/img/toda la galeria/fb271c42-20a0-4c7a-8239-09ce6df4561d.webp" alt="Lifestyle — final collection" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Lifestyle</div>
-        <div class="gallery-item-title">Final<br>Collection</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">49</div>
-    </div>
-
-    <div class="gallery-item" data-category="editorial">
-      <img src="/img/toda la galeria/ffb79d5b-915e-43ce-b7cf-37cdfb40407b.webp" alt="Editorial — closing frame" loading="lazy">
-      <div class="gallery-item-overlay">
-        <div class="gallery-item-category">Editorial</div>
-        <div class="gallery-item-title">Closing<br>Frame</div>
-        <div class="gallery-item-action">↗</div>
-      </div>
-      <div class="gallery-item-num">50</div>
-    </div>
-
-  </div>
-
-  <!-- FOOTER CTA -->
-  <footer class="gallery-footer">
-    <div class="gallery-footer-text">Ready to create<br>something <em>real?</em></div>
-    <a href="/#contact" class="btn-book">Book a Session →</a>
-  </footer>
-
-  <!-- LIGHTBOX -->
-  <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" id="lb-close">✕</button>
-    <button class="lightbox-prev" id="lb-prev">←</button>
-    <img class="lightbox-img" id="lb-img" src="" alt="">
-    <button class="lightbox-next" id="lb-next">→</button>
-    <div class="lightbox-info">
-      <div class="lightbox-category" id="lb-category"></div>
-      <div class="lightbox-counter" id="lb-counter"></div>
-    </div>
-  </div>
-
-  <script>
-  // ── CURSOR ──
-  const cursor = document.getElementById('mkCursor');
-  const ring = document.getElementById('mkCursorRing');
-  let mx = 0, my = 0, rx = 0, ry = 0;
-
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    cursor.style.left = mx + 'px';
-    cursor.style.top = my + 'px';
-  });
-
-  (function animateRing() {
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-    ring.style.left = rx + 'px';
-    ring.style.top = ry + 'px';
-    requestAnimationFrame(animateRing);
-  })();
-
-  // Nav scroll
-  window.addEventListener('scroll', () => document.getElementById('mkNav').classList.toggle('scrolled', scrollY > 50));
-
-  // Mobile nav
-  let navOpen = false;
-  function toggleMkNav() { navOpen=!navOpen; document.getElementById('mkMobileNav').classList.toggle('open',navOpen); document.getElementById('mkHamburger').classList.toggle('open',navOpen); document.body.style.overflow=navOpen?'hidden':''; }
-  function closeMkNav() { navOpen=false; document.getElementById('mkMobileNav').classList.remove('open'); document.getElementById('mkHamburger').classList.remove('open'); document.body.style.overflow=''; }
-
-  document.querySelectorAll('.gallery-item, .filter-btn, .lightbox-close, .lightbox-prev, .lightbox-next, .btn-book, .mk-nav-logo').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.style.transform = 'translate(-50%,-50%) scale(2.2)';
-      ring.style.width = '64px'; ring.style.height = '64px';
-    });
-    el.addEventListener('mouseleave', () => {
-      cursor.style.transform = 'translate(-50%,-50%) scale(1)';
-      ring.style.width = '36px'; ring.style.height = '36px';
-    });
-  });
-
-  // ── FILTER ──
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const allItems = document.querySelectorAll('.gallery-item');
-  const filterCount = document.getElementById('filter-count');
-  const visibleCount = document.getElementById('visible-count');
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const filter = btn.dataset.filter;
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      let count = 0;
-      allItems.forEach(item => {
-        const show = filter === 'all' || item.dataset.category === filter;
-        item.style.display = show ? '' : 'none';
-        if (show) count++;
-      });
-
-      filterCount.textContent = count + ' images';
-      visibleCount.textContent = count;
-    });
-  });
-
-  // ── LIGHTBOX ──
-  const lightbox = document.getElementById('lightbox');
-  const lbImg = document.getElementById('lb-img');
-  const lbClose = document.getElementById('lb-close');
-  const lbPrev = document.getElementById('lb-prev');
-  const lbNext = document.getElementById('lb-next');
-  const lbCat = document.getElementById('lb-category');
-  const lbCounter = document.getElementById('lb-counter');
-  let currentIdx = 0;
-
-  function getVisible() {
-    return [...document.querySelectorAll('.gallery-item')].filter(el => el.style.display !== 'none');
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Maikel Marshall Photography">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Photography Portfolio Gallery — Cinematic Portraits & Editorials · Maikel Marshall">
+  <meta name="twitter:description" content="Browse the complete gallery of cinematic portrait, fashion, editorial and lifestyle photography by Maikel Marshall. Based in Miami, FL.">
+  <meta name="twitter:image" content="https://www.maikphotographer.com/assets/backgrounds/31_fondo_ia1_oscuro_principal.jpg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ImageGallery",
+    "author": {"@type": "Person", "name": "Maikel Marshall"},
+    "name": "Photography Portfolio Gallery — Cinematic Portraits & Editorials · Maikel Marshall",
+    "description": "Browse the complete gallery of cinematic portrait, fashion, editorial and lifestyle photography by Maikel Marshall. Based in Miami, FL.",
+    "url": "https://www.maikphotographer.com/gallery",
+    "isPartOf": {"@id": "https://www.maikphotographer.com/#business"}
   }
-
-  function openAt(idx) {
-    const vis = getVisible();
-    if (idx < 0) idx = vis.length - 1;
-    if (idx >= vis.length) idx = 0;
-    currentIdx = idx;
-    const item = vis[idx];
-    lbImg.src = item.querySelector('img').src;
-    lbImg.alt = item.querySelector('img').alt;
-    const cat = item.querySelector('.gallery-item-category');
-    lbCat.textContent = cat ? cat.textContent : '';
-    lbCounter.textContent = (idx + 1) + ' / ' + vis.length;
-    lightbox.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function close() {
-    lightbox.classList.remove('open');
-    document.body.style.overflow = '';
-    setTimeout(() => { lbImg.src = ''; }, 300);
-  }
-
-  allItems.forEach(item => {
-    item.addEventListener('click', () => {
-      const vis = getVisible();
-      openAt(vis.indexOf(item));
-    });
-  });
-
-  lbClose.addEventListener('click', close);
-  lbPrev.addEventListener('click', () => openAt(currentIdx - 1));
-  lbNext.addEventListener('click', () => openAt(currentIdx + 1));
-  lightbox.addEventListener('click', e => { if (e.target === lightbox) close(); });
-
-  document.addEventListener('keydown', e => {
-    if (!lightbox.classList.contains('open')) return;
-    if (e.key === 'Escape') close();
-    if (e.key === 'ArrowLeft') openAt(currentIdx - 1);
-    if (e.key === 'ArrowRight') openAt(currentIdx + 1);
-  });
-
-  // ── SCROLL REVEAL ──
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-        io.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.04 });
-
-  allItems.forEach((item, i) => {
-    item.style.opacity = '0';
-    item.style.transform = 'translateY(28px)';
-    item.style.transition = `opacity 0.55s ease ${(i % 5) * 55}ms, transform 0.55s ease ${(i % 5) * 55}ms`;
-    io.observe(item);
-  });
-
-  // init count
-  visibleCount.textContent = allItems.length;
-  filterCount.textContent = allItems.length + ' images';
   </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:          #0B0C0A;
+  --bg2:         #0E0F0D;
+  --bg3:         #141512;
+  --surface:     rgba(14,15,13,.88);
+  --gold:        #D8C18A;
+  --gold2:       #C7B68A;
+  --gold-dim:    rgba(216,193,138,.12);
+  --gold-glow:   rgba(216,193,138,.25);
+  --white:       #E6E3D8;
+  --muted:       #9B978B;
+  --muted2:      rgba(230,227,216,.38);
+  --border:      rgba(216,193,138,.12);
+  --border2:     rgba(216,193,138,.22);
+  --display:     'Jost', sans-serif;
+  --body:        'Inter', sans-serif;
+  --ease:        cubic-bezier(.16,1,.3,1);
+  --ease2:       cubic-bezier(.4,0,.2,1);
+  --r-card:      28px;
+  --r-btn:       999px;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box }
+html { font-size:16px; scroll-behavior:smooth; -webkit-font-smoothing:antialiased }
+body { font-family:var(--body); background:var(--bg); color:var(--white); overflow-x:hidden; line-height:1.6; cursor:none }
+img { max-width:100%; display:block }
+a { text-decoration:none; color:inherit }
+
+body::before { content:''; position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.04;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px }
+
+.cur-dot { position:fixed; top:0; left:0; width:6px; height:6px; background:var(--white); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%) }
+.cur-ring { position:fixed; top:0; left:0; width:32px; height:32px; border:1px solid rgba(216,193,138,.6); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:all .1s var(--ease2) }
+
+.site-header { position:fixed; top:0; left:0; width:100%; z-index:100;
+  padding:28px 7vw; display:flex; justify-content:space-between; align-items:center;
+  background:rgba(11,12,10,.0); backdrop-filter:blur(0px); border-bottom:1px solid transparent;
+  transition:all .5s var(--ease2) }
+.site-header.sticky { background:rgba(11,12,10,.92); backdrop-filter:blur(20px); border-bottom-color:var(--border); padding:18px 7vw }
+
+.logo { font-family:var(--display); font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); font-weight:500 }
+.header-nav { display:flex; align-items:center; gap:0 }
+.header-nav a { margin-left:32px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--white); opacity:.72; transition:opacity .3s; font-weight:400 }
+.header-nav a:hover { opacity:1 }
+
+.header-right { display:flex; align-items:center; gap:16px }
+.lang-btn { font-size:10px; letter-spacing:.2em; text-transform:uppercase; padding:7px 14px;
+  border:1px solid var(--border2); border-radius:var(--r-btn); color:var(--gold2);
+  background:transparent; cursor:pointer; transition:all .3s; font-family:var(--body) }
+.lang-btn:hover { background:var(--gold-dim) }
+
+.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; background:none; border:none }
+.hamburger span { width:22px; height:1px; background:var(--white); display:block; transition:all .3s }
+
+.mobile-nav { position:fixed; inset:0; z-index:90; background:rgba(11,12,10,.97);
+  backdrop-filter:blur(20px); display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:32px;
+  opacity:0; pointer-events:none; transition:opacity .4s }
+.mobile-nav.open { opacity:1; pointer-events:all }
+.mobile-nav a { font-family:var(--display); font-size:2rem; font-weight:400; letter-spacing:.1em; color:var(--white); transition:color .3s }
+.mobile-nav a:hover { color:var(--gold2) }
+
+.page-header { min-height:70vh; display:grid; place-items:center; text-align:center;
+  padding:120px 7vw 80px; position:relative; background:var(--bg) }
+.page-header h1 { font-family:var(--display); font-size:clamp(42px,5.5vw,72px);
+  font-weight:400; letter-spacing:.16em; line-height:1.12; margin-bottom:24px; color:var(--white) }
+.page-header p { font-size:14px; color:var(--muted); max-width:520px; margin:0 auto }
+
+.gallery-section { padding:100px 7vw; background:var(--bg) }
+.gallery-inner { max-width:1240px; margin:0 auto }
+.gallery-filters { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin-bottom:60px }
+.filter-btn { font-size:10px; letter-spacing:.16em; text-transform:uppercase;
+  padding:8px 18px; border:1px solid var(--border); border-radius:var(--r-btn);
+  color:var(--muted2); background:transparent; cursor:pointer; transition:all .3s }
+.filter-btn.active, .filter-btn:hover { border-color:var(--border2); color:var(--gold2); background:var(--gold-dim) }
+
+.gallery-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:3px; max-width:1240px; margin:0 auto }
+.gal-item { position:relative; overflow:hidden; cursor:pointer; aspect-ratio:1/1 }
+.gal-item img { width:100%; height:100%; object-fit:cover; transition:transform .9s var(--ease), filter .5s }
+.gal-item:hover img { transform:scale(1.06); filter:brightness(.65) }
+.gal-overlay { position:absolute; inset:0;
+  background:linear-gradient(to top,rgba(11,12,10,.9) 0%,transparent 55%);
+  opacity:0; transition:opacity .4s;
+  display:flex; flex-direction:column; justify-content:flex-end; padding:28px }
+.gal-item:hover .gal-overlay { opacity:1 }
+.gal-cat { font-size:9px; letter-spacing:.26em; text-transform:uppercase; color:var(--gold2); margin-bottom:6px }
+.gal-name { font-family:var(--display); font-size:1.5rem; font-weight:400; font-style:italic; color:var(--white) }
+
+.lightbox { position:fixed; inset:0; z-index:300; background:rgba(11,12,10,.97);
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; pointer-events:none; transition:opacity .4s }
+.lightbox.active { opacity:1; pointer-events:all }
+.lb-img { max-width:88vw; max-height:88vh; object-fit:contain; border-radius:8px }
+.lb-close { position:absolute; top:24px; right:36px; background:none; border:none;
+  font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); cursor:pointer; transition:color .3s }
+.lb-close:hover { color:var(--white) }
+.lb-nav { position:absolute; top:50%; transform:translateY(-50%);
+  background:none; border:1px solid var(--border); color:var(--muted);
+  width:46px; height:46px; border-radius:50%; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; font-size:1.1rem; transition:all .3s }
+.lb-nav:hover { border-color:var(--border2); color:var(--gold2) }
+.lb-prev { left:24px }
+.lb-next { right:24px }
+
+.site-footer { background:var(--bg); border-top:1px solid var(--border);
+  padding:48px 7vw; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px }
+.footer-brand { font-family:var(--display); font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); font-weight:400 }
+.footer-links { display:flex; gap:24px; flex-wrap:wrap }
+.footer-links a { font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); transition:color .3s }
+.footer-links a:hover { color:var(--gold2) }
+.footer-copy { font-size:11px; color:rgba(155,151,139,.5) }
+
+.wa-btn { position:fixed; bottom:32px; right:32px; z-index:200;
+  width:52px; height:52px; border-radius:50%; background:#25D366;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,.3); transition:all .3s }
+.wa-btn:hover { transform:scale(1.1); box-shadow:0 6px 30px rgba(37,211,102,.45) }
+.wa-btn svg { width:24px; height:24px; fill:#fff }
+
+@media(max-width:1024px) {
+  .gallery-grid { grid-template-columns:repeat(2,1fr) }
+}
+
+@media(max-width:768px) {
+  .header-nav { display:none }
+  .hamburger { display:flex }
+  .site-header { padding:20px 5vw }
+  .page-header { padding:100px 5vw 60px; min-height:50vh }
+  .page-header h1 { font-size:clamp(36px,10vw,52px); letter-spacing:.1em }
+  .gallery-section { padding:80px 5vw }
+  .gallery-grid { grid-template-columns:1fr; gap:1px }
+  .site-footer { flex-direction:column; text-align:center; padding:36px 5vw }
+  .footer-links { justify-content:center }
+}
+</style>
+</head>
+<body>
+
+<div class="cur-dot" id="curDot"></div>
+<div class="cur-ring" id="curRing"></div>
+
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html#about" onclick="closeMobileNav()" data-en="About" data-es="Sobre mí">About</a>
+  <a href="index.html#portfolio" onclick="closeMobileNav()" data-en="Portfolio" data-es="Portfolio">Portfolio</a>
+  <a href="gallery.html" onclick="closeMobileNav()" data-en="Gallery" data-es="Galería">Gallery</a>
+  <a href="index.html#services" onclick="closeMobileNav()" data-en="Services" data-es="Servicios">Services</a>
+  <a href="pricing.html" onclick="closeMobileNav()" data-en="Pricing" data-es="Precios">Pricing</a>
+  <a href="index.html#contact" onclick="closeMobileNav()" data-en="Contact" data-es="Contacto">Contact</a>
+</nav>
+
+<header class="site-header" id="siteHeader">
+  <a href="index.html" class="logo">MK — Studio</a>
+  <nav class="header-nav">
+    <a href="index.html#about" data-en="About" data-es="Sobre mí">About</a>
+    <a href="index.html#portfolio" data-en="Portfolio" data-es="Portfolio">Portfolio</a>
+    <a href="gallery.html" data-en="Gallery" data-es="Galería">Gallery</a>
+    <a href="index.html#services" data-en="Services" data-es="Servicios">Services</a>
+    <a href="pricing.html" data-en="Pricing" data-es="Precios">Pricing</a>
+    <a href="index.html#contact" data-en="Contact" data-es="Contacto">Contact</a>
+  </nav>
+  <div class="header-right">
+    <button class="lang-btn" id="langBtn" onclick="toggleLang()">ES</button>
+    <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<section class="page-header">
+  <div>
+    <h1 data-en="Complete Gallery" data-es="Galería Completa">Complete Gallery</h1>
+    <p data-en="Every moment, every session, every story. Explore the full catalog of my work across all categories." data-es="Cada momento, cada sesión, cada historia. Explora el catálogo completo de mi trabajo en todas las categorías.">Every moment, every session, every story. Explore the full catalog of my work across all categories.</p>
+  </div>
+</section>
+
+<section class="gallery-section">
+  <div class="gallery-inner">
+    <div class="gallery-filters">
+      <button class="filter-btn active" data-filter="all" onclick="filterGallery(this)" data-en="All" data-es="Todo">All</button>
+      <button class="filter-btn" data-filter="portrait" onclick="filterGallery(this)" data-en="Portrait" data-es="Retrato">Portrait</button>
+      <button class="filter-btn" data-filter="editorial" onclick="filterGallery(this)" data-en="Editorial" data-es="Editorial">Editorial</button>
+      <button class="filter-btn" data-filter="lifestyle" onclick="filterGallery(this)" data-en="Lifestyle" data-es="Lifestyle">Lifestyle</button>
+    </div>
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" onclick="closeLb()">✕ Close</button>
+  <button class="lb-nav lb-prev" onclick="navLb(-1)">‹</button>
+  <img class="lb-img" src="" alt="" id="lbImg">
+  <button class="lb-nav lb-next" onclick="navLb(1)">›</button>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-brand">MK — Maikel Marshall</div>
+  <nav class="footer-links">
+    <a href="index.html#about" data-en="About" data-es="Sobre mí">About</a>
+    <a href="index.html#portfolio" data-en="Portfolio" data-es="Portfolio">Portfolio</a>
+    <a href="gallery.html" data-en="Gallery" data-es="Galería">Gallery</a>
+    <a href="pricing.html" data-en="Pricing" data-es="Precios">Pricing</a>
+    <a href="blog.html" data-en="Blog" data-es="Blog">Blog</a>
+    <a href="https://www.instagram.com/maik_photographer/" target="_blank">Instagram</a>
+    <a href="https://wa.me/17863329815" target="_blank">WhatsApp</a>
+  </nav>
+  <div class="footer-copy">© 2026 Maikel Marshall · Miami, FL</div>
+</footer>
+
+<a href="https://wa.me/17863329815?text=Hi%20Maikel!%20I%20found%20your%20gallery%20and%20would%20love%20to%20book%20a%20session." class="wa-btn" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+const dot=document.getElementById('curDot'),ring=document.getElementById('curRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
+(function animRing(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)})();
+
+window.addEventListener('scroll',()=>document.getElementById('siteHeader').classList.toggle('sticky',scrollY>60));
+
+let navOpen=false;
+function toggleMobileNav(){navOpen=!navOpen;document.getElementById('mobileNav').classList.toggle('open',navOpen);document.body.style.overflow=navOpen?'hidden':''}
+function closeMobileNav(){navOpen=false;document.getElementById('mobileNav').classList.remove('open');document.body.style.overflow=''}
+
+// Gallery data
+const photos = [
+  {src:'img/toda la galeria/DSC01763_0000_Tono_saturación-1.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/DSC01763_0006_DSC01831.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/DSC01763_0007_DSC01835.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/DSC01763_0008_1.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/DSC01763_0001_DSC01790.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/DSC01763_0002_DSC01791.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/DSC01763_0002_DSC01791_1.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/DSC01763_0004_DSC01805.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/DSC01763_0004_DSC01805_1.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/DSC01763_0003_DSC01794.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/DSC01763_0003_DSC01794_1.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/DSC01763_0004_DSC01806.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/DSC01763_0004_DSC01806_1.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/DSC01763_0008.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/49ac4b8a-bd72-4836-b01d-631994a74a3f.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/ac41519d-4f62-4d6e-a568-ddb0a144aba0.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/2fcefe94-b154-4b88-9f6b-cee08fbdafd4.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/54842636-e52d-4556-a0b7-b87328675253.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/07d1529f-9339-469b-a628-faba60abaefe.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/6f1d4671-4390-430f-9fc9-9981a083de74.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/e5524697-a4ba-4b5a-a259-f10ac8bfa082.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/94d87035-a093-4f35-ba76-93c117602b75.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/4d9b139f-3fa4-4f54-8eff-fb4f326d5ca5.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/f52268c6-159d-4bca-8da5-3b3140afb96a.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/c052e16f-02a5-4545-b6ba-e6b91a2b3a4a.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/c850f347-ea70-453a-9ee4-be52f35028c0.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/a4c8f285-6391-4cfe-93b5-8a8da8298118.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/9f9ece98-fa4a-4c6b-8b97-57040be62c94.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/a1adce51-2d8a-4d3b-8123-9db19847b032.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/ae27742a-5bc1-4418-b853-d2592dc62a25.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/0e7f58e9-1cc5-4efb-9bee-7fbe1c73b7a1.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/fb271c42-20a0-4c7a-8239-09ce6df4561d.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/55b9606e-078e-4ec3-86dd-c6aae449d6dc.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/28bd9338-5205-4619-8a08-6a4e83a510b6.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/8a0f30b5-1cb7-47f6-93d3-6c5c40005591.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/5b7b9e82-36c4-44c5-bb61-10685eb81a65.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/a4c8f5e8-6780-4d0e-bde2-ebadd7a03f98.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/298bc3f1-c201-41d1-be74-11f78b234699.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/79a7b298-ace2-49ba-9e9e-1c567c8aa331.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/f6dfdde8-52c9-4178-b17c-6a52496809a4.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/ffb79d5b-915e-43ce-b7cf-37cdfb40407b.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/e6acea08-7947-4587-85a9-9aa5f405568f.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/9b2b1a15-837f-4ded-b0c3-a1461415098f.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/52c39845-b7f5-4d1d-880c-30ebee31b9f4.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/64e3dde7-2967-4cae-8e72-53203a5d1398.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/ec5a1a57-ff41-4967-b987-b954b0940edb.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/f7a0181f-c8f1-43b1-86c3-88d05c79d07f.jpg',cat:'lifestyle'},
+  {src:'img/toda la galeria/69b33119-e802-4570-a68f-c60396c40d8a.jpg',cat:'editorial'},
+  {src:'img/toda la galeria/be32ef62-df84-43b4-8277-7e84b7f65f35.jpg',cat:'portrait'},
+  {src:'img/toda la galeria/97bbeb58-5744-43ae-a2d3-3a02f30cd7da.jpg',cat:'lifestyle'},
+];
+
+let lbIdx=0;
+function renderGallery(){
+  const grid=document.getElementById('galleryGrid');
+  grid.innerHTML='';
+  photos.forEach((p,i)=>{
+    const item=document.createElement('div');
+    item.className='gal-item';
+    item.dataset.cat=p.cat;
+    item.innerHTML=`<img src="${p.src}" alt="${p.cat}" loading="lazy"><div class="gal-overlay"><div class="gal-cat">${p.cat.charAt(0).toUpperCase()+p.cat.slice(1)}</div></div>`;
+    item.onclick=()=>{lbIdx=i;openLb(p.src)};
+    grid.appendChild(item);
+  });
+}
+renderGallery();
+
+function filterGallery(btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const f=btn.dataset.filter;
+  document.querySelectorAll('.gal-item').forEach(item=>item.style.display=(f==='all'||item.dataset.cat===f)?'':'none');
+}
+
+function openLb(src){document.getElementById('lbImg').src=src;document.getElementById('lightbox').classList.add('active');document.body.style.overflow='hidden'}
+function closeLb(){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow=''}
+function navLb(d){
+  let visiblePhotos=photos.filter((_,i)=>{const item=document.querySelectorAll('.gal-item')[i];return item.style.display!=='none'});
+  lbIdx=(lbIdx+d+visiblePhotos.length)%visiblePhotos.length;
+  openLb(visiblePhotos[lbIdx].src);
+}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target===this)closeLb()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb();if(e.key==='ArrowLeft')navLb(-1);if(e.key==='ArrowRight')navLb(1)});
+
+let lang='en';
+function toggleLang(){
+  lang=lang==='en'?'es':'en';
+  document.getElementById('langBtn').textContent=lang==='en'?'ES':'EN';
+  document.querySelectorAll('[data-en]').forEach(el=>el.textContent=lang==='en'?el.dataset.en:el.dataset.es);
+}
+</script>
 </body>
 </html>

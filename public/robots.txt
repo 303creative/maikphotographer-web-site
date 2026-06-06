@@ -1,9 +1,8 @@
 User-agent: *
 Allow: /
-Disallow: /api/
 
 Sitemap: https://www.maikphotographer.com/sitemap.xml
 
-User-agent: Googlebot-Image
-Allow: /assets/
-Allow: /img/
+# Block crawling of assets that shouldn't be indexed
+Disallow: /api/
+Disallow: /assets/videos/
