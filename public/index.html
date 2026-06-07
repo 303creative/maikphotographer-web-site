@@ -6,9 +6,9 @@
   <meta name="color-scheme" content="dark light">
   <meta name="theme-color" content="#0C0C0C">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Maikel Marshall — Photographer · Miami</title>
-  <meta name="description" content="Miami-based cinematic photographer specializing in portrait, editorial, fashion and lifestyle photography. 5+ years experience, 200+ sessions delivered.">
-  <meta name="keywords" content="photographer Miami, portrait photography, editorial photography, fashion photography, lifestyle photography, cinematic photography">
+  <title>Cinematic Photography & Brand Direction — Maikel Marshall · Miami</title>
+  <meta name="description" content="Cinematic photographer + creative director in Miami. Portrait, editorial & brand photography. For models, creators & high-end brands. 200+ sessions. 48h delivery.">
+  <meta name="keywords" content="cinematic photographer Miami, editorial photographer, brand photography Miami, portrait sessions, creative director, professional photography">
   <meta name="author" content="Maikel Marshall">
   <meta name="copyright" content="2026 Maikel Marshall">
   <meta property="og:title" content="Maikel Marshall — Photographer · Miami">
@@ -16,9 +16,8 @@
   <meta property="og:url" content="https://www.maikphotographer.com">
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://www.maikphotographer.com">
-  <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#0C0C0C">
   <meta name="robots" content="index, follow">
@@ -39,25 +38,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-  <link rel="preload" as="style" href="/css/design-system.css">
-  <link rel="preload" as="style" href="/css/components.css">
-  <link rel="preload" as="style" href="/css/animations.css">
-
+  <link rel="preload" as="style" href="/css/unified.css">
+  <link rel="stylesheet" href="/css/unified.css">
+  <link rel="stylesheet" href="/css/accessibility.css">
+  <!-- Legacy CSS for backward compatibility -->
   <link rel="stylesheet" href="/css/design-system.css">
   <link rel="stylesheet" href="/css/components.css">
   <link rel="stylesheet" href="/css/animations.css">
-  <link rel="stylesheet" href="/css/portfolio-fixes.css">
-  <link rel="stylesheet" href="/css/mobile-responsive-fixes.css">
-  <link rel="stylesheet" href="/css/hero-optimization.css">
-  <link rel="stylesheet" href="/css/typography-hierarchy.css">
-  <link rel="stylesheet" href="/css/interaction-effects.css">
-  <link rel="stylesheet" href="/css/spacing-composition.css">
-  <link rel="stylesheet" href="/css/about-section-enhancement.css">
-  <link rel="stylesheet" href="/css/calendar-dark-theme.css">
-  <link rel="stylesheet" href="/css/services-cards.css">
-  <link rel="stylesheet" href="/css/svg-assets.css">
-  <link rel="stylesheet" href="/css/marketing-cta.css">
-  <link rel="stylesheet" href="/css/hero-design-upgrade.css">
 
   <script type="application/ld+json">
   {
@@ -112,7 +99,7 @@
 <body>
 
 <!-- NAV -->
-<nav class="site-header" role="navigation" aria-label="Primary navigation">
+<nav class="site-header" role="navigation" aria-label="Primary navigation" style="--text-2: #B0B0B5;">
   <div class="logo">
     <a href="#hero" aria-label="Maikel Marshall - Home">
       <svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 718.27 459.47" aria-hidden="true">
@@ -135,20 +122,19 @@
   <div class="header-nav">
     <a href="#about">About</a>
     <a href="#portfolio">Portfolio</a>
-    <a href="/gallery">Gallery</a>
-    <a href="/sessions">Sessions</a>
-    <a href="/pricing">Pricing</a>
-    <a href="/blog">Blog</a>
-    <a href="/marketing">Marketing</a>
+    <a href="#services">Services</a>
+    <a href="#testimonials">Testimonials</a>
     <a href="#contact">Contact</a>
+    <a href="https://www.instagram.com/maik_photographer/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">@maik_photographer</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-video-bg" aria-hidden="true">
-    <video autoplay muted loop playsinline preload="metadata">
+    <video autoplay muted loop playsinline preload="metadata" loading="lazy">
       <source src="/assets/videos/40_hero_camara_loop.mp4" type="video/mp4">
+      <track kind="captions" srclang="en" label="English" title="Cinematic camera work and creative direction">
     </video>
   </div>
 
@@ -161,13 +147,19 @@
         <span>AVAILABLE IN MIAMI</span>
       </div>
       <h1 class="hero-title" data-stagger="2">
-        <span class="line-in"><span>Shoot <em>real.</em></span></span>
-        <span class="line-in"><span>Feel it.</span></span>
+        <span class="line-in"><span>Cinematic <em>direction.</em></span></span>
+        <span class="line-in"><span>Real impact.</span></span>
       </h1>
-      <p class="hero-sub" data-stagger="3">Cinematic portraits and editorial photography for models, creators and brands. Based in Miami. Available worldwide.</p>
+      <p class="hero-sub" data-stagger="3">Professional photographer + creative director. Editorial portraits. Brand content. Visual storytelling that sells. For models, creators & premium brands worldwide.</p>
+      <div style="margin-top: 16px; display: flex; gap: 12px; align-items: center; justify-content: flex-start;">
+        <a href="https://www.instagram.com/maik_photographer/" target="_blank" rel="noopener noreferrer" aria-label="Follow on Instagram" style="display: inline-flex; align-items: center; gap: 6px; color: #fff; text-decoration: none; font-size: 14px; opacity: 0.8; transition: opacity 150ms;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+          @maik_photographer
+        </a>
+      </div>
     </div>
     <div class="hero-ctas" data-stagger="4">
-      <a href="#contact" class="btn btn-primary">Book a Session</a>
+      <a href="#contact" class="btn btn-primary">Start Your Shoot</a>
       <a href="#portfolio" class="btn btn-ghost">View Portfolio</a>
     </div>
   </div>
@@ -203,11 +195,11 @@
 
 <!-- ABOUT -->
 <section id="about" class="about">
-  <h2>I don't just <em>take photos.</em> I direct.</h2>
-  <p data-stagger="1">Cuban-born cinematic photographer, creative director & brand strategist based in Miami, FL. Founder of the303 Creative. 5+ years blending visual storytelling with strategic marketing—specialized in portrait, editorial, lifestyle and real estate with a distinctive filmic aesthetic.</p>
+  <h2>I direct. <em>They convert.</em></h2>
+  <p data-stagger="1">Cinematic photographer + creative director in Miami, FL. 5+ years creating editorial portraits, brand content & visual campaigns. Clients: Models seeking portfolio breakthroughs. Creators scaling to 50k+ followers. Brands amplifying their story. My work delivers impact—portfolio bookings, social proof, and sales.</p>
   <div class="about-container" data-stagger="2">
     <div class="about-image">
-      <img src="/img/the303-netflix-3.png?v=6" alt="THE303 Creative - Miami creative agency" loading="lazy">
+      <img src="/img/the303-netflix-3.png?v=6" alt="Maikel Marshall - Cinematic photographer and creative director in studio with professional lighting setup" loading="lazy">
     </div>
     <div class="about-stats">
       <div><div class="astat-val">200+</div><div class="astat-lbl">Sessions delivered</div></div>
@@ -228,17 +220,17 @@
   </div>
   <div class="portfolio-grid">
     <div class="port-item" data-category="editorial" data-parallax>
-      <img src="/assets/portfolio/39_portafolio_1.jpg" alt="Warm lighting editorial portrait - cinematic photography by Maikel Marshall" loading="lazy">
+      <img src="/assets/portfolio/39_portafolio_1.jpg" alt="Editorial portrait with warm cinema lighting - professional fashion photography Miami" loading="lazy">
       <img class="port-watermark" src="/assets/overlays/29_watermark_mk.png" alt="" aria-hidden="true" loading="lazy">
       <div class="port-caption"><span>Editorial</span><span>Warm light</span></div>
     </div>
     <div class="port-item" data-category="portrait" data-parallax>
-      <img src="/assets/portfolio/39_portafolio_2.jpg" alt="Golden circle portrait - fashion photography Miami" loading="lazy">
+      <img src="/assets/portfolio/39_portafolio_2.jpg" alt="Portrait session with golden circle lighting and cinematic composition" loading="lazy">
       <img class="port-watermark" src="/assets/overlays/29_watermark_mk.png" alt="" aria-hidden="true" loading="lazy">
       <div class="port-caption"><span>Portrait</span><span>Golden circle</span></div>
     </div>
     <div class="port-item" data-category="lifestyle" data-parallax>
-      <img src="/assets/portfolio/39_portafolio_3.jpg" alt="Red hour lifestyle photography - sunset session" loading="lazy">
+      <img src="/assets/portfolio/39_portafolio_3.jpg" alt="Lifestyle brand photography captured during golden hour sunset session" loading="lazy">
       <img class="port-watermark" src="/assets/overlays/29_watermark_mk.png" alt="" aria-hidden="true" loading="lazy">
       <div class="port-caption"><span>Lifestyle</span><span>Red hour</span></div>
     </div>
@@ -688,11 +680,9 @@
   <nav class="footer-links" role="navigation" aria-label="Footer navigation">
     <a href="#about">About</a>
     <a href="#portfolio">Portfolio</a>
-    <a href="/gallery">Gallery</a>
-    <a href="/sessions">Sessions</a>
-    <a href="/pricing">Pricing</a>
-    <a href="/blog">Blog</a>
-    <a href="/marketing">Marketing</a>
+    <a href="#services">Services</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#contact">Contact</a>
     <a href="https://www.instagram.com/maik_photographer/" target="_blank" rel="noopener noreferrer">Instagram</a>
   </nav>
   <p><small>&#169; 2026 Maikel Marshall &middot; Miami, FL &middot; All rights reserved</small></p>

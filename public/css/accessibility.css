@@ -1,0 +1,149 @@
+/* ACCESSIBILITY - WCAG 2.1 AA Compliance */
+
+:root {
+  /* Increased contrast for WCAG AA compliance */
+  --text-2-accessible: #B8B8BD;  /* 4.5:1 contrast on #0A0A0A */
+  --text-3-accessible: #8A8A8E;  /* 4.5:1 contrast on #0A0A0A */
+  --accent-accessible: #F96D00;  /* Better contrast on dark background */
+}
+
+/* Override text colors for accessibility */
+.hero-sub { color: var(--text-2-accessible); }
+section p { color: var(--text-2-accessible); }
+
+/* Form labels and text */
+label, .contact-info {
+  color: var(--text-2-accessible);
+}
+
+/* Ensure all interactive elements have visible focus */
+a, button, input, textarea, select {
+  outline: none;
+  transition: outline 100ms ease;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--accent-accessible);
+  outline-offset: 2px;
+}
+
+/* Improve button hover states for accessibility */
+.btn-primary {
+  position: relative;
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+}
+
+/* Ensure minimum touch target size (44x44px) */
+.btn {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Improve form input visibility */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+  border: 2px solid rgba(255,255,255,0.1);
+  transition: all 150ms ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+textarea:focus {
+  border-color: var(--accent-accessible);
+  background: rgba(255,255,255,0.08);
+  box-shadow: 0 0 0 3px rgba(255, 109, 0, 0.1);
+}
+
+/* Ensure video controls are accessible */
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Improve skip link (if added) */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--accent-accessible);
+  color: #fff;
+  padding: 8px 16px;
+  text-decoration: none;
+  z-index: 9999;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Improve carousel button visibility */
+.carousel-prev,
+.carousel-next {
+  background: rgba(255, 109, 0, 0.2);
+  border: 2px solid var(--accent-accessible);
+  color: var(--accent-accessible);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+  background: var(--accent-accessible);
+  color: #fff;
+}
+
+/* Ensure sufficient line height for readability */
+p, li, td {
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+}
+
+/* Improve link underlines for readability */
+a {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.btn a {
+  text-decoration: none;
+}
+
+/* Print styles for accessibility */
+@media print {
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
+}
+
+/* Prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
