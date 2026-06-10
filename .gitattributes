@@ -1,0 +1,19 @@
+# Normalizar finales de línea — evita los cientos de "modified" fantasma
+* text=auto eol=lf
+
+# Archivos Windows que necesitan CRLF
+*.bat text eol=crlf
+
+# Binarios — nunca tocar
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+*.ico binary
+*.mp4 binary
+*.mov binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.pdf binary
