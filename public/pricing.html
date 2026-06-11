@@ -38,23 +38,23 @@
   </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:          #0B0C0A;
-  --bg2:         #0E0F0D;
-  --bg3:         #141512;
-  --surface:     rgba(14,15,13,.88);
-  --gold:        #D8C18A;
-  --gold2:       #C7B68A;
-  --gold-dim:    rgba(216,193,138,.12);
-  --gold-glow:   rgba(216,193,138,.25);
-  --white:       #E6E3D8;
-  --muted:       #9B978B;
-  --muted2:      rgba(230,227,216,.38);
-  --border:      rgba(216,193,138,.12);
-  --border2:     rgba(216,193,138,.22);
-  --display:     'Jost', sans-serif;
+  --bg:          #0C0C0C;
+  --bg2:         #111111;
+  --bg3:         #1A1A1A;
+  --surface:     rgba(17,17,17,.88);
+  --gold:        #FF5722;
+  --gold2:       #E64A19;
+  --gold-dim:    rgba(255,255,255,.08);
+  --gold-glow:   rgba(255,87,34,.25);
+  --white:       #FFFFFF;
+  --muted:       #888888;
+  --muted2:      rgba(255,255,255,.38);
+  --border:      rgba(255,255,255,.08);
+  --border2:     rgba(255,255,255,.16);
+  --display:     'Bebas Neue', sans-serif;
   --body:        'Inter', sans-serif;
   --ease:        cubic-bezier(.16,1,.3,1);
   --ease2:       cubic-bezier(.4,0,.2,1);
@@ -64,7 +64,7 @@
 
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box }
 html { font-size:16px; scroll-behavior:smooth; -webkit-font-smoothing:antialiased }
-body { font-family:var(--body); background:var(--bg); color:var(--white); overflow-x:hidden; line-height:1.6; cursor:none }
+body { font-family:var(--body); background:var(--bg); color:var(--white); overflow-x:hidden; line-height:1.6;  }
 img { max-width:100%; display:block }
 a { text-decoration:none; color:inherit }
 
@@ -73,13 +73,13 @@ body::before { content:''; position:fixed; inset:0; z-index:1; pointer-events:no
   background-size:200px }
 
 .cur-dot { position:fixed; top:0; left:0; width:6px; height:6px; background:var(--white); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%) }
-.cur-ring { position:fixed; top:0; left:0; width:32px; height:32px; border:1px solid rgba(216,193,138,.6); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:all .1s var(--ease2) }
+.cur-ring { position:fixed; top:0; left:0; width:32px; height:32px; border:1px solid rgba(255,87,34,.6); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:all .1s var(--ease2) }
 
 .site-header { position:fixed; top:0; left:0; width:100%; z-index:100;
   padding:28px 7vw; display:flex; justify-content:space-between; align-items:center;
-  background:rgba(11,12,10,.0); backdrop-filter:blur(0px); border-bottom:1px solid transparent;
+  background:rgba(12,12,12,.0); backdrop-filter:blur(0px); border-bottom:1px solid transparent;
   transition:all .5s var(--ease2) }
-.site-header.sticky { background:rgba(11,12,10,.92); backdrop-filter:blur(20px); border-bottom-color:var(--border); padding:18px 7vw }
+.site-header.sticky { background:rgba(12,12,12,.92); backdrop-filter:blur(20px); border-bottom-color:var(--border); padding:18px 7vw }
 
 .logo { font-family:var(--display); font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); font-weight:500 }
 .header-nav { display:flex; align-items:center; gap:0 }
@@ -95,7 +95,7 @@ body::before { content:''; position:fixed; inset:0; z-index:1; pointer-events:no
 .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; background:none; border:none }
 .hamburger span { width:22px; height:1px; background:var(--white); display:block; transition:all .3s }
 
-.mobile-nav { position:fixed; inset:0; z-index:90; background:rgba(11,12,10,.97);
+.mobile-nav { position:fixed; inset:0; z-index:90; background:rgba(12,12,12,.97);
   backdrop-filter:blur(20px); display:flex; flex-direction:column;
   align-items:center; justify-content:center; gap:32px;
   opacity:0; pointer-events:none; transition:opacity .4s }
@@ -149,7 +149,7 @@ body::before { content:''; position:fixed; inset:0; z-index:1; pointer-events:no
 .footer-links { display:flex; gap:24px; flex-wrap:wrap }
 .footer-links a { font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); transition:color .3s }
 .footer-links a:hover { color:var(--gold2) }
-.footer-copy { font-size:11px; color:rgba(155,151,139,.5) }
+.footer-copy { font-size:11px; color:rgba(136,136,136,.6) }
 
 .wa-btn { position:fixed; bottom:32px; right:32px; z-index:200;
   width:52px; height:52px; border-radius:50%; background:#25D366;
@@ -178,9 +178,6 @@ body::before { content:''; position:fixed; inset:0; z-index:1; pointer-events:no
 </head>
 <body>
 
-<div class="cur-dot" id="curDot"></div>
-<div class="cur-ring" id="curRing"></div>
-
 <nav class="mobile-nav" id="mobileNav">
   <a href="index.html#about" onclick="closeMobileNav()" data-en="About" data-es="Sobre mí">About</a>
   <a href="index.html#portfolio" onclick="closeMobileNav()" data-en="Portfolio" data-es="Portfolio">Portfolio</a>
@@ -191,7 +188,7 @@ body::before { content:''; position:fixed; inset:0; z-index:1; pointer-events:no
 </nav>
 
 <header class="site-header" id="siteHeader">
-  <a href="index.html" class="logo">MK — Studio</a>
+  <a href="index.html" class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 718.27 459.47" aria-hidden="true" style="width:40px;height:auto;display:block"><g><path fill="#fff" d="M0,459.47V136.3C0,96.23,12.15,63.5,36.46,38.1,60.76,12.7,92.29,0,131.04,0c45.98,0,81.34,21.13,106.08,63.39,15.11-22.77,31.31-39.03,48.61-48.77,17.3-9.74,38.64-14.62,64.04-14.62,40.29,0,71.16,12.7,92.62,38.1,21.46,25.4,32.19,61.96,32.19,109.69v311.68h-133.34V167.83c0-14.45-1.15-24.03-3.45-28.74-2.3-4.71-6.95-7.06-13.96-7.06-13.14,0-19.71,11.17-19.71,33.5v293.94h-133.34V167.83c0-14.23-1.2-23.76-3.61-28.57-2.41-4.82-7.12-7.23-14.12-7.23-13.14,0-19.71,11.93-19.71,35.8v291.64H0Z"/><polygon fill="#fff" points="685 109.37 616.58 236.84 718.27 459.47 563.49 459.47 476 230.87 539.56 109.37 685 109.37"/></g></svg></a>
   <nav class="header-nav">
     <a href="index.html#about" data-en="About" data-es="Sobre mí">About</a>
     <a href="index.html#portfolio" data-en="Portfolio" data-es="Portfolio">Portfolio</a>
@@ -340,10 +337,6 @@ body::before { content:''; position:fixed; inset:0; z-index:1; pointer-events:no
 </a>
 
 <script>
-const dot=document.getElementById('curDot'),ring=document.getElementById('curRing');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
-(function animRing(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)})();
 
 window.addEventListener('scroll',()=>document.getElementById('siteHeader').classList.toggle('sticky',scrollY>60));
 
