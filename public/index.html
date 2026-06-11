@@ -41,10 +41,16 @@
   <link rel="preload" as="style" href="/css/unified.css">
   <link rel="stylesheet" href="/css/unified.css">
   <link rel="stylesheet" href="/css/accessibility.css">
-  <!-- Legacy CSS for backward compatibility -->
+  <!-- Design system -->
   <link rel="stylesheet" href="/css/design-system.css">
   <link rel="stylesheet" href="/css/components.css">
   <link rel="stylesheet" href="/css/animations.css">
+  <!-- Estilos de sección (about, servicios, contacto, footer, booking) -->
+  <link rel="stylesheet" href="/css/sections.css">
+  <link rel="stylesheet" href="/css/about-section-enhancement.css">
+  <link rel="stylesheet" href="/css/services-cards.css">
+  <link rel="stylesheet" href="/css/marketing-cta.css">
+  <link rel="stylesheet" href="/css/calendar-dark-theme.css">
 
   <script type="application/ld+json">
   {
@@ -92,7 +98,6 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js" defer></script>
   <script src="https://unpkg.com/split-type@0.3.4/umd/index.min.js" defer></script>
 </head>
 
@@ -133,9 +138,8 @@
 <!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-video-bg" aria-hidden="true">
-    <video autoplay muted loop playsinline preload="metadata" loading="lazy">
+    <video autoplay muted loop playsinline preload="auto" poster="/assets/videos/40_hero_poster.jpg">
       <source src="/assets/videos/40_hero_camara_loop.mp4" type="video/mp4">
-      <track kind="captions" srclang="en" label="English" title="Cinematic camera work and creative direction">
     </video>
   </div>
 
@@ -200,7 +204,10 @@
   <p data-stagger="1">Cinematic photographer + creative director in Miami, FL. 5+ years creating editorial portraits, brand content & visual campaigns. Clients: Models seeking portfolio breakthroughs. Creators scaling to 50k+ followers. Brands amplifying their story. My work delivers impact—portfolio bookings, social proof, and sales.</p>
   <div class="about-container" data-stagger="2">
     <div class="about-image">
-      <img src="/img/the303-netflix-3.png?v=6" alt="Maikel Marshall - Cinematic photographer and creative director in studio with professional lighting setup" loading="lazy">
+      <picture>
+        <source srcset="/img/the303-netflix-3.webp" type="image/webp">
+        <img src="/img/the303-netflix-3.png?v=6" alt="Maikel Marshall - Cinematic photographer and creative director in studio with professional lighting setup" loading="lazy" width="1200" height="1500">
+      </picture>
     </div>
     <div class="about-stats">
       <div><div class="astat-val">200+</div><div class="astat-lbl">Sessions delivered</div></div>
@@ -220,48 +227,75 @@
     <button class="filter-btn" data-filter="lifestyle">Lifestyle</button>
   </div>
   <div class="portfolio-grid">
-    <div class="port-item" data-category="editorial" data-parallax>
-      <img src="/assets/portfolio/39_portafolio_1.jpg" alt="Editorial portrait with warm cinema lighting - professional fashion photography Miami" loading="lazy">
+    <div class="port-item" data-category="editorial">
+      <picture>
+        <source srcset="/assets/portfolio/39_portafolio_1.webp" type="image/webp">
+        <img src="/assets/portfolio/39_portafolio_1.jpg" alt="Editorial portrait with warm cinema lighting - professional fashion photography Miami" loading="lazy" width="800" height="800">
+      </picture>
       <img class="port-watermark" src="/assets/overlays/29_watermark_mk.png" alt="" aria-hidden="true" loading="lazy">
       <div class="port-caption"><span>Editorial</span><span>Warm light</span></div>
     </div>
-    <div class="port-item" data-category="portrait" data-parallax>
-      <img src="/assets/portfolio/39_portafolio_2.jpg" alt="Portrait session with golden circle lighting and cinematic composition" loading="lazy">
+    <div class="port-item" data-category="portrait">
+      <picture>
+        <source srcset="/assets/portfolio/39_portafolio_2.webp" type="image/webp">
+        <img src="/assets/portfolio/39_portafolio_2.jpg" alt="Portrait session with golden circle lighting and cinematic composition" loading="lazy" width="800" height="800">
+      </picture>
       <img class="port-watermark" src="/assets/overlays/29_watermark_mk.png" alt="" aria-hidden="true" loading="lazy">
       <div class="port-caption"><span>Portrait</span><span>Golden circle</span></div>
     </div>
-    <div class="port-item" data-category="lifestyle" data-parallax>
-      <img src="/assets/portfolio/39_portafolio_3.jpg" alt="Lifestyle brand photography captured during golden hour sunset session" loading="lazy">
+    <div class="port-item" data-category="lifestyle">
+      <picture>
+        <source srcset="/assets/portfolio/39_portafolio_3.webp" type="image/webp">
+        <img src="/assets/portfolio/39_portafolio_3.jpg" alt="Lifestyle brand photography captured during golden hour sunset session" loading="lazy" width="800" height="800">
+      </picture>
       <img class="port-watermark" src="/assets/overlays/29_watermark_mk.png" alt="" aria-hidden="true" loading="lazy">
       <div class="port-caption"><span>Lifestyle</span><span>Red hour</span></div>
     </div>
-    <div class="port-item" data-category="portrait" data-parallax>
-      <img src="/assets/portfolio/39_portafolio_4.jpg" alt="Deep focus editorial photography - professional headshots" loading="lazy">
+    <div class="port-item" data-category="portrait">
+      <picture>
+        <source srcset="/assets/portfolio/39_portafolio_4.webp" type="image/webp">
+        <img src="/assets/portfolio/39_portafolio_4.jpg" alt="Deep focus editorial photography - professional headshots" loading="lazy" width="800" height="800">
+      </picture>
       <img class="port-watermark" src="/assets/overlays/29_watermark_mk.png" alt="" aria-hidden="true" loading="lazy">
       <div class="port-caption"><span>Portrait</span><span>Deep focus</span></div>
     </div>
-    <div class="port-item" data-category="portrait" data-parallax>
-      <img src="/assets/portfolio/39_portafolio_5.jpg" alt="Soft silence portrait session - intimate photography" loading="lazy">
+    <div class="port-item" data-category="portrait">
+      <picture>
+        <source srcset="/assets/portfolio/39_portafolio_5.webp" type="image/webp">
+        <img src="/assets/portfolio/39_portafolio_5.jpg" alt="Soft silence portrait session - intimate photography" loading="lazy" width="800" height="800">
+      </picture>
       <img class="port-watermark" src="/assets/overlays/29_watermark_mk.png" alt="" aria-hidden="true" loading="lazy">
       <div class="port-caption"><span>Portrait</span><span>Soft silence</span></div>
     </div>
-    <div class="port-item" data-category="lifestyle" data-parallax>
-      <img src="/assets/portfolio/39_portafolio_6.jpg" alt="Urban raw lifestyle content - brand photography" loading="lazy">
+    <div class="port-item" data-category="lifestyle">
+      <picture>
+        <source srcset="/assets/portfolio/39_portafolio_6.webp" type="image/webp">
+        <img src="/assets/portfolio/39_portafolio_6.jpg" alt="Urban raw lifestyle content - brand photography" loading="lazy" width="800" height="800">
+      </picture>
       <img class="port-watermark" src="/assets/overlays/29_watermark_mk.png" alt="" aria-hidden="true" loading="lazy">
       <div class="port-caption"><span>Lifestyle</span><span>Urban raw</span></div>
     </div>
-    <div class="port-item" data-category="editorial" data-parallax>
-      <img src="/assets/portfolio/39_portafolio_7.jpg" alt="Moody portrait photography - cinematic style" loading="lazy">
+    <div class="port-item" data-category="editorial">
+      <picture>
+        <source srcset="/assets/portfolio/39_portafolio_7.webp" type="image/webp">
+        <img src="/assets/portfolio/39_portafolio_7.jpg" alt="Moody portrait photography - cinematic style" loading="lazy" width="800" height="800">
+      </picture>
       <img class="port-watermark" src="/assets/overlays/29_watermark_mk.png" alt="" aria-hidden="true" loading="lazy">
       <div class="port-caption"><span>Editorial</span><span>Moody</span></div>
     </div>
-    <div class="port-item" data-category="editorial" data-parallax>
-      <img src="/assets/portfolio/39_portafolio_8.jpg" alt="Golden hour photography - warm tones editorial" loading="lazy">
+    <div class="port-item" data-category="editorial">
+      <picture>
+        <source srcset="/assets/portfolio/39_portafolio_8.webp" type="image/webp">
+        <img src="/assets/portfolio/39_portafolio_8.jpg" alt="Golden hour photography - warm tones editorial" loading="lazy" width="800" height="800">
+      </picture>
       <img class="port-watermark" src="/assets/overlays/29_watermark_mk.png" alt="" aria-hidden="true" loading="lazy">
       <div class="port-caption"><span>Editorial</span><span>Golden hour</span></div>
     </div>
-    <div class="port-item" data-category="editorial" data-parallax>
-      <img src="/assets/portfolio/39_portafolio_9.jpg" alt="Cinematic editorial photography - narrative style" loading="lazy">
+    <div class="port-item" data-category="editorial">
+      <picture>
+        <source srcset="/assets/portfolio/39_portafolio_9.webp" type="image/webp">
+        <img src="/assets/portfolio/39_portafolio_9.jpg" alt="Cinematic editorial photography - narrative style" loading="lazy" width="800" height="800">
+      </picture>
       <img class="port-watermark" src="/assets/overlays/29_watermark_mk.png" alt="" aria-hidden="true" loading="lazy">
       <div class="port-caption"><span>Editorial</span><span>Cinematic</span></div>
     </div>
@@ -340,16 +374,14 @@
 
   <div class="carousel-viewport">
     <div class="carousel-inner" id="carousel-track">
-      <!-- Testimonials tripled for infinite loop (5 × 3 = 15) -->
 
-      <!-- Set 1 -->
       <div class="testimonial-card">
-        <svg class="testimonial-quote" viewBox="0 0 24 24" fill="currentColor">
+        <svg class="testimonial-quote" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M3 21c3 0 7-1 7-8V5c0-1.25-4.716-5-7-5-3 0-7 3.75-7 5c0 1 0 15 7 15z"/>
         </svg>
         <p class="testimonial-text">"Maikel's vision and attention to detail transformed our brand imagery. His cinematic style brought our story to life."</p>
         <div class="testimonial-author">
-          <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?w=100&h=100&fit=crop" alt="Sarah Chen" class="testimonial-avatar">
+          <div class="testimonial-avatar-initials" aria-hidden="true">SC</div>
           <div>
             <p class="testimonial-name">Sarah Chen</p>
             <p class="testimonial-role">→ CEO, TechStartup Co</p>
@@ -358,12 +390,12 @@
       </div>
 
       <div class="testimonial-card">
-        <svg class="testimonial-quote" viewBox="0 0 24 24" fill="currentColor">
+        <svg class="testimonial-quote" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M3 21c3 0 7-1 7-8V5c0-1.25-4.716-5-7-5-3 0-7 3.75-7 5c0 1 0 15 7 15z"/>
         </svg>
         <p class="testimonial-text">"With very little guidance, Maikel's team delivered designs that were consistently spot-on. Best investment we made."</p>
         <div class="testimonial-author">
-          <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?w=100&h=100&fit=crop" alt="Marcus Anderson" class="testimonial-avatar">
+          <div class="testimonial-avatar-initials" aria-hidden="true">MA</div>
           <div>
             <p class="testimonial-name">Marcus Anderson</p>
             <p class="testimonial-role">→ Director, Data.storage</p>
@@ -372,12 +404,12 @@
       </div>
 
       <div class="testimonial-card">
-        <svg class="testimonial-quote" viewBox="0 0 24 24" fill="currentColor">
+        <svg class="testimonial-quote" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M3 21c3 0 7-1 7-8V5c0-1.25-4.716-5-7-5-3 0-7 3.75-7 5c0 1 0 15 7 15z"/>
         </svg>
         <p class="testimonial-text">"Working with Maikel on our editorial campaign was a game-changer. His cinematic approach elevated everything."</p>
         <div class="testimonial-author">
-          <img src="https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?w=100&h=100&fit=crop" alt="Jessica Martinez" class="testimonial-avatar">
+          <div class="testimonial-avatar-initials" aria-hidden="true">JM</div>
           <div>
             <p class="testimonial-name">Jessica Martinez</p>
             <p class="testimonial-role">→ Creative Director, BrandLabs</p>
@@ -386,12 +418,12 @@
       </div>
 
       <div class="testimonial-card">
-        <svg class="testimonial-quote" viewBox="0 0 24 24" fill="currentColor">
+        <svg class="testimonial-quote" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M3 21c3 0 7-1 7-8V5c0-1.25-4.716-5-7-5-3 0-7 3.75-7 5c0 1 0 15 7 15z"/>
         </svg>
         <p class="testimonial-text">"Maikel's portfolio work speaks for itself. He captures emotion and authenticity in every frame."</p>
         <div class="testimonial-author">
-          <img src="https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?w=100&h=100&fit=crop" alt="Alex Johnson" class="testimonial-avatar">
+          <div class="testimonial-avatar-initials" aria-hidden="true">AJ</div>
           <div>
             <p class="testimonial-name">Alex Johnson</p>
             <p class="testimonial-role">→ Founder, CreativeStudio</p>
@@ -400,154 +432,12 @@
       </div>
 
       <div class="testimonial-card">
-        <svg class="testimonial-quote" viewBox="0 0 24 24" fill="currentColor">
+        <svg class="testimonial-quote" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M3 21c3 0 7-1 7-8V5c0-1.25-4.716-5-7-5-3 0-7 3.75-7 5c0 1 0 15 7 15z"/>
         </svg>
         <p class="testimonial-text">"Professional, reliable, and incredibly talented. Maikel delivered beyond our expectations on deadline."</p>
         <div class="testimonial-author">
-          <img src="https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?w=100&h=100&fit=crop" alt="Elena Rodriguez" class="testimonial-avatar">
-          <div>
-            <p class="testimonial-name">Elena Rodriguez</p>
-            <p class="testimonial-role">→ Head of Marketing, LuxeHomes</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Set 2 (duplicate) -->
-      <div class="testimonial-card">
-        <svg class="testimonial-quote" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M3 21c3 0 7-1 7-8V5c0-1.25-4.716-5-7-5-3 0-7 3.75-7 5c0 1 0 15 7 15z"/>
-        </svg>
-        <p class="testimonial-text">"Maikel's vision and attention to detail transformed our brand imagery. His cinematic style brought our story to life."</p>
-        <div class="testimonial-author">
-          <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?w=100&h=100&fit=crop" alt="Sarah Chen" class="testimonial-avatar">
-          <div>
-            <p class="testimonial-name">Sarah Chen</p>
-            <p class="testimonial-role">→ CEO, TechStartup Co</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <svg class="testimonial-quote" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M3 21c3 0 7-1 7-8V5c0-1.25-4.716-5-7-5-3 0-7 3.75-7 5c0 1 0 15 7 15z"/>
-        </svg>
-        <p class="testimonial-text">"With very little guidance, Maikel's team delivered designs that were consistently spot-on. Best investment we made."</p>
-        <div class="testimonial-author">
-          <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?w=100&h=100&fit=crop" alt="Marcus Anderson" class="testimonial-avatar">
-          <div>
-            <p class="testimonial-name">Marcus Anderson</p>
-            <p class="testimonial-role">→ Director, Data.storage</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <svg class="testimonial-quote" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M3 21c3 0 7-1 7-8V5c0-1.25-4.716-5-7-5-3 0-7 3.75-7 5c0 1 0 15 7 15z"/>
-        </svg>
-        <p class="testimonial-text">"Working with Maikel on our editorial campaign was a game-changer. His cinematic approach elevated everything."</p>
-        <div class="testimonial-author">
-          <img src="https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?w=100&h=100&fit=crop" alt="Jessica Martinez" class="testimonial-avatar">
-          <div>
-            <p class="testimonial-name">Jessica Martinez</p>
-            <p class="testimonial-role">→ Creative Director, BrandLabs</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <svg class="testimonial-quote" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M3 21c3 0 7-1 7-8V5c0-1.25-4.716-5-7-5-3 0-7 3.75-7 5c0 1 0 15 7 15z"/>
-        </svg>
-        <p class="testimonial-text">"Maikel's portfolio work speaks for itself. He captures emotion and authenticity in every frame."</p>
-        <div class="testimonial-author">
-          <img src="https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?w=100&h=100&fit=crop" alt="Alex Johnson" class="testimonial-avatar">
-          <div>
-            <p class="testimonial-name">Alex Johnson</p>
-            <p class="testimonial-role">→ Founder, CreativeStudio</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <svg class="testimonial-quote" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M3 21c3 0 7-1 7-8V5c0-1.25-4.716-5-7-5-3 0-7 3.75-7 5c0 1 0 15 7 15z"/>
-        </svg>
-        <p class="testimonial-text">"Professional, reliable, and incredibly talented. Maikel delivered beyond our expectations on deadline."</p>
-        <div class="testimonial-author">
-          <img src="https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?w=100&h=100&fit=crop" alt="Elena Rodriguez" class="testimonial-avatar">
-          <div>
-            <p class="testimonial-name">Elena Rodriguez</p>
-            <p class="testimonial-role">→ Head of Marketing, LuxeHomes</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Set 3 (duplicate) -->
-      <div class="testimonial-card">
-        <svg class="testimonial-quote" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M3 21c3 0 7-1 7-8V5c0-1.25-4.716-5-7-5-3 0-7 3.75-7 5c0 1 0 15 7 15z"/>
-        </svg>
-        <p class="testimonial-text">"Maikel's vision and attention to detail transformed our brand imagery. His cinematic style brought our story to life."</p>
-        <div class="testimonial-author">
-          <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?w=100&h=100&fit=crop" alt="Sarah Chen" class="testimonial-avatar">
-          <div>
-            <p class="testimonial-name">Sarah Chen</p>
-            <p class="testimonial-role">→ CEO, TechStartup Co</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <svg class="testimonial-quote" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M3 21c3 0 7-1 7-8V5c0-1.25-4.716-5-7-5-3 0-7 3.75-7 5c0 1 0 15 7 15z"/>
-        </svg>
-        <p class="testimonial-text">"With very little guidance, Maikel's team delivered designs that were consistently spot-on. Best investment we made."</p>
-        <div class="testimonial-author">
-          <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?w=100&h=100&fit=crop" alt="Marcus Anderson" class="testimonial-avatar">
-          <div>
-            <p class="testimonial-name">Marcus Anderson</p>
-            <p class="testimonial-role">→ Director, Data.storage</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <svg class="testimonial-quote" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M3 21c3 0 7-1 7-8V5c0-1.25-4.716-5-7-5-3 0-7 3.75-7 5c0 1 0 15 7 15z"/>
-        </svg>
-        <p class="testimonial-text">"Working with Maikel on our editorial campaign was a game-changer. His cinematic approach elevated everything."</p>
-        <div class="testimonial-author">
-          <img src="https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?w=100&h=100&fit=crop" alt="Jessica Martinez" class="testimonial-avatar">
-          <div>
-            <p class="testimonial-name">Jessica Martinez</p>
-            <p class="testimonial-role">→ Creative Director, BrandLabs</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <svg class="testimonial-quote" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M3 21c3 0 7-1 7-8V5c0-1.25-4.716-5-7-5-3 0-7 3.75-7 5c0 1 0 15 7 15z"/>
-        </svg>
-        <p class="testimonial-text">"Maikel's portfolio work speaks for itself. He captures emotion and authenticity in every frame."</p>
-        <div class="testimonial-author">
-          <img src="https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?w=100&h=100&fit=crop" alt="Alex Johnson" class="testimonial-avatar">
-          <div>
-            <p class="testimonial-name">Alex Johnson</p>
-            <p class="testimonial-role">→ Founder, CreativeStudio</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <svg class="testimonial-quote" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M3 21c3 0 7-1 7-8V5c0-1.25-4.716-5-7-5-3 0-7 3.75-7 5c0 1 0 15 7 15z"/>
-        </svg>
-        <p class="testimonial-text">"Professional, reliable, and incredibly talented. Maikel delivered beyond our expectations on deadline."</p>
-        <div class="testimonial-author">
-          <img src="https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?w=100&h=100&fit=crop" alt="Elena Rodriguez" class="testimonial-avatar">
+          <div class="testimonial-avatar-initials" aria-hidden="true">ER</div>
           <div>
             <p class="testimonial-name">Elena Rodriguez</p>
             <p class="testimonial-role">→ Head of Marketing, LuxeHomes</p>
@@ -565,10 +455,10 @@
 <!-- CONTACT -->
 <section id="contact" class="contact">
   <h2>Let's create <em>something.</em></h2>
-  <p style="text-align: center; margin-bottom: 40px; color: rgba(255,255,255,0.7); font-size: 14px;">
-    📍 Based in <strong>Miami, FL</strong> • Available worldwide
+  <p class="contact-note">
+    <img src="/assets/icons/16_icono_ubicacion_naranja.svg" alt="" class="icon-inline" aria-hidden="true">Based in <strong>Miami, FL</strong> • Available worldwide
     <br>
-    📧 <strong>maikelmarshall07@gmail.com</strong>
+    <img src="/assets/icons/17_icono_mail_naranja.svg" alt="" class="icon-inline" aria-hidden="true"><strong>maikelmarshall07@gmail.com</strong>
   </p>
   <div class="contact-ways">
     <a href="https://wa.me/17863329815" class="contact-icon" aria-label="Contact via WhatsApp" target="_blank" rel="noopener noreferrer">
@@ -664,19 +554,19 @@
     btn.textContent = 'Send Message';
   });
   </script>
+</section>
+
+<!-- BOOKING -->
+<section id="booking" class="booking">
+  <h2>Book your <em>session.</em></h2>
+  <p class="booking-sub">Pick a date directly on my calendar — 30 minutes to talk about your project, no commitment.</p>
   <div id="cal-embed"></div>
 </section>
 
 <!-- FOOTER -->
 <footer class="site-footer" role="contentinfo">
   <div class="footer-logo">
-    <a href="#hero" aria-label="Maikel Marshall - Back to top">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1861.63 238.65" aria-hidden="true">
-  <g>
-    <text style="fill:#fff;font-family:ChunkFive,ChunkFive;font-size:221.07px" transform="translate(0 187.8)"><tspan x="0" y="0">Maikel Marshall </tspan></text>
-  </g>
-</svg>
-    </a>
+    <a href="#hero" aria-label="Maikel Marshall - Back to top">Maikel Marshall</a>
   </div>
   <nav class="footer-links" role="navigation" aria-label="Footer navigation">
     <a href="/">Home</a>
@@ -688,6 +578,7 @@
     <a href="/pricing">Pricing</a>
     <a href="/blog">Blog</a>
     <a href="/marketing">Marketing</a>
+    <a href="#booking">Booking</a>
     <a href="#contact">Contact</a>
     <a href="https://www.instagram.com/maik_photographer/" target="_blank" rel="noopener noreferrer">@Instagram</a>
   </nav>
@@ -700,10 +591,9 @@ Cal('init',{origin:'https://cal.com'});
 Cal('inline',{elementOrSelector:'#cal-embed',calLink:'the303-marketing-kmfxzs/30min',layout:'month_view'});
 </script>
 
-<script src="/js/web-vitals.js?v=2" defer></script>
-<script src="/js/animations.js?v=2" defer></script>
-<script src="/js/hero-design-upgrade.js?v=2" defer></script>
-<script src="/js/portfolio-filter.js?v=2" defer></script>
-<script src="/js/portfolio-stacking.js?v=2" defer></script>
+<script src="/js/web-vitals.js?v=3" defer></script>
+<script src="/js/animations.js?v=3" defer></script>
+<script src="/js/hero-design-upgrade.js?v=3" defer></script>
+<script src="/js/portfolio-filter.js?v=3" defer></script>
 </body>
 </html>
