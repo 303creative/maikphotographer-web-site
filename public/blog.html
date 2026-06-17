@@ -145,12 +145,35 @@ body::before { content:''; position:fixed; inset:0; z-index:1; pointer-events:no
 .footer-links a:hover { color:var(--gold2) }
 .footer-copy { font-size:11px; color:rgba(136,136,136,.6) }
 
-.wa-btn { position:fixed; bottom:32px; right:32px; z-index:200;
+.wa-btn { position:fixed; bottom:104px; right:25px; z-index:200;
   width:52px; height:52px; border-radius:50%; background:#25D366;
   display:flex; align-items:center; justify-content:center;
   box-shadow:0 4px 20px rgba(37,211,102,.3); transition:all .3s }
 .wa-btn:hover { transform:scale(1.1); box-shadow:0 6px 30px rgba(37,211,102,.45) }
 .wa-btn svg { width:24px; height:24px; fill:#fff }
+
+/* Article modal */
+.blog-link { cursor:pointer }
+.article-modal { position:fixed; inset:0; z-index:400; background:rgba(8,8,9,.9);
+  -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+  display:flex; align-items:flex-start; justify-content:center; padding:7vh 5vw;
+  opacity:0; pointer-events:none; transition:opacity .35s; overflow-y:auto }
+.article-modal.open { opacity:1; pointer-events:all }
+.article-box { background:var(--surface,#141414); border:1px solid var(--border,rgba(255,255,255,.08));
+  border-radius:20px; max-width:720px; width:100%; padding:48px 44px 52px; position:relative;
+  box-shadow:0 30px 90px rgba(0,0,0,.6); transform:translateY(16px); transition:transform .35s var(--ease,ease) }
+.article-modal.open .article-box { transform:translateY(0) }
+.article-close { position:absolute; top:18px; right:20px; background:none; border:none; cursor:pointer;
+  font-size:26px; line-height:1; color:var(--muted,#888); transition:color .25s }
+.article-close:hover { color:var(--white,#fff) }
+.article-box .article-date { font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--gold2,#FF8A65); margin-bottom:14px }
+.article-box h2 { font-family:var(--display,'Bebas Neue',sans-serif); font-size:clamp(28px,5vw,42px);
+  font-weight:400; letter-spacing:.04em; line-height:1.12; color:var(--white,#fff); margin-bottom:24px }
+.article-box p { font-size:15px; line-height:1.85; color:var(--muted,#bbb); margin-bottom:18px }
+.article-cta { display:inline-block; margin-top:14px; padding:13px 30px; border-radius:999px;
+  background:var(--gold,#FF5722); color:#111; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+  font-weight:600; text-decoration:none; transition:transform .25s, box-shadow .25s }
+.article-cta:hover { transform:translateY(-2px); box-shadow:0 0 30px var(--gold-glow,rgba(255,87,34,.4)) }
 
 @media(max-width:1024px){
   .blog-grid { grid-template-columns:1fr }
@@ -289,7 +312,64 @@ body::before { content:''; position:fixed; inset:0; z-index:1; pointer-events:no
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
+<!-- Article modal -->
+<div class="article-modal" id="articleModal" role="dialog" aria-modal="true">
+  <div class="article-box">
+    <button class="article-close" onclick="closeArticle()" aria-label="Close">&times;</button>
+    <div class="article-date" id="artDate"></div>
+    <h2 id="artTitle"></h2>
+    <div id="artBody"></div>
+    <a class="article-cta" href="https://wa.me/17863329815?text=Hi%20Maikel!%20I%20read%20your%20blog%20and%20would%20love%20to%20book%20a%20session." target="_blank" rel="noopener" id="artCta">Book a session →</a>
+  </div>
+</div>
+
 <script>
+
+const ARTICLES=[
+ {date:{en:'May 20, 2026',es:'20 de mayo, 2026'},
+  title:{en:'The Art of Location Scouting',es:'El Arte del Location Scouting'},
+  body:{en:["Finding the right location is half the photo. Before any shoot I walk the city — Wynwood walls, Brickell rooftops, the quiet light of Coral Gables at golden hour. I'm looking for backdrops that say something about the person, not just a pretty wall.","I check the light at the exact time we'll shoot, not whenever I happen to pass by. The same corner can be magic at 6pm and flat at noon. I scout for clean backgrounds, texture, and room to move so we're never fighting the space on the day.","By the time you arrive, the plan is set: where we start, how we chase the light, and two or three backup spots in case the weather turns. That's how we get an editorial look without wasting a minute of your session."],
+        es:["Encontrar la locación correcta es la mitad de la foto. Antes de cada sesión recorro la ciudad — los muros de Wynwood, las azoteas de Brickell, la luz tranquila de Coral Gables al atardecer. Busco escenarios que digan algo de la persona, no solo una pared bonita.","Reviso la luz a la hora exacta en que vamos a fotografiar, no cuando paso por casualidad. La misma esquina puede ser mágica a las 6pm y plana al mediodía. Busco fondos limpios, textura y espacio para movernos, para no pelear con el lugar el día de la sesión.","Cuando llegas, el plan ya está listo: dónde empezamos, cómo perseguimos la luz y dos o tres lugares de respaldo por si cambia el clima. Así logramos un look editorial sin perder un minuto de tu sesión."]}},
+ {date:{en:'May 15, 2026',es:'15 de mayo, 2026'},
+  title:{en:'Mastering Natural Light',es:'Dominando la Luz Natural'},
+  body:{en:["Natural light is the cheapest, most beautiful tool you have — if you know how to read it. Soft window light, open shade, and the last hour before sunset do more for a portrait than any expensive flash.","I work with the direction of the light, not against it. Turning the face a few degrees toward a window changes everything: cheekbones, eyes, mood. A simple white reflector fills the shadows just enough to keep skin glowing without looking flat.","The goal is light that feels real. Cinematic doesn't mean over-lit — it means intentional. Once you learn to see the light that's already there, you stop chasing gear and start making images that feel alive."],
+        es:["La luz natural es la herramienta más barata y más bella que tienes — si sabes leerla. La luz suave de una ventana, la sombra abierta y la última hora antes del atardecer hacen más por un retrato que cualquier flash caro.","Trabajo con la dirección de la luz, no contra ella. Girar el rostro unos grados hacia la ventana lo cambia todo: pómulos, ojos, atmósfera. Un simple reflector blanco rellena las sombras lo justo para mantener la piel luminosa sin verse plana.","La meta es una luz que se sienta real. Cinemático no significa sobre-iluminado — significa intencional. Cuando aprendes a ver la luz que ya está ahí, dejas de perseguir equipo y empiezas a crear imágenes con vida."]}},
+ {date:{en:'May 8, 2026',es:'8 de mayo, 2026'},
+  title:{en:'Directing Authentic Emotions',es:'Dirigiendo Emociones Auténticas'},
+  body:{en:["The best photos capture real emotion — and most people freeze the second a camera points at them. My job in the first ten minutes is simple: get you comfortable so the real you shows up.","I direct with small, specific cues instead of just saying \"relax.\" A look off-camera, a breath, a shift of weight, a memory to think about. Movement beats posing — we keep things flowing so the expressions land naturally between the planned shots.","I also show you the back of the camera early. Once you see one frame you love, the nerves drop and the session opens up. Confidence is what turns a nice photo into one that actually looks like you."],
+        es:["Las mejores fotos capturan emociones reales — y la mayoría se congela apenas la cámara apunta. Mi trabajo en los primeros diez minutos es simple: que te sientas cómodo para que aparezca tu verdadera versión.","Dirijo con indicaciones pequeñas y específicas en vez de solo decir \"relájate\": una mirada fuera de cámara, una respiración, un cambio de peso, un recuerdo en qué pensar. El movimiento gana al posado — mantenemos todo fluyendo para que las expresiones surjan naturales entre las tomas planeadas.","También te muestro la pantalla de la cámara desde temprano. Cuando ves una foto que amas, los nervios bajan y la sesión se abre. La confianza es lo que convierte una foto linda en una que de verdad se parece a ti."]}},
+ {date:{en:'April 30, 2026',es:'30 de abril, 2026'},
+  title:{en:'My Complete Editing Process',es:'Mi Proceso Completo de Edición'},
+  body:{en:["From RAW to final delivery in 48 hours. Editing is where the cinematic look is built, but it starts with getting it right in camera so the files have room to breathe.","First I cull hard and pick only the strongest frames. Then color: I build a consistent tone across the set — warm, rich, editorial — so the whole gallery feels like one story instead of random shots. Skin stays natural; I retouch to clean, not to replace the person.","Finally, detail and delivery: contrast, dodging and burning, sharpening for screen, and export in the right sizes for feed, stories, and print. You get a polished, ready-to-post gallery two days after we shoot."],
+        es:["De RAW a entrega final en 48 horas. La edición es donde se construye el look cinemático, pero empieza por lograrlo bien en cámara para que los archivos tengan margen.","Primero hago una selección estricta y me quedo solo con las tomas más fuertes. Luego el color: construyo un tono consistente en toda la serie — cálido, rico, editorial — para que la galería se sienta como una sola historia y no fotos sueltas. La piel se mantiene natural; retoco para limpiar, no para reemplazar a la persona.","Por último, detalle y entrega: contraste, dodge & burn, enfoque para pantalla y exportación en los tamaños correctos para feed, historias e impresión. Recibes una galería pulida y lista para publicar dos días después de la sesión."]}}
+];
+
+function openArticle(i){
+  const a=ARTICLES[i]; if(!a) return;
+  const L=(typeof lang!=='undefined'&&lang==='es')?'es':'en';
+  document.getElementById('artDate').textContent=a.date[L];
+  document.getElementById('artTitle').textContent=a.title[L];
+  document.getElementById('artBody').innerHTML=a.body[L].map(p=>'<p></p>').join('');
+  const ps=document.getElementById('artBody').querySelectorAll('p');
+  a.body[L].forEach((t,k)=>{ps[k].textContent=t;});
+  document.getElementById('artCta').textContent=L==='es'?'Reservar sesión →':'Book a session →';
+  document.getElementById('articleModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeArticle(){
+  document.getElementById('articleModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.blog-link').forEach((link,i)=>{
+    link.setAttribute('href','#');
+    link.addEventListener('click',e=>{e.preventDefault();openArticle(i);});
+  });
+  document.getElementById('articleModal').addEventListener('click',e=>{
+    if(e.target.id==='articleModal') closeArticle();
+  });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeArticle(); });
+});
 
 window.addEventListener('scroll',()=>document.getElementById('siteHeader').classList.toggle('sticky',scrollY>60));
 

@@ -98,6 +98,39 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <script src="https://unpkg.com/split-type@0.3.4/umd/index.min.js" defer></script>
+
+  <!-- Mobile nav (hamburger) — keeps header fixed & uncluttered on phones -->
+  <style id="mobile-nav-fix">
+    /* Header stays pinned to the top while scrolling */
+    .site-header { position: sticky; top: 0; z-index: 1000; }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px; cursor: pointer;
+      padding: 6px; background: none; border: none; z-index: 1002;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px; background: #fff;
+      border-radius: 2px; transition: transform .3s ease, opacity .3s ease;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-nav {
+      position: fixed; inset: 0; z-index: 1001;
+      background: rgba(10,10,10,0.98); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px;
+      opacity: 0; pointer-events: none; transition: opacity .35s ease;
+    }
+    .mobile-nav.open { opacity: 1; pointer-events: all; }
+    .mobile-nav a {
+      font-size: 1.6rem; font-weight: 500; letter-spacing: .08em;
+      color: rgba(255,255,255,0.85); text-decoration: none; transition: color .2s ease;
+    }
+    .mobile-nav a:hover { color: var(--accent, #FF5722); }
+    @media (max-width: 860px) {
+      .header-nav { display: none !important; }
+      .hamburger { display: flex; }
+    }
+  </style>
 </head>
 
 <body>
@@ -132,7 +165,39 @@
     <a href="#contact">Contact</a>
     <a href="https://www.instagram.com/maik_photographer/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">@Instagram</a>
   </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+  <a href="#about" onclick="closeMobileNav()">About</a>
+  <a href="#portfolio" onclick="closeMobileNav()">Portfolio</a>
+  <a href="/gallery" onclick="closeMobileNav()">Gallery</a>
+  <a href="/sessions" onclick="closeMobileNav()">Sessions</a>
+  <a href="/pricing" onclick="closeMobileNav()">Pricing</a>
+  <a href="#contact" onclick="closeMobileNav()">Contact</a>
+  <a href="https://www.instagram.com/maik_photographer/" target="_blank" rel="noopener noreferrer" onclick="closeMobileNav()">@Instagram</a>
+</nav>
+
+<script>
+  function toggleMobileNav(){
+    var nav=document.getElementById('mobileNav');
+    var btn=document.getElementById('hamburger');
+    var open=nav.classList.toggle('open');
+    btn.classList.toggle('open',open);
+    btn.setAttribute('aria-expanded',open);
+    document.body.style.overflow=open?'hidden':'';
+  }
+  function closeMobileNav(){
+    var nav=document.getElementById('mobileNav');
+    var btn=document.getElementById('hamburger');
+    nav.classList.remove('open');
+    btn.classList.remove('open');
+    btn.setAttribute('aria-expanded','false');
+    document.body.style.overflow='';
+  }
+</script>
 
 <!-- HERO -->
 <section class="hero" id="hero">

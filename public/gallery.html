@@ -117,7 +117,7 @@ body::before { content:''; position:fixed; inset:0; z-index:1; pointer-events:no
   color:var(--muted2); background:transparent; cursor:pointer; transition:all .3s }
 .filter-btn.active, .filter-btn:hover { border-color:var(--border2); color:var(--gold2); background:var(--gold-dim) }
 
-.gallery-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:3px; max-width:1240px; margin:0 auto }
+.gallery-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:3px; max-width:1600px; margin:0 auto }
 .gal-item { position:relative; overflow:hidden; cursor:pointer; aspect-ratio:1/1 }
 .gal-item img { width:100%; height:100%; object-fit:cover; transition:transform .9s var(--ease), filter .5s }
 .gal-item:hover img { transform:scale(1.06); filter:brightness(.65) }
@@ -153,15 +153,19 @@ body::before { content:''; position:fixed; inset:0; z-index:1; pointer-events:no
 .footer-links a:hover { color:var(--gold2) }
 .footer-copy { font-size:11px; color:rgba(136,136,136,.6) }
 
-.wa-btn { position:fixed; bottom:32px; right:32px; z-index:200;
+.wa-btn { position:fixed; bottom:104px; right:25px; z-index:200;
   width:52px; height:52px; border-radius:50%; background:#25D366;
   display:flex; align-items:center; justify-content:center;
   box-shadow:0 4px 20px rgba(37,211,102,.3); transition:all .3s }
 .wa-btn:hover { transform:scale(1.1); box-shadow:0 6px 30px rgba(37,211,102,.45) }
 .wa-btn svg { width:24px; height:24px; fill:#fff }
 
+@media(max-width:1240px) {
+  .gallery-grid { grid-template-columns:repeat(5,1fr) }
+}
+
 @media(max-width:1024px) {
-  .gallery-grid { grid-template-columns:repeat(2,1fr) }
+  .gallery-grid { grid-template-columns:repeat(4,1fr) }
 }
 
 @media(max-width:768px) {
@@ -171,7 +175,7 @@ body::before { content:''; position:fixed; inset:0; z-index:1; pointer-events:no
   .page-header { padding:100px 5vw 60px; min-height:50vh }
   .page-header h1 { font-size:clamp(36px,10vw,52px); letter-spacing:.1em }
   .gallery-section { padding:80px 5vw }
-  .gallery-grid { grid-template-columns:1fr; gap:1px }
+  .gallery-grid { grid-template-columns:repeat(3,1fr); gap:2px }
   .site-footer { flex-direction:column; text-align:center; padding:36px 5vw }
   .footer-links { justify-content:center }
 }
