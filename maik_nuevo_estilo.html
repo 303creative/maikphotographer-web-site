@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Maikel Marshall — Cinematic Photographer · Miami (nuevo estilo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700;800;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0b0d; --ink:#f1f1f3; --mut:#8b8b93; --dim:#63636b; --line:#1e1e26;
+  --o1:#ff7a1a; --o2:#e8362d;
+  --grad:linear-gradient(100deg,var(--o1),var(--o2));
+  --card:#0f0f13;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#0b0b0d url('grain.png') repeat;background-size:600px;color:var(--ink);
+  font-family:'Poppins',sans-serif;overflow-x:hidden;position:relative}
+/* segundo grano fino animado encima para "vida" */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+.wrap{max-width:1240px;margin:0 auto;padding:0 5vw}
+.disp{font-family:'Big Shoulders Display',sans-serif;text-transform:uppercase;line-height:.9;font-weight:800}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+a{color:inherit;text-decoration:none}
+.btn{display:inline-block;font-family:'Big Shoulders Display',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.5px;
+  padding:12px 26px;border-radius:8px;font-size:16px;cursor:pointer;transition:.2s}
+.btn.p{background:var(--grad);color:#120a04}
+.btn.g{border:1px solid var(--line);color:var(--ink)}
+.btn.g:hover{border-color:var(--o1);color:var(--o1)}
+.tagline{font-family:'Poppins';font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--o1)}
+.eyebrow{font-family:'Poppins';font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--dim)}
+
+/* NAV */
+nav{position:sticky;top:16px;z-index:200;display:flex;justify-content:center;margin-top:16px}
+.pill{display:flex;align-items:center;gap:22px;background:#0d0d11ee;border:1px solid var(--line);
+  border-radius:999px;padding:11px 22px;backdrop-filter:blur(10px)}
+.brand{font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:20px;letter-spacing:.5px}
+.pill a{color:var(--mut);font-size:13px}.pill a:hover{color:var(--o1)}
+.pill .ig{color:var(--o1)}
+@media(max-width:900px){.pill a:nth-child(n+3):nth-child(-n+7){display:none}}
+
+/* HERO */
+header{position:relative;min-height:92vh;display:flex;align-items:center;overflow:hidden;margin-top:-72px;padding-top:120px}
+header video,header .fallback{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+header .fallback{background:radial-gradient(120% 90% at 70% 20%,#241512,#0b0b0d 60%)}
+header::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(90deg,#0b0b0df2 0%,#0b0b0dcc 40%,#0b0b0d66 100%)}
+.hero-in{padding:40px 0}
+.hero-in h1{font-size:clamp(56px,12vw,168px);margin:14px 0 18px}
+.hero-in p{color:var(--mut);max-width:560px;font-size:16px;line-height:1.6}
+.hero-cta{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
+.hero-ig{margin-top:22px;font-size:13px;color:var(--dim)}
+.hero-ig a{color:var(--o1)}
+
+/* MARQUEE */
+.motion{padding:70px 0 10px}
+.motion .lbl{text-align:center;margin-bottom:26px}
+.motion .lbl span{font-family:'Big Shoulders Display';font-weight:600;text-transform:uppercase;letter-spacing:4px;color:var(--dim);font-size:14px}
+.marquee{overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.track{display:flex;gap:16px;width:max-content;animation:scroll 40s linear infinite}
+.track img{height:230px;width:auto;border-radius:10px;object-fit:cover;filter:contrast(1.05) saturate(1.05)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* SECTION heads */
+section{padding:80px 0}
+.shead{font-size:clamp(40px,7vw,92px);margin-bottom:8px}
+
+/* ABOUT */
+.about{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
+.about p{color:var(--mut);line-height:1.7;margin-top:14px;font-size:15px}
+.about img{width:100%;border-radius:14px;border:1px solid var(--line)}
+.stats{display:flex;gap:34px;margin-top:30px}
+.stat .n{font-family:'Big Shoulders Display';font-weight:900;font-size:52px}
+.stat .l{color:var(--dim);font-size:12px;text-transform:uppercase;letter-spacing:1px;margin-top:-6px}
+@media(max-width:820px){.about{grid-template-columns:1fr}}
+
+/* PORTFOLIO GRID */
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pcard{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:4/5;border:1px solid var(--line)}
+.pcard img{width:100%;height:100%;object-fit:cover;transition:.5s;filter:contrast(1.05)}
+.pcard:hover img{transform:scale(1.06)}
+.pcard .cap{position:absolute;left:0;right:0;bottom:0;padding:16px;
+  background:linear-gradient(0deg,#000d,transparent)}
+.pcard .cat{font-family:'Big Shoulders Display';font-weight:700;text-transform:uppercase;font-size:15px;color:var(--o1);letter-spacing:1px}
+.pcard .ttl{font-size:13px;color:#d8d8dd}
+@media(max-width:820px){.pgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.pgrid{grid-template-columns:1fr}}
+
+/* SERVICES */
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.scard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px 24px;position:relative;display:flex;flex-direction:column}
+.scard .num{font-family:'Big Shoulders Display';font-weight:900;font-size:44px;color:#26262e;line-height:1}
+.scard h3{font-family:'Big Shoulders Display';font-weight:800;text-transform:uppercase;font-size:30px;margin:6px 0 10px}
+.scard p{color:var(--mut);font-size:14px;line-height:1.6}
+.scard ul{list-style:none;margin:18px 0;display:flex;flex-direction:column;gap:9px}
+.scard li{color:#cfcfd4;font-size:13.5px;padding-left:20px;position:relative}
+.scard li::before{content:"›";position:absolute;left:0;color:var(--o1);font-weight:700}
+.scard .price{font-family:'Big Shoulders Display';font-weight:800;font-size:26px;margin:6px 0 16px}
+.scard .price small{font-family:'Poppins';font-weight:400;font-size:12px;color:var(--dim)}
+.scard .btn{margin-top:auto;text-align:center}
+.badge{position:absolute;top:16px;right:16px;background:var(--grad);color:#120a04;font-size:10px;font-weight:600;
+  text-transform:uppercase;letter-spacing:1px;padding:4px 10px;border-radius:99px}
+@media(max-width:820px){.sgrid{grid-template-columns:1fr}}
+
+/* AMPLIFY / CTA band */
+.band{border:1px solid var(--line);border-radius:18px;padding:50px;text-align:center;
+  background:radial-gradient(120% 140% at 50% 0%,#1a1109,transparent 60%)}
+.band h2{font-size:clamp(34px,6vw,64px)}
+.band p{color:var(--mut);max-width:560px;margin:14px auto 24px}
+
+/* CONTACT */
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.contact .info p{color:var(--mut);margin:14px 0;font-size:15px}
+.contact .info b{color:var(--ink)}
+.social{display:flex;gap:12px;margin-top:20px}
+.social a{border:1px solid var(--line);border-radius:10px;padding:12px 18px;font-family:'Big Shoulders Display';font-weight:700;text-transform:uppercase;font-size:14px}
+.social a:hover{border-color:var(--o1);color:var(--o1)}
+@media(max-width:820px){.contact{grid-template-columns:1fr}}
+
+/* FOOTER (tag + statement, 2 fuentes) */
+footer{border-top:1px solid var(--line);padding:60px 5vw;text-align:center}
+.fnav{max-width:1000px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.frow{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;gap:10px 20px}
+.tag{font-family:'Poppins';font-weight:400;font-size:14px;color:var(--dim)}
+.big{font-family:'Big Shoulders Display';font-weight:700;font-size:clamp(24px,3.5vw,38px);color:#cfcfd4;line-height:1}
+.big:hover{color:var(--o1)}
+.fpay{margin-top:34px;color:#4d4d55;font-size:11px;letter-spacing:2px}
+</style></head>
+<body>
+
+<nav><div class="pill">
+  <span class="brand">MAIK<span class="grad">.</span></span>
+  <a href="#about">About</a><a href="#motion">Portfolio</a><a href="#work">Gallery</a>
+  <a href="#services">Sessions</a><a href="#services">Pricing</a><a href="#contact">Contact</a>
+  <a class="ig" href="https://www.instagram.com/maik_photographer/">@Instagram</a>
+</div></nav>
+
+<!-- HERO -->
+<header>
+  <video autoplay muted loop playsinline poster="https://www.maikphotographer.com/assets/backgrounds/31_fondo_ia1_oscuro_principal.jpg">
+    <source src="https://www.maikphotographer.com/assets/videos/40_hero_camara_loop.mp4" type="video/mp4">
+  </video>
+  <div class="fallback"></div>
+  <div class="wrap hero-in">
+    <span class="tagline">● Available in Miami</span>
+    <h1 class="disp">Cinematic<br><span class="grad">direction.</span><br>Real impact.</h1>
+    <p>Professional photographer + creative director. Editorial portraits. Brand content. Visual storytelling that sells — for models, creators & premium brands worldwide.</p>
+    <div class="hero-cta">
+      <a class="btn p" href="#contact">Start Your Shoot</a>
+      <a class="btn g" href="#motion">View Portfolio</a>
+    </div>
+    <div class="hero-ig">Follow the work → <a href="https://www.instagram.com/maik_photographer/">@maik_photographer</a></div>
+  </div>
+</header>
+
+<!-- MOTION MARQUEE -->
+<div class="motion" id="motion">
+  <div class="lbl"><span>[ Our Portfolio in Motion ]</span></div>
+  <div class="marquee"><div class="track">
+    <img src="https://www.maikphotographer.com/img/toda%20la%20galeria/07d1529f-9339-469b-a628-faba60abaefe.jpg" alt="">
+    <img src="https://www.maikphotographer.com/img/toda%20la%20galeria/0e7f58e9-1cc5-4efb-9bee-7fbe1c73b7a1.jpg" alt="">
+    <img src="https://www.maikphotographer.com/img/toda%20la%20galeria/28bd9338-5205-4619-8a08-6a4e83a510b6.jpg" alt="">
+    <img src="https://www.maikphotographer.com/img/toda%20la%20galeria/298bc3f1-c201-41d1-be74-11f78b234699.jpg" alt="">
+    <img src="https://www.maikphotographer.com/img/toda%20la%20galeria/2fcefe94-b154-4b88-9f6b-cee08fbdafd4.jpg" alt="">
+    <img src="https://www.maikphotographer.com/img/toda%20la%20galeria/49ac4b8a-bd72-4836-b01d-631994a74a3f.jpg" alt="">
+    <img src="https://www.maikphotographer.com/img/toda%20la%20galeria/4d9b139f-3fa4-4f54-8eff-fb4f326d5ca5.jpg" alt="">
+    <img src="https://www.maikphotographer.com/img/toda%20la%20galeria/52c39845-b7f5-4d1d-880c-30ebee31b9f4.jpg" alt="">
+    <!-- duplicado para loop -->
+    <img src="https://www.maikphotographer.com/img/toda%20la%20galeria/07d1529f-9339-469b-a628-faba60abaefe.jpg" alt="">
+    <img src="https://www.maikphotographer.com/img/toda%20la%20galeria/0e7f58e9-1cc5-4efb-9bee-7fbe1c73b7a1.jpg" alt="">
+    <img src="https://www.maikphotographer.com/img/toda%20la%20galeria/28bd9338-5205-4619-8a08-6a4e83a510b6.jpg" alt="">
+    <img src="https://www.maikphotographer.com/img/toda%20la%20galeria/298bc3f1-c201-41d1-be74-11f78b234699.jpg" alt="">
+    <img src="https://www.maikphotographer.com/img/toda%20la%20galeria/2fcefe94-b154-4b88-9f6b-cee08fbdafd4.jpg" alt="">
+    <img src="https://www.maikphotographer.com/img/toda%20la%20galeria/49ac4b8a-bd72-4836-b01d-631994a74a3f.jpg" alt="">
+  </div></div>
+</div>
+
+<!-- ABOUT -->
+<section id="about"><div class="wrap about">
+  <div>
+    <div class="shead disp">I direct.<br><span class="grad">They convert.</span></div>
+    <p>Cinematic photographer + creative director in Miami, FL. 5+ years creating editorial portraits, brand content & visual campaigns. Clients: models seeking portfolio breakthroughs, creators scaling to 50k+ followers, brands amplifying their story. My work delivers impact — portfolio bookings, social proof, and sales.</p>
+    <div class="stats">
+      <div class="stat"><div class="n grad">200+</div><div class="l">Sessions delivered</div></div>
+      <div class="stat"><div class="n grad">3</div><div class="l">Countries worked</div></div>
+      <div class="stat"><div class="n grad">48h</div><div class="l">Delivery time</div></div>
+    </div>
+  </div>
+  <img src="https://www.maikphotographer.com/img/the303-netflix-3.png?v=6" alt="Maikel Marshall in studio">
+</div></section>
+
+<!-- PORTFOLIO GRID -->
+<section id="work"><div class="wrap">
+  <div class="eyebrow">Selected work</div>
+  <div class="shead disp">Port<span class="grad">folio</span></div>
+  <div class="pgrid" style="margin-top:26px">
+    <div class="pcard"><img src="https://www.maikphotographer.com/assets/portfolio/39_portafolio_1.jpg" alt=""><div class="cap"><div class="cat">Editorial</div><div class="ttl">Warm light</div></div></div>
+    <div class="pcard"><img src="https://www.maikphotographer.com/assets/portfolio/39_portafolio_2.jpg" alt=""><div class="cap"><div class="cat">Portrait</div><div class="ttl">Golden circle</div></div></div>
+    <div class="pcard"><img src="https://www.maikphotographer.com/assets/portfolio/39_portafolio_3.jpg" alt=""><div class="cap"><div class="cat">Lifestyle</div><div class="ttl">Red hour</div></div></div>
+    <div class="pcard"><img src="https://www.maikphotographer.com/assets/portfolio/39_portafolio_4.jpg" alt=""><div class="cap"><div class="cat">Portrait</div><div class="ttl">Deep focus</div></div></div>
+    <div class="pcard"><img src="https://www.maikphotographer.com/assets/portfolio/39_portafolio_5.jpg" alt=""><div class="cap"><div class="cat">Portrait</div><div class="ttl">Soft silence</div></div></div>
+    <div class="pcard"><img src="https://www.maikphotographer.com/assets/portfolio/39_portafolio_6.jpg" alt=""><div class="cap"><div class="cat">Lifestyle</div><div class="ttl">Urban raw</div></div></div>
+    <div class="pcard"><img src="https://www.maikphotographer.com/assets/portfolio/39_portafolio_7.jpg" alt=""><div class="cap"><div class="cat">Editorial</div><div class="ttl">Moody</div></div></div>
+    <div class="pcard"><img src="https://www.maikphotographer.com/assets/portfolio/39_portafolio_8.jpg" alt=""><div class="cap"><div class="cat">Editorial</div><div class="ttl">Golden hour</div></div></div>
+    <div class="pcard"><img src="https://www.maikphotographer.com/assets/portfolio/39_portafolio_9.jpg" alt=""><div class="cap"><div class="cat">Editorial</div><div class="ttl">Cinematic</div></div></div>
+  </div>
+</div></section>
+
+<!-- SERVICES -->
+<section id="services"><div class="wrap">
+  <div class="eyebrow">Sessions & Services</div>
+  <div class="shead disp">Book the <span class="grad">shoot</span></div>
+  <div class="sgrid" style="margin-top:30px">
+    <div class="scard">
+      <div class="num">01</div><h3>Personal</h3>
+      <p>Editorial session for creators, models & individuals. Cinematic direction and a visual identity that stands out.</p>
+      <ul><li>1 editorial session</li><li>Pose direction included</li><li>Edited photos + BTS reel</li><li>Online gallery in 48h</li></ul>
+      <div class="price grad">$290 <small>/ starting from</small></div>
+      <a class="btn p" href="#contact">Book Now →</a>
+    </div>
+    <div class="scard">
+      <span class="badge">Most Popular</span>
+      <div class="num">02</div><h3>Brand</h3>
+      <p>Done-for-you monthly content for businesses. Your whole month of content in 2 sessions — photos, reels and a posting calendar, ready to publish.</p>
+      <ul><li>2 sessions per month</li><li>Full month of content</li><li>Posting calendar included</li><li>Ready-to-post delivery</li></ul>
+      <div class="price grad">$1,500 <small>/ month</small></div>
+      <a class="btn p" href="#contact">Book Now →</a>
+    </div>
+    <div class="scard">
+      <div class="num">03</div><h3>Web + AI</h3>
+      <p>Conversion website + automations + booking system + a complete virtual assistant (Mariela) that answers, qualifies and books for you.</p>
+      <ul><li>Conversion website</li><li>Automations & online booking</li><li>Mariela AI assistant</li><li>Setup + monthly plan</li></ul>
+      <div class="price grad">$2,500 <small>+ $249/mo</small></div>
+      <a class="btn p" href="#contact">Book Now →</a>
+    </div>
+  </div>
+</div></section>
+
+<!-- AMPLIFY BAND -->
+<section><div class="wrap"><div class="band">
+  <h2 class="disp">Amplify your <span class="grad">brand</span></h2>
+  <p>Corporate photography, event coverage, social media design and promotional materials — the complete suite.</p>
+  <a class="btn p" href="https://www.maikphotographer.com/marketing">View All Services →</a>
+</div></div></section>
+
+<!-- CONTACT -->
+<section id="contact"><div class="wrap contact">
+  <div class="info">
+    <div class="shead disp" style="font-size:clamp(38px,6vw,72px)">Let's create <span class="grad">something.</span></div>
+    <p>📍 Based in <b>Miami, FL</b> • Available worldwide</p>
+    <p>✉ <b>maikelmarshall07@gmail.com</b></p>
+    <div class="social">
+      <a href="https://wa.me/17863329815">WhatsApp</a>
+      <a href="mailto:maikelmarshall07@gmail.com">Email</a>
+      <a href="https://www.instagram.com/maik_photographer/">Instagram</a>
+    </div>
+  </div>
+  <div class="band" style="padding:36px">
+    <div class="disp" style="font-size:34px">Book your <span class="grad">session.</span></div>
+    <p style="margin:12px 0 20px">Pick a date directly on my calendar — 30 minutes to talk about your project, no commitment.</p>
+    <a class="btn p" href="#contact">Open Calendar →</a>
+  </div>
+</div></section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fnav">
+    <div class="frow">
+      <a class="big" href="#hero">Maikel Marshall</a>
+      <span class="tag">Jump to</span>
+      <a class="big" href="#about">About</a><a class="big" href="#work">Portfolio</a><a class="big" href="#services">Sessions</a><a class="big" href="#contact">Contact</a>
+    </div>
+    <div class="frow">
+      <span class="tag">Contact</span>
+      <a class="big" href="mailto:maikelmarshall07@gmail.com">maikelmarshall07@gmail.com</a>
+      <span class="tag">Social</span>
+      <a class="big" href="https://www.instagram.com/maik_photographer/">Instagram</a>
+    </div>
+    <div class="frow">
+      <span class="tag">All rights reserved</span>
+      <a class="big" href="#hero">© 2026 Maikel Marshall</a>
+      <span class="tag">Miami · FL</span>
+    </div>
+  </div>
+  <div class="fpay">CINEMATIC PHOTOGRAPHY · BRAND DIRECTION · MIAMI FL</div>
+</footer>
+</body></html>
