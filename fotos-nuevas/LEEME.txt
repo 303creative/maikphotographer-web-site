@@ -1,0 +1,6 @@
+Suelta aquí las fotos nuevas del portafolio (archivos .jpg o .png).
+Cuando estén, avísame en el chat y yo:
+  1) elijo las mejores 9 (mezcla moda + boda),
+  2) las optimizo (webp + jpg),
+  3) las coloco en public/assets/portfolio con los nombres correctos.
+No hace falta que las renombres. Solo cópialas aquí.
