@@ -119,9 +119,12 @@ h1,h2,h3,.hero-title,.marquee-title,.svc-title,.about h2,.footer-logo,
 }
 .filter-btn:hover{ color:#EDEAE3 !important; border-color:rgba(237,234,227,.28) !important; }
 .filter-btn.active{ background:var(--ed-red) !important; border-color:var(--ed-red) !important; color:#EDEAE3 !important; }
-.portfolio-grid,.gallery-grid{ gap:10px !important; }
+.portfolio-grid{ gap:10px !important; }
 .port-item,.gallery-item{ border-radius:0 !important; overflow:hidden; position:relative; border:1px solid rgba(237,234,227,.06); }
-.port-item img,.gallery-item img{ border-radius:0 !important; transition:transform .7s cubic-bezier(.2,.8,.2,1), filter .5s; filter:grayscale(.15) contrast(1.03); }
+.port-item{ aspect-ratio:4/5; }
+.port-item img,.gallery-item img{ border-radius:0 !important; width:100%; height:100%; object-fit:cover; transition:transform .7s cubic-bezier(.2,.8,.2,1), filter .5s; filter:grayscale(.15) contrast(1.03); }
+/* galería: mosaico uniforme editorial */
+.gallery-grid img{ aspect-ratio:4/5; object-fit:cover; width:100%; height:100%; display:block; }
 .port-item:hover img,.gallery-item:hover img{ transform:scale(1.06); filter:grayscale(0) contrast(1.06); }
 .port-caption{ text-transform:uppercase; letter-spacing:.16em; font-size:9.5px !important; color:#EDEAE3 !important; }
 .port-caption span:last-child{ color:var(--ed-red) !important; }
