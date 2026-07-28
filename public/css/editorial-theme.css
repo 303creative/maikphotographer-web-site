@@ -1,9 +1,10 @@
 /* ============================================================
    EDITORIAL THEME — Maik Photographer
-   Capa de re-skin cinematográfico/editorial (estilo GROSHEV).
-   Se carga AL FINAL: redefine tipografía, color y tratamiento
-   sin tocar la estructura HTML ni los efectos GSAP.
-   Para revertir: quitar el <link> de este archivo en index.html.
+   Re-skin cinematográfico/editorial (estilo GROSHEV).
+   Se carga AL FINAL en cada página: redefine tipografía, color
+   y tratamiento sin tocar la estructura HTML ni los efectos GSAP.
+   Acento: ROJO EDITORIAL. Botones planos (sin redondeo).
+   Revertir: quitar el <link> de este archivo.
    ============================================================ */
 
 /* ---- Fuente display propia ---- */
@@ -16,22 +17,35 @@
 
 /* ---- Tokens (ganan por cargarse al final) ---- */
 :root{
-  /* tipografía */
-  --font-heading:'Type Machine', 'Bebas Neue', sans-serif !important;
-  --font-h:'Type Machine', 'Bebas Neue', sans-serif !important;
-  --font-display:'Type Machine', 'Bebas Neue', sans-serif !important;
-  --font-body:'Inter', -apple-system, sans-serif !important;
-  --font-b:'Inter', -apple-system, sans-serif !important;
-  --font-accent:'JetBrains Mono', monospace !important;
-  --font-m:'JetBrains Mono', monospace !important;
+  /* ROJO EDITORIAL */
+  --ed-red:#C41E2A;
+  --ed-red-h:#E24350;
+  --ed-red-soft:rgba(196,30,42,.5);
+  --ed-red-faint:rgba(196,30,42,.06);
 
-  /* color — negro cinematográfico + naranja */
+  /* tipografía */
+  --font-heading:'Type Machine','Bebas Neue',sans-serif !important;
+  --font-h:'Type Machine','Bebas Neue',sans-serif !important;
+  --font-display:'Type Machine','Bebas Neue',sans-serif !important;
+  --font-body:'Inter',-apple-system,sans-serif !important;
+  --font-b:'Inter',-apple-system,sans-serif !important;
+  --font-accent:'JetBrains Mono',monospace !important;
+  --font-m:'JetBrains Mono',monospace !important;
+
+  /* color base — negro cinematográfico */
   --color-bg:#0A0A0A !important;      --bg:#0A0A0A !important;   --mk-black:#0A0A0A !important;
   --color-bg-card:#0D0D0D !important; --bg-2:#0D0D0D !important;
   --color-text:#EDEAE3 !important;    --mk-white:#EDEAE3 !important;
   --color-text-secondary:#8A867E !important;
-  --color-accent:#FF5A1F !important;  --accent:#FF5A1F !important; --mk-accent:#FF5A1F !important;
-  --color-accent-hover:#FF7A45 !important; --accent-h:#FF7A45 !important;
+
+  /* ACENTO: todos los tokens de acento -> rojo (naranja fuera) */
+  --color-accent:#C41E2A !important;  --accent:#C41E2A !important; --mk-accent:#C41E2A !important;
+  --color-accent-hover:#E24350 !important; --accent-h:#E24350 !important;
+  --gold:#C41E2A !important;          --gold2:#E24350 !important;   /* páginas pricing/gallery/blog */
+  --gold-glow:rgba(196,30,42,.35) !important;
+  --cal-accent:#C41E2A !important;
+  --accent-accessible:#E24350 !important;
+
   --color-border:rgba(237,234,227,0.10) !important;
   --hair:rgba(237,234,227,0.12);
   --mute:#8A867E;
@@ -40,73 +54,63 @@
 html,body{ background:#0A0A0A; color:#EDEAE3; }
 
 /* ============ TIPOGRAFÍA EDITORIAL ============ */
-h1,h2,h3,.hero-title,.marquee-title,.svc-title,.about h2,.footer-logo{
+h1,h2,h3,.hero-title,.marquee-title,.svc-title,.about h2,.footer-logo,
+.price-title,.price-name,.section-title{
   font-family:'Type Machine','Bebas Neue',sans-serif !important;
-  font-weight:normal !important;
-  letter-spacing:.01em;
-  text-transform:uppercase;
-  line-height:.98;
+  font-weight:normal !important; letter-spacing:.01em;
+  text-transform:uppercase; line-height:.98;
 }
-/* Kicker / etiquetas / metadatos en mono */
 .hero-badge,.port-caption,.portfolio-filters,.filter-btn,.header-nav a,
 .mobile-nav a,.footer-links a,.svc-footer,.badge,.about-stats .label,
-.marquee-item{
+.marquee-item,.price-cta,.nav-link{
   font-family:'JetBrains Mono',monospace !important;
 }
 
 /* ============ NAV ============ */
 .site-header{
   background:rgba(10,10,10,.72); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--hair);
-  padding:18px clamp(20px,5vw,64px) !important;
+  border-bottom:1px solid var(--hair); padding:18px clamp(20px,5vw,64px) !important;
 }
 .header-nav{ gap:clamp(18px,2.4vw,34px) !important; }
-.header-nav a,.mobile-nav a{
+.header-nav a,.mobile-nav a,.nav-link{
   font-size:11px !important; letter-spacing:.2em !important; text-transform:uppercase !important;
   color:#8A867E !important; font-weight:400 !important; position:relative;
 }
-.header-nav a:hover{ color:#EDEAE3 !important; }
-.header-nav a[href="https://www.instagram.com/maik_photographer/"]{ color:#FF5A1F !important; }
+.header-nav a:hover,.nav-link:hover{ color:#EDEAE3 !important; }
+.header-nav a[href*="instagram"]{ color:var(--ed-red) !important; }
 .logo svg{ height:34px; width:auto; }
 
 /* ============ HERO ============ */
-.hero-badge{
-  font-size:11px !important; letter-spacing:.24em !important; text-transform:uppercase;
-  color:#8A867E !important; gap:9px;
-}
+.hero-badge{ font-size:11px !important; letter-spacing:.24em !important; text-transform:uppercase; color:#8A867E !important; gap:9px; }
 .hero-badge .badge-dot,.badge-dot{
-  width:8px;height:8px;border-radius:50%;background:#FF5A1F !important;
-  box-shadow:0 0 0 0 rgba(255,90,31,.5); animation:mkpulse 2.4s infinite;
+  width:8px;height:8px;border-radius:50%;background:var(--ed-red) !important;
+  animation:mkpulse 2.4s infinite;
 }
-@keyframes mkpulse{0%{box-shadow:0 0 0 0 rgba(255,90,31,.45)}70%{box-shadow:0 0 0 12px rgba(255,90,31,0)}100%{box-shadow:0 0 0 0 rgba(255,90,31,0)}}
+@keyframes mkpulse{0%{box-shadow:0 0 0 0 rgba(196,30,42,.45)}70%{box-shadow:0 0 0 12px rgba(196,30,42,0)}100%{box-shadow:0 0 0 0 rgba(196,30,42,0)}}
 .hero-title{
-  font-size:clamp(3.4rem,9vw,8.5rem) !important;
-  letter-spacing:.005em !important; line-height:.92 !important;
-  text-transform:uppercase !important; color:#EDEAE3 !important;
+  font-size:clamp(3.4rem,9vw,8.5rem) !important; letter-spacing:.005em !important;
+  line-height:.92 !important; text-transform:uppercase !important; color:#EDEAE3 !important;
 }
-.hero-title em{ color:#FF5A1F !important; font-style:normal !important; }
+.hero-title em{ color:var(--ed-red) !important; font-style:normal !important; }
 .hero-sub{
   font-family:'Inter',sans-serif !important; color:#8A867E !important;
-  font-size:clamp(.95rem,1.15vw,1.05rem) !important; letter-spacing:.01em; max-width:46ch;
-  line-height:1.6;
+  font-size:clamp(.95rem,1.15vw,1.05rem) !important; max-width:46ch; line-height:1.6;
 }
 
-/* ============ TÍTULOS DE SECCIÓN (editorial, con línea) ============ */
-.about h2,.portfolio h2,.services h2{
-  font-size:clamp(2.2rem,5vw,4.2rem) !important;
-  letter-spacing:.01em; margin-bottom:.6em; position:relative; padding-top:26px;
+/* ============ TÍTULOS DE SECCIÓN (con línea roja) ============ */
+.about h2,.portfolio h2,.services h2,.price-hero h1,.section-head h2{
+  font-size:clamp(2.2rem,5vw,4.2rem) !important; letter-spacing:.01em;
+  margin-bottom:.6em; position:relative; padding-top:26px;
 }
-.about h2::before,.portfolio h2::before,.services h2::before{
-  content:""; position:absolute; top:0; left:0; width:46px; height:2px; background:#FF5A1F;
+.about h2::before,.portfolio h2::before,.services h2::before,.section-head h2::before{
+  content:""; position:absolute; top:0; left:0; width:46px; height:2px; background:var(--ed-red);
 }
 
 /* ============ MARQUEE ============ */
-.marquee-item{
-  text-transform:uppercase; letter-spacing:.14em; font-size:.8rem !important; color:#6E6A62 !important;
-}
+.marquee-item{ text-transform:uppercase; letter-spacing:.14em; font-size:.8rem !important; color:#6E6A62 !important; }
 .marquee-title{ color:#EDEAE3 !important; }
 
-/* ============ PORTFOLIO (grilla de stills) ============ */
+/* ============ PORTFOLIO / GALERÍA (grilla de stills) ============ */
 .portfolio-filters{ gap:8px; }
 .filter-btn{
   background:transparent !important; border:1px solid var(--hair) !important; border-radius:0 !important;
@@ -114,47 +118,54 @@ h1,h2,h3,.hero-title,.marquee-title,.svc-title,.about h2,.footer-logo{
   text-transform:uppercase !important; padding:9px 16px !important; transition:.25s;
 }
 .filter-btn:hover{ color:#EDEAE3 !important; border-color:rgba(237,234,227,.28) !important; }
-.filter-btn.active{ background:#FF5A1F !important; border-color:#FF5A1F !important; color:#0A0A0A !important; }
+.filter-btn.active{ background:var(--ed-red) !important; border-color:var(--ed-red) !important; color:#EDEAE3 !important; }
+.portfolio-grid,.gallery-grid{ gap:10px !important; }
+.port-item,.gallery-item{ border-radius:0 !important; overflow:hidden; position:relative; border:1px solid rgba(237,234,227,.06); }
+.port-item img,.gallery-item img{ border-radius:0 !important; transition:transform .7s cubic-bezier(.2,.8,.2,1), filter .5s; filter:grayscale(.15) contrast(1.03); }
+.port-item:hover img,.gallery-item:hover img{ transform:scale(1.06); filter:grayscale(0) contrast(1.06); }
+.port-caption{ text-transform:uppercase; letter-spacing:.16em; font-size:9.5px !important; color:#EDEAE3 !important; }
+.port-caption span:last-child{ color:var(--ed-red) !important; }
 
-.portfolio-grid{ gap:10px !important; }
-.port-item{
-  border-radius:0 !important; overflow:hidden; position:relative;
-  border:1px solid rgba(237,234,227,.06);
+/* ============ CARDS (services / pricing) — planas ============ */
+.svc-card,.price-card,.pricing-card{
+  background:transparent !important; border:1px solid var(--hair) !important; border-radius:0 !important; box-shadow:none !important;
+  transition:border-color .3s, background .3s;
 }
-.port-item img{ border-radius:0 !important; transition:transform .7s cubic-bezier(.2,.8,.2,1), filter .5s; filter:grayscale(.15) contrast(1.03); }
-.port-item:hover img{ transform:scale(1.06); filter:grayscale(0) contrast(1.06); }
-.port-caption{
-  text-transform:uppercase; letter-spacing:.16em; font-size:9.5px !important; color:#EDEAE3 !important;
-}
-.port-caption span:last-child{ color:#FF5A1F !important; }
-
-/* ============ SERVICES / CARDS — planas, hairline ============ */
-.svc-card{
-  background:transparent !important; border:1px solid var(--hair) !important; border-radius:0 !important;
-  box-shadow:none !important; transition:border-color .3s, background .3s;
-}
-.svc-card:hover{ border-color:rgba(255,90,31,.5) !important; background:rgba(255,90,31,.03) !important; }
-.svc-card.featured{ border-color:rgba(255,90,31,.5) !important; }
-.svc-title,.svc-card h3{ text-transform:uppercase; letter-spacing:.02em; }
+.svc-card:hover,.price-card:hover,.pricing-card:hover{ border-color:var(--ed-red-soft) !important; background:var(--ed-red-faint) !important; }
+.svc-card.featured,.price-card.featured,.pricing-card.featured{ border-color:var(--ed-red-soft) !important; }
+.svc-title,.svc-card h3,.price-name{ text-transform:uppercase; letter-spacing:.02em; }
 .svc-footer{ text-transform:uppercase; letter-spacing:.16em; font-size:10px !important; color:#8A867E !important; }
+.price-amount,.price-value{ color:var(--ed-red) !important; }
 
 /* ============ ABOUT ============ */
 .about-image img{ border-radius:0 !important; filter:grayscale(.2) contrast(1.03); }
-.about-stats .num,.about-stats strong{ font-family:'Type Machine',sans-serif !important; color:#FF5A1F !important; }
+.about-stats .num,.about-stats strong{ font-family:'Type Machine',sans-serif !important; color:var(--ed-red) !important; }
 .about-stats .label{ text-transform:uppercase; letter-spacing:.16em; font-size:10px !important; color:#8A867E !important; }
 
-/* ============ BOTONES ============ */
-.btn,.btn-primary,button.cta,a.cta{
-  border-radius:0 !important; text-transform:uppercase; letter-spacing:.14em;
+/* ============ BOTONES — PLANOS (sin redondeo) + ROJO ============ */
+button,.btn,[class*="btn"],[class*="cta"],.price-cta,.filter-btn,
+input[type="submit"],input[type="button"],a.button,.book_button{
+  border-radius:0 !important;
+}
+.btn,.btn-primary,.price-cta,a.cta,button.cta,.cta-btn{
+  text-transform:uppercase; letter-spacing:.14em;
   font-family:'JetBrains Mono',monospace !important; font-size:12px !important;
 }
-.btn-primary,a.cta.primary{ background:#FF5A1F !important; color:#0A0A0A !important; border:1px solid #FF5A1F !important; }
-.btn-primary:hover{ background:#FF7A45 !important; }
+.btn-primary,a.cta.primary,.price-cta,.cta-btn.primary{
+  background:var(--ed-red) !important; color:#EDEAE3 !important; border:1px solid var(--ed-red) !important;
+}
+.btn-primary:hover,.price-cta:hover,.cta-btn.primary:hover{ background:var(--ed-red-h) !important; border-color:var(--ed-red-h) !important; }
+.btn-ghost,.btn-secondary{ background:transparent !important; color:#EDEAE3 !important; border:1px solid var(--hair) !important; }
+.btn-ghost:hover,.btn-secondary:hover{ border-color:var(--ed-red-soft) !important; }
+/* toggle de idioma / pills varias */
+.lang-toggle,.lang-btn,.pill{ border-radius:0 !important; }
 
 /* ============ FOOTER ============ */
 .site-footer{ border-top:1px solid var(--hair); }
 .footer-links a{ text-transform:uppercase; letter-spacing:.16em; font-size:10.5px !important; color:#8A867E !important; }
 .footer-links a:hover{ color:#EDEAE3 !important; }
 
-/* ============ scrollbar / selección ============ */
-::selection{ background:#FF5A1F; color:#0A0A0A; }
+/* ============ varios ============ */
+a{ color:inherit; }
+a:hover{ color:var(--ed-red); }
+::selection{ background:var(--ed-red); color:#0A0A0A; }
