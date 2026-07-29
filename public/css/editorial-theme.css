@@ -32,9 +32,9 @@
   --font-accent:'JetBrains Mono',monospace !important;
   --font-m:'JetBrains Mono',monospace !important;
 
-  /* color base — negro cinematográfico */
-  --color-bg:#0A0A0A !important;      --bg:#0A0A0A !important;   --mk-black:#0A0A0A !important;
-  --color-bg-card:#0D0D0D !important; --bg-2:#0D0D0D !important;
+  /* color base — NEGRO PURO */
+  --color-bg:#000000 !important;      --bg:#000000 !important;   --mk-black:#000000 !important;
+  --color-bg-card:#000000 !important; --bg-2:#000000 !important; --bg-3:#050505 !important;
   --color-text:#EDEAE3 !important;    --mk-white:#EDEAE3 !important;
   --color-text-secondary:#8A867E !important;
 
@@ -51,7 +51,13 @@
   --mute:#8A867E;
 }
 
-html,body{ background:#0A0A0A; color:#EDEAE3; }
+/* ============ FONDO NEGRO PURO ============ */
+html,body{ background:#000000 !important; color:#EDEAE3; }
+.hero,.about,.portfolio,.services,.contact,.booking,.marquee-section,
+.marketing-cta-section,.site-footer,section,.section,.price-hero,.gallery-page,
+.marketing-cta-container{ background-color:#000000 !important; }
+/* mantener el video del hero visible por encima del negro */
+.hero-video-bg,.hero-video-bg video{ background:transparent !important; }
 
 /* ============ TIPOGRAFÍA EDITORIAL ============ */
 h1,h2,h3,.hero-title,.marquee-title,.svc-title,.about h2,.footer-logo,
@@ -145,23 +151,38 @@ h1,h2,h3,.hero-title,.marquee-title,.svc-title,.about h2,.footer-logo,
 .about-stats .num,.about-stats strong{ font-family:'Type Machine',sans-serif !important; color:var(--ed-red) !important; }
 .about-stats .label{ text-transform:uppercase; letter-spacing:.16em; font-size:10px !important; color:#8A867E !important; }
 
-/* ============ BOTONES — PLANOS (sin redondeo) + ROJO ============ */
-button,.btn,[class*="btn"],[class*="cta"],.price-cta,.filter-btn,
-input[type="submit"],input[type="button"],a.button,.book_button{
+/* ============ BOTONES — 100% PLANOS (sin degradado, brillo ni redondeo) ============ */
+button,.btn,[class*="btn"],[class*="cta"],.cta-button,.marketing-cta,.price-cta,
+.filter-btn,input[type="submit"],input[type="button"],a.button,.book_button,
+a.cta,button.cta,.cta-btn,.lang-toggle,.lang-btn,.pill{
   border-radius:0 !important;
+  background-image:none !important;   /* mata el degradado */
+  box-shadow:none !important;         /* mata el brillo 3D */
+  text-shadow:none !important;
+  transition:background-color .25s, border-color .25s !important;
 }
-.btn,.btn-primary,.price-cta,a.cta,button.cta,.cta-btn{
+.btn,.btn-primary,.cta-button,.marketing-cta,.price-cta,a.cta,button.cta,.cta-btn{
   text-transform:uppercase; letter-spacing:.14em;
   font-family:'JetBrains Mono',monospace !important; font-size:12px !important;
 }
-.btn-primary,a.cta.primary,.price-cta,.cta-btn.primary{
-  background:var(--ed-red) !important; color:#EDEAE3 !important; border:1px solid var(--ed-red) !important;
+/* primarios: ROJO plano, texto claro */
+.btn-primary,.cta-button,.marketing-cta,.price-cta,a.cta.primary,.cta-btn.primary,.book_button{
+  background:var(--ed-red) !important; background-color:var(--ed-red) !important;
+  color:#F5F0E8 !important; border:1px solid var(--ed-red) !important;
 }
-.btn-primary:hover,.price-cta:hover,.cta-btn.primary:hover{ background:var(--ed-red-h) !important; border-color:var(--ed-red-h) !important; }
+.btn-primary:hover,.cta-button:hover,.marketing-cta:hover,.price-cta:hover,.book_button:hover{
+  background:var(--ed-red-h) !important; background-color:var(--ed-red-h) !important;
+  border-color:var(--ed-red-h) !important; box-shadow:none !important;
+}
+/* secundarios / fantasma: contorno */
 .btn-ghost,.btn-secondary{ background:transparent !important; color:#EDEAE3 !important; border:1px solid var(--hair) !important; }
 .btn-ghost:hover,.btn-secondary:hover{ border-color:var(--ed-red-soft) !important; }
-/* toggle de idioma / pills varias */
-.lang-toggle,.lang-btn,.pill{ border-radius:0 !important; }
+/* contenedor del CTA de marketing: negro puro, plano, sin degradado ni redondeo */
+.marketing-cta-section{
+  background:#000000 !important; background-image:none !important;
+  border-radius:0 !important; border:1px solid var(--ed-red-soft) !important;
+}
+.marketing-cta-container{ border-color:var(--ed-red-soft) !important; }
 
 /* ============ FOOTER ============ */
 .site-footer{ border-top:1px solid var(--hair); }
