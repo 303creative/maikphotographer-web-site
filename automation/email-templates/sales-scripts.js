@@ -490,7 +490,7 @@ Fellow Miami professional here.
 
 Te ayudo con headshots que abren puertas.
 
-Sesiones desde $120.
+Sesiones desde $350.
 
 — Maikel`,
 
@@ -500,7 +500,7 @@ Fellow Miami professional here.
 
 I help with headshots that open doors.
 
-Sessions from $120.
+Sessions from $350.
 
 — Maikel`,
 

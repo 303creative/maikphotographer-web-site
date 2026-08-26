@@ -10,7 +10,7 @@ Long tail: portrait session Miami · brand photographer Miami
 
 ## Meta tags obligatorios
 <title>Maikel Marshall — Miami Photographer | Portrait & Editorial</title>
-<meta name="description" content="Miami-based cinematic photographer. Portrait, editorial, fashion and lifestyle from $150. 48h delivery. Book today.">
+<meta name="description" content="Miami-based cinematic photographer. Portrait, editorial, fashion and lifestyle from $350. 48h delivery. Book today.">
 <meta property="og:url" content="https://maikphotographer.com">
 <link rel="canonical" href="https://maikphotographer.com">
 
@@ -28,5 +28,5 @@ Long tail: portrait session Miami · brand photographer Miami
   "url": "https://maikphotographer.com",
   "telephone": "+17863329815",
   "address": { "addressLocality": "Miami", "addressRegion": "FL" },
-  "priceRange": "$150 - $500"
+  "priceRange": "$350 - $2,500"
 }
