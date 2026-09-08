@@ -246,11 +246,11 @@ a:hover{ color:#FF6A5F !important; }
 
 /* Pase typeset — body a Instrument Sans (fuera Inter, el "tell" de IA) */
 :root{
-  --font-body:'Instrument Sans',-apple-system,Segoe UI,sans-serif !important;
-  --font-b:'Instrument Sans',-apple-system,Segoe UI,sans-serif !important;
+  --font-body:'Newsreader',Georgia,serif !important;
+  --font-b:'Newsreader',Georgia,serif !important;
 }
-body{ font-family:'Instrument Sans',-apple-system,Segoe UI,sans-serif; }
-.hero-sub{ font-family:'Instrument Sans',sans-serif !important; }
+body{ font-family:'Newsreader',Georgia,serif; }
+.hero-sub{ font-family:'Newsreader',Georgia,serif !important; }
 
 /* Pase quieter — marquee más lento y respetuoso */
 .marquee-inner{ animation-duration:60s !important; }
