@@ -193,3 +193,53 @@ a.cta,button.cta,.cta-btn,.lang-toggle,.lang-btn,.pill{
 a{ color:inherit; }
 a:hover{ color:var(--ed-red); }
 ::selection{ background:var(--ed-red); color:#0A0A0A; }
+
+/* ═══════════════════════════════════════════════════════════════════ */
+/* IMPECCABLE AUDIT FIXES — a11y + hero visibility + de-slop (The303)   */
+/* ═══════════════════════════════════════════════════════════════════ */
+
+/* P0 — El titular del hero SIEMPRE visible (no depende de JS/animación) */
+.hero-title, .hero-title *, .line-in, .line-in span{
+  transform:none !important;
+  opacity:1 !important;
+}
+
+/* P1 — Contraste: rojo de marca legible como texto sobre oscuro */
+:root{
+  --ed-red-text:#FF6A5F;                 /* rojo para TEXTO (pasa AA sobre negro) */
+  --color-text-tertiary:#9A9A9A !important; /* antes #555 (2.8:1) */
+  --gold-glow:rgba(0,0,0,.35);           /* neutraliza el glow de color */
+}
+.header-nav a[href*="instagram"],
+.hero-title em,
+.port-caption span:last-child,
+.footer-links a[href*="instagram"]{
+  color:#FF6A5F !important;
+}
+
+/* P2 — Tamaños de texto funcionales: piso de 12px */
+.filter-btn{ font-size:12px !important; }
+.svc-footer, .svc-footer *{ font-size:12px !important; }
+.about-stats .label{ font-size:12px !important; }
+.footer-links a{ font-size:12px !important; }
+
+/* P2 — Punto de estado estático (sin pulso decorativo) */
+.badge-dot, .hero-badge .badge-dot{
+  animation:none !important;
+  box-shadow:none !important;
+}
+
+/* Ronda 2 — remate de contraste, tracking y padding */
+.price-amount, .price-value,
+.about-stats .num, .about-stats strong,
+a:hover{ color:#FF6A5F !important; }
+
+/* Botones cuyo hover se vuelve naranja: texto crema (no rojo) */
+.cta-button:hover, .svc-cta:hover, .btn:hover,
+.marketing-cta-section a:hover, .filter-btn:hover{ color:#FCFBF8 !important; }
+
+/* Tracking del titular final (antes -0.06em) */
+.contact h2, #contact h2{ letter-spacing:-0.03em !important; }
+
+/* Padding en la sección marketing-cta (evita texto pegado al borde) */
+.marketing-cta-section{ padding-top:clamp(48px,8vw,88px) !important; padding-bottom:clamp(48px,8vw,88px) !important; }
