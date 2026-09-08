@@ -27,8 +27,8 @@
   --font-heading:'Type Machine','Bebas Neue',sans-serif !important;
   --font-h:'Type Machine','Bebas Neue',sans-serif !important;
   --font-display:'Type Machine','Bebas Neue',sans-serif !important;
-  --font-body:'Inter',-apple-system,sans-serif !important;
-  --font-b:'Inter',-apple-system,sans-serif !important;
+  --font-body:'Instrument Sans',-apple-system,sans-serif !important;
+  --font-b:'Instrument Sans',-apple-system,sans-serif !important;
   --font-accent:'JetBrains Mono',monospace !important;
   --font-m:'JetBrains Mono',monospace !important;
 
@@ -99,7 +99,7 @@ h1,h2,h3,.hero-title,.marquee-title,.svc-title,.about h2,.footer-logo,
 }
 .hero-title em{ color:var(--ed-red) !important; font-style:normal !important; }
 .hero-sub{
-  font-family:'Inter',sans-serif !important; color:#8A867E !important;
+  font-family:'Instrument Sans',sans-serif !important; color:#8A867E !important;
   font-size:clamp(.95rem,1.15vw,1.05rem) !important; max-width:46ch; line-height:1.6;
 }
 
@@ -243,3 +243,16 @@ a:hover{ color:#FF6A5F !important; }
 
 /* Padding en la sección marketing-cta (evita texto pegado al borde) */
 .marketing-cta-section{ padding-top:clamp(48px,8vw,88px) !important; padding-bottom:clamp(48px,8vw,88px) !important; }
+
+/* Pase typeset — body a Instrument Sans (fuera Inter, el "tell" de IA) */
+:root{
+  --font-body:'Instrument Sans',-apple-system,Segoe UI,sans-serif !important;
+  --font-b:'Instrument Sans',-apple-system,Segoe UI,sans-serif !important;
+}
+body{ font-family:'Instrument Sans',-apple-system,Segoe UI,sans-serif; }
+.hero-sub{ font-family:'Instrument Sans',sans-serif !important; }
+
+/* Pase quieter — marquee más lento y respetuoso */
+.marquee-inner{ animation-duration:60s !important; }
+@media (max-width:768px){ .marquee-inner{ animation-duration:42s !important; } }
+@media (prefers-reduced-motion: reduce){ .marquee-inner{ animation:none !important; transform:none !important; } }
