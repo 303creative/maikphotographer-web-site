@@ -45,7 +45,7 @@ input{font:inherit}
   <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A87;margin-bottom:16px">[01] {{ t.cases }} •</div>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:8px">
     <sc-for list="{{ cases }}" as="c" hint-placeholder-count="2">
-      <article style="border:1px solid rgba(242,242,240,.2);display:flex;flex-direction:column">
+      <a href="{{ c.href }}" style="border:1px solid rgba(242,242,240,.2);display:flex;flex-direction:column;color:#F2F2F0;text-decoration:none">
         <div style="position:relative;aspect-ratio:4/3;overflow:hidden;background:#161616">
           <img src="{{ c.img }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.05) contrast(1.03)">
           <span style="position:absolute;left:10px;top:10px;font-family:'IBM Plex Mono',monospace;font-size:10px">{{ c.n }}.</span>
@@ -65,7 +65,7 @@ input{font:inherit}
             </div>
           </sc-for>
         </div>
-      </article>
+      </a>
     </sc-for>
     <a href="Contact.dc.html#audit" style="border:1px solid rgba(242,242,240,.3);min-height:320px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;font-weight:600;font-stretch:112%;font-size:30px;line-height:.95;letter-spacing:-.03em;text-transform:uppercase">{{ t.yours }}<span style="font-size:40px;font-weight:300">+</span></a>
   </div>
@@ -120,7 +120,7 @@ class Component extends DCLogic {
     const chip = on => ({flex:'none', background: on ? '#F2F2F0' : 'transparent', color: on ? '#0A0A0A' : '#F2F2F0', border:'1px solid ' + (on ? '#F2F2F0' : 'rgba(242,242,240,.3)'), height:40, padding:'0 14px', cursor:'pointer', fontFamily:"'IBM Plex Mono',monospace", fontSize:10, letterSpacing:'.08em', textTransform:'uppercase'});
     return {
       t, lang, setLang: this.setLang,
-      cases: t.cs.map(([name,meta,kpis],i) => ({name, meta, kpis, n:'0'+(i+1), img:`https://www.maikphotographer.com/assets/portfolio/39_portafolio_${i===0?6:3}.jpg`})),
+      cases: t.cs.map(([name,meta,kpis,href],i) => ({name, meta, kpis, n:'0'+(i+1), img:`https://www.maikphotographer.com/assets/portfolio/39_portafolio_${i===0?6:3}.jpg`, href: href || 'ClientPortfolio.dc.html'})),
       filters: ['all','portrait','editorial','lifestyle'].map(k => ({label:t.filters[k], style:chip(f===k), onClick:()=>this.setState({filter:k})})),
       shots: SHOTS.filter(s => f==='all' || s.cat===f).map((s,i) => {
         const wide = i % 3 === 0;
