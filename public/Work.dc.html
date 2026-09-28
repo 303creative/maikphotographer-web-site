@@ -57,6 +57,7 @@ input{font:inherit}
           </div>
           <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A87">{{ c.meta }}</div>
         </div>
+        <sc-if value="{{ c.showKpis }}">
         <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr))">
           <sc-for list="{{ c.kpis }}" as="k" hint-placeholder-count="3">
             <div style="padding:14px 12px 16px 16px;border-right:1px solid rgba(242,242,240,.14)">
@@ -65,6 +66,14 @@ input{font:inherit}
             </div>
           </sc-for>
         </div>
+        </sc-if>
+        <sc-if value="{{ c.noKpis }}">
+        <div style="display:flex;flex-wrap:wrap;gap:6px;padding:14px 16px 16px">
+          <sc-for list="{{ c.tags }}" as="tg" hint-placeholder-count="3">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:#B4B4B0;border:1px solid rgba(242,242,240,.2);padding:5px 8px">{{ tg }}</span>
+          </sc-for>
+        </div>
+        </sc-if>
       </a>
     </sc-for>
     <a href="Contact.dc.html#audit" style="border:1px solid rgba(242,242,240,.3);min-height:320px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;font-weight:600;font-stretch:112%;font-size:30px;line-height:.95;letter-spacing:-.03em;text-transform:uppercase">{{ t.yours }}<span style="font-size:40px;font-weight:300">+</span></a>
@@ -104,11 +113,11 @@ const SHOTS = [['editorial','Warm light'],['portrait','Golden circle'],['lifesty
 const T = {
 en:{eyebrow:'Work / Cases',h1a:'Work that',h1b:'books clients.',intro:'Each case is measured by what it produced for the business: leads, bookings, sales. Metrics are published only once verified with the client.',
 cases:'Cases',imgPending:'Image pending',yours:'Your brand here',pendingNote:'[ — ] = metric pending verification',
-cs:[["D'Homes",'Real estate · Content system · Miami',['ROI','Leads','Listings']],['Sazón Latino','Hospitality · Content Engine · Miami',['ROI','Bookings','Reach']]],
+cs:[{name:"D'Homes",meta:'Real estate · Content system · Miami',kpis:['ROI','Leads','Listings'],href:'ClientPortfolio.dc.html',img:'https://www.maikphotographer.com/assets/portfolio/39_portafolio_6.jpg'},{name:'Sazón Latino',meta:'Content creation · Photo · Miami',tags:['Content creation','Photo','Editorial'],href:'client-sazon-latino.dc.html',img:'/assets/work/sazon-latino/cover.jpg'}],
 kpiNames:[],gallery:'Gallery',gA:'Frames',gB:'in color.',filters:{all:'All',portrait:'Portrait',editorial:'Editorial',lifestyle:'Lifestyle'}},
 es:{eyebrow:'Trabajo / Casos',h1a:'Trabajo que',h1b:'consigue clientes.',intro:'Cada caso se mide por lo que produjo para el negocio: leads, reservas, ventas. Las métricas se publican solo cuando el cliente las verifica.',
 cases:'Casos',imgPending:'Imagen pendiente',yours:'Tu marca aquí',pendingNote:'[ — ] = métrica pendiente de verificar',
-cs:[["D'Homes",'Real estate · Sistema de contenido · Miami',['ROI','Leads','Listings']],['Sazón Latino','Hospitality · Content Engine · Miami',['ROI','Reservas','Alcance']]],
+cs:[{name:"D'Homes",meta:'Real estate · Sistema de contenido · Miami',kpis:['ROI','Leads','Listings'],href:'ClientPortfolio.dc.html',img:'https://www.maikphotographer.com/assets/portfolio/39_portafolio_6.jpg'},{name:'Sazón Latino',meta:'Creación de contenido · Foto · Miami',tags:['Creación de contenido','Foto','Editorial'],href:'client-sazon-latino.dc.html',img:'/assets/work/sazon-latino/cover.jpg'}],
 gallery:'Galería',gA:'Fotogramas',gB:'a color.',filters:{all:'Todo',portrait:'Retrato',editorial:'Editorial',lifestyle:'Lifestyle'}}
 };
 class Component extends DCLogic {
@@ -120,7 +129,7 @@ class Component extends DCLogic {
     const chip = on => ({flex:'none', background: on ? '#F2F2F0' : 'transparent', color: on ? '#0A0A0A' : '#F2F2F0', border:'1px solid ' + (on ? '#F2F2F0' : 'rgba(242,242,240,.3)'), height:40, padding:'0 14px', cursor:'pointer', fontFamily:"'IBM Plex Mono',monospace", fontSize:10, letterSpacing:'.08em', textTransform:'uppercase'});
     return {
       t, lang, setLang: this.setLang,
-      cases: t.cs.map(([name,meta,kpis,href],i) => ({name, meta, kpis, n:'0'+(i+1), img:`https://www.maikphotographer.com/assets/portfolio/39_portafolio_${i===0?6:3}.jpg`, href: href || 'ClientPortfolio.dc.html'})),
+      cases: t.cs.map((c,i) => { const hasKpis = Array.isArray(c.kpis) && c.kpis.length>0; return {name:c.name, meta:c.meta, kpis:c.kpis||[], tags:c.tags||[], showKpis:hasKpis, noKpis:!hasKpis, n:'0'+(i+1), img:c.img||`https://www.maikphotographer.com/assets/portfolio/39_portafolio_${i===0?6:3}.jpg`, href:c.href||'ClientPortfolio.dc.html'}; }),
       filters: ['all','portrait','editorial','lifestyle'].map(k => ({label:t.filters[k], style:chip(f===k), onClick:()=>this.setState({filter:k})})),
       shots: SHOTS.filter(s => f==='all' || s.cat===f).map((s,i) => {
         const wide = i % 3 === 0;
