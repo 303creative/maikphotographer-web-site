@@ -3,59 +3,53 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.maikphotographer.com/</loc>
-    <lastmod>2026-06-06</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://www.maikphotographer.com/assets/backgrounds/31_fondo_ia1_oscuro_principal.jpg</image:loc>
-      <image:title>Maikel Marshall — Cinematic Photographer Miami</image:title>
+      <image:title>The303 — Content, Brand &amp; Growth Studio in Miami</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://www.maikphotographer.com/gallery</loc>
-    <lastmod>2026-06-06</lastmod>
+    <loc>https://www.maikphotographer.com/Services.dc.html</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.maikphotographer.com/Work.dc.html</loc>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.maikphotographer.com/sessions</loc>
-    <lastmod>2026-06-06</lastmod>
+    <loc>https://www.maikphotographer.com/About.dc.html</loc>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.maikphotographer.com/pricing</loc>
-    <lastmod>2026-06-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.maikphotographer.com/marketing</loc>
-    <lastmod>2026-06-06</lastmod>
+    <loc>https://www.maikphotographer.com/Pricing.dc.html</loc>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.maikphotographer.com/blog</loc>
-    <lastmod>2026-06-06</lastmod>
+    <loc>https://www.maikphotographer.com/Journal.dc.html</loc>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.maikphotographer.com/blog-editorial-photographer-miami.html</loc>
-    <lastmod>2026-07-29</lastmod>
+    <loc>https://www.maikphotographer.com/JournalArticle.dc.html</loc>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.maikphotographer.com/blog-courthouse-wedding-miami.html</loc>
-    <lastmod>2026-07-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.maikphotographer.com/blog-brand-content-photography.html</loc>
-    <lastmod>2026-07-29</lastmod>
+    <loc>https://www.maikphotographer.com/Contact.dc.html</loc>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

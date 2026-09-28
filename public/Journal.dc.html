@@ -42,7 +42,7 @@ input{font:inherit}
 </section>
 
 <section data-screen-label="Featured" style="position:relative;z-index:1;padding:48px clamp(16px,3vw,48px) 0">
-  <a href="Journal%20Article.dc.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:0;border:1px solid rgba(242,242,240,.2)">
+  <a href="JournalArticle.dc.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:0;border:1px solid rgba(242,242,240,.2)">
     <div style="position:relative;aspect-ratio:4/3;overflow:hidden;background:#161616">
       <img src="https://www.maikphotographer.com/assets/portfolio/39_portafolio_1.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.05) contrast(1.03)">
       <span style="position:absolute;left:10px;top:10px;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;background:#FF5A36;color:#0A0A0A;padding:4px 6px">{{ t.featured }}</span>
@@ -115,7 +115,7 @@ class Component extends DCLogic {
     const t = T[lang]; const c = this.state.cat;
     const chip = on => ({flex:'none', background: on ? '#F2F2F0' : 'transparent', color: on ? '#0A0A0A' : '#F2F2F0', border:'1px solid ' + (on ? '#F2F2F0' : 'rgba(242,242,240,.3)'), height:36, padding:'0 12px', cursor:'pointer', fontFamily:"'IBM Plex Mono',monospace", fontSize:10, letterSpacing:'.08em', textTransform:'uppercase'});
     const all = POSTS[lang].map(([cat,title,dek,read,status,slug,img],i) => ({cat:t.cats[cat], key:cat, title, dek, read, status:t[status], img:IMG(img), n:String(i+1).padStart(2,'0'),
-      href: 'Journal%20Article.dc.html',
+      href: 'JournalArticle.dc.html',
       statusStyle:{color: status==='draft' ? '#FF5A36' : '#8A8A87'}}));
     return { t, lang, setLang: this.setLang, first: all[0], count: String(all.length).padStart(2,'0'),
       cats: Object.keys(t.cats).map(k => ({label:t.cats[k], style:chip(c===k), onClick:()=>this.setState({cat:k})})),

@@ -42,11 +42,17 @@
     }
   ],
   "redirects": [
-    {
-      "source": "/home",
-      "destination": "/",
-      "permanent": true
-    }
+    { "source": "/home", "destination": "/", "permanent": true },
+    { "source": "/gallery", "destination": "/Work.dc.html", "permanent": true },
+    { "source": "/sessions", "destination": "/Services.dc.html", "permanent": true },
+    { "source": "/marketing", "destination": "/Services.dc.html", "permanent": true },
+    { "source": "/pricing", "destination": "/Pricing.dc.html", "permanent": true },
+    { "source": "/blog", "destination": "/Journal.dc.html", "permanent": true },
+    { "source": "/services", "destination": "/Services.dc.html", "permanent": true },
+    { "source": "/work", "destination": "/Work.dc.html", "permanent": true },
+    { "source": "/about", "destination": "/About.dc.html", "permanent": true },
+    { "source": "/journal", "destination": "/Journal.dc.html", "permanent": true },
+    { "source": "/contact", "destination": "/Contact.dc.html", "permanent": true }
   ],
   "cleanUrls": true,
   "trailingSlash": false

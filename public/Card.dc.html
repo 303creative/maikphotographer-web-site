@@ -86,7 +86,7 @@ class Component extends DCLogic {
     const lang = this.state.lang ?? this.props.lang ?? 'en';
     const t = T[lang];
     const pill = a => ({background: a ? '#F2F2F0' : 'transparent', color: a ? '#0A0A0A' : '#8A8A87', border:0, padding:'0 9px', height:30, cursor:'pointer', fontFamily:'inherit', fontSize:10});
-    const vals = [['+1 786 332 9815','https://wa.me/17863329815'],['maikelmarshall07@gmail.com','mailto:maikelmarshall07@gmail.com'],['@maik_photographer','https://www.instagram.com/maik_photographer/'],['maikphotographer.com','Home.dc.html'],['$0 · 3 recommendations','Contact.dc.html#audit'],['30 min','Contact.dc.html']];
+    const vals = [['+1 786 332 9815','https://wa.me/17863329815'],['maikelmarshall07@gmail.com','mailto:maikelmarshall07@gmail.com'],['@maik_photographer','https://www.instagram.com/maik_photographer/'],['maikphotographer.com','./'],['$0 · 3 recommendations','Contact.dc.html#audit'],['30 min','Contact.dc.html']];
     return { t, lang, setEn: () => this.setLang('en'), setEs: () => this.setLang('es'), enStyle: pill(lang==='en'), esStyle: pill(lang==='es'),
       vcard: 'data:text/vcard;charset=utf-8,' + encodeURIComponent(VCF),
       links: t.l.map((label,i) => ({label, value: vals[i][0], href: vals[i][1], n:'0'+(i+1)})) };
