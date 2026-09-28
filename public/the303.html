@@ -349,7 +349,7 @@ class Component extends DCLogic {
   renderVals() {
     const lang = this.state.lang ?? this.props.lang ?? 'en';
     const t = T[lang];
-    const bw = this.props.monochrome ?? true;
+    const bw = this.props.monochrome ?? false;
     const pill = on => ({background: on ? '#F2F2F0' : 'transparent', color: on ? '#0A0A0A' : '#8A8A87', border:0, padding:'0 9px', height:30, cursor:'pointer', fontFamily:'inherit', fontSize:10});
     const chip = on => ({flex:'none', background: on ? '#F2F2F0' : 'transparent', color: on ? '#0A0A0A' : '#F2F2F0', border:'1px solid ' + (on ? '#F2F2F0' : 'rgba(242,242,240,.3)'), height:40, padding:'0 14px', cursor:'pointer', fontFamily:"'IBM Plex Mono',monospace", fontSize:10, letterSpacing:'.08em', textTransform:'uppercase'});
     const f = this.state.filter;
@@ -359,7 +359,7 @@ class Component extends DCLogic {
     const barBase = {display:'block', width:18, height:1, background:'#F2F2F0', transition:'transform .25s'};
     return {
       t, heroVideo: vid, noHeroVideo: !vid, showBar: this.props.stickyCta ?? true,
-      mediaStyle: {position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', filter: bw ? 'grayscale(1) contrast(1.15) brightness(.92)' : 'none'},
+      mediaStyle: {position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', filter: bw ? 'saturate(1.05) contrast(1.03)' : 'none'},
       setEn: () => this.setState({lang:'en'}), setEs: () => this.setState({lang:'es'}),
       enStyle: pill(lang==='en'), esStyle: pill(lang==='es'),
       menuOpen: m, toggleMenu: () => this.setState({menu:!m}), closeMenu: () => this.setState({menu:false}),
