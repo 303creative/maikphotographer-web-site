@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work & Case Studies | The303 Miami</title>
+<meta name="description" content="Selected work and results for Miami brands — real estate, hospitality and premium brands.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://www.maikphotographer.com/Work.dc.html">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" href="/favicon.ico">
+<meta property="og:title" content="Work & Case Studies | The303 Miami">
+<meta property="og:description" content="Selected work and results for Miami brands — real estate, hospitality and premium brands.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.maikphotographer.com/Work.dc.html">
+<meta property="og:image" content="https://www.maikphotographer.com/assets/backgrounds/31_fondo_ia1_oscuro_principal.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,300..800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;background:#0A0A0A;color:#F2F2F0;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+a{color:#F2F2F0;text-decoration:none}
+a:hover{color:#FF5A36}
+input{font:inherit}
+::-webkit-scrollbar{display:none}
+</style>
+</helmet>
+<div style="font-family:'Archivo',sans-serif;background:#0A0A0A;color:#F2F2F0;min-height:100vh;position:relative;overflow-x:hidden;padding-top:73px;padding-bottom:84px;container-type:inline-size">
+<div style="position:absolute;inset:0;pointer-events:none;z-index:0;margin:0 clamp(16px,3vw,48px);background-image:linear-gradient(90deg,rgba(242,242,240,.06) 1px,transparent 1px);background-size:25% 100%;border-right:1px solid rgba(242,242,240,.06)"></div>
+<dc-import name="SiteHeader" lang="{{ lang }}" on-lang="{{ setLang }}" active="work" hint-size="100%,73px"></dc-import>
+
+<section data-screen-label="Work hero" style="position:relative;z-index:1;padding:32px clamp(16px,3vw,48px) 0">
+  <div style="display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A87;margin-bottom:28px"><span>[00] — {{ t.eyebrow }}</span><span>2021—2026</span></div>
+  <h1 style="margin:0;font-weight:600;font-stretch:112%;font-size:clamp(46px,14cqw,176px);line-height:.86;letter-spacing:-.045em;text-transform:uppercase">{{ t.h1a }}<br><span style="color:#5C5C5A">{{ t.h1b }}</span></h1>
+  <p style="margin:28px 0 0;font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:1.6;color:#B4B4B0;max-width:520px">{{ t.intro }}</p>
+</section>
+
+<section data-screen-label="Cases" style="position:relative;z-index:1;padding:64px clamp(16px,3vw,48px) 0">
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A87;margin-bottom:16px">[01] {{ t.cases }} •</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:8px">
+    <sc-for list="{{ cases }}" as="c" hint-placeholder-count="2">
+      <article style="border:1px solid rgba(242,242,240,.2);display:flex;flex-direction:column">
+        <div style="position:relative;aspect-ratio:4/3;overflow:hidden;background:#161616">
+          <img src="{{ c.img }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.05) contrast(1.03)">
+          <span style="position:absolute;left:10px;top:10px;font-family:'IBM Plex Mono',monospace;font-size:10px">{{ c.n }}.</span>
+          <span style="position:absolute;right:10px;top:10px;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;background:rgba(10,10,10,.75);padding:4px 6px">{{ t.imgPending }}</span>
+        </div>
+        <div style="padding:16px;display:flex;flex-direction:column;gap:6px;border-bottom:1px solid rgba(242,242,240,.14)">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
+            <h2 style="margin:0;font-weight:600;font-stretch:112%;font-size:28px;line-height:.95;letter-spacing:-.03em;text-transform:uppercase">{{ c.name }}</h2><span>•</span>
+          </div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A87">{{ c.meta }}</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr))">
+          <sc-for list="{{ c.kpis }}" as="k" hint-placeholder-count="3">
+            <div style="padding:14px 12px 16px 16px;border-right:1px solid rgba(242,242,240,.14)">
+              <div style="font-weight:500;font-size:24px;line-height:1;letter-spacing:-.03em;color:#5C5C5A">[ — ]</div>
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:#8A8A87;margin-top:6px">{{ k }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </article>
+    </sc-for>
+    <a href="Contact.dc.html#audit" style="border:1px solid rgba(242,242,240,.3);min-height:320px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;font-weight:600;font-stretch:112%;font-size:30px;line-height:.95;letter-spacing:-.03em;text-transform:uppercase">{{ t.yours }}<span style="font-size:40px;font-weight:300">+</span></a>
+  </div>
+  <div style="margin-top:12px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#5C5C5A;letter-spacing:.06em;text-transform:uppercase">{{ t.pendingNote }}</div>
+</section>
+
+<section data-screen-label="Gallery" style="position:relative;z-index:1;padding:88px clamp(16px,3vw,48px) 0">
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A87;margin-bottom:20px">[02] {{ t.gallery }} •</div>
+  <h2 style="margin:0;font-weight:600;font-stretch:112%;font-size:clamp(40px,12cqw,150px);line-height:.86;letter-spacing:-.045em;text-transform:uppercase">{{ t.gA }}<br><span style="color:#5C5C5A">{{ t.gB }}</span></h2>
+  <div style="display:flex;gap:6px;overflow-x:auto;margin:28px calc(-1 * clamp(16px,3vw,48px)) 16px;padding:0 clamp(16px,3vw,48px)">
+    <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
+      <button onClick="{{ f.onClick }}" style="{{ f.style }}">{{ f.label }}</button>
+    </sc-for>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(calc(50% - 4px),240px),1fr));grid-auto-flow:dense;gap:8px">
+    <sc-for list="{{ shots }}" as="p" hint-placeholder-count="9">
+      <figure style="{{ p.style }}">
+        <div style="{{ p.boxStyle }}">
+          <img src="{{ p.src }}" alt="{{ p.title }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.05) contrast(1.03)">
+          <span style="position:absolute;left:8px;top:8px;font-family:'IBM Plex Mono',monospace;font-size:10px">{{ p.idx }}.</span>
+        </div>
+        <figcaption style="display:flex;justify-content:space-between;gap:8px;padding:8px 0;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase">
+          <span>{{ p.title }}</span><span style="color:#8A8A87">{{ p.catLabel }}</span>
+        </figcaption>
+      </figure>
+    </sc-for>
+  </div>
+</section>
+
+<dc-import name="AuditBlock" lang="{{ lang }}" index="03" source="work" style="margin-top:88px" hint-size="100%,900px"></dc-import>
+<dc-import name="SiteFooter" lang="{{ lang }}" audit-href="#audit" hint-size="100%,600px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;es&quot;],&quot;default&quot;:&quot;en&quot;,&quot;tsType&quot;:&quot;'en'|'es'&quot;}}">
+const SHOTS = [['editorial','Warm light'],['portrait','Golden circle'],['lifestyle','Red hour'],['portrait','Deep focus'],['portrait','Soft silence'],['lifestyle','Urban raw'],['editorial','Moody'],['editorial','Golden hour'],['editorial','Cinematic']].map(([cat,title],i)=>({cat,title,src:`https://www.maikphotographer.com/assets/portfolio/39_portafolio_${i+1}.jpg`}));
+const T = {
+en:{eyebrow:'Work / Cases',h1a:'Work that',h1b:'books clients.',intro:'Each case is measured by what it produced for the business: leads, bookings, sales. Metrics are published only once verified with the client.',
+cases:'Cases',imgPending:'Image pending',yours:'Your brand here',pendingNote:'[ — ] = metric pending verification',
+cs:[["D'Homes",'Real estate · Content system · Miami',['ROI','Leads','Listings']],['Sazón Latino','Hospitality · Content Engine · Miami',['ROI','Bookings','Reach']]],
+kpiNames:[],gallery:'Gallery',gA:'Frames',gB:'in color.',filters:{all:'All',portrait:'Portrait',editorial:'Editorial',lifestyle:'Lifestyle'}},
+es:{eyebrow:'Trabajo / Casos',h1a:'Trabajo que',h1b:'consigue clientes.',intro:'Cada caso se mide por lo que produjo para el negocio: leads, reservas, ventas. Las métricas se publican solo cuando el cliente las verifica.',
+cases:'Casos',imgPending:'Imagen pendiente',yours:'Tu marca aquí',pendingNote:'[ — ] = métrica pendiente de verificar',
+cs:[["D'Homes",'Real estate · Sistema de contenido · Miami',['ROI','Leads','Listings']],['Sazón Latino','Hospitality · Content Engine · Miami',['ROI','Reservas','Alcance']]],
+gallery:'Galería',gA:'Fotogramas',gB:'a color.',filters:{all:'Todo',portrait:'Retrato',editorial:'Editorial',lifestyle:'Lifestyle'}}
+};
+class Component extends DCLogic {
+  state = { lang: (()=>{try{return localStorage.getItem('t303-lang')}catch(e){return null}})(), filter:'all' };
+  setLang = l => { try{localStorage.setItem('t303-lang',l)}catch(e){} this.setState({lang:l}); };
+  renderVals() {
+    const lang = this.state.lang ?? this.props.lang ?? 'en';
+    const t = T[lang]; const f = this.state.filter;
+    const chip = on => ({flex:'none', background: on ? '#F2F2F0' : 'transparent', color: on ? '#0A0A0A' : '#F2F2F0', border:'1px solid ' + (on ? '#F2F2F0' : 'rgba(242,242,240,.3)'), height:40, padding:'0 14px', cursor:'pointer', fontFamily:"'IBM Plex Mono',monospace", fontSize:10, letterSpacing:'.08em', textTransform:'uppercase'});
+    return {
+      t, lang, setLang: this.setLang,
+      cases: t.cs.map(([name,meta,kpis],i) => ({name, meta, kpis, n:'0'+(i+1), img:`https://www.maikphotographer.com/assets/portfolio/39_portafolio_${i===0?6:3}.jpg`})),
+      filters: ['all','portrait','editorial','lifestyle'].map(k => ({label:t.filters[k], style:chip(f===k), onClick:()=>this.setState({filter:k})})),
+      shots: SHOTS.filter(s => f==='all' || s.cat===f).map((s,i) => {
+        const wide = i % 3 === 0;
+        return {...s, idx:String(i+1).padStart(2,'0'), catLabel:t.filters[s.cat],
+          style:{margin:0, gridColumn: wide ? 'span 2' : 'span 1', marginTop:(!wide && i%3===2) ? 40 : 0},
+          boxStyle:{position:'relative', overflow:'hidden', background:'#161616', aspectRatio: wide ? '4/3' : '3/4'}};
+      })
+    };
+  }
+}
+</script>
+<script type="module" src="/js/mariela-widget.js"></script>
+</body>
+</html>

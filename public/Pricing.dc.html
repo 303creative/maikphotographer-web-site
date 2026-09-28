@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pricing — Content & Growth Packages | The303 Miami</title>
+<meta name="description" content="Packages for content, video and growth systems. Miami, bilingual EN/ES.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://www.maikphotographer.com/Pricing.dc.html">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" href="/favicon.ico">
+<meta property="og:title" content="Pricing — Content & Growth Packages | The303 Miami">
+<meta property="og:description" content="Packages for content, video and growth systems. Miami, bilingual EN/ES.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.maikphotographer.com/Pricing.dc.html">
+<meta property="og:image" content="https://www.maikphotographer.com/assets/backgrounds/31_fondo_ia1_oscuro_principal.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,300..800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;background:#0A0A0A;color:#F2F2F0;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+a{color:#F2F2F0;text-decoration:none}
+a:hover{color:#FF5A36}
+input{font:inherit}
+::-webkit-scrollbar{display:none}
+</style>
+</helmet>
+<div style="font-family:'Archivo',sans-serif;background:#0A0A0A;color:#F2F2F0;min-height:100vh;position:relative;overflow-x:hidden;padding-top:73px;padding-bottom:84px;container-type:inline-size">
+<div style="position:absolute;inset:0;pointer-events:none;z-index:0;margin:0 clamp(16px,3vw,48px);background-image:linear-gradient(90deg,rgba(242,242,240,.06) 1px,transparent 1px);background-size:25% 100%;border-right:1px solid rgba(242,242,240,.06)"></div>
+<dc-import name="SiteHeader" lang="{{ lang }}" on-lang="{{ setLang }}" active="pricing" hint-size="100%,73px"></dc-import>
+
+<section data-screen-label="Pricing hero" style="position:relative;z-index:1;padding:32px clamp(16px,3vw,48px) 0">
+  <div style="display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A87;margin-bottom:28px"><span>[00] — {{ t.eyebrow }}</span><span>USD</span></div>
+  <h1 style="margin:0;font-weight:600;font-stretch:112%;font-size:clamp(46px,14cqw,176px);line-height:.86;letter-spacing:-.045em;text-transform:uppercase">{{ t.h1a }}<br><span style="color:#5C5C5A">{{ t.h1b }}</span></h1>
+  <p style="margin:28px 0 0;font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:1.6;color:#B4B4B0;max-width:520px">{{ t.intro }}</p>
+  <div style="display:flex;border:1px solid rgba(242,242,240,.3);margin-top:28px;max-width:420px">
+    <button onClick="{{ setMonthly }}" style="{{ monthlyStyle }}">{{ t.monthly }}</button>
+    <button onClick="{{ setOnce }}" style="{{ onceStyle }}">{{ t.once }}</button>
+  </div>
+</section>
+
+<section data-screen-label="Plans" style="position:relative;z-index:1;padding:24px clamp(16px,3vw,48px) 0">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:8px">
+    <sc-for list="{{ plans }}" as="p" hint-placeholder-count="4">
+      <article style="{{ p.card }}">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <span style="font-weight:300;font-size:72px;line-height:.8;letter-spacing:-.06em">{{ p.n }}</span>
+          <sc-if value="{{ p.tag }}" hint-placeholder-val="{{ false }}"><span style="{{ p.tagStyle }}">● {{ p.tag }}</span></sc-if>
+        </div>
+        <h2 style="margin:0;font-weight:600;font-stretch:112%;font-size:28px;line-height:.95;letter-spacing:-.03em;text-transform:uppercase">{{ p.name }}</h2>
+        <div style="{{ p.priceBox }}">
+          <div style="font-weight:500;font-stretch:108%;font-size:clamp(44px,12cqw,64px);line-height:.9;letter-spacing:-.045em">{{ p.price }}</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:6px;opacity:.65">{{ p.per }}</div>
+        </div>
+        <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;flex:1">
+          <sc-for list="{{ p.items }}" as="it" hint-placeholder-count="4">
+            <li style="display:flex;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.04em;line-height:1.4"><span style="opacity:.5">+</span>{{ it }}</li>
+          </sc-for>
+        </ul>
+        <a href="Contact.dc.html#audit" style="{{ p.btn }}"><span>{{ t.start }}</span><span>↗</span></a>
+      </article>
+    </sc-for>
+  </div>
+  <sc-if value="{{ emptyOnce }}" hint-placeholder-val="{{ false }}">
+    <div style="border:1px dashed rgba(242,242,240,.25);padding:24px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8A8A87;text-transform:uppercase">—</div>
+  </sc-if>
+</section>
+
+<section data-screen-label="Always included" style="position:relative;z-index:1;padding:88px clamp(16px,3vw,48px) 0">
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A87;margin-bottom:20px">[01] {{ t.always }} •</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));border-top:1px solid rgba(242,242,240,.3)">
+    <sc-for list="{{ always }}" as="a" hint-placeholder-count="4">
+      <div style="padding:18px 16px 18px 0;border-bottom:1px solid rgba(242,242,240,.14);display:grid;grid-template-columns:44px 1fr;align-items:baseline">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8A8A87">{{ a.n }}</span>
+        <span style="font-weight:500;font-size:18px;text-transform:uppercase;letter-spacing:-.01em">{{ a.v }}</span>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section data-screen-label="Pricing FAQ" style="position:relative;z-index:1;padding:88px 0 0">
+  <div style="padding:0 clamp(16px,3vw,48px);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A87;margin-bottom:20px">[02] FAQ •</div>
+  <div style="border-top:1px solid rgba(242,242,240,.3)">
+    <sc-for list="{{ faqs }}" as="q" hint-placeholder-count="4">
+      <div style="border-bottom:1px solid rgba(242,242,240,.3)">
+        <button onClick="{{ q.toggle }}" style="width:100%;display:grid;grid-template-columns:44px 1fr 24px;align-items:start;gap:4px;background:none;border:0;color:#F2F2F0;padding:20px clamp(16px,3vw,48px);cursor:pointer;text-align:left;font-family:'Archivo',sans-serif">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8A8A87;padding-top:4px">[{{ q.n }}]</span>
+          <span style="font-weight:500;font-size:17px;line-height:1.25;text-transform:uppercase;letter-spacing:-.01em">{{ q.q }}</span>
+          <span style="font-size:20px;font-weight:300;line-height:1">{{ q.icon }}</span>
+        </button>
+        <sc-if value="{{ q.open }}" hint-placeholder-val="{{ false }}">
+          <p style="margin:0;padding:0 clamp(16px,3vw,48px) 22px calc(clamp(16px,3vw,48px) + 48px);font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:1.6;color:#B4B4B0">{{ q.a }}</p>
+        </sc-if>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<dc-import name="AuditBlock" lang="{{ lang }}" index="03" source="pricing" style="margin-top:88px" hint-size="100%,900px"></dc-import>
+<dc-import name="SiteFooter" lang="{{ lang }}" audit-href="#audit" hint-size="100%,600px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;es&quot;],&quot;default&quot;:&quot;en&quot;,&quot;tsType&quot;:&quot;'en'|'es'&quot;}}">
+const T = {
+en:{eyebrow:'Pricing',h1a:'Clear prices.',h1b:'Measurable output.',intro:'Every system is aligned with a business goal. Not sure which fits? The free audit ends with a recommendation.',
+monthly:'Monthly systems',once:'One-time',start:'Start with an audit',popular:'Most popular',neu:'New',always:'Always included',
+plans:[
+['m','Content Engine',['2 sessions per month','Full month of content (photos + reels)','Posting calendar included','Ready-to-post delivery'],'$1,500','/ month','pop'],
+['m','Luxury Content System',['Monthly shoot days (photo + video)','Vertical Reels + hero content','Creative & art direction','Distribution & posting strategy'],'$3,000+','/ month',''],
+['m','Ads & Prospecting',['Meta / Instagram ad campaigns','Audience & creative testing','Outbound prospecting system','Monthly lead report'],'[ TBD ]','price pending','new'],
+['o','Personal',['1 editorial session','Pose direction included','Edited photos + BTS reel','Online gallery in 48h'],'$350','starting from',''],
+['o','Website + AI System',['Conversion website','Automations & online booking','Mariela AI assistant','Setup + monthly plan'],'$2,500+','+ $249/mo',''] ],
+alwaysItems:['Full editing','Delivery in ~48h','Bilingual EN/ES','Creative direction'],
+faqs:[['How much does a photo session cost?','Personal sessions start at $350. Monthly brand content packages start at $1,500. Every project includes full editing and fast delivery.'],['How fast do you deliver?','Fully edited, publish-ready content in about 48 hours.'],['Do you work with brands & businesses?','Yes — monthly brand content, photo and video, designed to sell.'],['Where are you based?','Miami, FL — available across South Florida and for travel.']]},
+es:{eyebrow:'Precios',h1a:'Precios claros.',h1b:'Resultados medibles.',intro:'Cada sistema está alineado con un objetivo de negocio. ¿No sabes cuál encaja? La auditoría gratis termina con una recomendación.',
+monthly:'Sistemas mensuales',once:'Pago único',start:'Empezar con auditoría',popular:'Más popular',neu:'Nuevo',always:'Siempre incluido',
+plans:[
+['m','Content Engine',['2 sesiones al mes','Un mes de contenido (fotos + reels)','Calendario de publicación incluido','Entrega lista para publicar'],'$1,500','/ mes','pop'],
+['m','Luxury Content System',['Días de rodaje mensuales (foto + video)','Reels verticales + contenido hero','Dirección creativa y de arte','Estrategia de distribución y publicación'],'$3,000+','/ mes',''],
+['m','Ads & Prospección',['Campañas Meta / Instagram','Pruebas de audiencia y creatividades','Sistema de prospección activa','Informe mensual de leads'],'[ TBD ]','precio pendiente','new'],
+['o','Personal',['1 sesión editorial','Dirección de poses incluida','Fotos editadas + reel BTS','Galería online en 48h'],'$350','desde',''],
+['o','Website + AI System',['Web de conversión','Automatizaciones y reservas online','Asistente IA Mariela','Setup + plan mensual'],'$2,500+','+ $249/mes',''] ],
+alwaysItems:['Edición completa','Entrega en ~48h','Bilingüe EN/ES','Dirección creativa'],
+faqs:[['¿Cuánto cuesta una sesión de fotos?','Las sesiones personales empiezan en $350. Los paquetes mensuales de contenido de marca empiezan en $1,500. Todos los proyectos incluyen edición completa y entrega rápida.'],['¿Qué tan rápido entregan?','Contenido editado y listo para publicar en unas 48 horas.'],['¿Trabajan con marcas y negocios?','Sí: contenido de marca mensual, foto y video, pensado para vender.'],['¿Dónde están?','Miami, FL. Disponibles en todo el sur de Florida y para viajar.']]}
+};
+class Component extends DCLogic {
+  state = { lang: (()=>{try{return localStorage.getItem('t303-lang')}catch(e){return null}})(), mode:'m', open:0 };
+  setLang = l => { try{localStorage.setItem('t303-lang',l)}catch(e){} this.setState({lang:l}); };
+  renderVals() {
+    const lang = this.state.lang ?? this.props.lang ?? 'en';
+    const t = T[lang]; const mode = this.state.mode;
+    const seg = on => ({flex:1, height:48, border:0, cursor:'pointer', background: on ? '#F2F2F0' : 'transparent', color: on ? '#0A0A0A' : '#F2F2F0', fontFamily:"'IBM Plex Mono',monospace", fontSize:10, letterSpacing:'.08em', textTransform:'uppercase'});
+    const plans = t.plans.filter(p => p[0]===mode).map(([, name, items, price, per, tag], i) => {
+      const inv = tag === 'pop';
+      return { n:'0'+(i+1), name, items, price, per, priceBox:{padding:'16px 0', borderTop:'1px solid ' + (inv ? 'rgba(10,10,10,.25)' : 'rgba(242,242,240,.14)'), borderBottom:'1px solid ' + (inv ? 'rgba(10,10,10,.25)' : 'rgba(242,242,240,.14)')},
+        tag: tag==='pop' ? t.popular : tag==='new' ? t.neu : '',
+        tagStyle:{fontFamily:"'IBM Plex Mono',monospace", fontSize:9, letterSpacing:'.1em', textTransform:'uppercase', color:'#FF5A36'},
+        card:{display:'flex', flexDirection:'column', gap:18, padding:20, minHeight:480, background: inv ? '#F2F2F0' : 'transparent', color: inv ? '#0A0A0A' : '#F2F2F0', border: inv ? '1px solid #F2F2F0' : '1px solid rgba(242,242,240,.2)'},
+        btn:{display:'flex', justifyContent:'space-between', alignItems:'center', height:52, padding:'0 16px', fontWeight:600, fontSize:13, textTransform:'uppercase', letterSpacing:'.02em', background: inv ? '#0A0A0A' : 'transparent', color:'#F2F2F0', border: inv ? '1px solid #0A0A0A' : '1px solid rgba(242,242,240,.4)'} };
+    });
+    return { t, lang, setLang: this.setLang, plans, emptyOnce: false,
+      setMonthly: () => this.setState({mode:'m'}), setOnce: () => this.setState({mode:'o'}),
+      monthlyStyle: seg(mode==='m'), onceStyle: seg(mode==='o'),
+      always: t.alwaysItems.map((v,i)=>({v,n:'0'+(i+1)})),
+      faqs: t.faqs.map(([q,a],i) => ({q, a, n:'0'+(i+1), open:this.state.open===i, icon:this.state.open===i?'−':'+', toggle:()=>this.setState(s=>({open:s.open===i?-1:i}))})) };
+  }
+}
+</script>
+<script type="module" src="/js/mariela-widget.js"></script>
+</body>
+</html>

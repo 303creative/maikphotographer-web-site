@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Services — Content & Growth Systems | The303 Miami</title>
+<meta name="description" content="Productized content and growth systems: Content Engine, Luxury Content, Website + AI (Mariela). Miami, bilingual EN/ES.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://www.maikphotographer.com/Services.dc.html">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" href="/favicon.ico">
+<meta property="og:title" content="Services — Content & Growth Systems | The303 Miami">
+<meta property="og:description" content="Productized content and growth systems: Content Engine, Luxury Content, Website + AI (Mariela). Miami, bilingual EN/ES.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.maikphotographer.com/Services.dc.html">
+<meta property="og:image" content="https://www.maikphotographer.com/assets/backgrounds/31_fondo_ia1_oscuro_principal.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,300..800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;background:#0A0A0A;color:#F2F2F0;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+a{color:#F2F2F0;text-decoration:none}
+a:hover{color:#FF5A36}
+input{font:inherit}
+input::placeholder{color:#5C5C5A}
+</style>
+</helmet>
+<div style="font-family:'Archivo',sans-serif;background:#0A0A0A;color:#F2F2F0;min-height:100vh;position:relative;overflow-x:hidden;padding-top:73px;padding-bottom:84px;container-type:inline-size">
+<div style="position:absolute;inset:0;pointer-events:none;z-index:0;margin:0 clamp(16px,3vw,48px);background-image:linear-gradient(90deg,rgba(242,242,240,.06) 1px,transparent 1px);background-size:25% 100%;border-right:1px solid rgba(242,242,240,.06)"></div>
+<dc-import name="SiteHeader" lang="{{ lang }}" on-lang="{{ setLang }}" active="services" hint-size="100%,73px"></dc-import>
+
+<section data-screen-label="Services hero" style="position:relative;z-index:1;padding:32px clamp(16px,3vw,48px) 0">
+  <div style="display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A87;margin-bottom:28px"><span>[00] — {{ t.eyebrow }}</span><span>05 {{ t.systems }}</span></div>
+  <h1 style="margin:0;font-weight:600;font-stretch:112%;font-size:clamp(46px,14cqw,176px);line-height:.86;letter-spacing:-.045em;text-transform:uppercase">{{ t.h1a }}<br><span style="color:#5C5C5A">{{ t.h1b }}</span></h1>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:24px 64px;margin-top:32px;padding-top:20px;border-top:1px solid rgba(242,242,240,.14)">
+    <p style="margin:0;font-size:17px;line-height:1.45;letter-spacing:-.01em;text-wrap:pretty;max-width:560px">{{ t.intro }}</p>
+    <div style="display:flex;flex-direction:column;border-top:1px solid rgba(242,242,240,.14)">
+      <sc-for list="{{ jump }}" as="j" hint-placeholder-count="5">
+        <a href="{{ j.href }}" style="display:grid;grid-template-columns:44px 1fr auto;align-items:center;min-height:48px;border-bottom:1px solid rgba(242,242,240,.14);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase">
+          <span style="color:#8A8A87">{{ j.n }}</span><span>{{ j.name }}</span><span>↓</span>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<sc-for list="{{ systems }}" as="s" hint-placeholder-count="5">
+  <section id="{{ s.id }}" data-screen-label="System" style="position:relative;z-index:1;margin-top:88px;border-top:1px solid rgba(242,242,240,.3)">
+    <div style="display:grid;grid-template-columns:auto 1fr;align-items:end;gap:16px;padding:0 clamp(16px,3vw,48px)">
+      <span style="font-weight:300;font-size:clamp(120px,36cqw,340px);line-height:.78;letter-spacing:-.06em;margin-top:-.04em">{{ s.n }}</span>
+      <div style="padding-bottom:16px;display:flex;flex-direction:column;gap:8px">
+        <span style="{{ s.tagStyle }}">{{ s.tag }}</span>
+        <h2 style="margin:0;font-weight:600;font-stretch:112%;font-size:clamp(24px,6.5cqw,72px);line-height:.92;letter-spacing:-.035em;text-transform:uppercase">{{ s.name }}</h2>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:0;border-top:1px solid rgba(242,242,240,.14);margin-top:8px">
+      <div style="padding:24px clamp(16px,3vw,48px);display:flex;flex-direction:column;gap:20px;border-right:1px solid rgba(242,242,240,.14)">
+        <sc-if value="{{ s.hasCollage }}" hint-placeholder-val="{{ false }}">
+          <div style="position:relative;aspect-ratio:16/10;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:1px;background:rgba(242,242,240,.3);border:1px solid rgba(242,242,240,.3)">
+            <sc-for list="{{ s.collage }}" as="c" hint-placeholder-count="5">
+              <div style="{{ c.cell }}">
+                <img src="{{ c.src }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.05) contrast(1.03)">
+                <span style="position:absolute;left:6px;bottom:6px;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.06em;background:rgba(10,10,10,.7);padding:3px 5px">{{ c.n }}</span>
+              </div>
+            </sc-for>
+            <span style="position:absolute;left:10px;top:10px;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;background:rgba(10,10,10,.7);padding:4px 6px">FIG.{{ s.n }} · SESSION 01 / 05</span>
+          </div>
+        </sc-if>
+        <sc-if value="{{ s.single }}" hint-placeholder-val="{{ true }}">
+        <div style="position:relative;aspect-ratio:16/10;overflow:hidden;background:#161616">
+          <img src="{{ s.img }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:saturate(1.05) contrast(1.03)">
+          <span style="position:absolute;left:10px;top:10px;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;background:rgba(10,10,10,.7);padding:4px 6px">FIG.{{ s.n }}</span>
+        </div>
+        </sc-if>
+        <p style="margin:0;font-size:17px;line-height:1.45;letter-spacing:-.01em;text-wrap:pretty">{{ s.desc }}</p>
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#8A8A87;margin-bottom:8px">{{ t.forWho }}</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:1.6;color:#B4B4B0">{{ s.who }}</div>
+        </div>
+      </div>
+      <div style="padding:24px clamp(16px,3vw,48px);display:flex;flex-direction:column;gap:24px">
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#8A8A87;margin-bottom:8px">{{ t.includes }}</div>
+          <ul style="list-style:none;margin:0;padding:0;border-top:1px solid rgba(242,242,240,.14)">
+            <sc-for list="{{ s.items }}" as="it" hint-placeholder-count="4">
+              <li style="display:grid;grid-template-columns:28px 1fr;padding:12px 0;border-bottom:1px solid rgba(242,242,240,.14);font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.04em"><span style="color:#8A8A87">{{ it.n }}</span><span>{{ it.v }}</span></li>
+            </sc-for>
+          </ul>
+        </div>
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#8A8A87;margin-bottom:8px">{{ t.deliver }}</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <sc-for list="{{ s.deliv }}" as="d" hint-placeholder-count="3">
+              <span style="border:1px solid rgba(242,242,240,.3);padding:8px 10px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase">{{ d }}</span>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;padding-top:16px;border-top:1px solid rgba(242,242,240,.3)">
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#8A8A87;margin-bottom:6px">{{ t.investment }}</div>
+            <div style="font-weight:500;font-stretch:108%;font-size:clamp(36px,10cqw,72px);line-height:.9;letter-spacing:-.04em">{{ s.price }}</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8A8A87;margin-top:6px">{{ s.per }}</div>
+          </div>
+          <a href="Contact.dc.html#audit" style="display:flex;align-items:center;gap:10px;height:52px;padding:0 18px;background:#F2F2F0;color:#0A0A0A;font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.02em" style-hover="background:#FF5A36;color:#0A0A0A">{{ t.cta }} ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</sc-for>
+
+<section data-screen-label="Merged pages note" style="position:relative;z-index:1;margin-top:88px;padding:0 clamp(16px,3vw,48px)">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));border-top:1px solid rgba(242,242,240,.3);border-bottom:1px solid rgba(242,242,240,.3)">
+    <a href="Work.dc.html" style="display:flex;justify-content:space-between;align-items:center;min-height:88px;padding:0 16px 0 0;border-right:1px solid rgba(242,242,240,.14)">
+      <span style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8A8A87">[→]</span><span style="font-weight:600;font-stretch:112%;font-size:26px;text-transform:uppercase;letter-spacing:-.03em">{{ t.seeWork }}</span></span><span style="font-size:24px">↗</span>
+    </a>
+    <a href="Pricing.dc.html" style="display:flex;justify-content:space-between;align-items:center;min-height:88px;padding:0 0 0 16px">
+      <span style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8A8A87">[→]</span><span style="font-weight:600;font-stretch:112%;font-size:26px;text-transform:uppercase;letter-spacing:-.03em">{{ t.seePricing }}</span></span><span style="font-size:24px">↗</span>
+    </a>
+  </div>
+</section>
+
+<dc-import name="AuditBlock" lang="{{ lang }}" index="06" source="services" style="margin-top:88px" hint-size="100%,900px"></dc-import>
+<dc-import name="SiteFooter" lang="{{ lang }}" audit-href="#audit" hint-size="100%,600px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;es&quot;],&quot;default&quot;:&quot;en&quot;,&quot;tsType&quot;:&quot;'en'|'es'&quot;}}">
+const P = 'https://www.maikphotographer.com/assets/portfolio/39_portafolio_';
+const T = {
+en:{eyebrow:'Services',systems:'systems',h1a:'Five systems.',h1b:'One goal: clients.',
+intro:'Photo and video are inputs. What we build are systems that turn content into listings, bookings and sales for Miami brands. Pick the one that fits your stage, or start with a free audit and we recommend it.',
+forWho:'Built for',includes:'What it includes',deliver:'Deliverables',investment:'Investment',cta:'Free audit',seeWork:'See the work',seePricing:'Compare pricing',
+sys:[
+['personal','Personal','Editorial session for creators, models & individuals. Cinematic direction and a visual identity that stands out.','Creators, models, founders and professionals who need a personal brand image. Replaces the former Sessions page.',['1 editorial session','Pose direction included','Edited photos + BTS reel','Online gallery in 48h'],['Edited photos','BTS reel','Online gallery'],'$350','starting from',''],
+['engine','Content Engine','Done-for-you monthly content for brands and local businesses — a full month of photos, Reels and a posting calendar, produced in 2 sessions and delivered ready to publish.','Restaurants, salons, gyms and local businesses that need to post consistently without a content team.',['2 sessions per month','Full month of content (photos + reels)','Posting calendar included','Ready-to-post delivery'],['Photos','Reels','Posting calendar'],'$1,500','/ month','Most popular'],
+['luxury','Luxury Content System','For real estate, hospitality and beauty. Shoots + Reels + creative direction + monthly distribution, built to drive listings, bookings and sales.','Realtors, developers, hotels, restaurants and beauty brands in Brickell, Coral Gables and Miami Beach.',['Monthly shoot days (photo + video)','Vertical Reels + hero content','Creative & art direction','Distribution & posting strategy'],['Hero video','Vertical Reels','Listing photos','Distribution plan'],'$3,000+','/ month',''],
+['web-ai','Website + AI System','Conversion website + automations + booking system + a complete virtual assistant (Mariela) that answers, qualifies and books for you.','Businesses losing leads to slow replies, or running on a website that does not convert.',['Conversion website','Automations & online booking','Mariela AI assistant','Setup + monthly plan'],['Website','Booking system','Mariela AI'],'$2,500+','+ $249/mo',''],
+['ads','Ads & Prospecting','Paid campaigns and outbound prospecting that put your content in front of buyers, guests and clients — and route every lead into your booking system.','Brands that already have content and need a steady flow of qualified leads.',['Meta / Instagram ad campaigns','Audience & creative testing','Outbound prospecting system','Monthly lead report'],['Ad campaigns','Lead pipeline','Monthly report'],'[ TBD ]','price pending','New']]},
+es:{eyebrow:'Servicios',systems:'sistemas',h1a:'Cinco sistemas.',h1b:'Un objetivo: clientes.',
+intro:'La foto y el video son insumos. Lo que construimos son sistemas que convierten contenido en listings, reservas y ventas para marcas de Miami. Elige el que encaje con tu etapa, o empieza con una auditoría gratis y te lo recomendamos.',
+forWho:'Pensado para',includes:'Qué incluye',deliver:'Entregables',investment:'Inversión',cta:'Auditoría gratis',seeWork:'Ver el trabajo',seePricing:'Comparar precios',
+sys:[
+['personal','Personal','Sesión editorial para creadores, modelos y particulares. Dirección cinematográfica y una identidad visual que destaca.','Creadores, modelos, fundadores y profesionales que necesitan imagen de marca personal. Sustituye a la antigua página Sessions.',['1 sesión editorial','Dirección de poses incluida','Fotos editadas + reel BTS','Galería online en 48h'],['Fotos editadas','Reel BTS','Galería online'],'$350','desde',''],
+['engine','Content Engine','Contenido mensual hecho por nosotros para marcas y negocios locales: un mes completo de fotos, Reels y calendario de publicación, producido en 2 sesiones y entregado listo para publicar.','Restaurantes, salones, gimnasios y negocios locales que necesitan publicar con constancia sin un equipo de contenido.',['2 sesiones al mes','Un mes de contenido (fotos + reels)','Calendario de publicación incluido','Entrega lista para publicar'],['Fotos','Reels','Calendario'],'$1,500','/ mes','Más popular'],
+['luxury','Luxury Content System','Para real estate, hospitality y beauty. Sesiones + Reels + dirección creativa + distribución mensual, pensado para generar listings, reservas y ventas.','Realtors, desarrolladores, hoteles, restaurantes y marcas de belleza en Brickell, Coral Gables y Miami Beach.',['Días de rodaje mensuales (foto + video)','Reels verticales + contenido hero','Dirección creativa y de arte','Estrategia de distribución y publicación'],['Video hero','Reels verticales','Fotos de listing','Plan de distribución'],'$3,000+','/ mes',''],
+['web-ai','Website + AI System','Web de conversión + automatizaciones + sistema de reservas + una asistente virtual completa (Mariela) que responde, califica y agenda por ti.','Negocios que pierden leads por responder tarde, o con una web que no convierte.',['Web de conversión','Automatizaciones y reservas online','Asistente IA Mariela','Setup + plan mensual'],['Web','Sistema de reservas','Mariela IA'],'$2,500+','+ $249/mes',''],
+['ads','Ads & Prospección','Campañas de pago y prospección activa que ponen tu contenido delante de compradores, huéspedes y clientes, y llevan cada lead a tu sistema de reservas.','Marcas que ya tienen contenido y necesitan un flujo constante de leads cualificados.',['Campañas Meta / Instagram','Pruebas de audiencia y creatividades','Sistema de prospección activa','Informe mensual de leads'],['Campañas','Pipeline de leads','Informe mensual'],'[ TBD ]','precio pendiente','Nuevo']]}
+};
+const IMG = [2,3,1,6,9];
+class Component extends DCLogic {
+  state = { lang: (()=>{try{return localStorage.getItem('t303-lang')}catch(e){return null}})() };
+  setLang = l => { try{localStorage.setItem('t303-lang',l)}catch(e){} this.setState({lang:l}); };
+  renderVals() {
+    const lang = this.state.lang ?? this.props.lang ?? 'en';
+    const t = T[lang];
+    return {
+      t, lang, setLang: this.setLang,
+      jump: t.sys.map((s,i) => ({n:'0'+(i+1), name:s[1], href:'#'+s[0]})),
+      systems: t.sys.map(([id,name,desc,who,items,deliv,price,per,tag],i) => ({
+        id, n:'0'+(i+1), name, desc, who, deliv, price, per, tag: tag || (lang==='es'?'Sistema':'System'),
+        tagStyle:{fontFamily:"'IBM Plex Mono',monospace", fontSize:9, letterSpacing:'.1em', textTransform:'uppercase', color: tag ? '#FF5A36' : '#8A8A87'},
+        img: i === 0 ? 'uploads/DSC08710.jpg' : i === 2 ? 'uploads/DSC08858_2026-09-23-19-35-20-671_474250e3_Generative_Expand.jpg' : i === 3 ? 'uploads/hf_20260928_020101_80843a62-663d-4083-b750-c32705f8eec1.png' : i === 4 ? 'uploads/composite.png' : P + IMG[i] + '.jpg',
+        items: items.map((v,k) => ({v, n:'0'+(k+1)})),
+        hasCollage: i === 1, single: i !== 1,
+        collage: i === 1 ? [12,6,7,9,13].map((f,k) => ({src:`uploads/sesion%20bri%201%20Mesa%20de%20trabajo%20${f}.jpg`, n:'0'+(k+1),
+          cell:{position:'relative', overflow:'hidden', background:'#161616', gridColumn: k===0 ? 'span 2' : 'span 1', gridRow: k===0 ? 'span 2' : 'span 1'}})) : []
+      }))
+    };
+  }
+}
+</script>
+<script type="module" src="/js/mariela-widget.js"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Journal | The303 Miami</title>
+<meta name="description" content="Content, marketing and growth notes from The303, Miami.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://www.maikphotographer.com/Journal%20Article.dc.html">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" href="/favicon.ico">
+<meta property="og:title" content="Journal | The303 Miami">
+<meta property="og:description" content="Content, marketing and growth notes from The303, Miami.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.maikphotographer.com/Journal%20Article.dc.html">
+<meta property="og:image" content="https://www.maikphotographer.com/assets/backgrounds/31_fondo_ia1_oscuro_principal.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,300..800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;background:#0A0A0A;color:#F2F2F0;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+a{color:#F2F2F0;text-decoration:none}
+a:hover{color:#FF5A36}
+input{font:inherit}
+</style>
+</helmet>
+<div style="font-family:'Archivo',sans-serif;background:#0A0A0A;color:#F2F2F0;min-height:100vh;position:relative;overflow-x:hidden;padding-top:73px;padding-bottom:84px;container-type:inline-size">
+<div style="position:absolute;inset:0;pointer-events:none;z-index:0;margin:0 clamp(16px,3vw,48px);background-image:linear-gradient(90deg,rgba(242,242,240,.06) 1px,transparent 1px);background-size:25% 100%;border-right:1px solid rgba(242,242,240,.06)"></div>
+<dc-import name="SiteHeader" lang="{{ lang }}" on-lang="{{ setLang }}" active="journal" hint-size="100%,73px"></dc-import>
+
+<article data-screen-label="Article" style="position:relative;z-index:1">
+  <header style="padding:24px clamp(16px,3vw,48px) 0">
+    <a href="Journal.dc.html" style="display:inline-flex;align-items:center;gap:8px;height:44px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A87">← Journal</a>
+    <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A87;margin:16px 0 24px"><span>[01] {{ t.cat }}</span><span>{{ t.meta }}</span></div>
+    <h1 style="margin:0;font-weight:600;font-stretch:112%;font-size:clamp(38px,11cqw,140px);line-height:.88;letter-spacing:-.04em;text-transform:uppercase;max-width:1200px;text-wrap:balance">{{ t.title }}</h1>
+    <p style="margin:28px 0 0;font-size:19px;line-height:1.45;letter-spacing:-.01em;max-width:680px;text-wrap:pretty">{{ t.lead }}</p>
+    <div style="display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;margin-top:28px;padding:12px 0;border-top:1px solid rgba(242,242,240,.14);border-bottom:1px solid rgba(242,242,240,.14);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase">
+      <span>Maikel Marshall — The303</span><span style="color:#8A8A87">EN / ES</span>
+    </div>
+  </header>
+  <figure style="margin:32px 0 0;padding:0 clamp(16px,3vw,48px)">
+    <div style="position:relative;aspect-ratio:16/10;overflow:hidden;background:#161616">
+      <img src="https://www.maikphotographer.com/assets/portfolio/39_portafolio_1.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.05) contrast(1.03)">
+    </div>
+    <figcaption style="display:flex;justify-content:space-between;padding:8px 0;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A87"><span>FIG.01</span><span>The303 · Miami</span></figcaption>
+  </figure>
+
+  <div style="padding:40px clamp(16px,3vw,48px) 0;display:flex;flex-direction:column;gap:48px;max-width:820px">
+    <sc-for list="{{ sections }}" as="s" hint-placeholder-count="4">
+      <section style="display:grid;grid-template-columns:44px minmax(0,1fr);gap:8px;border-top:1px solid rgba(242,242,240,.3);padding-top:16px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8A8A87;padding-top:6px">{{ s.n }}</span>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <h2 style="margin:0;font-weight:600;font-stretch:108%;font-size:clamp(24px,6cqw,40px);line-height:1;letter-spacing:-.025em;text-transform:uppercase">{{ s.h }}</h2>
+          <p style="margin:0;font-size:17px;line-height:1.6;color:#D4D4D0;text-wrap:pretty">{{ s.p }}</p>
+        </div>
+      </section>
+    </sc-for>
+    <blockquote style="margin:0;padding:24px 0;border-top:1px solid #F2F2F0;border-bottom:1px solid #F2F2F0">
+      <div style="font-weight:600;font-stretch:112%;font-size:clamp(28px,8cqw,56px);line-height:.95;letter-spacing:-.035em;text-transform:uppercase">{{ t.quote }}</div>
+    </blockquote>
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#5C5C5A">{{ t.note }}</div>
+  </div>
+</article>
+
+<section data-screen-label="Next" style="position:relative;z-index:1;padding:64px clamp(16px,3vw,48px) 0">
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A87;margin-bottom:12px">[→] {{ t.next }}</div>
+  <a href="Journal.dc.html" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;border-top:1px solid rgba(242,242,240,.3);border-bottom:1px solid rgba(242,242,240,.3)">
+    <span style="font-weight:500;font-stretch:104%;font-size:clamp(20px,5.5cqw,36px);line-height:1.05;text-transform:uppercase;letter-spacing:-.02em">{{ t.nextTitle }}</span><span style="font-size:24px">↗</span>
+  </a>
+</section>
+
+<dc-import name="AuditBlock" lang="{{ lang }}" index="02" source="journal-article" style="margin-top:88px" hint-size="100%,900px"></dc-import>
+<dc-import name="SiteFooter" lang="{{ lang }}" audit-href="#audit" hint-size="100%,600px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;es&quot;],&quot;default&quot;:&quot;en&quot;,&quot;tsType&quot;:&quot;'en'|'es'&quot;}}">
+const T = {
+en:{cat:'Brand content',meta:'6 min · 2026',title:'Brand content that sells: what Miami businesses get wrong',
+lead:'Most brand shoots are planned around how the feed should look. The ones that book clients are planned around what the customer needs to see before they buy.',
+s:[['Start from the sale','Before the shoot, define the one action the content should drive: a booking, a showing, a DM. Every shot on the list should support that action.'],
+['Shoot for the format','Vertical Reels, carousel covers and listing photos need different framing. Plan them on the same day so one production covers a full month.'],
+['Show the offer, not just the mood','Mood builds the brand; clear shots of the product, the room or the service close the sale. A good set has both.'],
+['Distribute and measure','Content that is not posted on a calendar does not work. Track which pieces brought messages and bookings, and shoot more of those next month.']],
+quote:'Pretty is the minimum. The brief is bookings.',note:'[ Article template — replace with final copy ]',next:'Next entry',nextTitle:'Listing content for Miami real estate: photo, video and Reels'},
+es:{cat:'Contenido de marca',meta:'6 min · 2026',title:'Contenido de marca que vende: en qué se equivocan los negocios de Miami',
+lead:'La mayoría de sesiones de marca se planifican pensando en cómo debe verse el feed. Las que consiguen clientes se planifican pensando en lo que el cliente necesita ver antes de comprar.',
+s:[['Empieza por la venta','Antes de la sesión, define la acción que debe provocar el contenido: una reserva, una visita, un DM. Cada toma del shot list debe apoyar esa acción.'],
+['Graba para el formato','Reels verticales, portadas de carrusel y fotos de listing necesitan encuadres distintos. Planifícalos el mismo día para que una producción cubra un mes entero.'],
+['Muestra la oferta, no solo el ambiente','El ambiente construye marca; las tomas claras del producto, el espacio o el servicio cierran la venta. Un buen set tiene las dos cosas.'],
+['Distribuye y mide','El contenido que no se publica con calendario no funciona. Mide qué piezas trajeron mensajes y reservas, y graba más de esas el mes siguiente.']],
+quote:'Bonito es lo mínimo. El objetivo son reservas.',note:'[ Plantilla de artículo — sustituir por el texto final ]',next:'Siguiente entrada',nextTitle:'Contenido para real estate en Miami: foto, video y Reels'}
+};
+class Component extends DCLogic {
+  state = { lang: (()=>{try{return localStorage.getItem('t303-lang')}catch(e){return null}})() };
+  setLang = l => { try{localStorage.setItem('t303-lang',l)}catch(e){} this.setState({lang:l}); };
+  renderVals() {
+    const lang = this.state.lang ?? this.props.lang ?? 'en';
+    const t = T[lang];
+    return { t, lang, setLang: this.setLang, sections: t.s.map(([h,p],i)=>({h,p,n:'0'+(i+1)})) };
+  }
+}
+</script>
+<script type="module" src="/js/mariela-widget.js"></script>
+</body>
+</html>

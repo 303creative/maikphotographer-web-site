@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact & Free Audit | The303 Miami</title>
+<meta name="description" content="Get a free content audit or book a 30-min call. Miami · bilingual EN/ES · WhatsApp.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://www.maikphotographer.com/Contact.dc.html">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" href="/favicon.ico">
+<meta property="og:title" content="Contact & Free Audit | The303 Miami">
+<meta property="og:description" content="Get a free content audit or book a 30-min call. Miami · bilingual EN/ES · WhatsApp.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.maikphotographer.com/Contact.dc.html">
+<meta property="og:image" content="https://www.maikphotographer.com/assets/backgrounds/31_fondo_ia1_oscuro_principal.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,300..800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;background:#0A0A0A;color:#F2F2F0;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+a{color:#F2F2F0;text-decoration:none}
+a:hover{color:#FF5A36}
+input{font:inherit}
+input::placeholder{color:#5C5C5A}
+</style>
+</helmet>
+<div style="font-family:'Archivo',sans-serif;background:#0A0A0A;color:#F2F2F0;min-height:100vh;position:relative;overflow-x:hidden;padding-top:73px;padding-bottom:84px;container-type:inline-size">
+<div style="position:absolute;inset:0;pointer-events:none;z-index:0;margin:0 clamp(16px,3vw,48px);background-image:linear-gradient(90deg,rgba(242,242,240,.06) 1px,transparent 1px);background-size:25% 100%;border-right:1px solid rgba(242,242,240,.06)"></div>
+<dc-import name="SiteHeader" lang="{{ lang }}" on-lang="{{ setLang }}" active="contact" hint-size="100%,73px"></dc-import>
+
+<section data-screen-label="Contact hero" style="position:relative;z-index:1;padding:32px clamp(16px,3vw,48px) 48px">
+  <div style="display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A87;margin-bottom:28px"><span>[00] — {{ t.eyebrow }}</span><span>25.7617° N · 80.1918° W</span></div>
+  <h1 style="margin:0;font-weight:600;font-stretch:112%;font-size:clamp(46px,14cqw,176px);line-height:.86;letter-spacing:-.045em;text-transform:uppercase">{{ t.h1a }}<br><span style="color:#5C5C5A">{{ t.h1b }}</span> ↗</h1>
+</section>
+
+<dc-import name="AuditBlock" lang="{{ lang }}" index="01" source="contact" endpoint="{{ endpoint }}" hint-size="100%,900px"></dc-import>
+
+<section data-screen-label="Book a call" style="position:relative;z-index:1;padding:88px clamp(16px,3vw,48px) 0">
+  <div style="display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A87;margin-bottom:20px"><span>[02] {{ t.call }} •</span><span>30 MIN</span></div>
+  <h2 style="margin:0;font-weight:600;font-stretch:112%;font-size:clamp(40px,12cqw,150px);line-height:.86;letter-spacing:-.045em;text-transform:uppercase">{{ t.bookA }}<br><span style="color:#5C5C5A">{{ t.bookB }}</span></h2>
+  <p style="margin:20px 0 20px;font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:1.6;color:#B4B4B0;max-width:520px">{{ t.bookBody }}</p>
+  <sc-if value="{{ hasCal }}" hint-placeholder-val="{{ false }}">
+    <iframe src="{{ calendarUrl }}" title="Calendar" style="width:100%;height:680px;border:1px solid rgba(242,242,240,.2);background:#F2F2F0"></iframe>
+  </sc-if>
+  <sc-if value="{{ noCal }}" hint-placeholder-val="{{ true }}">
+    <div style="border:1px dashed rgba(242,242,240,.25);height:420px;display:grid;grid-template-rows:auto 1fr">
+      <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border-bottom:1px solid rgba(242,242,240,.14)">
+        <sc-for list="{{ days }}" as="d" hint-placeholder-count="7">
+          <div style="padding:10px 0;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:9px;color:#5C5C5A">{{ d }}</div>
+        </sc-for>
+      </div>
+      <div id="cal-embed" style="width:100%;min-height:560px"></div>
+    </div>
+  </sc-if>
+</section>
+
+<section data-screen-label="Channels" style="position:relative;z-index:1;padding:88px clamp(16px,3vw,48px) 0">
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A87;margin-bottom:20px">[03] {{ t.channels }} •</div>
+  <div style="border-top:1px solid rgba(242,242,240,.3)">
+    <sc-for list="{{ channels }}" as="c" hint-placeholder-count="3">
+      <a href="{{ c.href }}" style="display:grid;grid-template-columns:48px 1fr auto;align-items:center;min-height:76px;border-bottom:1px solid rgba(242,242,240,.3)">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8A8A87">[{{ c.n }}]</span>
+        <span style="display:flex;flex-direction:column;gap:3px;min-width:0"><span style="font-weight:600;font-stretch:108%;font-size:clamp(22px,6cqw,40px);text-transform:uppercase;letter-spacing:-.02em;line-height:1">{{ c.label }}</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8A8A87;overflow-wrap:anywhere">{{ c.value }}</span></span>
+        <span style="font-size:22px">↗</span>
+      </a>
+    </sc-for>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;margin-top:24px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#8A8A87;gap:12px">
+    <div>{{ t.based }}<br><span style="color:#F2F2F0">Miami, FL</span></div>
+    <div>{{ t.areas }}<br><span style="color:#F2F2F0">Brickell · Coral Gables</span></div>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" lang="{{ lang }}" audit-href="#audit" hint-size="100%,600px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;es&quot;],&quot;default&quot;:&quot;en&quot;,&quot;tsType&quot;:&quot;'en'|'es'&quot;},&quot;calendarUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;auditEndpoint&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const T = {
+en:{eyebrow:'Contact',h1a:"Let's create",h1b:'something.',call:'Call',bookA:'Book your',bookB:'call.',bookBody:'Pick a date directly on my calendar — 30 minutes to talk about your project, no commitment.',calendar:'[ Calendar embed — Calendly / Cal.com URL pending ]',channels:'Channels',based:'Based in',areas:'Areas',days:['MON','TUE','WED','THU','FRI','SAT','SUN']},
+es:{eyebrow:'Contacto',h1a:'Creemos',h1b:'algo.',call:'Llamada',bookA:'Reserva tu',bookB:'llamada.',bookBody:'Elige una fecha en mi calendario: 30 minutos para hablar de tu proyecto, sin compromiso.',calendar:'[ Calendario — URL de Calendly / Cal.com pendiente ]',channels:'Canales',based:'Con base en',areas:'Zonas',days:['LUN','MAR','MIÉ','JUE','VIE','SÁB','DOM']}
+};
+class Component extends DCLogic {
+  state = { lang: (()=>{try{return localStorage.getItem('t303-lang')}catch(e){return null}})() };
+  setLang = l => { try{localStorage.setItem('t303-lang',l)}catch(e){} this.setState({lang:l}); };
+  renderVals() {
+    const lang = this.state.lang ?? this.props.lang ?? 'en';
+    const t = T[lang]; const cal = this.props.calendarUrl || '';
+    return { t, lang, setLang: this.setLang, days: t.days, endpoint: this.props.auditEndpoint || '',
+      calendarUrl: cal, hasCal: !!cal, noCal: !cal,
+      channels: [['WhatsApp','+1 786 332 9815','https://wa.me/17863329815'],['Email','maikelmarshall07@gmail.com','mailto:maikelmarshall07@gmail.com'],['Instagram','@maik_photographer','https://www.instagram.com/maik_photographer/']].map(([label,value,href],i)=>({label,value,href,n:'0'+(i+1)})) };
+  }
+}
+</script>
+<script>(function(C,A,L){let p=function(a,ar){a.q.push(ar)};let d=C.document;C.Cal=C.Cal||function(){let cal=C.Cal;let ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement('script')).src=A;cal.loaded=true}if(ar[0]===L){const api=function(){p(api,arguments)};const namespace=ar[1];api.q=api.q||[];if(typeof namespace==='string'){cal.ns[namespace]=cal.ns[namespace]||api;p(cal.ns[namespace],ar);p(cal,['initNamespace',namespace])}else p(cal,ar);return}p(cal,ar)}})(window,'https://app.cal.com/embed/embed.js','init');Cal('init',{origin:'https://cal.com'});Cal('inline',{elementOrSelector:'#cal-embed',calLink:'the303-marketing-kmfxzs/30min',layout:'month_view'});</script>
+<script type="module" src="/js/mariela-widget.js"></script>
+</body>
+</html>
