@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<section id="audit" style="position:relative;z-index:1;padding:48px clamp(16px,3vw,48px);background:#F2F2F0;color:#0A0A0A;font-family:'Archivo',sans-serif;container-type:inline-size">
+  <div style="display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:24px"><span>[{{ idx }}] {{ t.free }} •</span><span>$0.00</span></div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:32px 64px;align-items:start">
+    <div style="min-width:0;container-type:inline-size">
+      <h2 style="margin:0;font-weight:700;font-stretch:115%;font-size:clamp(40px,13.5cqw,120px);line-height:.86;letter-spacing:-.05em;text-transform:uppercase;overflow-wrap:break-word">{{ t.a }}<br>{{ t.b }}</h2><div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:28px;border-top:1px solid #0A0A0A;border-bottom:1px solid #0A0A0A">
+        <sc-for list="{{ steps }}" as="a" hint-placeholder-count="3">
+          <div style="padding:14px 10px 14px 0;border-right:1px solid rgba(10,10,10,.2)">
+            <div style="font-weight:500;font-size:34px;line-height:1;letter-spacing:-.04em">{{ a.n }}</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.06em;text-transform:uppercase;margin-top:8px;line-height:1.4">{{ a.l }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:1.6;margin:20px 0 0;max-width:520px;text-wrap:pretty">{{ t.body }}</p>
+    </div>
+    <div>
+      <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ submit }}" style="display:flex;flex-direction:column;border-top:1px solid #0A0A0A">
+          <label style="display:grid;grid-template-columns:34px 1fr;align-items:center;border-bottom:1px solid #0A0A0A">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px">01</span>
+            <input name="instagram" required="" placeholder="{{ t.f1 }}" style="background:transparent;border:0;outline:none;color:#0A0A0A;font-size:17px;height:64px;width:100%">
+          </label>
+          <label style="display:grid;grid-template-columns:34px 1fr;align-items:center;border-bottom:1px solid #0A0A0A">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px">02</span>
+            <input name="industry" placeholder="{{ t.f2 }}" style="background:transparent;border:0;outline:none;color:#0A0A0A;font-size:17px;height:64px;width:100%">
+          </label>
+          <label style="display:grid;grid-template-columns:34px 1fr;align-items:center;border-bottom:1px solid #0A0A0A">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px">03</span>
+            <input name="email" required="" type="email" placeholder="{{ t.f3 }}" style="background:transparent;border:0;outline:none;color:#0A0A0A;font-size:17px;height:64px;width:100%">
+          </label>
+          <button type="submit" style="margin-top:20px;display:flex;justify-content:space-between;align-items:center;height:60px;padding:0 18px;background:#0A0A0A;color:#F2F2F0;border:0;font-family:'Archivo',sans-serif;font-weight:600;font-size:14px;letter-spacing:.02em;text-transform:uppercase;cursor:pointer" style-hover="background:#FF5A36;color:#0A0A0A"><span>{{ btnLabel }}</span><span style="font-size:18px">↗</span></button>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.06em">
+            <span>{{ t.note }}</span>
+            <span style="width:80px;height:22px;background:repeating-linear-gradient(90deg,#0A0A0A 0 2px,transparent 2px 3px,#0A0A0A 3px 4px,transparent 4px 7px)"></span>
+          </div>
+        </form>
+      </sc-if>
+      <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+        <div style="border:1px solid #0A0A0A;padding:24px;display:flex;flex-direction:column;gap:10px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase">STATUS: 200 OK</div>
+          <div style="font-weight:700;font-stretch:115%;font-size:40px;line-height:.9;text-transform:uppercase;letter-spacing:-.04em">{{ t.okA }}</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:1.6">{{ t.okB }}</div>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:900},&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;es&quot;],&quot;default&quot;:&quot;en&quot;,&quot;tsType&quot;:&quot;'en'|'es'&quot;},&quot;index&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;04&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;endpoint&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;/api/contact&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;source&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;web&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const T = {
+  en:{free:'Free',a:'Free',b:'content audit',body:"Send us your brand's Instagram or your listings and we'll show you 3 concrete ways to book more clients with better photo, video and content — no cost, no obligation. Bilingual EN/ES.",
+    steps:[['01','Send your IG or listings'],['02','We review it'],['03','You get 3 ways to book more']],
+    f1:'Instagram or listing URL',f2:'Industry — real estate, hospitality…',f3:'Email',btn:'Get my free audit',sending:'Sending…',note:'No cost, no obligation',okA:'Received.',okB:"We'll review your content and send your 3 recommendations shortly."},
+  es:{free:'Gratis',a:'Auditoría',b:'gratis',body:'Envíanos el Instagram de tu marca o tus listings y te mostramos 3 formas concretas de conseguir más clientes con mejor foto, video y contenido. Sin coste ni compromiso. Bilingüe EN/ES.',
+    steps:[['01','Envías tu IG o listings'],['02','Lo revisamos'],['03','Recibes 3 formas de vender más']],
+    f1:'Instagram o URL del listing',f2:'Sector — real estate, hospitality…',f3:'Email',btn:'Quiero mi auditoría',sending:'Enviando…',note:'Sin coste ni compromiso',okA:'Recibido.',okB:'Revisaremos tu contenido y te enviaremos tus 3 recomendaciones en breve.'}
+};
+class Component extends DCLogic {
+  state = { sent:false, sending:false };
+  submit = async e => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.target).entries());
+    data.lang = this.props.lang || 'en'; data.source = this.props.source || 'web';
+    const ep = this.props.endpoint;
+    this.setState({sending:true});
+    if (ep) { try { await fetch(ep, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data)}); } catch (err) {} }
+    this.setState({sent:true, sending:false});
+  };
+  renderVals() {
+    const t = T[this.props.lang || 'en'];
+    return { t, idx: this.props.index || '04', steps: t.steps.map(([n,l])=>({n,l})), notSent: !this.state.sent, sent: this.state.sent,
+      btnLabel: this.state.sending ? t.sending : t.btn, submit: this.submit };
+  }
+}
+</script>
+</body>
+</html>

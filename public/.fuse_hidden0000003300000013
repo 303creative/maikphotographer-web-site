@@ -3,19 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Titi &amp; Maddi — Creación de contenido | The303</title>
-<meta name="description" content="Titi y Maddi necesitaban una imagen de artistas a la altura de su música: contenido de sesión y detrás de cámaras que construyera su marca y alimentar">
+<title>Sculpt x Strength — Creación de contenido | The303</title>
+<meta name="description" content="Sculpt x Strength imparte clases de fuerza para mujeres. Necesitaba contenido que transmitiera la energía y la comunidad de sus sesiones para llenar c">
 <meta name="robots" content="index,follow">
-<link rel="canonical" href="https://www.maikphotographer.com/client-titi-maddi.dc.html">
+<link rel="canonical" href="https://www.maikphotographer.com/client-sculpt.dc.html">
 <meta name="theme-color" content="#0A0A0A">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png">
-<link rel="icon" type="image/png" sizes="512x512" href="/assets/brand/favicon-512.png">
-<link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
-<meta property="og:title" content="Titi &amp; Maddi — Creación de contenido | The303">
-<meta property="og:description" content="Titi y Maddi necesitaban una imagen de artistas a la altura de su música: contenido de sesión y detrás de cámaras que construyera su marca y alimentar">
+<link rel="icon" href="/favicon.ico">
+<meta property="og:title" content="Sculpt x Strength — Creación de contenido | The303">
+<meta property="og:description" content="Sculpt x Strength imparte clases de fuerza para mujeres. Necesitaba contenido que transmitiera la energía y la comunidad de sus sesiones para llenar c">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://www.maikphotographer.com/client-titi-maddi.dc.html">
-<meta property="og:image" content="https://www.maikphotographer.com/assets/work/titi-maddi/cover.jpg">
+<meta property="og:url" content="https://www.maikphotographer.com/client-sculpt.dc.html">
+<meta property="og:image" content="https://www.maikphotographer.com/assets/work/sculpt/cover.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <script src="./support.js"></script>
 </head>
@@ -42,16 +40,16 @@ a:hover{color:#FF5A36}
 
 <section data-screen-label="00 Portada" style="position:relative;z-index:1;padding:32px clamp(16px,3vw,48px) 0">
   <div style="display:flex;justify-content:space-between;gap:12px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A87;margin-bottom:28px"><span>[00] — Caso / Creación de contenido</span><span>2026</span></div>
-  <h1 style="margin:0;font-weight:600;font-stretch:112%;font-size:clamp(46px,14cqw,176px);line-height:.86;letter-spacing:-.045em;text-transform:uppercase">Titi &amp;<br><span style="color:#5C5C5A">Maddi.</span></h1>
-  <div style="margin-top:20px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#FF5A36">Artistas urbanos · Sesión + video</div>
+  <h1 style="margin:0;font-weight:600;font-stretch:112%;font-size:clamp(46px,14cqw,176px);line-height:.86;letter-spacing:-.045em;text-transform:uppercase">Sculpt x<br><span style="color:#5C5C5A">Strength.</span></h1>
+  <div style="margin-top:20px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#FF5A36">Fitness · Contenido de clase</div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(50%,160px),1fr));margin-top:28px;border-top:1px solid rgba(242,242,240,.2)">
-    <div style="padding:12px 12px 14px 0;border-bottom:1px solid rgba(242,242,240,.14)"><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A87">Sector</div><div style="margin-top:6px;font-size:15px;font-weight:500">Música / Artistas</div></div>
+    <div style="padding:12px 12px 14px 0;border-bottom:1px solid rgba(242,242,240,.14)"><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A87">Sector</div><div style="margin-top:6px;font-size:15px;font-weight:500">Fitness / Wellness</div></div>
     <div style="padding:12px 12px 14px 0;border-bottom:1px solid rgba(242,242,240,.14)"><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A87">Ciudad</div><div style="margin-top:6px;font-size:15px;font-weight:500">Miami</div></div>
     <div style="padding:12px 12px 14px 0;border-bottom:1px solid rgba(242,242,240,.14)"><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A87">Servicio</div><div style="margin-top:6px;font-size:15px;font-weight:500">Creación de contenido</div></div>
-    <div style="padding:12px 12px 14px 0;border-bottom:1px solid rgba(242,242,240,.14)"><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A87">Formato</div><div style="margin-top:6px;font-size:15px;font-weight:500">Foto · BTS video</div></div>
+    <div style="padding:12px 12px 14px 0;border-bottom:1px solid rgba(242,242,240,.14)"><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A87">Formato</div><div style="margin-top:6px;font-size:15px;font-weight:500">Foto · Lifestyle</div></div>
   </div>
   <div style="position:relative;margin-top:24px;border:1px solid rgba(242,242,240,.2);background:#161616;width:100%">
-    <img src="/assets/work/titi-maddi/cover.jpg" alt="Titi &amp; Maddi — Artistas urbanos · Sesión + video" style="width:100%;max-height:85vh;object-fit:cover;display:block;filter:saturate(1.04) contrast(1.02)">
+    <img src="/assets/work/sculpt/cover.jpg" alt="Sculpt x Strength — Fitness · Contenido de clase" style="width:100%;max-height:85vh;object-fit:cover;display:block;filter:saturate(1.04) contrast(1.02)">
     <span style="position:absolute;left:10px;top:10px;font-family:'IBM Plex Mono',monospace;font-size:10px;pointer-events:none;background:rgba(10,10,10,.6);padding:3px 6px">01.</span>
   </div>
 </section>
@@ -62,11 +60,11 @@ a:hover{color:#FF5A36}
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;margin-top:32px">
     <div style="border-top:1px solid rgba(242,242,240,.2);padding-top:14px">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A87">A — Reto</div>
-      <p style="margin:12px 0 0;font-size:17px;line-height:1.45;text-wrap:pretty">Titi y Maddi necesitaban una imagen de artistas a la altura de su música: contenido de sesión y detrás de cámaras que construyera su marca y alimentara sus redes.</p>
+      <p style="margin:12px 0 0;font-size:17px;line-height:1.45;text-wrap:pretty">Sculpt x Strength imparte clases de fuerza para mujeres. Necesitaba contenido que transmitiera la energía y la comunidad de sus sesiones para llenar clases.</p>
     </div>
     <div style="border-top:1px solid rgba(242,242,240,.2);padding-top:14px">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A87">B — Respuesta</div>
-      <p style="margin:12px 0 0;font-size:17px;line-height:1.45;text-wrap:pretty">Produjimos una sesión de fotos de estudio y cubrimos el detrás de cámaras del videoclip — retratos, ambiente y momentos, listos para lanzamiento y feed.</p>
+      <p style="margin:12px 0 0;font-size:17px;line-height:1.45;text-wrap:pretty">Cubrimos una clase completa en formato editorial-lifestyle: la instructora en acción, la comunidad y los detalles — imágenes vivas y a color listas para redes.</p>
     </div>
   </div>
 </section>
@@ -74,27 +72,26 @@ a:hover{color:#FF5A36}
 <section data-screen-label="02 Alcance" style="position:relative;z-index:1;padding:88px clamp(16px,3vw,48px) 0">
   <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A87;margin-bottom:16px">[02] Alcance •</div>
   <div style="display:flex;flex-direction:column;border-top:1px solid rgba(242,242,240,.2)">
-    <div style="display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:12px;align-items:baseline;padding:16px 0;border-bottom:1px solid rgba(242,242,240,.14)"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8A8A87">01.</span><span style="font-weight:600;font-stretch:112%;font-size:clamp(22px,5cqw,40px);letter-spacing:-.03em;text-transform:uppercase;line-height:1">Sesión de estudio</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8A8A87">•</span></div>
-    <div style="display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:12px;align-items:baseline;padding:16px 0;border-bottom:1px solid rgba(242,242,240,.14)"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8A8A87">02.</span><span style="font-weight:600;font-stretch:112%;font-size:clamp(22px,5cqw,40px);letter-spacing:-.03em;text-transform:uppercase;line-height:1">BTS de videoclip</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8A8A87">•</span></div>
-    <div style="display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:12px;align-items:baseline;padding:16px 0;border-bottom:1px solid rgba(242,242,240,.14)"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8A8A87">03.</span><span style="font-weight:600;font-stretch:112%;font-size:clamp(22px,5cqw,40px);letter-spacing:-.03em;text-transform:uppercase;line-height:1">Dirección de arte</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8A8A87">•</span></div>
+    <div style="display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:12px;align-items:baseline;padding:16px 0;border-bottom:1px solid rgba(242,242,240,.14)"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8A8A87">01.</span><span style="font-weight:600;font-stretch:112%;font-size:clamp(22px,5cqw,40px);letter-spacing:-.03em;text-transform:uppercase;line-height:1">Cobertura de clase</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8A8A87">•</span></div>
+    <div style="display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:12px;align-items:baseline;padding:16px 0;border-bottom:1px solid rgba(242,242,240,.14)"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8A8A87">02.</span><span style="font-weight:600;font-stretch:112%;font-size:clamp(22px,5cqw,40px);letter-spacing:-.03em;text-transform:uppercase;line-height:1">Fotografía lifestyle</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8A8A87">•</span></div>
+    <div style="display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:12px;align-items:baseline;padding:16px 0;border-bottom:1px solid rgba(242,242,240,.14)"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8A8A87">03.</span><span style="font-weight:600;font-stretch:112%;font-size:clamp(22px,5cqw,40px);letter-spacing:-.03em;text-transform:uppercase;line-height:1">Retrato de instructora</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8A8A87">•</span></div>
     <div style="display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:12px;align-items:baseline;padding:16px 0;border-bottom:1px solid rgba(242,242,240,.14)"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8A8A87">04.</span><span style="font-weight:600;font-stretch:112%;font-size:clamp(22px,5cqw,40px);letter-spacing:-.03em;text-transform:uppercase;line-height:1">Contenido para redes</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8A8A87">•</span></div>
   </div>
 </section>
 
 <section data-screen-label="03 Feed" style="position:relative;z-index:1;padding:88px clamp(16px,3vw,48px) 0">
   <div style="display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A87;margin-bottom:20px"><span>[03] Feed •</span><span>Selección</span></div>
-  <h2 style="margin:0;font-weight:600;font-stretch:112%;font-size:clamp(32px,8.6cqw,104px);line-height:.88;letter-spacing:-.04em;text-transform:uppercase">En<br><span style="color:#5C5C5A">escena.</span></h2>
+  <h2 style="margin:0;font-weight:600;font-stretch:112%;font-size:clamp(32px,8.6cqw,104px);line-height:.88;letter-spacing:-.04em;text-transform:uppercase">Energía<br><span style="color:#5C5C5A">en clase.</span></h2>
   <div class="cp-feed">
-    <figure><img src="/assets/work/titi-maddi/01.jpg" alt="Titi &amp; Maddi — en" loading="lazy"><span class="n">01.</span></figure>
-    <figure><img src="/assets/work/titi-maddi/02.jpg" alt="Titi &amp; Maddi — en" loading="lazy"><span class="n">02.</span></figure>
-    <figure><img src="/assets/work/titi-maddi/03.jpg" alt="Titi &amp; Maddi — en" loading="lazy"><span class="n">03.</span></figure>
-    <figure><img src="/assets/work/titi-maddi/04.jpg" alt="Titi &amp; Maddi — en" loading="lazy"><span class="n">04.</span></figure>
-    <figure><img src="/assets/work/titi-maddi/05.jpg" alt="Titi &amp; Maddi — en" loading="lazy"><span class="n">05.</span></figure>
-    <figure><img src="/assets/work/titi-maddi/06.jpg" alt="Titi &amp; Maddi — en" loading="lazy"><span class="n">06.</span></figure>
-    <figure><img src="/assets/work/titi-maddi/07.jpg" alt="Titi &amp; Maddi — en" loading="lazy"><span class="n">07.</span></figure>
-    <figure><img src="/assets/work/titi-maddi/08.jpg" alt="Titi &amp; Maddi — en" loading="lazy"><span class="n">08.</span></figure>
-    <figure><img src="/assets/work/titi-maddi/09.jpg" alt="Titi &amp; Maddi — en" loading="lazy"><span class="n">09.</span></figure>
-    <figure><img src="/assets/work/titi-maddi/10.jpg" alt="Titi &amp; Maddi — en" loading="lazy"><span class="n">10.</span></figure>
+    <figure><img src="/assets/work/sculpt/01.jpg" alt="Sculpt x Strength — energía" loading="lazy"><span class="n">01.</span></figure>
+    <figure><img src="/assets/work/sculpt/02.jpg" alt="Sculpt x Strength — energía" loading="lazy"><span class="n">02.</span></figure>
+    <figure><img src="/assets/work/sculpt/03.jpg" alt="Sculpt x Strength — energía" loading="lazy"><span class="n">03.</span></figure>
+    <figure><img src="/assets/work/sculpt/04.jpg" alt="Sculpt x Strength — energía" loading="lazy"><span class="n">04.</span></figure>
+    <figure><img src="/assets/work/sculpt/05.jpg" alt="Sculpt x Strength — energía" loading="lazy"><span class="n">05.</span></figure>
+    <figure><img src="/assets/work/sculpt/06.jpg" alt="Sculpt x Strength — energía" loading="lazy"><span class="n">06.</span></figure>
+    <figure><img src="/assets/work/sculpt/07.jpg" alt="Sculpt x Strength — energía" loading="lazy"><span class="n">07.</span></figure>
+    <figure><img src="/assets/work/sculpt/08.jpg" alt="Sculpt x Strength — energía" loading="lazy"><span class="n">08.</span></figure>
+    <figure><img src="/assets/work/sculpt/09.jpg" alt="Sculpt x Strength — energía" loading="lazy"><span class="n">09.</span></figure>
   </div>
 </section>
 
