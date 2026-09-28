@@ -52,7 +52,11 @@
     { "source": "/work", "destination": "/Work.dc.html", "permanent": true },
     { "source": "/about", "destination": "/About.dc.html", "permanent": true },
     { "source": "/journal", "destination": "/Journal.dc.html", "permanent": true },
-    { "source": "/contact", "destination": "/Contact.dc.html", "permanent": true }
+    { "source": "/contact", "destination": "/Contact.dc.html", "permanent": true },
+    { "source": "/web-design-miami", "destination": "/web-design-miami.dc.html", "permanent": true },
+    { "source": "/local-seo-miami", "destination": "/local-seo-miami.dc.html", "permanent": true },
+    { "source": "/content-creation-miami", "destination": "/content-creation-miami.dc.html", "permanent": true },
+    { "source": "/faq", "destination": "/faq.dc.html", "permanent": true }
   ],
   "cleanUrls": true,
   "trailingSlash": false
