@@ -56,7 +56,8 @@
     { "source": "/web-design-miami", "destination": "/web-design-miami.dc.html", "permanent": true },
     { "source": "/local-seo-miami", "destination": "/local-seo-miami.dc.html", "permanent": true },
     { "source": "/content-creation-miami", "destination": "/content-creation-miami.dc.html", "permanent": true },
-    { "source": "/faq", "destination": "/faq.dc.html", "permanent": true }
+    { "source": "/faq", "destination": "/faq.dc.html", "permanent": true },
+    { "source": "/card", "destination": "/Card.dc.html", "permanent": false }
   ],
   "cleanUrls": true,
   "trailingSlash": false
