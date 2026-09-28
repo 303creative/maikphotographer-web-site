@@ -146,24 +146,20 @@ input::placeholder{color:#5C5C5A}
 <section id="portfolio" data-screen-label="Portfolio" style="position:relative;z-index:1;padding:88px clamp(clamp(16px,3vw,48px),3vw,48px) 0">
   <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A87;margin-bottom:20px">[03] {{ t.navPortfolio }} •</div>
   <h2 style="margin:0;font-weight:600;font-stretch:112%;font-size:clamp(46px,14cqw,160px);line-height:.86;letter-spacing:-.045em;text-transform:uppercase">{{ t.workA }}<br><span style="color:#5C5C5A">{{ t.workB }}</span></h2>
-  <div style="display:flex;gap:6px;overflow-x:auto;margin:28px -16px 16px;padding:0 clamp(clamp(16px,3vw,48px),3vw,48px)">
-    <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
-      <button onClick="{{ f.onClick }}" style="{{ f.style }}">{{ f.label }}</button>
-    </sc-for>
-  </div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(calc(50% - 4px),240px),1fr));grid-auto-flow:dense;gap:8px">
-    <sc-for list="{{ shots }}" as="p" hint-placeholder-count="6">
-      <figure style="{{ p.style }}">
-        <div style="position:relative;overflow:hidden;background:#161616;aspect-ratio:{{ p.ratio }}">
-          <img src="{{ p.src }}" alt="{{ p.alt }}" style="{{ mediaStyle }}">
-          <span style="position:absolute;left:8px;top:8px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#F2F2F0">{{ p.idx }}.</span>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(calc(50% - 4px),280px),1fr));gap:8px;margin-top:28px">
+    <sc-for list="{{ cases }}" as="c" hint-placeholder-count="6">
+      <a href="{{ c.href }}" style="position:relative;display:block;border:1px solid rgba(242,242,240,.2);color:#F2F2F0;text-decoration:none">
+        <div style="position:relative;overflow:hidden;background:#161616;aspect-ratio:4/5">
+          <img src="{{ c.img }}" alt="{{ c.name }}" style="{{ mediaStyle }}">
+          <span style="position:absolute;left:8px;top:8px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#F2F2F0;background:rgba(10,10,10,.55);padding:2px 5px">{{ c.n }}.</span>
         </div>
-        <figcaption style="display:flex;justify-content:space-between;gap:8px;padding:8px 0;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase">
-          <span>{{ p.title }}</span><span style="color:#8A8A87">{{ p.catLabel }}</span>
-        </figcaption>
-      </figure>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 12px">
+          <span style="font-weight:600;font-stretch:110%;font-size:20px;text-transform:uppercase;letter-spacing:-.02em">{{ c.name }}</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:#8A8A87;text-align:right">{{ c.tag }}</span>
+        </div>
+      </a>
     </sc-for>
-    <a href="#audit" style="grid-column:span 2;aspect-ratio:2/1;border:1px solid rgba(242,242,240,.3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-transform:uppercase;font-weight:500;font-stretch:108%;font-size:22px;letter-spacing:-.01em;text-align:center">{{ t.yourProject }}<span style="font-size:30px;font-weight:300">+</span></a>
+    <a href="Work.dc.html" style="aspect-ratio:4/5;border:1px solid rgba(242,242,240,.3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-transform:uppercase;font-weight:600;font-stretch:110%;font-size:22px;letter-spacing:-.02em;text-align:center;color:#F2F2F0">{{ t.viewAll }}<span style="font-size:30px;font-weight:300">→</span></a>
   </div>
 </section>
 
@@ -218,6 +214,15 @@ input::placeholder{color:#5C5C5A}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;es&quot;],&quot;default&quot;:&quot;en&quot;,&quot;tsType&quot;:&quot;'en'|'es'&quot;},&quot;monochrome&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;heroVideo&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
 const SHOTS = [['editorial','Warm light'],['portrait','Golden circle'],['lifestyle','Red hour'],['portrait','Deep focus'],['portrait','Soft silence'],['lifestyle','Urban raw'],['editorial','Moody'],['editorial','Golden hour'],['editorial','Cinematic']].map(([cat,title],i)=>({cat,title,src:`https://www.maikphotographer.com/assets/portfolio/39_portafolio_${i+1}.jpg`,alt:title}));
+const CASES = [
+['Structure','#1 in Brickell','#1 en Brickell','structure'],
+['Sazón Latino','Food content','Contenido gastronómico','sazon-latino'],
+['Moses','Web design','Diseño web','moses'],
+['Good Trip','Branding + Web','Branding + Web','good-trip'],
+['D´Homes','Brand portraits','Retratos de marca','dhomes'],
+['Monrowelle','Product content','Contenido de producto','monrowelle'],
+['Titi & Maddi','Music','Música','titi-maddi'],
+['Sculpt x Strength','Fitness','Fitness','sculpt']];
 
 const T = {
 en:{navAbout:'About',navPortfolio:'Work',navSystems:'Systems',navContact:'Contact',navCta:'Free audit',
@@ -227,7 +232,7 @@ ctaAudit:'Get my free audit',ctaPortfolio:'Portfolio',founder:'Founder / Creativ
 aboutA:'I direct.',aboutB:'They convert.',aboutBody:'The303 is a Miami content and brand studio led by Maikel Marshall. We produce photo, video and Reels — with creative direction and distribution — for real estate, hospitality, beauty and premium brands across Brickell, Coral Gables and Miami. Bilingual EN/ES. The goal is never just pretty pictures: it is listings, bookings and sales.',
 stats:[['200+','Sessions delivered'],['03','Countries worked'],['48h','Delivery time']],
 filters:{all:'All',portrait:'Portrait',editorial:'Editorial',lifestyle:'Lifestyle'},
-workA:'Selected',workB:'work.',yourProject:'Your brand here',
+workA:'Selected',workB:'work.',yourProject:'Your brand here',viewAll:'View all work',
 systemsTitle:'Content systems that book clients',popular:'Most popular',book:'Start',investment:'Investment',
 pk:[
 ['Personal','Editorial session for creators, models & individuals. Cinematic direction and a visual identity that stands out.',['1 editorial session','Pose direction included','Edited photos + BTS reel','Online gallery in 48h'],'$350','starting from'],
@@ -247,7 +252,7 @@ ctaAudit:'Quiero mi auditoría gratis',ctaPortfolio:'Portafolio',founder:'Fundad
 aboutA:'Yo dirijo.',aboutB:'Ellos convierten.',aboutBody:'The303 es un estudio de contenido y marca en Miami liderado por Maikel Marshall. Producimos foto, video y Reels, con dirección creativa y distribución, para real estate, hospitality, beauty y marcas premium en Brickell, Coral Gables y Miami. Bilingüe EN/ES. El objetivo nunca son solo fotos bonitas: son listings, reservas y ventas.',
 stats:[['200+','Sesiones entregadas'],['03','Países'],['48h','Tiempo de entrega']],
 filters:{all:'Todo',portrait:'Retrato',editorial:'Editorial',lifestyle:'Lifestyle'},
-workA:'Trabajo',workB:'selecto.',yourProject:'Tu marca aquí',
+workA:'Trabajo',workB:'selecto.',yourProject:'Tu marca aquí',viewAll:'Ver todo el trabajo',
 systemsTitle:'Sistemas de contenido que consiguen clientes',popular:'Más popular',book:'Empezar',investment:'Inversión',
 pk:[
 ['Personal','Sesión editorial para creadores, modelos y particulares. Dirección cinematográfica y una identidad visual que destaca.',['1 sesión editorial','Dirección de poses incluida','Fotos editadas + reel BTS','Galería online en 48h'],'$350','desde'],
@@ -292,6 +297,7 @@ class Component extends DCLogic {
         return {...s, idx: String(i+1).padStart(2,'0'), catLabel:t.filters[s.cat], ratio: wide ? '4/3' : '3/4',
           style:{margin:0, gridColumn: wide ? 'span 2' : 'span 1', marginTop: (!wide && i % 3 === 2) ? 40 : 0}};
       }),
+      cases: CASES.map(([name,te,ts,slug],i) => ({name, tag: lang==='es'?ts:te, href:'client-'+slug+'.dc.html', img:'/assets/work/'+slug+'/cover.jpg', n:String(i+1).padStart(2,'0')})),
       packages: t.pk.map(([name,desc,items,price,per],i) => {
         const open = this.state.sys === i;
         return {num:'0'+(i+1), name, desc, items, price, per, popular:i===1, open, icon: open ? '−' : '+',
