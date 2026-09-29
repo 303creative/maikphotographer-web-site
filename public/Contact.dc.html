@@ -86,8 +86,8 @@ input::placeholder{color:#5C5C5A}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;es&quot;],&quot;default&quot;:&quot;en&quot;,&quot;tsType&quot;:&quot;'en'|'es'&quot;},&quot;calendarUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;auditEndpoint&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 const T = {
-en:{eyebrow:'Contact',h1a:"Let's create",h1b:'something.',call:'Call',bookA:'Book your',bookB:'call.',bookBody:'Pick a date directly on my calendar — 30 minutes to talk about your project, no commitment.',calendar:'[ Calendar embed — Calendly / Cal.com URL pending ]',channels:'Channels',based:'Based in',areas:'Areas',days:['MON','TUE','WED','THU','FRI','SAT','SUN']},
-es:{eyebrow:'Contacto',h1a:'Creemos',h1b:'algo.',call:'Llamada',bookA:'Reserva tu',bookB:'llamada.',bookBody:'Elige una fecha en mi calendario: 30 minutos para hablar de tu proyecto, sin compromiso.',calendar:'[ Calendario — URL de Calendly / Cal.com pendiente ]',channels:'Canales',based:'Con base en',areas:'Zonas',days:['LUN','MAR','MIÉ','JUE','VIE','SÁB','DOM']}
+en:{eyebrow:'Contact',h1a:"Let's create",h1b:'something.',call:'Call',bookA:'Book your',bookB:'call.',bookBody:'Pick a date directly on my calendar — 30 minutes to talk about your project, no commitment.',calendar:'',channels:'Channels',based:'Based in',areas:'Areas',days:['MON','TUE','WED','THU','FRI','SAT','SUN']},
+es:{eyebrow:'Contacto',h1a:'Creemos',h1b:'algo.',call:'Llamada',bookA:'Reserva tu',bookB:'llamada.',bookBody:'Elige una fecha en mi calendario: 30 minutos para hablar de tu proyecto, sin compromiso.',calendar:'',channels:'Canales',based:'Con base en',areas:'Zonas',days:['LUN','MAR','MIÉ','JUE','VIE','SÁB','DOM']}
 };
 class Component extends DCLogic {
   state = { lang: (()=>{try{return localStorage.getItem('t303-lang')}catch(e){return null}})() };

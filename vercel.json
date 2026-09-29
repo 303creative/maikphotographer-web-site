@@ -57,7 +57,11 @@
     { "source": "/local-seo-miami", "destination": "/local-seo-miami.dc.html", "permanent": true },
     { "source": "/content-creation-miami", "destination": "/content-creation-miami.dc.html", "permanent": true },
     { "source": "/faq", "destination": "/faq.dc.html", "permanent": true },
-    { "source": "/card", "destination": "/Card.dc.html", "permanent": false }
+    { "source": "/card", "destination": "/Card.dc.html", "permanent": false },
+    { "source": "/corporate-headshots-miami", "destination": "/corporate-headshots-miami.dc.html", "permanent": true },
+    { "source": "/product-photography-miami", "destination": "/product-photography-miami.dc.html", "permanent": true },
+    { "source": "/food-photography-miami", "destination": "/food-photography-miami.dc.html", "permanent": true },
+    { "source": "/brand-photography-miami", "destination": "/brand-photography-miami.dc.html", "permanent": true }
   ],
   "cleanUrls": true,
   "trailingSlash": false
