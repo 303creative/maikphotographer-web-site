@@ -7,7 +7,7 @@
 <meta name="description" content="Real projects for Miami brands and businesses — branding, web, content and photography, with the problem, the work and the deliverables for each.">
 <meta name="keywords" content="The303 portfolio, Miami marketing case studies, branding Miami, web design Miami, content creation Miami">
 <meta name="robots" content="index,follow">
-<link rel="canonical" href="https://www.maikphotographer.com/Work.dc.html">
+<link rel="canonical" href="https://www.303creative.com/Work.dc.html">
 <meta name="theme-color" content="#0A0A0A">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="/assets/brand/favicon-512.png">
@@ -15,8 +15,8 @@
 <meta property="og:title" content="Selected Work & Case Studies | The303 Creative Miami">
 <meta property="og:description" content="Real projects for Miami brands and businesses — branding, web, content and photography, with the problem, the work and the deliverables for each.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://www.maikphotographer.com/Work.dc.html">
-<meta property="og:image" content="https://www.maikphotographer.com/assets/brand/og-the303.jpg">
+<meta property="og:url" content="https://www.303creative.com/Work.dc.html">
+<meta property="og:image" content="https://www.303creative.com/assets/brand/og-the303.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <script src="./support.js"></script>
 </head>
@@ -110,7 +110,7 @@ input{font:inherit}
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;es&quot;],&quot;default&quot;:&quot;en&quot;,&quot;tsType&quot;:&quot;'en'|'es'&quot;}}">
-const SHOTS = [['editorial','Warm light'],['portrait','Golden circle'],['lifestyle','Red hour'],['portrait','Deep focus'],['portrait','Soft silence'],['lifestyle','Urban raw'],['editorial','Moody'],['editorial','Golden hour'],['editorial','Cinematic']].map(([cat,title],i)=>({cat,title,src:`https://www.maikphotographer.com/assets/portfolio/39_portafolio_${i+1}.jpg`}));
+const SHOTS = [['editorial','Warm light'],['portrait','Golden circle'],['lifestyle','Red hour'],['portrait','Deep focus'],['portrait','Soft silence'],['lifestyle','Urban raw'],['editorial','Moody'],['editorial','Golden hour'],['editorial','Cinematic']].map(([cat,title],i)=>({cat,title,src:`https://www.303creative.com/assets/portfolio/39_portafolio_${i+1}.jpg`}));
 const T = {
 en:{eyebrow:'Work / Cases',h1a:'Work that',h1b:'books clients.',intro:'Each case is measured by what it produced for the business: leads, bookings, sales. Metrics are published only once verified with the client.',
 cases:'Cases',imgPending:'Image pending',yours:'Your brand here',pendingNote:'',
@@ -130,7 +130,7 @@ class Component extends DCLogic {
     const chip = on => ({flex:'none', background: on ? '#F2F2F0' : 'transparent', color: on ? '#0A0A0A' : '#F2F2F0', border:'1px solid ' + (on ? '#F2F2F0' : 'rgba(242,242,240,.3)'), height:40, padding:'0 14px', cursor:'pointer', fontFamily:"'IBM Plex Mono',monospace", fontSize:10, letterSpacing:'.08em', textTransform:'uppercase'});
     return {
       t, lang, setLang: this.setLang,
-      cases: t.cs.map((c,i) => { const hasKpis = Array.isArray(c.kpis) && c.kpis.length>0; return {name:c.name, meta:c.meta, kpis:c.kpis||[], tags:c.tags||[], showKpis:hasKpis, noKpis:!hasKpis, n:'0'+(i+1), img:c.img||`https://www.maikphotographer.com/assets/portfolio/39_portafolio_${i===0?6:3}.jpg`, href:c.href||'ClientPortfolio.dc.html'}; }),
+      cases: t.cs.map((c,i) => { const hasKpis = Array.isArray(c.kpis) && c.kpis.length>0; return {name:c.name, meta:c.meta, kpis:c.kpis||[], tags:c.tags||[], showKpis:hasKpis, noKpis:!hasKpis, n:'0'+(i+1), img:c.img||`https://www.303creative.com/assets/portfolio/39_portafolio_${i===0?6:3}.jpg`, href:c.href||'ClientPortfolio.dc.html'}; }),
       filters: ['all','portrait','editorial','lifestyle'].map(k => ({label:t.filters[k], style:chip(f===k), onClick:()=>this.setState({filter:k})})),
       shots: SHOTS.filter(s => f==='all' || s.cat===f).map((s,i) => {
         const wide = i % 3 === 0;

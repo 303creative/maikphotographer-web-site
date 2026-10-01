@@ -5,8 +5,8 @@ module.exports = {
   images: {
     domains: [
       'images.pexels.com',
-      'maikphotographer.com',
-      'www.maikphotographer.com'
+      '303creative.com',
+      'www.303creative.com'
     ],
     formats: ['image/avif', 'image/webp'],
     // Image sizes for responsive images

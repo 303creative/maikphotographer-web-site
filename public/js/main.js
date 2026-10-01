@@ -1,4 +1,4 @@
-/* ═══ MAIN.JS — maikphotographer.com ═══ */
+/* ═══ MAIN.JS — 303creative.com ═══ */
 'use strict';
 
 gsap.registerPlugin(ScrollTrigger);

@@ -6,7 +6,7 @@
 <title>The303 — Digital Card</title>
 <meta name="description" content="The303 / Maikel Marshall — Miami. Book, call, save contact.">
 <meta name="robots" content="index,follow">
-<link rel="canonical" href="https://www.maikphotographer.com/Card.dc.html">
+<link rel="canonical" href="https://www.303creative.com/Card.dc.html">
 <meta name="theme-color" content="#0A0A0A">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="/assets/brand/favicon-512.png">
@@ -14,8 +14,8 @@
 <meta property="og:title" content="The303 — Digital Card">
 <meta property="og:description" content="The303 / Maikel Marshall — Miami. Book, call, save contact.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://www.maikphotographer.com/Card.dc.html">
-<meta property="og:image" content="https://www.maikphotographer.com/assets/brand/og-the303.jpg">
+<meta property="og:url" content="https://www.303creative.com/Card.dc.html">
+<meta property="og:image" content="https://www.303creative.com/assets/brand/og-the303.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <script src="./support.js"></script>
 </head>
@@ -45,7 +45,7 @@ a:hover{color:#FF5A36}
 
   <div style="position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr))">
     <div style="grid-column:1 / span 2;position:relative;aspect-ratio:1;overflow:hidden;background:#161616">
-      <img src="https://www.maikphotographer.com/assets/portfolio/about_profile.jpg?v=7" alt="Maikel Marshall" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.05) contrast(1.03)">
+      <img src="https://www.303creative.com/assets/portfolio/about_profile.jpg?v=7" alt="Maikel Marshall" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.05) contrast(1.03)">
     </div>
     <div style="grid-column:3 / span 2;padding-left:12px;display:flex;flex-direction:column;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A87">
       <span>NFC · ID 303</span>
@@ -106,7 +106,7 @@ const T = {
       save:'Guardar contacto',
       l:['WhatsApp','Reservar llamada 30 min','Ver nuestro trabajo','Web','Instagram']}
 };
-const VCF = 'BEGIN:VCARD\nVERSION:3.0\nFN:Maikel Marshall\nORG:The303\nTITLE:Founder / Creative Director\nTEL;TYPE=CELL:+17863329815\nEMAIL:maikelmarshall07@gmail.com\nURL:https://www.maikphotographer.com\nADR:;;;Miami;FL;;USA\nEND:VCARD';
+const VCF = 'BEGIN:VCARD\nVERSION:3.0\nFN:Maikel Marshall\nORG:The303\nTITLE:Founder / Creative Director\nTEL;TYPE=CELL:+17863329815\nEMAIL:maikelmarshall07@gmail.com\nURL:https://www.303creative.com\nADR:;;;Miami;FL;;USA\nEND:VCARD';
 class Component extends DCLogic {
   state = { lang: (()=>{try{return localStorage.getItem('t303-lang')}catch(e){return null}})() };
   setLang = l => { try{localStorage.setItem('t303-lang',l)}catch(e){} this.setState({lang:l}); };
@@ -114,7 +114,7 @@ class Component extends DCLogic {
     const lang = this.state.lang ?? this.props.lang ?? 'en';
     const t = T[lang];
     const pill = a => ({background: a ? '#F2F2F0' : 'transparent', color: a ? '#0A0A0A' : '#8A8A87', border:0, padding:'0 9px', height:30, cursor:'pointer', fontFamily:'inherit', fontSize:10});
-    const vals = [['+1 786 332 9815','https://wa.me/17863329815'],['30 min with Maikel','Contact.dc.html'],['8+ Miami brands','Work.dc.html'],['maikphotographer.com','./'],['@maik_photographer','https://www.instagram.com/maik_photographer/']];
+    const vals = [['+1 786 332 9815','https://wa.me/17863329815'],['30 min with Maikel','Contact.dc.html'],['8+ Miami brands','Work.dc.html'],['303creative.com','./'],['@maik_photographer','https://www.instagram.com/maik_photographer/']];
     return { t, lang, setEn: () => this.setLang('en'), setEs: () => this.setLang('es'), enStyle: pill(lang==='en'), esStyle: pill(lang==='es'),
       do: t.do, tagline: t.tagline, proofK: t.proofK, proof: t.proof,
       vcard: 'data:text/vcard;charset=utf-8,' + encodeURIComponent(VCF),
