@@ -1,4 +1,4 @@
-/* ═══ MAIN.JS — 303creative.com ═══ */
+/* ═══ MAIN.JS — the303creative.com ═══ */
 'use strict';
 
 gsap.registerPlugin(ScrollTrigger);

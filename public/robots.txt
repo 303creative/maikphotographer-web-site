@@ -25,4 +25,4 @@ Allow: /
 Disallow: /api/
 Disallow: /assets/videos/
 
-Sitemap: https://www.303creative.com/sitemap.xml
+Sitemap: https://the303creative.com/sitemap.xml
