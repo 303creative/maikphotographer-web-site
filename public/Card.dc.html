@@ -6,7 +6,7 @@
 <title>The303 — Digital Card</title>
 <meta name="description" content="The303 / Maikel Marshall — Miami. Book, call, save contact.">
 <meta name="robots" content="index,follow">
-<link rel="canonical" href="https://the303creative.com/Card.dc.html">
+<link rel="canonical" href="https://www.the303creative.com/Card.dc.html">
 <meta name="theme-color" content="#0A0A0A">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="/assets/brand/favicon-512.png">
@@ -14,8 +14,8 @@
 <meta property="og:title" content="The303 — Digital Card">
 <meta property="og:description" content="The303 / Maikel Marshall — Miami. Book, call, save contact.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://the303creative.com/Card.dc.html">
-<meta property="og:image" content="https://the303creative.com/assets/brand/og-the303.jpg">
+<meta property="og:url" content="https://www.the303creative.com/Card.dc.html">
+<meta property="og:image" content="https://www.the303creative.com/assets/brand/og-the303.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <script src="./support.js"></script>
 </head>
@@ -128,7 +128,7 @@ const T = {
       save:'Guardar contacto',
       l:['WhatsApp','Reservar llamada 30 min','Ver nuestro trabajo','Web','Instagram']}
 };
-const VCF = 'BEGIN:VCARD\nVERSION:3.0\nFN:Maikel Marshall\nORG:The303\nTITLE:Founder / Creative Director\nTEL;TYPE=CELL:+17863329815\nEMAIL:maikelmarshall07@gmail.com\nURL:https://the303creative.com\nADR:;;;Miami;FL;;USA\nEND:VCARD';
+const VCF = 'BEGIN:VCARD\nVERSION:3.0\nFN:Maikel Marshall\nORG:The303\nTITLE:Founder / Creative Director\nTEL;TYPE=CELL:+17863329815\nEMAIL:maikelmarshall07@gmail.com\nURL:https://www.the303creative.com\nADR:;;;Miami;FL;;USA\nEND:VCARD';
 class Component extends DCLogic {
   state = { lang: (()=>{try{return localStorage.getItem('t303-lang')}catch(e){return null}})() };
   setLang = l => { try{localStorage.setItem('t303-lang',l)}catch(e){} this.setState({lang:l}); };

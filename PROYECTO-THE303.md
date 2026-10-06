@@ -11,7 +11,7 @@
 ## 1. Qué es
 - Marca: **The303 Creative** (agencia de contenido, marca y marketing en Miami) — fundador **Maikel Marshall** (@maik_photographer).
 - La web se está **reposicionando de "fotógrafo" a "agencia de marketing"**: el resultado que se vende es *listings, reservas y ventas*; foto/video/Reels son insumos de un sistema.
-- Dominio: **https://the303creative.com** (apex; comprado 2026-10-06, reemplaza el typo 303crative.com). Dominios anteriores → dejar como redirect 301 a the303creative.com: maikphotographer.com y 303crative.com.
+- Dominio: **https://www.the303creative.com** (PRIMARY con www en Vercel; canonical del código = www. Apex the303creative.com → 308 → www). Dominios anteriores → dejar como redirect 301 a the303creative.com: maikphotographer.com y 303crative.com.
   - ⚠️ **303creative.com (sin "the") NO es nuestro**: es de otra empresa (Lorie Smith / caso Corte Suprema *303 Creative LLC v. Elenis*). NUNCA ponerlo en el código. El dominio del sitio SIEMPRE es **the303creative.com**.
 
 ## 2. Repo, deploy, stack
