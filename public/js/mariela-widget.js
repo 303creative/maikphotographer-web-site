@@ -1,219 +1,145 @@
 /**
- * Mariela — Widget de chat de THE303 (v2, estilo Apple)
- * Conecta con n8n (workflow "Mariela Web — Widget THE303")
+ * Mariela — Widget de chat de The303 (v3, self-contained)
+ * Sin dependencias externas: envía {action,sessionId,chatInput} al webhook de n8n
+ * (contrato probado del workflow "Mariela Web — Widget THE303") y renderiza la respuesta.
+ * Robusto a cambios de versión de @n8n/chat (ya no lo usa).
  */
-import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+(function () {
+  var WEBHOOK = 'https://the303photography.app.n8n.cloud/webhook/2a1d3c2e-1dd1-4734-9cf5-7ec2922e9d04/chat';
 
-// ── Tema: Apple-like, oscuro, bordes suaves, glass ──
-const style = document.createElement('style');
-style.textContent = `
-  :root {
-    --chat--color-primary: #FF5722;
-    --chat--color-primary-shade-50: #E64A19;
-    --chat--color-primary-shade-100: #D84315;
-    --chat--color-secondary: #FF5722;
-    --chat--toggle--background: linear-gradient(135deg, #FF5722, #E64A19);
-    --chat--toggle--hover--background: #E64A19;
-    --chat--toggle--active--background: #D84315;
-    --chat--toggle--size: 58px;
-    --chat--border-radius: 22px;
-    --chat--window--width: 392px;
-    --chat--window--height: 620px;
-    --chat--header--background: rgba(18,18,20,0.92);
-    --chat--header--color: #FFFFFF;
-    --chat--header--padding: 16px 20px;
-    --chat--message--font-size: 15px;
-    --chat--message--padding: 11px 15px;
-    --chat--message--border-radius: 18px;
-    --chat--message--bot--background: #1F1F23;
-    --chat--message--bot--color: #F5F5F7;
-    --chat--message--user--background: linear-gradient(135deg, #FF5722, #E8501E);
-    --chat--message--user--color: #FFFFFF;
-    --chat--message-line-height: 1.55;
-    --chat--input--font-size: 15px;
+  // ── sessionId persistente (memoria por usuario) ──
+  function uuid() {
+    try { return crypto.randomUUID(); } catch (e) {}
+    return 'web-' + Date.now() + '-' + Math.random().toString(36).slice(2);
   }
-
-  /* Ventana: vidrio oscuro, esquinas suaves, sombra profunda */
-  .chat-window {
-    border-radius: 22px !important;
-    overflow: hidden !important;
-    border: 1px solid rgba(255,255,255,0.08) !important;
-    box-shadow: 0 24px 80px rgba(0,0,0,0.55), 0 2px 8px rgba(0,0,0,0.3) !important;
-    background: #121214 !important;
-  }
-  .chat-header {
-    background: rgba(18,18,20,0.92) !important;
-    backdrop-filter: blur(24px) saturate(160%) !important;
-    -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
-    border-bottom: 1px solid rgba(255,255,255,0.07) !important;
-  }
-  .chat-header h1 {
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Inter, sans-serif !important;
-    font-size: 17px !important;
-    font-weight: 600 !important;
-    letter-spacing: -0.2px !important;
-  }
-  .chat-header p {
-    font-size: 12.5px !important;
-    opacity: 0.65 !important;
-  }
-
-  /* Cuerpo y burbujas */
-  .chat-body, .chat-messages-list {
-    background: #121214 !important;
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Inter, sans-serif !important;
-  }
-  .chat-message {
-    border-radius: 18px !important;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.25) !important;
-    max-width: 84% !important;
-  }
-  .chat-message.chat-message-from-bot {
-    background: #1F1F23 !important;
-    color: #F5F5F7 !important;
-    border-bottom-left-radius: 6px !important;
-  }
-  .chat-message.chat-message-from-user {
-    background: linear-gradient(135deg, #FF5722, #E8501E) !important;
-    color: #fff !important;
-    border-bottom-right-radius: 6px !important;
-  }
-  .chat-message a { color: #FF8A65 !important; }
-
-  /* Input flotante estilo iOS */
-  .chat-input {
-    background: rgba(18,18,20,0.96) !important;
-    border-top: 1px solid rgba(255,255,255,0.07) !important;
-  }
-  .chat-input textarea {
-    background: #1F1F23 !important;
-    color: #F5F5F7 !important;
-    border-radius: 20px !important;
-    border: 1px solid rgba(255,255,255,0.1) !important;
-    padding: 11px 16px !important;
-    margin: 10px 8px 10px 12px !important;
-    font-family: inherit !important;
-  }
-  .chat-input textarea::placeholder { color: rgba(245,245,247,0.4) !important; }
-
-  /* Burbuja flotante con halo */
-  .chat-window-toggle {
-    box-shadow: 0 10px 32px rgba(255,87,34,0.45), 0 2px 8px rgba(0,0,0,0.35) !important;
-    transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s ease !important;
-  }
-  .chat-window-toggle:hover { transform: scale(1.07) !important; }
-
-  /* Chips de guía */
-  .mariela-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    padding: 10px 14px 12px;
-    background: rgba(18,18,20,0.96);
-    border-top: 1px solid rgba(255,255,255,0.05);
-  }
-  .mariela-chip {
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Inter, sans-serif;
-    font-size: 12.5px;
-    font-weight: 500;
-    color: #F5F5F7;
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 999px;
-    padding: 7px 13px;
-    cursor: pointer;
-    transition: all .2s ease;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .mariela-chip:hover, .mariela-chip:active {
-    background: rgba(255,87,34,0.18);
-    border-color: rgba(255,87,34,0.55);
-    color: #FF8A65;
-    transform: translateY(-1px);
-  }
-
-  @media (max-width: 480px) {
-    :root {
-      --chat--window--width: 100vw;
-      --chat--window--height: 100dvh;
-    }
-    .chat-window { border-radius: 0 !important; }
-  }
-`;
-document.head.appendChild(style);
-
-createChat({
-  webhookUrl: 'https://the303photography.app.n8n.cloud/webhook/2a1d3c2e-1dd1-4734-9cf5-7ec2922e9d04/chat',
-  mode: 'window',
-  loadPreviousSession: true,
-  showWelcomeScreen: false,
-  defaultLanguage: 'en',
-  initialMessages: [
-    '¡Hola! Soy Mariela, tu asistente en THE303 📸',
-    'Puedo guiarte: precios, comparar sesiones o agendar tu cita con Maikel. Toca una opción o escríbeme.'
-  ],
-  i18n: {
-    en: {
-      title: 'Mariela · THE303',
-      subtitle: 'Asistente — respuesta al instante',
-      inputPlaceholder: 'Escribe tu mensaje…',
-      getStarted: 'Nueva conversación',
-      closeButtonTooltip: 'Cerrar'
-    }
-  }
-});
-
-// ── Chips de guía (botones rápidos sobre el input) ──
-const CHIPS = [
-  { label: '💰 Ver precios', msg: '¿Me das los precios de todas las sesiones?' },
-  { label: '📸 ¿Qué sesión me conviene?', msg: 'No sé qué tipo de sesión necesito, ¿me ayudas a elegir?' },
-  { label: '📅 Agendar cita', msg: 'Quiero agendar una cita con Maikel' },
-  { label: '🏠 Real Estate', msg: '¿Cómo funciona la fotografía de real estate?' }
-];
-
-function sendChip(msg) {
-  const ta = document.querySelector('.chat-input textarea, .chat-window textarea');
-  if (!ta) return;
-  const proto = Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, 'value');
-  proto.set.call(ta, msg);
-  ta.dispatchEvent(new Event('input', { bubbles: true }));
-  setTimeout(function () {
-    ta.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', code: 'Enter', bubbles: true }));
-  }, 60);
-}
-
-function mountChips() {
-  const input = document.querySelector('.chat-input');
-  if (!input || document.querySelector('.mariela-chips')) return;
-  const bar = document.createElement('div');
-  bar.className = 'mariela-chips';
-  CHIPS.forEach(function (c) {
-    const b = document.createElement('button');
-    b.type = 'button';
-    b.className = 'mariela-chip';
-    b.textContent = c.label;
-    b.addEventListener('click', function () {
-      sendChip(c.msg);
-      bar.style.display = 'none'; // se ocultan tras el primer uso
-    });
-    bar.appendChild(b);
-  });
-  input.parentNode.insertBefore(bar, input);
-}
-
-// Montar chips cuando exista la ventana (y re-montar si se cierra/abre)
-const chipObserver = new MutationObserver(function () { mountChips(); });
-chipObserver.observe(document.body, { childList: true, subtree: true });
-
-// ── Bienvenida automática: abre una vez por sesión a los 6s ──
-setTimeout(function () {
+  var sessionId;
   try {
-    if (!sessionStorage.getItem('mariela_auto_opened')) {
-      const toggle = document.querySelector('.chat-window-toggle');
-      if (toggle) {
-        toggle.click();
-        sessionStorage.setItem('mariela_auto_opened', '1');
-      }
-    }
-  } catch (e) { /* sin sessionStorage no pasa nada */ }
-}, 6000);
+    sessionId = localStorage.getItem('mariela_session');
+    if (!sessionId) { sessionId = uuid(); localStorage.setItem('mariela_session', sessionId); }
+  } catch (e) { sessionId = uuid(); }
+
+  // ── estilos ──
+  var css = document.createElement('style');
+  css.textContent = [
+    '.mk-toggle{position:fixed;right:20px;bottom:20px;width:58px;height:58px;border-radius:50%;border:0;cursor:pointer;z-index:2147483000;',
+    'background:linear-gradient(135deg,#FF5722,#E64A19);color:#fff;font:600 22px/1 -apple-system,BlinkMacSystemFont,Segoe UI,Inter,sans-serif;',
+    'box-shadow:0 10px 32px rgba(255,87,34,.45),0 2px 8px rgba(0,0,0,.35);transition:transform .25s cubic-bezier(.34,1.56,.64,1)}',
+    '.mk-toggle:hover{transform:scale(1.07)}',
+    '.mk-panel{position:fixed;right:20px;bottom:88px;width:392px;max-width:calc(100vw - 32px);height:620px;max-height:calc(100dvh - 120px);',
+    'z-index:2147483000;display:none;flex-direction:column;background:#121214;border:1px solid rgba(255,255,255,.08);border-radius:22px;overflow:hidden;',
+    'box-shadow:0 24px 80px rgba(0,0,0,.55),0 2px 8px rgba(0,0,0,.3);font-family:-apple-system,BlinkMacSystemFont,SF Pro Text,Segoe UI,Inter,sans-serif}',
+    '.mk-panel.open{display:flex}',
+    '.mk-head{background:rgba(18,18,20,.92);backdrop-filter:blur(24px) saturate(160%);-webkit-backdrop-filter:blur(24px) saturate(160%);',
+    'border-bottom:1px solid rgba(255,255,255,.07);padding:15px 18px;display:flex;align-items:center;justify-content:space-between;color:#fff}',
+    '.mk-head b{font-size:16px;font-weight:600;letter-spacing:-.2px;display:block}',
+    '.mk-head span{font-size:12px;opacity:.6}',
+    '.mk-x{background:0;border:0;color:#fff;opacity:.6;font-size:22px;cursor:pointer;line-height:1}',
+    '.mk-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:#121214}',
+    '.mk-msg{max-width:84%;padding:11px 15px;border-radius:18px;font-size:15px;line-height:1.5;white-space:pre-wrap;word-wrap:break-word;box-shadow:0 1px 2px rgba(0,0,0,.25)}',
+    '.mk-bot{align-self:flex-start;background:#1F1F23;color:#F5F5F7;border-bottom-left-radius:6px}',
+    '.mk-user{align-self:flex-end;background:linear-gradient(135deg,#FF5722,#E8501E);color:#fff;border-bottom-right-radius:6px}',
+    '.mk-bot a{color:#FF8A65}',
+    '.mk-typing{align-self:flex-start;color:#8A8A87;font-size:13px;padding:4px 8px}',
+    '.mk-chips{display:flex;flex-wrap:wrap;gap:8px;padding:10px 14px;background:rgba(18,18,20,.96);border-top:1px solid rgba(255,255,255,.05)}',
+    '.mk-chip{font:500 12.5px/1 inherit;color:#F5F5F7;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:7px 13px;cursor:pointer;transition:all .2s}',
+    '.mk-chip:hover{background:rgba(255,87,34,.18);border-color:rgba(255,87,34,.55);color:#FF8A65}',
+    '.mk-input{display:flex;gap:8px;align-items:flex-end;padding:10px 12px;background:rgba(18,18,20,.96);border-top:1px solid rgba(255,255,255,.07)}',
+    '.mk-input textarea{flex:1;resize:none;max-height:120px;background:#1F1F23;color:#F5F5F7;border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:11px 16px;font:15px/1.4 inherit}',
+    '.mk-input textarea::placeholder{color:rgba(245,245,247,.4)}',
+    '.mk-send{width:42px;height:42px;flex:none;border:0;border-radius:50%;cursor:pointer;background:linear-gradient(135deg,#FF5722,#E64A19);color:#fff;font-size:18px}',
+    '.mk-send:disabled{opacity:.5;cursor:default}',
+    '@media(max-width:480px){.mk-panel{right:0;bottom:0;width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;border-radius:0}.mk-toggle{right:16px;bottom:16px}}'
+  ].join('');
+  document.head.appendChild(css);
+
+  // ── DOM ──
+  var toggle = document.createElement('button');
+  toggle.className = 'mk-toggle'; toggle.setAttribute('aria-label', 'Chat con Mariela'); toggle.textContent = 'M';
+
+  var panel = document.createElement('div'); panel.className = 'mk-panel';
+  panel.innerHTML =
+    '<div class="mk-head"><div><b>Mariela · The303</b><span>Asistente — respuesta al instante</span></div><button class="mk-x" aria-label="Cerrar">×</button></div>' +
+    '<div class="mk-body" id="mk-body"></div>' +
+    '<div class="mk-chips" id="mk-chips"></div>' +
+    '<div class="mk-input"><textarea id="mk-ta" rows="1" placeholder="Escribe tu mensaje…"></textarea><button class="mk-send" id="mk-send" aria-label="Enviar">↑</button></div>';
+
+  document.body.appendChild(toggle);
+  document.body.appendChild(panel);
+
+  var body = panel.querySelector('#mk-body');
+  var ta = panel.querySelector('#mk-ta');
+  var sendBtn = panel.querySelector('#mk-send');
+  var chipsBar = panel.querySelector('#mk-chips');
+
+  function add(text, who) {
+    var d = document.createElement('div');
+    d.className = 'mk-msg ' + (who === 'user' ? 'mk-user' : 'mk-bot');
+    // links simples
+    d.innerHTML = String(text).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>')
+      .replace(/(cal\.com\/[^\s]+)/g, '<a href="https://$1" target="_blank" rel="noopener">$1</a>');
+    body.appendChild(d); body.scrollTop = body.scrollHeight;
+    return d;
+  }
+
+  var greeted = false;
+  function greet() {
+    if (greeted) return; greeted = true;
+    add('¡Hola! Soy Mariela de The303 📸', 'bot');
+    add('Puedo ayudarte: precios, elegir un servicio o agendar con Maikel. Toca una opción o escríbeme.', 'bot');
+  }
+
+  var CHIPS = [
+    { label: '💰 Ver precios', msg: '¿Me das los precios de los paquetes?' },
+    { label: '📋 ¿Qué me conviene?', msg: 'No sé qué servicio necesito, ¿me ayudas a elegir?' },
+    { label: '📅 Agendar', msg: 'Quiero agendar una cita con Maikel' },
+    { label: '🏠 Real estate', msg: '¿Cómo funciona el contenido para real estate?' }
+  ];
+  CHIPS.forEach(function (c) {
+    var b = document.createElement('button'); b.className = 'mk-chip'; b.type = 'button'; b.textContent = c.label;
+    b.addEventListener('click', function () { send(c.msg); chipsBar.style.display = 'none'; });
+    chipsBar.appendChild(b);
+  });
+
+  var sending = false;
+  function send(text) {
+    text = (text || ta.value).trim();
+    if (!text || sending) return;
+    ta.value = ''; ta.style.height = 'auto';
+    add(text, 'user');
+    sending = true; sendBtn.disabled = true;
+    var typing = document.createElement('div'); typing.className = 'mk-typing'; typing.textContent = 'Mariela está escribiendo…';
+    body.appendChild(typing); body.scrollTop = body.scrollHeight;
+
+    fetch(WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'sendMessage', sessionId: sessionId, chatInput: text })
+    }).then(function (r) { return r.text(); }).then(function (txt) {
+      typing.remove();
+      var out = '';
+      try { var j = JSON.parse(txt); if (Array.isArray(j)) j = j[0] || {}; out = j.output || j.text || j.message || j.response || j.reply || ''; }
+      catch (e) { out = txt; }
+      if (!out) out = 'Perdón, no pude procesar eso. Escríbeme por WhatsApp al +1 786 332 9815 y te ayudo. 📲';
+      add(out, 'bot');
+    }).catch(function () {
+      typing.remove();
+      add('Tuve un problema de conexión. Escríbeme por WhatsApp al +1 786 332 9815 y te atiendo enseguida. 📲', 'bot');
+    }).then(function () { sending = false; sendBtn.disabled = false; ta.focus(); });
+  }
+
+  // eventos
+  function open() { panel.classList.add('open'); greet(); setTimeout(function(){ta.focus();}, 100); }
+  function close() { panel.classList.remove('open'); }
+  toggle.addEventListener('click', function () { panel.classList.contains('open') ? close() : open(); });
+  panel.querySelector('.mk-x').addEventListener('click', close);
+  sendBtn.addEventListener('click', function () { send(); });
+  ta.addEventListener('keydown', function (e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } });
+  ta.addEventListener('input', function () { ta.style.height = 'auto'; ta.style.height = Math.min(ta.scrollHeight, 120) + 'px'; });
+
+  // auto-abrir una vez por sesión a los 6s
+  setTimeout(function () {
+    try { if (!sessionStorage.getItem('mariela_auto_opened')) { open(); sessionStorage.setItem('mariela_auto_opened', '1'); } }
+    catch (e) {}
+  }, 6000);
+})();
