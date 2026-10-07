@@ -21,11 +21,11 @@
   // ── estilos ──
   var css = document.createElement('style');
   css.textContent = [
-    '.mk-toggle{position:fixed;right:20px;bottom:20px;width:58px;height:58px;border-radius:50%;border:0;cursor:pointer;z-index:2147483000;',
+    '.mk-toggle{position:fixed;right:16px;bottom:88px;width:58px;height:58px;border-radius:50%;border:0;cursor:pointer;z-index:2147483000;',
     'background:linear-gradient(135deg,#FF5722,#E64A19);color:#fff;font:600 22px/1 -apple-system,BlinkMacSystemFont,Segoe UI,Inter,sans-serif;',
     'box-shadow:0 10px 32px rgba(255,87,34,.45),0 2px 8px rgba(0,0,0,.35);transition:transform .25s cubic-bezier(.34,1.56,.64,1)}',
     '.mk-toggle:hover{transform:scale(1.07)}',
-    '.mk-panel{position:fixed;right:20px;bottom:88px;width:392px;max-width:calc(100vw - 32px);height:620px;max-height:calc(100dvh - 120px);',
+    '.mk-panel{position:fixed;right:16px;bottom:156px;width:392px;max-width:calc(100vw - 32px);height:600px;max-height:calc(100dvh - 180px);',
     'z-index:2147483000;display:none;flex-direction:column;background:#121214;border:1px solid rgba(255,255,255,.08);border-radius:22px;overflow:hidden;',
     'box-shadow:0 24px 80px rgba(0,0,0,.55),0 2px 8px rgba(0,0,0,.3);font-family:-apple-system,BlinkMacSystemFont,SF Pro Text,Segoe UI,Inter,sans-serif}',
     '.mk-panel.open{display:flex}',
