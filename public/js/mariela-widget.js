@@ -137,9 +137,19 @@
   ta.addEventListener('keydown', function (e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } });
   ta.addEventListener('input', function () { ta.style.height = 'auto'; ta.style.height = Math.min(ta.scrollHeight, 120) + 'px'; });
 
-  // auto-abrir una vez por sesión a los 6s
-  setTimeout(function () {
-    try { if (!sessionStorage.getItem('mariela_auto_opened')) { open(); sessionStorage.setItem('mariela_auto_opened', '1'); } }
-    catch (e) {}
-  }, 6000);
+  // Auto-abrir una vez por sesión: tras la 1ª interacción (protege el LCP) o 25s de respaldo.
+  // Abrir un panel grande durante la carga empeora el LCP; esperar a la interacción lo evita.
+  (function () {
+    var opened = false;
+    function go() {
+      if (opened) return; opened = true;
+      try { if (sessionStorage.getItem('mariela_auto_opened')) return; sessionStorage.setItem('mariela_auto_opened', '1'); } catch (e) {}
+      if (!panel.classList.contains('open')) open();
+    }
+    var t = setTimeout(go, 25000);
+    function trigger() { clearTimeout(t); setTimeout(go, 1000); }
+    ['scroll', 'pointerdown', 'keydown', 'touchstart'].forEach(function (ev) {
+      window.addEventListener(ev, trigger, { once: true, passive: true });
+    });
+  })();
 })();

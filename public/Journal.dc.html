@@ -67,7 +67,7 @@ input{font:inherit}
 </section>
 
 <section data-screen-label="Featured" style="position:relative;z-index:1;padding:48px clamp(16px,3vw,48px) 0">
-  <a href="JournalArticle.dc.html" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:0;border:1px solid rgba(242,242,240,.2)">
+  <a href="{{ first.href }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:0;border:1px solid rgba(242,242,240,.2)">
     <div style="position:relative;aspect-ratio:4/3;overflow:hidden;background:#161616">
       <img src="/assets/portfolio/39_portafolio_1.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.05) contrast(1.03)">
       <span style="position:absolute;left:10px;top:10px;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;background:#FF5A36;color:#0A0A0A;padding:4px 6px">{{ t.featured }}</span>
@@ -92,6 +92,7 @@ input{font:inherit}
   </div>
   <div style="border-top:1px solid rgba(242,242,240,.3)">
     <sc-for list="{{ posts }}" as="p" hint-placeholder-count="5">
+      <sc-if value="{{ p.live }}" hint-placeholder-val="{{ true }}">
       <a href="{{ p.href }}" style="display:grid;grid-template-columns:44px minmax(0,1fr) 72px;gap:12px;align-items:start;padding:18px 0;border-bottom:1px solid rgba(242,242,240,.3)">
         <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8A8A87;padding-top:3px">{{ p.n }}.</span>
         <span style="display:flex;flex-direction:column;gap:8px;min-width:0">
@@ -102,6 +103,19 @@ input{font:inherit}
           <img src="{{ p.img }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.05) contrast(1.03)">
         </span>
       </a>
+      </sc-if>
+      <sc-if value="{{ p.notLive }}" hint-placeholder-val="{{ false }}">
+      <div style="display:grid;grid-template-columns:44px minmax(0,1fr) 72px;gap:12px;align-items:start;padding:18px 0;border-bottom:1px solid rgba(242,242,240,.3);opacity:.5;cursor:default">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8A8A87;padding-top:3px">{{ p.n }}.</span>
+        <span style="display:flex;flex-direction:column;gap:8px;min-width:0">
+          <span style="font-weight:500;font-stretch:104%;font-size:clamp(18px,5cqw,30px);line-height:1.1;text-transform:uppercase;letter-spacing:-.02em">{{ p.title }}</span>
+          <span style="display:flex;gap:12px;flex-wrap:wrap;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#8A8A87"><span>{{ p.cat }}</span><span>{{ p.read }}</span><span style="{{ p.statusStyle }}">{{ p.status }}</span></span>
+        </span>
+        <span style="position:relative;aspect-ratio:1;overflow:hidden;background:#161616">
+          <img src="{{ p.img }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.05) contrast(1.03)">
+        </span>
+      </div>
+      </sc-if>
     </sc-for>
   </div>
 </section>
@@ -114,17 +128,17 @@ input{font:inherit}
 const IMG = n => `/assets/portfolio/39_portafolio_${n}.jpg`;
 const POSTS = {
 en:[
-['content','Brand content that sells: what Miami businesses get wrong','Why most brand photos never turn into bookings, and how to plan a shoot around the sale instead of the feed.','6 min','live','/blog-brand-content-photography',1],
+['content','Brand content that sells: what Miami businesses get wrong','Why most brand photos never turn into bookings, and how to plan a shoot around the sale instead of the feed.','6 min','live','journal-brand-content.dc.html',1],
 ['realestate','Listing content for Miami real estate: photo, video and Reels','A shot list and distribution plan that helps a listing stand out in Brickell and Coral Gables.','— min','draft','',6],
 ['hospitality','Content for restaurants and hotels that fills tables and rooms','What to shoot, how often to post, and how to measure if it is bringing guests.','— min','draft','',3],
-['content','Editorial direction for brands: from portrait to campaign','Reframed from "Editorial photographer Miami": how editorial direction raises the perceived value of a brand.','5 min','live','/blog-editorial-photographer-miami',9],
-['events','Courthouse weddings in Miami: an events content case','Reframed from the original post as an events-and-hospitality content piece.','4 min','live','/blog-courthouse-wedding-miami',8]],
+['content','Editorial direction for brands: from portrait to campaign','How editorial direction raises the perceived value of a brand — from a single portrait to a full campaign.','5 min','live','journal-editorial-direction.dc.html',9],
+['events','Courthouse weddings in Miami: an events content case','How a small, fast courthouse wedding becomes shareable content and a repeatable package venues can book.','4 min','live','journal-events-content.dc.html',8]],
 es:[
-['content','Contenido de marca que vende: en qué se equivocan los negocios de Miami','Por qué la mayoría de fotos de marca nunca se convierten en reservas, y cómo planificar una sesión pensando en la venta y no en el feed.','6 min','live','/blog-brand-content-photography',1],
+['content','Contenido de marca que vende: en qué se equivocan los negocios de Miami','Por qué la mayoría de fotos de marca nunca se convierten en reservas, y cómo planificar una sesión pensando en la venta y no en el feed.','6 min','live','journal-brand-content.dc.html',1],
 ['realestate','Contenido para real estate en Miami: foto, video y Reels','Un shot list y un plan de distribución para que un listing destaque en Brickell y Coral Gables.','— min','draft','',6],
 ['hospitality','Contenido para restaurantes y hoteles que llena mesas y habitaciones','Qué grabar, cada cuánto publicar y cómo medir si trae clientes.','— min','draft','',3],
-['content','Dirección editorial para marcas: del retrato a la campaña','Reformulado desde "Editorial photographer Miami": cómo la dirección editorial sube el valor percibido de una marca.','5 min','live','/blog-editorial-photographer-miami',9],
-['events','Bodas civiles en Miami: un caso de contenido para eventos','Reformulado desde el post original como pieza de contenido para eventos y hospitality.','4 min','live','/blog-courthouse-wedding-miami',8]]
+['content','Dirección editorial para marcas: del retrato a la campaña','Cómo la dirección editorial sube el valor percibido de una marca — de un retrato a una campaña completa.','5 min','live','journal-editorial-direction.dc.html',9],
+['events','Bodas civiles en Miami: un caso de contenido para eventos','Cómo una boda civil pequeña y rápida se vuelve contenido que circula y un paquete repetible para venues.','4 min','live','journal-events-content.dc.html',8]]
 };
 const T = {
 en:{h1a:'Notes on',h1b:'content that sells.',intro:'Marketing for Miami businesses: real estate, hospitality and brand content built to book clients.',entries:'entries',featured:'Featured',read:'Read article',index:'Index',
@@ -140,7 +154,7 @@ class Component extends DCLogic {
     const t = T[lang]; const c = this.state.cat;
     const chip = on => ({flex:'none', background: on ? '#F2F2F0' : 'transparent', color: on ? '#0A0A0A' : '#F2F2F0', border:'1px solid ' + (on ? '#F2F2F0' : 'rgba(242,242,240,.3)'), height:36, padding:'0 12px', cursor:'pointer', fontFamily:"'IBM Plex Mono',monospace", fontSize:10, letterSpacing:'.08em', textTransform:'uppercase'});
     const all = POSTS[lang].map(([cat,title,dek,read,status,slug,img],i) => ({cat:t.cats[cat], key:cat, title, dek, read, status:t[status], img:IMG(img), n:String(i+1).padStart(2,'0'),
-      href: 'JournalArticle.dc.html',
+      href: slug, live: !!slug, notLive: !slug,
       statusStyle:{color: status==='draft' ? '#FF5A36' : '#8A8A87'}}));
     return { t, lang, setLang: this.setLang, first: all[0], count: String(all.length).padStart(2,'0'),
       cats: Object.keys(t.cats).map(k => ({label:t.cats[k], style:chip(c===k), onClick:()=>this.setState({cat:k})})),
