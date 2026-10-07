@@ -63,6 +63,6 @@
     { "source": "/food-photography-miami", "destination": "/food-photography-miami.dc.html", "permanent": true },
     { "source": "/brand-photography-miami", "destination": "/brand-photography-miami.dc.html", "permanent": true }
   ],
-  "cleanUrls": true,
+  "cleanUrls": false,
   "trailingSlash": false
 }
